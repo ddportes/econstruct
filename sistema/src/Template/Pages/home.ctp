@@ -18,7 +18,8 @@ $cakeDescription = 'e-Construct';
 <?php
     $this->Html->scriptStart(['block' => true]);
 
-    echo "
+    echo "    
+    
 google.charts.load('current', {packages: ['corechart']});
 google.charts.setOnLoadCallback(drawMultSeries);
 
