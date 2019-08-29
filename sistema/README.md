@@ -1,3 +1,7 @@
+e-Construct Gestão de Obras
+
+Sistema voltado para atender as necessidades de gestão de micro e pequenos construtores.
+
 # CakePHP Application Skeleton
 
 [![Build Status](https://img.shields.io/travis/cakephp/app/master.svg?style=flat-square)](https://travis-ci.org/cakephp/app)
