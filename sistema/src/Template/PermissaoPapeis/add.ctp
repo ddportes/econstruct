@@ -1,0 +1,29 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\PermissaoPapel $permissaoPapel
+ */
+?>
+<nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <ul class="side-nav">
+        <li class="heading"><?= __('Actions') ?></li>
+        <li><?= $this->Html->link(__('List Permissao Papeis'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Permissoes'), ['controller' => 'Permissoes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Permissao'), ['controller' => 'Permissoes', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Papeis'), ['controller' => 'Papeis', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Papel'), ['controller' => 'Papeis', 'action' => 'add']) ?></li>
+    </ul>
+</nav>
+<div class="permissaoPapeis form large-9 medium-8 columns content">
+    <?= $this->Form->create($permissaoPapel) ?>
+    <fieldset>
+        <legend><?= __('Add Permissao Papel') ?></legend>
+        <?php
+            echo $this->Form->control('permissao_id', ['options' => $permissoes]);
+            echo $this->Form->control('papel_id', ['options' => $papeis]);
+            echo $this->Form->control('empresa_id');
+        ?>
+    </fieldset>
+    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->end() ?>
+</div>
