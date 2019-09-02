@@ -40,28 +40,16 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Todos
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Todos'),['controller'=>'Clientes','action'=>'index'],['escape'=>false]) ?>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Novo
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Novo'),['controller'=>'Clientes','action'=>'add'],['escape'=>false]) ?>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Contatos
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Contatos'),['controller'=>'Contatos','action'=>'index'],['escape'=>false]) ?>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Endereços
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Enderecos'),['controller'=>'Enderecos','action'=>'index'],['escape'=>false]) ?>
                     </li>
                     <li>
                         <a href="">

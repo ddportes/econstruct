@@ -44,7 +44,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="main-card mb-3 card">
-            <div class="card-body"><h5 class="card-title">Visitas Cadastrados</h5>
+            <div class="card-body"><h5 class="card-title">Visitas Cadastradas</h5>
                 <div class="table-responsive">
                     <table class="mb-0 table">
                         <thead>

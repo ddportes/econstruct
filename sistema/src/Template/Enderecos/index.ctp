@@ -24,11 +24,9 @@
                 <th scope="col"><?= $this->Paginator->sort('complemento') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('bairro') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('cep') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('cidade_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('cidade') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('estado') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('principal') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('empresa_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -36,17 +34,15 @@
             <?php foreach ($enderecos as $endereco): ?>
             <tr>
                 <td><?= $this->Number->format($endereco->id) ?></td>
-                <td><?= $endereco->has('pessoa') ? $this->Html->link($endereco->pessoa->id, ['controller' => 'Pessoas', 'action' => 'view', $endereco->pessoa->id]) : '' ?></td>
+                <td><?= $endereco->has('pessoa') ? $this->Html->link($endereco->pessoa->nome, ['controller' => 'Clientes', 'action' => 'view', $endereco->pessoa->id]) : '' ?></td>
                 <td><?= h($endereco->logradouro) ?></td>
                 <td><?= $this->Number->format($endereco->numero) ?></td>
                 <td><?= h($endereco->complemento) ?></td>
                 <td><?= h($endereco->bairro) ?></td>
                 <td><?= $this->Number->format($endereco->cep) ?></td>
-                <td><?= $this->Number->format($endereco->cidade_id) ?></td>
+                <td><?= h($endereco->cidade) ?></td>
+                <td><?= h($endereco->estado) ?></td>
                 <td><?= h($endereco->principal) ?></td>
-                <td><?= h($endereco->created) ?></td>
-                <td><?= h($endereco->modified) ?></td>
-                <td><?= $this->Number->format($endereco->empresa_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $endereco->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $endereco->id]) ?>

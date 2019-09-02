@@ -20,7 +20,7 @@ class EnderecosController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Pessoas', 'Cidades']
+            'contain' => ['Pessoas','Pessoas.Clientes']
         ];
         $enderecos = $this->paginate($this->Enderecos);
 
