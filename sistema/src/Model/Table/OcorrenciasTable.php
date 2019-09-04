@@ -41,6 +41,7 @@ class OcorrenciasTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('FiltroAcesso');
 
         $this->belongsTo('OcorrenciaTipos', [
             'foreignKey' => 'ocorrencia_tipo_id',

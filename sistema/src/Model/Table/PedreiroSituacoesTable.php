@@ -40,6 +40,7 @@ class PedreiroSituacoesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('FiltroAcesso');
 
         $this->belongsTo('Empresas', [
             'foreignKey' => 'empresa_id'

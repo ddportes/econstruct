@@ -42,6 +42,7 @@ class FornecedoresTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('FiltroAcesso');
 
         $this->belongsTo('FornecedorSituacoes', [
             'foreignKey' => 'fornecedor_situacao_id',

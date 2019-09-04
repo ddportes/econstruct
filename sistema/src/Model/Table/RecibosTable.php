@@ -41,6 +41,7 @@ class RecibosTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('FiltroAcesso');
 
         $this->belongsTo('Equipes', [
             'foreignKey' => 'equipe_id'

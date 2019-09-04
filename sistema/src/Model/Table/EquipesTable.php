@@ -42,6 +42,7 @@ class EquipesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('FiltroAcesso');
 
         $this->belongsTo('Projetos', [
             'foreignKey' => 'projeto_id'

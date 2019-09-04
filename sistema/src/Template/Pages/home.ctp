@@ -53,7 +53,6 @@ function drawMultSeries() {
 
     $this->Html->scriptEnd();
 ?>
-
 <div class="app-page-title">
     <div class="page-title-wrapper">
         <div class="page-title-heading">
@@ -203,54 +202,60 @@ function drawMultSeries() {
                     </thead>
                     <tbody>
                     <?php $ocorrencias = $ocorrencias->limit(10)->order(['Ocorrencias.id DESC']); ?>
-                    <?php foreach($ocorrencias as $val): ?>
+                    <?php if($ocorrencias->count() > 0): ?>
+                        <?php foreach($ocorrencias as $val): ?>
 
-                    <tr>
-                        <td class="text-center text-muted"><?= $val->id ?></td>
-                        <td>
-                            <div class="widget-content p-0">
-                                <div class="widget-content-wrapper">
-                                    <div class="widget-content-left flex2">
-                                        <div class="widget-heading"><?= $val->projeto->cliente->pessoa->nome ?></div>
-                                        <div class="widget-subheading opacity-7"><?= $val->projeto->cliente->pessoa->todosTelefones() ?></div>
+                        <tr>
+                            <td class="text-center text-muted"><?= $val->id ?></td>
+                            <td>
+                                <div class="widget-content p-0">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left flex2">
+                                            <div class="widget-heading"><?= $val->projeto->cliente->pessoa->nome ?></div>
+                                            <div class="widget-subheading opacity-7"><?= $val->projeto->cliente->pessoa->todosTelefones() ?></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td class="text-center">
-                            <?php if($val->projeto->cliente->cliente_situacao_id == 1): ?>
-                            <div class="badge badge-primary">
-                                <?php elseif($val->projeto->cliente->cliente_situacao_id == 2): ?>
-                                    <div class="badge badge-secondary">
-                                <?php elseif($val->projeto->cliente->cliente_situacao_id == 3): ?>
-                                    <div class="badge badge-warning>
-                                <?php elseif($val->projeto->cliente->cliente_situacao_id == 4): ?>
-                                    <div class="badge badge-success>
-                                <?php elseif($val->projeto->cliente->cliente_situacao_id == 5): ?>
-                                    <div class="badge badge-alt>
+                            </td>
+                            <td class="text-center">
+                                <?php if($val->projeto->cliente->cliente_situacao_id == 1): ?>
+                                <div class="badge badge-primary">
+                                    <?php elseif($val->projeto->cliente->cliente_situacao_id == 2): ?>
+                                        <div class="badge badge-secondary">
+                                    <?php elseif($val->projeto->cliente->cliente_situacao_id == 3): ?>
+                                        <div class="badge badge-warning>
+                                    <?php elseif($val->projeto->cliente->cliente_situacao_id == 4): ?>
+                                        <div class="badge badge-success>
+                                    <?php elseif($val->projeto->cliente->cliente_situacao_id == 5): ?>
+                                        <div class="badge badge-alt>
+                                    <?php else: ?>
+                                        <div class="badge badge-danger>
+                                <?php endif; ?>
+                                     <?= $val->projeto->cliente->cliente_situacao->descricao ?></div>
+                            </td>
+                            <td class="text-center"><?= $val->projeto->descricao ?></td>
+                            <td class="text-center">
+                                <div class="badge
+                                <?php if($val->projeto->projeto_situacao_id == 1): ?>
+                                    badge-primary
+                                <?php elseif($val->projeto->projeto_situacao_id == 2): ?>
+                                    badge-secondary
+                                <?php elseif($val->projeto->projeto_situacao_id >= 3 && $val->projeto->projeto_situacao_id <= 8 ): ?>
+                                    badge-warning
+                                <?php elseif($val->projeto->projeto_situacao_id >= 9 && $val->projeto->projeto_situacao_id <= 10 ): ?>
+                                    badge-alt
                                 <?php else: ?>
-                                    <div class="badge badge-danger>
-                            <?php endif; ?>
-                                 <?= $val->projeto->cliente->cliente_situacao->descricao ?></div>
-                        </td>
-                        <td class="text-center"><?= $val->projeto->descricao ?></td>
-                        <td class="text-center">
-                            <div class="badge
-                            <?php if($val->projeto->projeto_situacao_id == 1): ?>
-                                badge-primary
-                            <?php elseif($val->projeto->projeto_situacao_id == 2): ?>
-                                badge-secondary
-                            <?php elseif($val->projeto->projeto_situacao_id >= 3 && $val->projeto->projeto_situacao_id <= 8 ): ?>
-                                badge-warning
-                            <?php elseif($val->projeto->projeto_situacao_id >= 9 && $val->projeto->projeto_situacao_id <= 10 ): ?>
-                                badge-alt
-                            <?php else: ?>
-                                badge-success
-                            <?php endif; ?>">
-                                 <?= $val->projeto->projeto_situacao->descricao ?></div>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
+                                    badge-success
+                                <?php endif; ?>">
+                                     <?= $val->projeto->projeto_situacao->descricao ?></div>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5" style="text-align:center">Não há visitas cadastradas</td>
+                        </tr>
+                    <?php endif; ?>
                     </tbody>
                 </table>
             </div>

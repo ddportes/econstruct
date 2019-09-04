@@ -42,6 +42,7 @@ class ClientesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('FiltroAcesso');
 
         $this->belongsTo('Pessoas', [
             'foreignKey' => 'pessoa_id',

@@ -42,6 +42,7 @@ class ItensTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('FiltroAcesso');
 
         $this->belongsTo('Notas', [
             'foreignKey' => 'nota_id',

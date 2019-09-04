@@ -46,6 +46,7 @@ class PessoasTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('FiltroAcesso');
 
         $this->belongsTo('Pessoas', [
             'foreignKey' => 'conjuge_id'
