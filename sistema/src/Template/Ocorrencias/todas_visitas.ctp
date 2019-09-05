@@ -76,7 +76,7 @@
                                     <td class="actions">
                                         <?php //echo $this->Html->link('<i class="fas fa-search"></i>', ['action' => 'view', $ocorrencia->id],['Title'=>'Visualizar detalhes da Visita','escape'=>false]) ?>
                                         <?= $this->Html->link('<i class="fas fa-user-edit"></i>', ['action' => 'edit', $ocorrencia->id,$ocorrencia->ocorrencia_tipo_id],['Title'=>'Alterar Visita','escape'=>false]) ?>
-                                        <?php //echo $this->Form->postLink('<i class="fas fa-trash-alt"></i>', ['action' => 'delete', $ocorrencia->id],['data'=>['id'=>$ocorrencia->id],'confirm' => __('Deseja realmente excluir a visita {0}?', $ocorrencia->username),'Title'=>'Excluir visita','escape'=>false]) ?>
+                                        <?php //echo $this->Form->postLink('<i class="fas fa-trash-alt"></i>', ['action' => 'delete', $ocorrencia->id],['data'=>['id'=>$ocorrencia->id],'confirm' => __('Deseja realmente excluir a visita {0}?', $ocorrencia->id),'Title'=>'Excluir visita','escape'=>false]) ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

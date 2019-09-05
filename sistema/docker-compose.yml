@@ -1,13 +1,13 @@
 version: '3'
 services:
-  php-apache:
+  econstruct:
     image: webdevops/php-apache-dev
     ports:
       - "8080:80"
       - "4330:443"
       - "9080:9000"
     volumes:
-      - "c:\\xampp\\htdocs\\econstruct\\sistema:/var/www/econstruct"
+      - "c:\\xampp\\htdocs\\econstruct\\sistema:/var/www"
     environment:
       - WEB_DOCUMENT_ROOT=/var/www
     networks:
@@ -22,7 +22,7 @@ services:
       - "4331:443"
       - "9081:9000"
     volumes:
-      - "c:\\xampp\\phpmyadmin:/var/www/phpmyadmin"
+      - "c:\\xampp\\phpmyadmin:/var/www"
     environment:
       - WEB_DOCUMENT_ROOT=/var/www
     networks:

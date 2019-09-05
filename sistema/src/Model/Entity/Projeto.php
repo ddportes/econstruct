@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\I18n\Number;
 
 /**
  * Projeto Entity
@@ -66,4 +67,62 @@ class Projeto extends Entity
         'recebimentos' => true,
         'recibos' => true
     ];
+
+    /**
+     * @param bool|null $moeda
+     * @return string
+     */
+    public function custoEstimado($moeda = null){
+        if($moeda === true){
+            return Number::format($this->custo_estimado,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return Number::format($this->custo_estimado,['pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+
+    }
+
+    /**
+     * @param bool|null  $moeda
+     * @return string
+     */
+    public function totalRecebimentos($moeda = null){
+        $valor= 0;
+        foreach($this->recebimentos as $val){
+            $valor = $valor + $val->valor;
+        }
+        if($moeda === true){
+            return Number::format($valor,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return Number::format($valor,['pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+
+    }
+
+    /**
+     * @param bool|null  $moeda
+     * @return string
+     */
+    public function totalRecibos($moeda = null){
+        $valor= 0;
+        foreach($this->recibos as $val){
+            $valor = $valor + $val->valor;
+        }
+        if($moeda === true){
+            return Number::format($valor,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return Number::format($valor,['pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+    }
+
+    /**
+     * @param bool|null  $moeda
+     * @return string
+     */
+    public function totalNotas($moeda = null){
+        $valor= 0;
+        foreach($this->notas as $val){
+            $valor = $valor + $val->valor;
+        }
+        if($moeda === true){
+            return Number::format($valor,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return Number::format($valor,['pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+    }
 }

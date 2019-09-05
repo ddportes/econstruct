@@ -1,83 +1,107 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Projeto[]|\Cake\Collection\CollectionInterface $projetos
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Projeto'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Clientes'), ['controller' => 'Clientes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Projeto Situacoes'), ['controller' => 'ProjetoSituacoes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Projeto Situacao'), ['controller' => 'ProjetoSituacoes', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Contratos'), ['controller' => 'Contratos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Contrato'), ['controller' => 'Contratos', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Equipes'), ['controller' => 'Equipes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Equipe'), ['controller' => 'Equipes', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Notas'), ['controller' => 'Notas', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Nota'), ['controller' => 'Notas', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Ocorrencias'), ['controller' => 'Ocorrencias', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Ocorrencia'), ['controller' => 'Ocorrencias', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Orcamentos'), ['controller' => 'Orcamentos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Orcamento'), ['controller' => 'Orcamentos', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Recebimentos'), ['controller' => 'Recebimentos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Recebimento'), ['controller' => 'Recebimentos', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Recibos'), ['controller' => 'Recibos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Recibo'), ['controller' => 'Recibos', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="projetos index large-9 medium-8 columns content">
-    <h3><?= __('Projetos') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('descricao') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('cliente_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('pasta_projeto') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('projeto_situacao_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('contrato_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('orcamento') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('custo_estimado') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('empresa_id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($projetos as $projeto): ?>
-            <tr>
-                <td><?= $this->Number->format($projeto->id) ?></td>
-                <td><?= h($projeto->descricao) ?></td>
-                <td><?= $projeto->has('cliente') ? $this->Html->link($projeto->cliente->id, ['controller' => 'Clientes', 'action' => 'view', $projeto->cliente->id]) : '' ?></td>
-                <td><?= h($projeto->pasta_projeto) ?></td>
-                <td><?= $projeto->has('projeto_situacao') ? $this->Html->link($projeto->projeto_situacao->id, ['controller' => 'ProjetoSituacoes', 'action' => 'view', $projeto->projeto_situacao->id]) : '' ?></td>
-                <td><?= $this->Number->format($projeto->contrato_id) ?></td>
-                <td><?= h($projeto->created) ?></td>
-                <td><?= h($projeto->modified) ?></td>
-                <td><?= $this->Number->format($projeto->orcamento) ?></td>
-                <td><?= $this->Number->format($projeto->custo_estimado) ?></td>
-                <td><?= $this->Number->format($projeto->empresa_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $projeto->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $projeto->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $projeto->id], ['confirm' => __('Are you sure you want to delete # {0}?', $projeto->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-users icon-gradient bg-mean-fruit">
+                </i>
+            </div>
+            <div>Projetos.
+                <div class="page-title-subheading">
+                    <p>Listagem de todos os projetos já cadastrados.</p>
+                </div>
+            </div>
+        </div>
+        <div class="page-title-actions">
+            <div class="d-inline-block dropdown">
+                <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
+                    <span class="btn-icon-wrapper pr-2 opacity-7">
+                        <i class="fa fa-business-time fa-w-20"></i>
+                    </span>
+                    Ações
+                </button>
+                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <?= $this->Html->link('<i class="nav-link-icon lnr-inbox"></i><span>'.__('Novo Projeto').'</span>', ['action' => 'add'],['role'=>'button','title'=>'Novo Projeto','class'=>'nav-link','escape'=>false]) ?>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="main-card mb-3 card">
+            <div class="card-body"><h5 class="card-title">Projetos Cadastrados</h5>
+                <div class="table-responsive">
+                    <table class="mb-0 table">
+                        <thead>
+                        <tr>
+                            <th style="vertical-align:top" scope="col"><?= $this->Paginator->sort('id','ID') ?></th>
+                            <th style="vertical-align:top" scope="col"><?= $this->Paginator->sort('descricao','Descrição') ?></th>
+                            <th style="vertical-align:top" scope="col"><?= $this->Paginator->sort('cliente_id','Cliente') ?></th>
+                            <th style="vertical-align:top" scope="col"><?= $this->Paginator->sort('projeto_situacao_id','Situação') ?></th>
+                            <th style="vertical-align:top" scope="col"><?= h('Equipe') ?></th>
+                            <th style="vertical-align:top" scope="col"><?= $this->Paginator->sort('custo_estimado','Custo Estimado') ?></th>
+                            <th style="vertical-align:top" scope="col"><?= h('Notas Cadastradas') ?></th>
+                            <th style="vertical-align:top" scope="col"><?= h('Recibos Emitidos') ?></th>
+                            <th style="vertical-align:top" scope="col" class="actions"><?= __('Actions','Ações') ?></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php if($projetos->count() > 0): ?>
+                            <?php foreach ($projetos as $projeto): ?>
+                                <tr>
+                                    <th scope="row"><?= $this->Number->format($projeto->id) ?></th>
+                                    <td><?= h($projeto->descricao) ?></td>
+                                    <td><?= $projeto->has('cliente') ? $this->Html->link($projeto->cliente->pessoa->nome, ['controller' => 'Clientes', 'action' => 'view', $projeto->cliente->id]) : '' ?></td>
+                                    <td><?= $projeto->has('projeto_situacao') ? h($projeto->projeto_situacao->descricao):'' ?></td>
+                                    <td><?= $projeto->has('equipe')?h($projeto->equipe->descricap):'-' ?></td>
+                                    <td><?= $projeto->custoEstimado(true) ?></td>
+                                    <td><?= $projeto->totalNotas(true) ?></td>
+                                    <td><?= $projeto->totalRecibos(true) ?></td>
+
+                                    <td class="actions">
+                                        <?= $this->Html->link('<i class="fas fa-search"></i>', ['action' => 'view', $projeto->id],['Title'=>'Visualizar detalhes do Projeto','escape'=>false]) ?>
+                                        <?= $this->Html->link('<i class="fas fa-user-edit"></i>', ['action' => 'edit', $projeto->id],['Title'=>'Alterar Projeto','escape'=>false]) ?>
+                                        <?php if(is_null($projeto->contrato_id)): ?>
+                                            <?= $this->Html->link('<i class="fas fa-file-alt"></i>', ['controller'=>'Contratos','action' => 'add', $projeto->id],['Title'=>'Emitir Contrato','escape'=>false]) ?>
+                                        <?php else: ?>
+                                            <?= $this->Html->link('<i class="fas fa-file-alt"></i>', ['controller'=>'Contratos','action' => 'view', $projeto->id],['Title'=>'Visualizar Contrato','escape'=>false]) ?>
+                                        <?php endif; ?>
+                                        <?= $this->Form->postLink('<i class="fas fa-trash-alt"></i>', ['action' => 'delete', $projeto->id],['data'=>['id'=>$projeto->id],'confirm' => __('Deseja realmente excluir o projeto {0}?', $projeto->id),'Title'=>'Excluir Projeto','escape'=>false]) ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <th colspan="4" scope="row"><?= __('Não há projetos cadastrados.') ?></th>
+                            </tr>
+                        <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <nav class="" aria-label="Paginacao">
+                    <ul class="pagination">
+
+                        <?= $this->Paginator->first('<< ' . __('Inícial')) ?>
+                        <?= $this->Paginator->prev('< ' . __('Anterior')) ?>
+                        <?= $this->Paginator->numbers() ?>
+                        <?= $this->Paginator->next(__('Próxima') . ' >') ?>
+                        <?= $this->Paginator->last(__('Final') . ' >>') ?>
+                    </ul>
+                    <p><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}, mostrando {{current}} projeto(s) de {{count}} no total')]) ?></p>
+                </nav>
+            </div>
+        </div>
     </div>
 </div>

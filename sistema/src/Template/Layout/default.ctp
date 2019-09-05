@@ -5,8 +5,10 @@ $cakeDescription = 'e-Construct';
 <html>
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Language" content="pt-br">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="shortcut icon" type="image/x-icon" href="<?= $this->Url->build('favicon.ico') ?>">
     <title>
         <?= $cakeDescription ?>:
         <?= $this->fetch('title').' - '.$empresa->nome_fantasia ?>
@@ -15,7 +17,6 @@ $cakeDescription = 'e-Construct';
     <meta name="description" content="Gestão de obras.">
     <meta name="msapplication-tap-highlight" content="no">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/css/perfect-scrollbar.min.css" integrity="sha256-Eff0vTAskMNGMXDva8NMruf8ex6k9EuZ4QXf09lxwaQ=" crossorigin="anonymous" />
-
 
     <?= $this->Html->css('main.css') ?>
 

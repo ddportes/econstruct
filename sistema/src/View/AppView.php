@@ -53,5 +53,6 @@ class AppView extends View
         $this->loadHelper('Url');
         $this->loadHelper('Form');
         $this->loadHelper('Paginator');
+        $this->loadHelper('Number');
     }
 }

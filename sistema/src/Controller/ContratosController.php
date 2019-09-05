@@ -48,7 +48,7 @@ class ContratosController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($projeto_id = null)
     {
         $contrato = $this->Contratos->newEntity();
         if ($this->request->is('post')) {

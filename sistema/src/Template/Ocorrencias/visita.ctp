@@ -4,106 +4,10 @@
  */
 ?>
 
-<script>
-    $(document).ready(function(){
-        $('#clienteId').on('change',function(){
-            var id = $(this).val();
-            $.ajax({
-                type: "GET",
-                url: '<?= $this->Url->build(['controller'=>'Clientes','action'=>'retornaCliente']) ?>/'+id,
-                success: function(result){
-
-                    if(result == ''){
-                        $('#nomePessoa').val('');
-                        $('#telefoneCliente').val('');
-                        $('#emailCliente').val('');
-                        $('#cpfPessoa').val('');
-                        $('#sexoPessoa').val('');
-                        $('#rgPessoa').val('');
-                        $('#estadoCivilPessoa').val('');
-                        $('#filhosPessoa').val('');
-                        $('#conjugeHiddenPessoa').val('');
-                        $('#cepCliente').val('');
-                        $('#logradouroCliente').val('');
-                        $('#numeroCliente').val('');
-                        $('#bairroCliente').val('');
-                        $('#complementoCliente').val('');
-                        $('#cidadeCliente').val('');
-                        $('#estadoCliente').val('');
-                        $('#nomeSocialPessoa').val('');
-                        $('#observacaoCliente').val('');
-                        $('#descricaoProjeto').val('');
-                        $('#detalhesProjeto').val('');
-                        $('#custoEstimadoProjeto').val('');
-                        $('#observacaoProjeto').val('');
-                        $('#pessoa_id').val('');
-                        $('#projeto_id').val('');
-                        $('#cliente_id').val('');
-
-                    }else {
-
-                        var cli = jQuery.parseJSON(result);
-
-                        telefone = '';
-                        cli.pessoa.contatos.forEach(function (el, i) {
-                            if (el.tipo == 'telefone') {
-                                if (telefone == '') {
-                                    telefone = el.valor;
-                                } else {
-                                    telefone = telefone + '/' + el.valor;
-                                }
-
-                            }
-                        });
-                        email = '';
-                        cli.pessoa.contatos.forEach(function (el, i) {
-                            if (el.tipo == 'email') {
-                                if (email == '') {
-                                    email = el.valor;
-                                } else {
-                                    email = email + '/' + el.valor;
-                                }
-
-                            }
-                        });
-                        endereco = '';
-                        cli.pessoa.enderecos.forEach(function (el, i) {
-                            endereco = el;
-                        });
-
-                        $('#nomePessoa').val(cli.pessoa.nome);
-                        $('#telefoneCliente').val(telefone);
-                        $('#emailCliente').val(email);
-                        $('#cpfPessoa').val(cli.pessoa.cpf_cnpj);
-                        $('#sexoPessoa').val(cli.pessoa.sexo);
-                        $('#rgPessoa').val(cli.pessoa.rg);
-                        $('#estadoCivilPessoa').val(cli.pessoa.estado_civil);
-                        $('#filhosPessoa').val(cli.pessoa.filhos);
-                        $('#conjugeHiddenPessoa').val(cli.pessoa.conjuge_id);
-                        $('#cepCliente').val(endereco.cep);
-                        $('#logradouroCliente').val(endereco.logradouro);
-                        $('#numeroCliente').val(endereco.numero);
-                        $('#bairroCliente').val(endereco.bairro);
-                        $('#complementoCliente').val(endereco.complemento);
-                        $('#cidadeCliente').val(endereco.cidade);
-                        $('#estadoCliente').val(endereco.estado);
-                        $('#nomeSocialPessoa').val(cli.pessoa.nome_social);
-                        $('#observacaoCliente').val(cli.pessoa.observacao);
-                        $('#descricaoProjeto').val(cli.projeto.descricao);
-                        $('#detalhesProjeto').val(cli.projeto.detalhes);
-                        $('#custoEstimadoProjeto').val(cli.projeto.custo_estimado);
-                        $('#observacaoProjeto').val(cli.projeto.observacao);
-                        $('#pessoa_id').val(cli.pessoa.id);
-                        $('#projeto_id').val(cli.projeto.id);
-                        $('#cliente_id').val(cli.id);
-                    }
-                },
-                contentType: "application/json; charset=utf-8",
-            });
-        });
-    });
-</script>
-
+<?= $this->Html->scriptStart(['block' => true]); ?>
+    var hashVisit = '<?= $this->request->getParam("_csrfToken") ?>';
+    var urlVisit = "<?= $this->Url->build(['controller'=>'Clientes','action'=>'retornaCliente']) ?>/";
+<?= $this->Html->scriptEnd(); ?>
 
 <?= $this->Html->script('https://code.jquery.com/jquery-3.4.1.min.js',['block'=>true]) ?>
 <?= $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css',['block'=>true]) ?>
@@ -111,9 +15,7 @@
 <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js',['block'=>true]) ?>
 <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js',['block'=>true]) ?>
 <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js',['block'=>true]) ?>
-<?= $this->Html->script('visita.js',['block'=>true]) ?>
-
-
+<?= $this->Html->script('visita-min.js',['block'=>true]) ?>
 
 <div class="app-page-title">
     <div class="page-title-wrapper">

@@ -5,9 +5,11 @@ $cakeDescription = 'e-Construct';
 <html>
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Language" content="pt-br">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="shortcut icon" type="image/x-icon" href="<?= $this->Url->build('favicon.ico') ?>">
     <title>
         <?= $cakeDescription ?>:
         <?= __('Gestão de Obras') ?>

@@ -10,7 +10,7 @@
 <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js',['block'=>true]) ?>
 <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js',['block'=>true]) ?>
 <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js',['block'=>true]) ?>
-<?= $this->Html->script('visita.js',['block'=>true]) ?>
+<?= $this->Html->script('visita-min.js',['block'=>true]) ?>
 
 <div class="app-page-title">
     <div class="page-title-wrapper">

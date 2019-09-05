@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Http\Exception\BadRequestException;
 
 /**
  * Clientes Controller
@@ -45,6 +46,14 @@ class ClientesController extends AppController
 
     public function retornaCliente($id=null)
     {
+        $this->request->accepts('get');
+        $dados = $_GET;
+
+        $hash = $this->request->getParam('_csrfToken');
+
+        if(!isset($dados['hash']) || $dados['hash'] != $hash){
+            throw new BadRequestException();
+        }
         if(!$id){
             $retorno = '';
         }else {
@@ -78,6 +87,14 @@ class ClientesController extends AppController
         $pessoas = $this->Clientes->Pessoas->find('list', ['limit' => 200]);
         $clienteSituacoes = $this->Clientes->ClienteSituacoes->find('list', ['limit' => 200]);
         $this->set(compact('cliente', 'pessoas', 'clienteSituacoes'));
+    }
+
+    public function addConjuge(){
+        if ($this->request->is('post')) {
+            $this->loadModel('Pessoas');
+            $this->loadModel('Enderecos');
+            $this->loadModel('Contatos');
+        }
     }
 
     /**
