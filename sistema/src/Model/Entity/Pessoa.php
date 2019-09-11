@@ -21,7 +21,7 @@ use Cake\ORM\Entity;
  * @property int|null $empresa_id
  * @property int|null $u_id
  *
- * @property \App\Model\Entity\Pessoa $conjuge
+ * @property \App\Model\Entity\Pessoa $pessoa
  * @property \App\Model\Entity\Cliente[] $clientes
  * @property \App\Model\Entity\Contato[] $contatos
  * @property \App\Model\Entity\Endereco[] $enderecos
@@ -54,7 +54,7 @@ class Pessoa extends Entity
         'modified' => true,
         'empresa_id' => true,
         'u_id' => true,
-        'conjuge' => true,
+        'pessoa' => true,
         'clientes' => true,
         'contatos' => true,
         'enderecos' => true,
@@ -63,7 +63,7 @@ class Pessoa extends Entity
         'rendas' => true
     ];
 
-    public function primeiroTelefone(){
+    public function firstTelefone(){
         foreach($this->contatos as $val){
             if($val->tipo=='telefone'){
                 return $val;
@@ -72,7 +72,7 @@ class Pessoa extends Entity
         return null;
     }
 
-    public function todosTelefones(){
+    public function allTelefones(){
         $telefones = '';
         foreach($this->contatos as $val){
             if($val->tipo=='telefone'){
@@ -88,7 +88,7 @@ class Pessoa extends Entity
             return $telefones;
     }
 
-    public function primeiroEmail(){
+    public function firstEmail(){
         foreach($this->contatos as $val){
             if($val->tipo=='email'){
                 return $val;
@@ -97,7 +97,7 @@ class Pessoa extends Entity
         return null;
     }
 
-    public function todosEmails(){
+    public function allEmails(){
         $emails = '';
         foreach($this->contatos as $val){
             if($val->tipo=='email'){
@@ -111,5 +111,23 @@ class Pessoa extends Entity
             return null;
         else
             return $emails;
+    }
+
+    public function totalRendaBruta(){
+        $sum = 0;
+        foreach($this->rendas as $val){
+            $sum = $sum + $val->renda_bruta;
+        }
+
+        return $sum;
+    }
+
+    public function totalRendaLiquida(){
+        $sum = 0;
+        foreach($this->rendas as $val){
+            $sum = $sum + $val->renda_liquida;
+        }
+
+        return $sum;
     }
 }

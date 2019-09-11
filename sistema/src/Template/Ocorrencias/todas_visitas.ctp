@@ -68,8 +68,8 @@
                                     <td><?= h(substr($ocorrencia->observacao,0,70)) ?>...</td>
                                     <td><?= $ocorrencia->has('projeto') ? $this->Html->link($ocorrencia->projeto->descricao, ['controller' => 'Projetos', 'action' => 'view', $ocorrencia->projeto->id]) : '' ?></td>
                                     <td><?= $ocorrencia->projeto->has('cliente') ? $this->Html->link($ocorrencia->projeto->cliente->pessoa->nome, ['controller' => 'Clientes', 'action' => 'view', $ocorrencia->projeto->cliente->id]) : '' ?></td>
-                                    <td><?= $ocorrencia->projeto->cliente->pessoa->has('contatos') ? $ocorrencia->projeto->cliente->pessoa->todosTelefones() : '' ?></td>
-                                    <td><?= $ocorrencia->projeto->cliente->pessoa->has('contatos') ? $ocorrencia->projeto->cliente->pessoa->todosEmails() : '' ?></td>
+                                    <td><?= $ocorrencia->projeto->cliente->pessoa->has('contatos') ? $ocorrencia->projeto->cliente->pessoa->allTelefones() : '' ?></td>
+                                    <td><?= $ocorrencia->projeto->cliente->pessoa->has('contatos') ? $ocorrencia->projeto->cliente->pessoa->allEmails() : '' ?></td>
                                     <td><?= (is_null($ocorrencia->data)?'':h(date_format($ocorrencia->data,'d/m/Y'))) ?></td>
                                     <td><?= (is_null($ocorrencia->data_pendencia)?'':h(date_format($ocorrencia->data_pendencia,'d/m/Y'))) ?></td>
 

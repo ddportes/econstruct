@@ -37,7 +37,7 @@ class PessoasController extends AppController
     public function view($id = null)
     {
         $pessoa = $this->Pessoas->get($id, [
-            'contain' => ['Conjuges', 'Clientes', 'Contatos', 'Enderecos', 'Fornecedores', 'Pedreiros', 'Rendas']
+            'contain' => ['Clientes', 'Contatos', 'Enderecos', 'Fornecedores', 'Pedreiros', 'Rendas']
         ]);
 
         $this->set('pessoa', $pessoa);

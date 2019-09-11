@@ -38,9 +38,15 @@ class Cliente extends Entity
         'modified' => true,
         'empresa_id' => true,
         'u_id' => true,
-        'u_id' => true,
         'pessoa' => true,
         'cliente_situacao' => true,
         'projetos' => true
     ];
+
+    public function hasProjeto(){
+        if(count($this->projetos)>0){
+            return true;
+        }
+        return false;
+    }
 }

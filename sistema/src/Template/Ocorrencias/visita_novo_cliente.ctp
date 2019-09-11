@@ -4,12 +4,7 @@
  */
 ?>
 
-<?= $this->Html->script('https://code.jquery.com/jquery-3.4.1.min.js',['block'=>true]) ?>
-<?= $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css',['block'=>true]) ?>
-<?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js',['block'=>true]) ?>
-<?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js',['block'=>true]) ?>
-<?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js',['block'=>true]) ?>
-<?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js',['block'=>true]) ?>
+<?php //echo $this->Html->script('https://code.jquery.com/jquery-3.4.1.min.js',['block'=>true]) ?>
 <?= $this->Html->script('visita-min.js',['block'=>true]) ?>
 
 <div class="app-page-title">
@@ -63,12 +58,12 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="position-relative form-group">
-                                            <?= $this->Form->control('telefoneCliente', ['id'=>'telefoneCliente','label'=>'Telefone','placeholder'=>'(99) 99999-9999','class' => 'form-control']); ?>
+                                            <?= $this->Form->control('telefoneCliente', ['id'=>'telefoneCliente','label'=>'Telefone','placeholder'=>'(99) 99999-9999','class' => 'form-control telefone']); ?>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="position-relative form-group">
-                                            <?= $this->Form->control('emailCliente', ['id'=>'emailCliente','label'=>'Email','placeholder'=>'Email de contato','class' => 'form-control']); ?>
+                                            <?= $this->Form->control('emailCliente', ['id'=>'emailCliente','label'=>'Email','placeholder'=>'Email de contato','class' => 'form-control email']); ?>
                                             <div id="erro_email" role="alert" style="margin-top:4px;"></div>
                                         </div>
                                     </div>
@@ -123,15 +118,23 @@
                                     </div>
                                     <div class="col-md-10">
                                         <div class="position-relative form-group">
-                                            <?= $this->Form->button(__('Cadastrar Cônjuge'),['style'=>'top:2.5em','data-toggle'=>'modal','data-target'=>'.bd-example-modal-lg','id'=>'conjugeCliente','type'=>'button','class'=>'btn btn-primary']) ?>
-                                            <?= $this->Form->control('conjugeHiddenPessoa', ['id'=>'conjugeHiddenPessoa','type'=>'hidden']); ?>
-                                            <?= $this->Form->button(__('Cadastrar Renda'),  ['style'=>'top:2.5em','data-toggle'=>'modal','data-target'=>'.bd-example-modal-lg','id'=>'rendaCliente'  ,'type'=>'button','class'=>'btn btn-primary']) ?>
-                                            <?= $this->Form->control('rendaHiddenCliente', ['id'=>'rendaHiddenCliente','type'=>'hidden']); ?>
+
+                                            <?= $this->Html->link(__('Cadastrar Cônjuge'),
+                                                ['controller' => 'Clientes', 'action' => 'addConjuge'], [
+                                                    'id' => 'conjugeCliente',
+                                                    'class' => 'btn btn-primary modal_lg_link',
+                                                    'style'=>'top:2.5em',
+                                                    'role' => 'button',
+                                                    'data-toggle'=>"modal",
+                                                    'data-target'=>".modal_econstruct",
+                                                    'escape' => false
+                                                ]) ?>
+                                            <?= $this->Form->control('conjugeHiddenPessoa', ['id'=>'conjugeHiddenPessoa','type'=>'hidden','value'=>(isset($conjuge)?$conjuge->id:'')]); ?>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="position-relative form-group">
-                                            <?= $this->Form->control('cepCliente', ['id'=>'cepCliente','label'=>'CEP','placeholder'=>'Somente Números','class' => 'form-control']); ?>
+                                            <?= $this->Form->control('cepCliente', ['id'=>'cepCliente','label'=>'CEP','placeholder'=>'Somente Números','class' => 'form-control cep']); ?>
                                             <div id="erro_cep" role="alert" style="margin-top:4px;"></div>
                                         </div>
                                     </div>
@@ -188,7 +191,16 @@
                                     </div>
                                     <div class="col-md-9">
                                         <div class="position-relative form-group">
-                                            <?= $this->Form->button(__('Novo Orçamento'),['style'=>'top:2.5em','data-toggle'=>'modal','data-target'=>'.bd-example-modal-lg','id'=>'orcamentoProjeto','type'=>'button','class'=>'btn btn-primary']) ?>
+                                            <?= $this->Html->link(__('Novo Orçamento'),
+                                                ['controller' => 'Orcamentos', 'action' => 'add'], [
+                                                    'id' => 'rendaCliente',
+                                                    'class' => 'btn btn-primary modal_lg_link',
+                                                    'style'=>'top:2.5em',
+                                                    'role' => 'button',
+                                                    'data-toggle'=>"modal",
+                                                    'data-target'=>".modal_econstruct",
+                                                    'escape' => false
+                                                ]) ?>
                                             <?= $this->Form->control('orcamentoHidden', ['id'=>'orcamentoHidden','type'=>'hidden']); ?>
                                         </div>
                                     </div>
@@ -203,6 +215,7 @@
             </div>
         <?= $this->Form->end() ?>
     </div>
+
 </div>
 
 <script>
@@ -213,4 +226,5 @@
             language: "pt-BR"
         });
     } );
+    $('.telefone').mask(SPMaskBehavior, spOptions);
 </script>

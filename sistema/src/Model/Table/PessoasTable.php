@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Pessoas Model
  *
- * @property \App\Model\Table\PessoasTable&\Cake\ORM\Association\BelongsTo $Conjuges
+ * @property \App\Model\Table\PessoasTable&\Cake\ORM\Association\BelongsTo $Pessoas
  * @property &\Cake\ORM\Association\BelongsTo $Empresas
  * @property \App\Model\Table\ClientesTable&\Cake\ORM\Association\HasMany $Clientes
  * @property \App\Model\Table\ContatosTable&\Cake\ORM\Association\HasMany $Contatos
@@ -42,7 +42,7 @@ class PessoasTable extends Table
         parent::initialize($config);
 
         $this->setTable('pessoas');
-        $this->setDisplayField('id');
+        $this->setDisplayField('nome');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -141,6 +141,7 @@ class PessoasTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->existsIn(['conjuge_id'], 'Pessoas'));
         $rules->add($rules->existsIn(['empresa_id'], 'Empresas'));
         $rules->add($rules->existsIn(['u_id'], 'users'));
 

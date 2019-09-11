@@ -76,13 +76,12 @@ class OcorrenciasController extends AppController
     {
         $user = $this->Auth->user();
 
-        $this->loadModel('Projetos');
-        $this->loadModel('Pessoas');
-        $this->loadModel('Clientes');
-        $this->loadModel('Enderecos');
-        $this->loadModel('Contatos');
-
         if ($this->request->is('post')) {
+            $this->loadModel('Projetos');
+            $this->loadModel('Pessoas');
+            $this->loadModel('Clientes');
+            $this->loadModel('Enderecos');
+            $this->loadModel('Contatos');
             $dados = $this->request->getData();
 
             try {
@@ -171,7 +170,7 @@ class OcorrenciasController extends AppController
                                         $dados_originais = json_encode([$user['id'],$user['username'],'Nova Visita']);
                                         $dados_novos = json_encode([$user['id'],$user['username'],$ocorrencia,$projeto,$contatos,$endereco,$cliente,$pessoa]);
                                         if($this->Modificacoes->emiteLog('Ocorrencias','visitaNovoCliente',$dados_originais,$dados_novos)) {
-                                            $this->Flash->success(__('Visita gravada com sucesso.'));
+                                            $this->Flash->success(__('Visita cadastrada com sucesso.'));
                                         }else{
                                             $this->Flash->error(__('Erro ao gravar log.'));
                                         }
@@ -224,14 +223,14 @@ class OcorrenciasController extends AppController
     public function visita()
     {
         $user = $this->Auth->user();
-
-        $this->loadModel('Projetos');
-        $this->loadModel('Pessoas');
         $this->loadModel('Clientes');
-        $this->loadModel('Enderecos');
-        $this->loadModel('Contatos');
 
         if ($this->request->is('post')) {
+            $this->loadModel('Projetos');
+            $this->loadModel('Pessoas');
+
+            $this->loadModel('Enderecos');
+            $this->loadModel('Contatos');
             $dados = $this->request->getData();
 
             try {
@@ -245,6 +244,7 @@ class OcorrenciasController extends AppController
                 $dados_pessoa['tipo'] = 'F';
                 $dados_pessoa['cpf_cnpj'] = (!empty($dados['cpfPessoa'])?$dados['cpfPessoa']: null);
                 $dados_pessoa['rg'] = (!empty($dados['rgPessoa'])?$dados['rgPessoa']: null);
+                $dados_pessoa['u_id'] = $user['id'];
                 $pessoa = $this->Pessoas->get($dados['pessoa_id'],['contain'=>['Contatos','Enderecos']]);
                 $pessoa = $this->Pessoas->patchEntity($pessoa,$dados_pessoa);
 
@@ -253,14 +253,17 @@ class OcorrenciasController extends AppController
                     $dados_cliente['pessoa_id'] = $pessoa->id;
                     $dados_cliente['cliente_situacao_id'] = 1;
                     $dados_cliente['observacao'] = (!empty($dados['observacaoCliente'])?$dados['observacaoCliente']: null);
+                    $dados_cliente['u_id'] = $user['id'];
                     $cliente = $this->Clientes->get($dados['cliente_id']);
                     $cliente = $this->Clientes->patchEntity($cliente,$dados_cliente);
                     if ($this->Clientes->save($cliente)) {
                         foreach($pessoa->contatos as $val){
                             if($val->tipo == 'telefone'){
                                 $val->valor = (!empty($dados['telefoneCliente'])?$dados['telefoneCliente']: null);
+                                $val->u_id = $user['id'];
                             }else{
                                 $val->valor = (!empty($dados['emailCliente'])?$dados['emailCliente']: null);
+                                $val->u_id = $user['id'];
                             }
                         }
                         $contatos = $pessoa->contatos;
@@ -273,6 +276,7 @@ class OcorrenciasController extends AppController
                                 $val->cep = (!empty($dados['cepCliente'])?preg_replace('/[^0-9]/', '', $dados['cepCliente']): null);
                                 $val->cidade = (!empty($dados['cidadeCliente'])?$dados['cidadeCliente']: null);
                                 $val->estado = (!empty($dados['estadoCliente'])?$dados['estadoCliente']: null);
+                                $val->u_id = $user['id'];
                             }
                             $endereco = $pessoa->enderecos;
                             if ($this->Enderecos->saveMany($endereco)) {
@@ -282,6 +286,7 @@ class OcorrenciasController extends AppController
                                 $dados_projeto['projeto_situacao_id'] = 1;
                                 $dados_projeto['custo_estimado'] = (!empty($dados['custoEstimadoProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['custoEstimadoProjeto'])): null);
                                 $dados_projeto['observacao'] = (!empty($dados['anotacoesOcorrencia'])?$dados['anotacoesOcorrencia']: null);
+                                $dados_projeto['u_id'] = $user['id'];
                                 $projeto = $this->Projetos->get($dados['projeto_id']);
                                 $projeto = $this->Projetos->patchEntity($projeto,$dados_projeto);
                                 if ($this->Projetos->save($projeto)) {

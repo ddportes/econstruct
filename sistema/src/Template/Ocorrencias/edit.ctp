@@ -46,12 +46,12 @@
                     </div>
                     <div class="col-md-5">
                         <div class="position-relative form-group">
-                            <label>Telefones </label><br/><strong style="font-size: 1.5em"> <?= $ocorrencia->projeto->cliente->pessoa->todosTelefones() ?></strong>
+                            <label>Telefones </label><br/><strong style="font-size: 1.5em"> <?= $ocorrencia->projeto->cliente->pessoa->allTelefones() ?></strong>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="position-relative form-group">
-                            <label>E-mails </label><br/><strong style="font-size: 1.5em"> <?= $ocorrencia->projeto->cliente->pessoa->todosEmails() ?></strong>
+                            <label>E-mails </label><br/><strong style="font-size: 1.5em"> <?= $ocorrencia->projeto->cliente->pessoa->allEmails() ?></strong>
                         </div>
                     </div>
                     <div class="col-md-1"></div>

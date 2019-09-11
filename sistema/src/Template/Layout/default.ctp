@@ -21,61 +21,48 @@ $cakeDescription = 'e-Construct';
     <?= $this->Html->css('main.css') ?>
 
     <?= $this->fetch('css') ?>
+    <?= $this->Html->css('jquery.popdown.css') ?>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sizzle/2.3.3/sizzle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/3.0.3/metisMenu.min.js" integrity="sha256-BNyjlkvjHfyJ3v5fTLcrkPCJlW0WxY/aa0c8XzIUVR8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js" integrity="sha256-tSRROoGfGWTveRpDHFiWVz+UXt+xKNe90wwGn25lpw8=" crossorigin="anonymous"></script>
+    <?= $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css',['block'=>true]) ?>
+    <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js',['block'=>true]) ?>
+    <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js',['block'=>true]) ?>
+    <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js',['block'=>true]) ?>
+    <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js',['block'=>true]) ?>
+    <?= $this->Html->script('validacoes.min.js') ?>
+
     <?= $this->fetch('script') ?>
-    <?= $this->Html->script('main.js') ?>
+
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-        <?php echo $this->Flash->render() ?>
         <div class="app-header header-shadow">
             <?= $this->element('Layout/header'); ?>
         </div>
         <div class="app-main">
-        
+
                 <div class="app-sidebar sidebar-shadow">
                     <?= $this->element('Layout/menu'); ?>
                 </div>    
                 <div class="app-main__outer">
                     
                     <div class="app-main__inner">
-
+                        <?php echo $this->Flash->render() ?>
                         <?= $this->fetch('content') ?>
                     </div>
                     <div class="app-wrapper-footer">
                         <?= $this->element('Layout/rodape'); ?>
                     </div>
                 </div>
-                <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
         </div>
-    </div>
-    <div style="display:none;">
-        <button id="show-toastr-erro-econstruct" role="button" class="show-toastr-erro-econstruct"></button>
-        <button id="show-toastr-info-econstruct" role="button" class="show-toastr-info-econstruct"></button>
-        <button id="show-toastr-auth-econstruct" role="button" class="show-toastr-auth-econstruct"></button>
-        <button id="show-toastr-success-econstruct" role="button" class="show-toastr-success-econstruct"></button>
-        <button id="show-toastr-warning-econstruct" role="button" class="show-toastr-warning-econstruct"></button>
     </div>
 
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <?= $this->Html->script('main.js') ?>
+    <?= $this->element('Layout/modals'); ?>
 </body>
 </html>

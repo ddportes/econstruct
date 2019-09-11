@@ -26,7 +26,11 @@ $cakeDescription = 'e-Construct';
     <?= $this->Html->css('slick.css') ?>
     <?= $this->Html->css('cubeportfolio.min.css') ?>
     <?= $this->Html->css('component.css') ?>
-    <?= $this->Html->script('main.js') ?>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js" integrity="sha256-tSRROoGfGWTveRpDHFiWVz+UXt+xKNe90wwGn25lpw8=" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -48,13 +52,7 @@ $cakeDescription = 'e-Construct';
                 </div>
         </div>
     </div>
-    <div style="display:none;">
-        <button id="show-toastr-erro-econstruct" role="button" class="show-toastr-erro-econstruct"></button>
-        <button id="show-toastr-info-econstruct" role="button" class="show-toastr-info-econstruct"></button>
-        <button id="show-toastr-auth-econstruct" role="button" class="show-toastr-auth-econstruct"></button>
-        <button id="show-toastr-success-econstruct" role="button" class="show-toastr-success-econstruct"></button>
-        <button id="show-toastr-warning-econstruct" role="button" class="show-toastr-warning-econstruct"></button>
-    </div>
+
     <?= $this->Html->script('jquery.min.js') ?>
     <?= $this->Html->script('modernizr.custom.js') ?>
     <?= $this->Html->script('bootstrap.min.js') ?>
@@ -67,6 +65,7 @@ $cakeDescription = 'e-Construct';
     <?= $this->Html->script('classie.js') ?>
     <?= $this->Html->script('helper.js') ?>
     <?= $this->Html->script('script.js') ?>
-    <?= $this->Html->script('main.js') ?>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js" integrity="sha256-tSRROoGfGWTveRpDHFiWVz+UXt+xKNe90wwGn25lpw8=" crossorigin="anonymous"></script>
 </body>
 </html>

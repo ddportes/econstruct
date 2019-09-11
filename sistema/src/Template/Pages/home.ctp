@@ -212,7 +212,7 @@ function drawMultSeries() {
                                     <div class="widget-content-wrapper">
                                         <div class="widget-content-left flex2">
                                             <div class="widget-heading"><?= $val->projeto->cliente->pessoa->nome ?></div>
-                                            <div class="widget-subheading opacity-7"><?= $val->projeto->cliente->pessoa->todosTelefones() ?></div>
+                                            <div class="widget-subheading opacity-7"><?= $val->projeto->cliente->pessoa->allTelefones() ?></div>
                                         </div>
                                     </div>
                                 </div>

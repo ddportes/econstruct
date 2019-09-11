@@ -68,6 +68,7 @@ class ClientesTable extends Table
             ->setBindingKey('cliente_id')
             ->setForeignKey('id')
             ->setJoinType('INNER');
+
     }
 
     /**
@@ -104,5 +105,15 @@ class ClientesTable extends Table
         $rules->add($rules->existsIn(['u_id'], 'Users'));
 
         return $rules;
+    }
+
+    public function isConjuge($id){
+        $pessoa = ($this->Pessoas->find()->where(['conjuge_id'=>$id]))->first();
+
+        if($pessoa){
+            return true;
+        }
+
+        return false;
     }
 }

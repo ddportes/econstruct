@@ -54,5 +54,9 @@ class AppView extends View
         $this->loadHelper('Form');
         $this->loadHelper('Paginator');
         $this->loadHelper('Number');
+
+        $this->loadHelper('Modal', [
+            'className' => 'Bootstrap.BootstrapModal'
+        ]);
     }
 }

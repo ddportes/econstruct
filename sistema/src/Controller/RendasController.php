@@ -48,20 +48,26 @@ class RendasController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($pessoa_id = null)
     {
         $renda = $this->Rendas->newEntity();
-        if ($this->request->is('post')) {
-            $renda = $this->Rendas->patchEntity($renda, $this->request->getData());
-            if ($this->Rendas->save($renda)) {
-                $this->Flash->success(__('The renda has been saved.'));
+        if($pessoa_id) {
+            if ($this->request->is('post')) {
+                $renda = $this->Rendas->patchEntity($renda, $this->request->getData());
+                if ($this->Rendas->save($renda)) {
+                    $this->Flash->success(__('The renda has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('The renda could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The renda could not be saved. Please, try again.'));
+            $rendas = $this->Rendas->find('list', ['limit' => 200])->where(['pessoa_id' => $pessoa_id]);
+        }else{
+            $this->Flash->error(__('Selecione um cliente.'));
+            $rendas = null;
         }
-        $pessoas = $this->Rendas->Pessoas->find('list', ['limit' => 200]);
-        $this->set(compact('renda', 'pessoas'));
+
+        $this->set(compact('renda', 'rendas','pessoa_id'));
     }
 
     /**

@@ -48,6 +48,7 @@
                             <th scope="col"><?= __('Telefone') ?></th>
                             <th scope="col"><?= __('E-mail') ?></th>
                             <th scope="col"><?= $this->Paginator->sort('cliente_situacao_id','Situação') ?></th>
+                            <th scope="col"><?= __('Tem Projeto?') ?></th>
                             <th scope="col" style="width:20%"><?= $this->Paginator->sort('observacao','Observação') ?></th>
                             <th scope="col" class="actions"><?= __('Ações') ?></th>
                         </tr>
@@ -58,9 +59,10 @@
                                 <tr>
                                     <th scope="row"><?= $this->Number->format($cliente->id) ?></th>
                                     <td><?= $cliente->has('pessoa') ? $this->Html->link($cliente->pessoa->nome, ['controller' => 'Pessoas', 'action' => 'view', $cliente->pessoa->id]) : '' ?></td>
-                                    <td><?= $cliente->pessoa->has('contatos') ? $cliente->pessoa->todosTelefones() : '' ?></td>
-                                    <td><?= $cliente->pessoa->has('contatos') ? $cliente->pessoa->todosEmails() : '' ?></td>
+                                    <td><?= $cliente->pessoa->has('contatos') ? $cliente->pessoa->allTelefones() : '' ?></td>
+                                    <td><?= $cliente->pessoa->has('contatos') ? $cliente->pessoa->allEmails() : '' ?></td>
                                     <td><?= $cliente->cliente_situacao->descricao ?></td>
+                                    <td><?= ($cliente->hasProjeto()?'Sim':'Não') ?>
                                     <td><?= h(substr($cliente->observacao,0,70)) ?>...</td>
                                     <td class="actions">
                                         <?php //echo $this->Html->link('<i class="fas fa-search"></i>', ['action' => 'view', $ocorrencia->id],['Title'=>'Visualizar detalhes da Visita','escape'=>false]) ?>
