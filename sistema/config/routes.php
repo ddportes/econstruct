@@ -70,6 +70,22 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display','home']);
 
+    $routes->connect('/visita_novo_cliente', ['controller' => 'Ocorrencias', 'action' => 'visitaNovoCliente']);
+    $routes->connect('/visita', ['controller' => 'Ocorrencias', 'action' => 'visita']);
+    $routes->connect('/todas_visitas', ['controller' => 'Ocorrencias', 'action' => 'todasVisitas']);
+    $routes->connect('/usuarios', ['controller' => 'Users', 'action' => 'index']);
+    $routes->connect('/usuario/*', ['controller' => 'Users', 'action' => 'view']);
+    $routes->connect('/editar_perfil/*', ['controller' => 'Users', 'action' => 'editPerfil']);
+    $routes->connect('/resetar_senha', ['controller' => 'Users', 'action' => 'resetarSenha']);
+    $routes->connect('/excluir_usuario', ['controller' => 'Users', 'action' => 'delete']);
+    $routes->connect('/trocar_empresa', ['controller' => 'Users', 'action' => 'troca_empresa']);
+    $routes->connect('/trocar_minha_senha/*', ['controller' => 'Users', 'action' => 'edit']);
+    $routes->connect('/sair', ['controller' => 'Users', 'action' => 'logout']);
+    $routes->connect('/novo_conjuge', ['controller' => 'Clientes', 'action' => 'addConjuge']);
+    $routes->connect('/editar_conjuge/*', ['controller' => 'Clientes', 'action' => 'editConjuge']);
+    $routes->connect('/rendas/*', ['controller' => 'Rendas', 'action' => 'add']);
+    $routes->connect('/excluir_renda/*', ['controller' => 'Rendas', 'action' => 'delete']);
+
     /**
      * Connect catchall routes for all controllers.
      *

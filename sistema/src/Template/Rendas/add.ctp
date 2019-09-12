@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Renda $renda
  */
 ?>
+<?= $this->Html->script('renda.js') ?>
 <div id="addRenda" >
     <div class="modal-header">
         <h5 class="modal-title">Cadastro de Renda</h5>
@@ -53,15 +54,14 @@
     </div>
 
 
-
-
     <?= $this->Form->create($renda,['id'=>'formRenda']) ?>
+        <?= $this->Form->control('pessoa_id', ['id'=>'pessoa_id','label'=>false,'type'=>'hidden','value' => $pessoa_id]); ?>
     <div class="modal-body">
         <h5 class="card-title">Preencha as informações abaixo</h5>
         <div class="position-relative row form-group">
-            <label for="fontePagadora" class="col-sm-2 col-form-label">Fonte Pagadora:</label>
+            <label for="fonte_pagadora" class="col-sm-2 col-form-label">Fonte Pagadora:</label>
             <div class="col-sm-10">
-                <?= $this->Form->control('fontePagadora',['label'=>false,'type'=>'text','name'=>'fontePagadora','id'=>'fontePagadora','class'=>'form-control','placeholder'=>'Digite a razão social da Fonte Pagadora']); ?>
+                <?= $this->Form->control('fonte_pagadora',['label'=>false,'type'=>'text','name'=>'fonte_pagadora','id'=>'fonte_pagadora','class'=>'form-control','placeholder'=>'Digite a razão social da Fonte Pagadora']); ?>
             </div>
         </div>
 
@@ -76,21 +76,21 @@
             <label for="cpf_cnpj" class="col-sm-2 col-form-label">CPF/CNPJ:</label>
             <div class="col-sm-10">
                 <?= $this->Form->control('cpf_cnpj', ['id'=>'cpf_cnpj','label'=>false,'placeholder'=>'Somente números','class' => 'form-control cpf']); ?>
-                <div id="erro_cpf_conjuge" role="alert" style="margin-top:4px;"></div>
+                <div id="erro_cpf_cnpj" role="alert" style="margin-top:4px;"></div>
             </div>
         </div>
 
         <div class="position-relative row form-group">
-            <label for="rendaBruta" class="col-sm-2 col-form-label">Renda Bruta:</label>
+            <label for="renda_bruta" class="col-sm-2 col-form-label">Renda Bruta:</label>
             <div class="col-sm-10">
-                <?= $this->Form->control('rendaBruta', ['id'=>'rendaBruta','label'=>false,'placeholder'=>'R$','class' => 'form-control']); ?>
+                <?= $this->Form->control('renda_bruta', ['id'=>'renda_bruta','type'=>'text','label'=>false,'placeholder'=>'R$','class' => 'form-control']); ?>
             </div>
         </div>
 
         <div class="position-relative row form-group">
-            <label for="rendaLiquida" class="col-sm-2 col-form-label">Renda Líquida:</label>
+            <label for="renda_liquida" class="col-sm-2 col-form-label">Renda Líquida:</label>
             <div class="col-sm-10">
-                <?= $this->Form->control('rendaLiquida', ['id'=>'rendaLiquida','label'=>false,'placeholder'=>'R$','class' => 'form-control']); ?>
+                <?= $this->Form->control('renda_liquida', ['id'=>'renda_liquida','type'=>'text','label'=>false,'placeholder'=>'R$','class' => 'form-control']); ?>
             </div>
         </div>
     </div>

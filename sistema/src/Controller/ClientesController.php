@@ -112,7 +112,7 @@ class ClientesController extends AppController
             $dados_pessoa['filhos'] = (!empty($dados['filhosPessoa'])?$dados['filhosPessoa']: 0);
             $dados_pessoa['sexo'] = (!empty($dados['sexoPessoa'])?$dados['sexoPessoa']: null);
             $dados_pessoa['tipo'] = 'F';
-            $dados_pessoa['cpf_cnpj'] = (!empty($dados['cpfPessoaConjuge'])?$dados['cpfPessoaConjuge']: null);
+            $dados_pessoa['cpf_cnpj'] = (!empty($dados['cpfPessoaConjuge'])?preg_replace('/[^0-9]/', '', $dados['cpfPessoaConjuge']): null);
             $dados_pessoa['rg'] = (!empty($dados['rgPessoa'])?$dados['rgPessoa']: null);
             $dados_pessoa['empresa_id'] = $user['empresa_id'];
             $dados_pessoa['u_id'] = $user['id'];
@@ -192,7 +192,7 @@ class ClientesController extends AppController
             $dados_pessoa['filhos'] = (!empty($dados['filhosPessoa'])?$dados['filhosPessoa']: 0);
             $dados_pessoa['sexo'] = (!empty($dados['sexoPessoa'])?$dados['sexoPessoa']: null);
             $dados_pessoa['tipo'] = 'F';
-            $dados_pessoa['cpf_cnpj'] = (!empty($dados['cpfPessoaConjuge'])?$dados['cpfPessoaConjuge']: null);
+            $dados_pessoa['cpf_cnpj'] =  (!empty($dados['cpfPessoaConjuge'])?preg_replace('/[^0-9]/', '', $dados['cpfPessoaConjuge']): null);
             $dados_pessoa['rg'] = (!empty($dados['rgPessoa'])?$dados['rgPessoa']: null);
             $dados_pessoa['empresa_id'] = $user['empresa_id'];
             $dados_pessoa['u_id'] = $user['id'];

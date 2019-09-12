@@ -242,7 +242,7 @@ class OcorrenciasController extends AppController
                 $dados_pessoa['filhos'] = (!empty($dados['filhosPessoa'])?$dados['filhosPessoa']: 0);
                 $dados_pessoa['sexo'] = (!empty($dados['sexoPessoa'])?$dados['sexoPessoa']: null);
                 $dados_pessoa['tipo'] = 'F';
-                $dados_pessoa['cpf_cnpj'] = (!empty($dados['cpfPessoa'])?$dados['cpfPessoa']: null);
+                $dados_pessoa['cpf_cnpj'] = (!empty($dados['cpfPessoa'])?preg_replace('/[^0-9]/', '', $dados['cpfPessoa']): null);
                 $dados_pessoa['rg'] = (!empty($dados['rgPessoa'])?$dados['rgPessoa']: null);
                 $dados_pessoa['u_id'] = $user['id'];
                 $pessoa = $this->Pessoas->get($dados['pessoa_id'],['contain'=>['Contatos','Enderecos']]);

@@ -38,7 +38,7 @@ $(document).ready(function(){
                     href = $('#conjugeCliente').attr('href');
 
                     if(href.indexOf("edit")>-1) {
-                        href = href.replace('edit', 'add');
+                        href = href.replace('editar', 'novo');
                         $('#conjugeCliente').attr('href',href);
                         $('#conjugeCliente').html('Cadastrar Cônjuge');
                     }
@@ -106,7 +106,7 @@ $(document).ready(function(){
                         href = $('#conjugeCliente').attr('href');
 
                         if(href.indexOf("edit")==-1) {
-                            href = href.replace('add', 'edit');
+                            href = href.replace('novo', 'editar');
                             href = href + '/' + $('#conjugeHiddenPessoa').val();
                             $('#conjugeCliente').attr('href',href);
                             $('#conjugeCliente').html('Editar Cônjuge');
@@ -114,7 +114,6 @@ $(document).ready(function(){
                     }
 
                     href2 = $('#rendaCliente').attr('href');
-                    alert(href2);
                     href2 = href2 + '/' + $('#pessoa_id').val();
 
                     $('#rendaCliente').attr('href',href2);
