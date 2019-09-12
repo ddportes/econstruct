@@ -63,22 +63,27 @@ class RendasController extends AppController
 
                 $renda = $this->Rendas->patchEntity($renda, $dados);
                 if ($this->Rendas->save($renda)) {
-                    $this->Flash->success(__('A renda foi gravada com sucesso.'));
-
-                    return $this->redirect(['action' => 'index']);
+                   // $this->Flash->success(__('A renda foi gravada com sucesso.'));
                 }
-                $this->Flash->error(__('A renda não foi gravada. Por favor, tente novamente.'));
+                //$this->Flash->error(__('A renda não foi gravada. Por favor, tente novamente.'));
             }
-            $rendas = $this->Rendas->find()->where(['pessoa_id' => $pessoa_id]);
+            $pessoa = $this->Rendas->Pessoas->get($pessoa_id,['contain'=>['Rendas']]);
+            $pessoas[$pessoa->id] = $pessoa->nome;
 
+            $criterio = "{$pessoa->id}";
+            if($pessoa->conjuge_id){
+                $conjuge = $this->Rendas->Pessoas->get($pessoa->conjuge_id,['contain'=>['Rendas']]);
+                $pessoas[$conjuge->id] = $conjuge->nome;
+                $criterio .= ",{$conjuge->id}";
+            }
 
+            $rendas = $this->Rendas->find()->where(["pessoa_id in ({$criterio})"])->contain(['Pessoas']);
         }else{
-            $this->Flash->error(__('Selecione um cliente.'));
+            //$this->Flash->error(__('Selecione um cliente.'));
             $rendas = null;
         }
 
-
-        $this->set(compact('renda', 'rendas','pessoa_id'));
+        $this->set(compact('renda', 'rendas','pessoa_id','pessoa','pessoas','conjuge'));
     }
 
     /**
@@ -118,11 +123,12 @@ class RendasController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $renda = $this->Rendas->get($id);
         if ($this->Rendas->delete($renda)) {
-            $this->Flash->success(__('The renda has been deleted.'));
+            //$this->Flash->success(__('The renda has been deleted.'));
         } else {
-            $this->Flash->error(__('The renda could not be deleted. Please, try again.'));
+            //$this->Flash->error(__('The renda could not be deleted. Please, try again.'));
         }
+        $this->set('pessoa_id',$id);
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['action' => 'add',$id]);
     }
 }

@@ -2,6 +2,8 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\I18n\Number;
+use App\Utility\Apoio;
 
 /**
  * Pessoa Entity
@@ -113,21 +115,50 @@ class Pessoa extends Entity
             return $emails;
     }
 
-    public function totalRendaBruta(){
+    public function totalRendaBruta($moeda = null,Array $complemento = null){
         $sum = 0;
         foreach($this->rendas as $val){
             $sum = $sum + $val->renda_bruta;
         }
 
+        if($complemento){
+            foreach($complemento As $val2){
+                $sum = $sum + $val2;
+            }
+        }
+
+        if($moeda === true){
+            return Number::format($sum,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        }
         return $sum;
     }
 
-    public function totalRendaLiquida(){
+    public function totalRendaLiquida($moeda = null,Array $complemento = null){
         $sum = 0;
         foreach($this->rendas as $val){
             $sum = $sum + $val->renda_liquida;
         }
 
+        if($complemento){
+            foreach($complemento As $val2){
+                $sum = $sum + $val2;
+            }
+        }
+
+        if($moeda === true){
+            return Number::format($sum,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        }
         return $sum;
+    }
+
+    public function cpfCnpj($pontuacao = null){
+        if($pontuacao === true) {
+            if ($this->tipo == 'F') {
+                return Apoio::mask($this->cpf_cnpj, '###.###.###-##');
+            } else {
+                return Apoio::mask($this->cpf_cnpj, '##.###.###/####-##');
+            }
+        }
+        return $this->cpf_cnpj;
     }
 }

@@ -138,7 +138,7 @@
                                         <?= $this->Html->link(__('Cadastrar Renda'),
                                             ['controller' => 'Rendas', 'action' => 'add'], [
                                                 'id' => 'rendaCliente',
-                                                'class' => 'btn btn-primary modal_lg_link',
+                                                'class' => 'btn btn-primary modal_xl_link',
                                                 'style'=>'top:2.5em',
                                                 'role' => 'button',
                                                 'data-toggle'=>"modal",

@@ -2,6 +2,8 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\I18n\Number;
+use App\Utility\Apoio;
 
 /**
  * Renda Entity
@@ -44,4 +46,45 @@ class Renda extends Entity
         'u_id' => true,
         'pessoa' => true
     ];
+
+    /**
+     * @param bool|null $moeda
+     * @return string
+     */
+    public function rendaBruta($moeda = null){
+        if($moeda === true){
+            return Number::format($this->renda_bruta,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return Number::format($this->renda_bruta,['pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+    }
+
+    /**
+     * @param bool|null $moeda
+     * @return string
+     */
+    public function rendaLiquida($moeda = null){
+        if($moeda === true){
+            return Number::format($this->renda_liquida,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return Number::format($this->renda_liquida,['pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+    }
+
+    public function cpfCnpj($pontuacao = null){
+        if($pontuacao === true) {
+            if ($this->tipo == 'F') {
+                return Apoio::mask($this->cpf_cnpj, '###.###.###-##');
+            } else {
+                return Apoio::mask($this->cpf_cnpj, '##.###.###/####-##');
+            }
+        }
+        return $this->cpf_cnpj;
+    }
+
+    public function tipo(){
+        if ($this->tipo == 'F') {
+            return 'Física';
+        } else {
+            return 'Jurídica';
+        }
+    }
 }

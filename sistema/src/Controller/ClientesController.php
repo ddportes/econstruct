@@ -139,22 +139,22 @@ class ClientesController extends AppController
                         $dados_originais = json_encode([$user['id'],$user['username'],'Cadastro Conjuge']);
                         $dados_novos = json_encode([$user['id'],$user['username'],$contatos,$cliente,$pessoa]);
                         if($this->Modificacoes->emiteLog('Clientes','addConjuge',$dados_originais,$dados_novos)) {
-                            $this->Flash->success(__('Cônjuge cadastrada(o) com sucesso.'));
+                            //$this->Flash->success(__('Cônjuge cadastrada(o) com sucesso.'));
                         }else{
-                            $this->Flash->error(__('Erro ao gravar log.'));
+                            //$this->Flash->error(__('Erro ao gravar log.'));
                         }
                     }else{
-                        $this->Flash->error(__('Erro ao gravar Contatos. Tente Novamente.'));
+                        //$this->Flash->error(__('Erro ao gravar Contatos. Tente Novamente.'));
                         $this->Clientes->delete($cliente);
                         $this->Pessoas->delete($pessoa);
                     }
                 }else{
-                    $this->Flash->error(__('Erro ao gravar Cliente. Tente Novamente.'));
+                    //$this->Flash->error(__('Erro ao gravar Cliente. Tente Novamente.'));
                     $this->Pessoas->delete($pessoa);
                 }
 
             }else {
-                $this->Flash->error(__('Erro ao gravar Pessoa. Tente Novamente.'));
+                //$this->Flash->error(__('Erro ao gravar Pessoa. Tente Novamente.'));
             }
         }
         if($conjuge_id || (isset($cliente->id) && !empty($cliente->id))){
@@ -218,18 +218,18 @@ class ClientesController extends AppController
                         $dados_originais = json_encode([$user['id'],$user['username'],'Cadastro Conjuge']);
                         $dados_novos = json_encode([$user['id'],$user['username'],$contatos,$cliente,$pessoa]);
                         if($this->Modificacoes->emiteLog('Clientes','addConjuge',$dados_originais,$dados_novos)) {
-                            $this->Flash->success(__('Cônjuge editada(o) com sucesso.'));
+                            //$this->Flash->success(__('Cônjuge editada(o) com sucesso.'));
                         }else{
-                            $this->Flash->error(__('Erro ao gravar log.'));
+                            //$this->Flash->error(__('Erro ao gravar log.'));
                         }
                     }else{
-                        $this->Flash->error(__('Erro ao gravar Contatos. Tente Novamente.'));
+                        //$this->Flash->error(__('Erro ao gravar Contatos. Tente Novamente.'));
                     }
                 }else{
-                    $this->Flash->error(__('Erro ao gravar Cliente. Tente Novamente.'));
+                    //$this->Flash->error(__('Erro ao gravar Cliente. Tente Novamente.'));
                 }
             }else {
-                $this->Flash->error(__('Erro ao gravar Pessoa. Tente Novamente.'));
+                //$this->Flash->error(__('Erro ao gravar Pessoa. Tente Novamente.'));
             }
         }
 

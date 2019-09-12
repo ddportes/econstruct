@@ -65,7 +65,7 @@
                                     <td><?= h($projeto->descricao) ?></td>
                                     <td><?= $projeto->has('cliente') ? $this->Html->link($projeto->cliente->pessoa->nome, ['controller' => 'Clientes', 'action' => 'view', $projeto->cliente->id]) : '' ?></td>
                                     <td><?= $projeto->has('projeto_situacao') ? h($projeto->projeto_situacao->descricao):'' ?></td>
-                                    <td><?= $projeto->has('equipe')?h($projeto->equipe->descricap):'-' ?></td>
+                                    <td><?= $projeto->has('equipe')?h($projeto->equipe->descricao):'-' ?></td>
                                     <td><?= $projeto->custoEstimado(true) ?></td>
                                     <td><?= $projeto->totalNotas(true) ?></td>
                                     <td><?= $projeto->totalRecibos(true) ?></td>

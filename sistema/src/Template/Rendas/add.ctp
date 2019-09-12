@@ -13,12 +13,14 @@
         </button>
     </div>
     <?php if(!empty($pessoa_id)): ?>
-    <div class="modal-body"><h5 class="card-title">Rendas Cadastradas</h5>
+    <div class="modal-body">
+        <h5 class="card-title">Rendas Cadastradas</h5>
         <div class="table-responsive">
             <table class="mb-0 table">
                 <thead>
                 <tr>
                     <th scope="col"><?= $this->Paginator->sort('id','ID') ?></th>
+                    <th scope="col"><?= $this->Paginator->sort('nome','Pessoa') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('fonte_pagadora','Fonte Pagadora') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('tipo','Tipo') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('cpf_cnpj','CPF/CNPJ') ?></th>
@@ -29,16 +31,33 @@
                 </thead>
                 <tbody>
                 <?php if($rendas->count() > 0): ?>
-                    <?php foreach ($rendas as $renda): ?>
+                    <?php foreach ($rendas as $r): ?>
                         <tr>
-                            <td scope="row"><?= $this->Number->format($renda->id) ?></td>
-                            <td><?= h($renda->fonte_pagadora) ?></td>
-                            <td><?= ($renda->tipo=='F'?'Física':'Jurídica') ?></td>
-                            <td><?= h($renda->cpf_cnpj) ?></td>
-                            <td><?= $this->Number->format($renda->renda_bruta) ?></td>
-                            <td><?= $this->Number->format($renda->renda_liquida) ?></td>
+                            <td scope="row"><?= $this->Number->format($r->id) ?></td>
+                            <td><?= $r->pessoa->nome ?></td>
+                            <td><?= h($r->fonte_pagadora) ?></td>
+                            <td><?= $r->tipo() ?></td>
+                            <td><?= $r->cpfCnpj(true) ?></td>
+                            <td><?= $r->rendaBruta(true) ?></td>
+                            <td><?= $r->rendaLiquida(true) ?></td>
                             <td class="actions">
-                                <?php echo $this->Form->postLink('<i class="fas fa-trash-alt"></i>', ['action' => 'delete', $renda->id],['data'=>['id'=>$renda->id],'confirm' => __('Deseja realmente excluir a renda {0}?', $renda->fonte_pagadora),'Title'=>'Excluir renda','escape'=>false]) ?>
+                                <?= $this->Form->postButton('<i class="fas fa-trash-alt"></i>', [
+                                    'action' => 'delete',
+                                    $r->id
+                                ],
+                                    [
+                                        'data'=>['id'=>$r->id],
+                                        'form' => [
+                                            'id' => 'form-delete-renda-' . $r->id,
+                                            'class' => 'form-delete-renda'
+                                        ],
+                                        'block' => true,
+                                        'id' => 'botaoExcluirRenda',
+                                        'class' => 'btn btn-xs',
+                                        'confirm' => __('Deseja realmente excluir a renda {0}?', $r->fonte_pagadora),
+                                        'title' => __('Excluir Renda'),
+                                        'escape' => false
+                                    ]) ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -50,14 +69,27 @@
                 </tbody>
             </table>
         </div>
-
+        <div class="table-responsive">
+            <table class="mb-0 table">
+                <tr>
+                    <th scope="row"><?= __('Total Renda Bruta') ?></th>
+                    <td><?= $pessoa->totalRendaBruta(true,[$conjuge->totalRendaBruta(false)]) ?></td>
+                    <th scope="row"><?= __('Total Renda Líquida') ?></th>
+                    <td><?= $pessoa->totalRendaLiquida(true,[$conjuge->totalRendaLiquida(false)]) ?></td>
+                </tr>
+            </table>
+        </div>
     </div>
 
-
     <?= $this->Form->create($renda,['id'=>'formRenda']) ?>
-        <?= $this->Form->control('pessoa_id', ['id'=>'pessoa_id','label'=>false,'type'=>'hidden','value' => $pessoa_id]); ?>
     <div class="modal-body">
         <h5 class="card-title">Preencha as informações abaixo</h5>
+        <div class="position-relative row form-group">
+            <label for="pessoa_id" class="col-sm-2 col-form-label">Pessoa:</label>
+            <div class="col-sm-10">
+                <?= $this->Form->control('pessoa_id',['label'=>false,'options'=>$pessoas,'value' => $pessoa_id,'name'=>'pessoa_id','id'=>'pessoa_id','class'=>'form-control']); ?>
+            </div>
+        </div>
         <div class="position-relative row form-group">
             <label for="fonte_pagadora" class="col-sm-2 col-form-label">Fonte Pagadora:</label>
             <div class="col-sm-10">
