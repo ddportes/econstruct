@@ -52,11 +52,10 @@
                 <?= $this->Form->control('rgPessoa',['label'=>false,'type'=>'text','name'=>'rgPessoa','id'=>'rgPessoa','class'=>'form-control']); ?>
             </div>
         </div>
-
         <div class="position-relative row form-group">
-            <label for="observacaoCliente" class="col-sm-2 col-form-label">Observação:</label>
+            <label for="dataNascimentoPessoa" class="col-sm-2 col-form-label">Data de Nascimento:</label>
             <div class="col-sm-10">
-                <?= $this->Form->control('observacaoCliente',['label'=>false,'type'=>'textarea','name'=>'observacaoCliente','id'=>'observacaoCliente','class'=>'form-control','placeholder'=>'Digite uma observação sobre a(o) Cônjuge']); ?>
+                <?= $this->Form->control('dataNascimentoPessoa',['label'=>false,'type'=>'text','name'=>'dataNascimentoPessoa','id'=>'dataNascimentoPessoa','class'=>'form-control']); ?>
             </div>
         </div>
     </div>
@@ -76,5 +75,12 @@
             validaCpf($('.cpf'),$("#erro_cpf_conjuge"),$('#salvarConjuge'));
         });
     });
+    $( function() {
+        $( "#dataNascimentoPessoa" ).datepicker({
+            format: 'dd/mm/yyyy',
+            todayBtn: true,
+            language: "pt-BR"
+        });
+    } );
     $('.telefone').mask(SPMaskBehavior, spOptions);
 </script>

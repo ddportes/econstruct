@@ -20,21 +20,21 @@
         <div class="position-relative row form-group">
             <label for="nomePessoa" class="col-sm-2 col-form-label">Nome:</label>
             <div class="col-sm-10">
-                <?= $this->Form->control('nomePessoa',['label'=>false,'type'=>'text','name'=>'nomePessoa','id'=>'nomePessoa','class'=>'form-control','value'=>$conjuge->pessoa->nome,'placeholder'=>'Digite o nome da(o) Cônjuge']); ?>
+                <?= $this->Form->control('nomePessoa',['label'=>false,'type'=>'text','name'=>'nomePessoa','id'=>'nomePessoa','class'=>'form-control','value'=>$conjuge->nome,'placeholder'=>'Digite o nome da(o) Cônjuge']); ?>
             </div>
         </div>
 
         <div class="position-relative row form-group">
             <label for="sexoPessoa" class="col-sm-2 col-form-label">Sexo:</label>
             <div class="col-sm-10">
-                <?= $this->Form->control('sexoPessoa', ['label'=>false,'options'=>['M'=>'Masculino','F'=>'Feminino'],'id'=>'sexoPessoa','value'=>$conjuge->pessoa->sexo,'class' => 'form-control']); ?>
+                <?= $this->Form->control('sexoPessoa', ['label'=>false,'options'=>['M'=>'Masculino','F'=>'Feminino'],'id'=>'sexoPessoa','value'=>$conjuge->sexo,'class' => 'form-control']); ?>
             </div>
         </div>
 
         <div class="position-relative row form-group">
             <label for="cpfPessoaConjuge" class="col-sm-2 col-form-label">CPF:</label>
             <div class="col-sm-10">
-                <?= $this->Form->control('cpfPessoaConjuge', ['id'=>'cpfPessoaConjuge','label'=>false,'placeholder'=>'Somente números','value'=>$conjuge->pessoa->cpf_cnpj,'class' => 'form-control cpf']); ?>
+                <?= $this->Form->control('cpfPessoaConjuge', ['id'=>'cpfPessoaConjuge','label'=>false,'placeholder'=>'Somente números','value'=>$conjuge->cpf_cnpj,'class' => 'form-control cpf']); ?>
                 <div id="erro_cpf_conjuge" role="alert" style="margin-top:4px;"></div>
             </div>
         </div>
@@ -42,21 +42,20 @@
         <div class="position-relative row form-group">
             <label for="telefoneCliente" class="col-sm-2 col-form-label">Telefone:</label>
             <div class="col-sm-10">
-                <?= $this->Form->control('telefoneCliente', ['id'=>'telefoneCliente','label'=>false,'placeholder'=>'(99) 99999-9999','value'=>$conjuge->pessoa->firstTelefone(),'class' => 'form-control telefone']); ?>
+                <?= $this->Form->control('telefoneCliente', ['id'=>'telefoneCliente','label'=>false,'placeholder'=>'(99) 99999-9999','value'=>$conjuge->firstTelefone(),'class' => 'form-control telefone']); ?>
             </div>
         </div>
 
         <div class="position-relative row form-group">
             <label for="rgPessoa" class="col-sm-2 col-form-label">RG:</label>
             <div class="col-sm-10">
-                <?= $this->Form->control('rgPessoa',['label'=>false,'type'=>'text','name'=>'rgPessoa','value'=>$conjuge->pessoa->rg,'id'=>'rgPessoa','class'=>'form-control']); ?>
+                <?= $this->Form->control('rgPessoa',['label'=>false,'type'=>'text','name'=>'rgPessoa','value'=>$conjuge->rg,'id'=>'rgPessoa','class'=>'form-control']); ?>
             </div>
         </div>
-
         <div class="position-relative row form-group">
-            <label for="observacaoCliente" class="col-sm-2 col-form-label">Observação:</label>
-            <div class="col-sm-10">
-                <?= $this->Form->control('observacaoCliente',['label'=>false,'type'=>'textarea','name'=>'observacaoCliente','value'=>$conjuge->observacao,'id'=>'observacaoCliente','class'=>'form-control','placeholder'=>'Digite uma observação sobre a(o) Cônjuge']); ?>
+            <label for="dataNascimentoPessoa" class="col-sm-2 col-form-label">Data de Nascimento:</label>
+            <div class="col-sm-9">
+                <?= $this->Form->control('dataNascimentoPessoa',['label'=>false,'type'=>'text','name'=>'dataNascimentoPessoa','value'=>$conjuge->data_nascimento,'id'=>'dataNascimentoPessoa','class'=>'form-control']); ?>
             </div>
         </div>
     </div>
@@ -76,5 +75,12 @@
             validaCpf($('.cpf'),$("#erro_cpf_conjuge"),$('#salvarConjuge'));
         });
     });
+    $( function() {
+        $( "#dataNascimentoPessoa" ).datepicker({
+            format: 'dd/mm/yyyy',
+            todayBtn: true,
+            language: "pt-BR"
+        });
+    } );
     $('.telefone').mask(SPMaskBehavior, spOptions);
 </script>

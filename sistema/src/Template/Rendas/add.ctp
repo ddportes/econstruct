@@ -19,34 +19,34 @@
             <table class="mb-0 table">
                 <thead>
                 <tr>
-                    <th scope="col"><?= $this->Paginator->sort('id','ID') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('nome','Pessoa') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('fonte_pagadora','Fonte Pagadora') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('tipo','Tipo') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('cpf_cnpj','CPF/CNPJ') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('renda_bruta','Renda Bruta') ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('renda_liquida','Renda Líquida') ?></th>
-                    <th scope="col" class="actions"><?= __('Ações') ?></th>
+                    <th scope="col" style="vertical-align: top"><?= $this->Paginator->sort('id','ID') ?></th>
+                    <th scope="col" style="vertical-align: top"><?= $this->Paginator->sort('nome','Pessoa') ?></th>
+                    <th scope="col" style="vertical-align: top"><?= $this->Paginator->sort('fonte_pagadora','Fonte Pagadora') ?></th>
+                    <th scope="col" style="vertical-align: top"><?= $this->Paginator->sort('tipo','Tipo') ?></th>
+                    <th scope="col" style="vertical-align: top"><?= $this->Paginator->sort('cpf_cnpj','CPF/CNPJ') ?></th>
+                    <th scope="col" style="vertical-align: top"><?= $this->Paginator->sort('renda_bruta','Renda Bruta') ?></th>
+                    <th scope="col" style="vertical-align: top"><?= $this->Paginator->sort('renda_liquida','Renda Líquida') ?></th>
+                    <th scope="col" class="actions" style="vertical-align: top"><?= __('Ações') ?></th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php if($rendas->count() > 0): ?>
                     <?php foreach ($rendas as $r): ?>
                         <tr>
-                            <td scope="row"><?= $this->Number->format($r->id) ?></td>
-                            <td><?= $r->pessoa->nome ?></td>
-                            <td><?= h($r->fonte_pagadora) ?></td>
-                            <td><?= $r->tipo() ?></td>
-                            <td><?= $r->cpfCnpj(true) ?></td>
-                            <td><?= $r->rendaBruta(true) ?></td>
-                            <td><?= $r->rendaLiquida(true) ?></td>
-                            <td class="actions">
+                            <td scope="row" style="vertical-align: top"><?= $this->Number->format($r->id) ?></td>
+                            <td style="vertical-align: top"><?= $r->pessoa->nome ?></td>
+                            <td style="vertical-align: top"><?= h($r->fonte_pagadora) ?></td>
+                            <td style="vertical-align: top"><?= $r->tipo() ?></td>
+                            <td style="vertical-align: top"><?= $r->cpfCnpj(true) ?></td>
+                            <td style="vertical-align: top"><?= $r->rendaBruta(true) ?></td>
+                            <td style="vertical-align: top"><?= $r->rendaLiquida(true) ?></td>
+                            <td class="actions" style="vertical-align: top">
                                 <?= $this->Form->postButton('<i class="fas fa-trash-alt"></i>', [
                                     'action' => 'delete',
-                                    $r->id
+                                    $r->id,$pessoa_id
                                 ],
                                     [
-                                        'data'=>['id'=>$r->id],
+                                        'data'=>['id'=>$r->id,'pessoa_id'=>$pessoa_id],
                                         'form' => [
                                             'id' => 'form-delete-renda-' . $r->id,
                                             'class' => 'form-delete-renda'
@@ -73,9 +73,12 @@
             <table class="mb-0 table">
                 <tr>
                     <th scope="row"><?= __('Total Renda Bruta') ?></th>
-                    <td><?= $pessoa->totalRendaBruta(true,[$conjuge->totalRendaBruta(false)]) ?></td>
+
+                    <?php ?>
+
+                    <td><?= $pessoa->totalRendaBruta(true,$todas_rendas_bruta) ?></td>
                     <th scope="row"><?= __('Total Renda Líquida') ?></th>
-                    <td><?= $pessoa->totalRendaLiquida(true,[$conjuge->totalRendaLiquida(false)]) ?></td>
+                    <td><?= $pessoa->totalRendaLiquida(true,$todas_rendas_liquida) ?></td>
                 </tr>
             </table>
         </div>

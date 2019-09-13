@@ -1,5 +1,11 @@
 $(document).ready(function(){
     $('#clienteId').on('change',function(){
+        if($('#clienteId').val() == ''){
+            $('#tab-c1-1').attr('style','display:none');
+            $('#tab-c1-2').attr('style','display:none');
+            $('#salvar').prop('disabled',true);
+        }
+
         var id = $(this).val();
         $.ajax({
             type: "GET",
@@ -17,6 +23,7 @@ $(document).ready(function(){
                     $('#rgPessoa').val('');
                     $('#estadoCivilPessoa').val('');
                     $('#filhosPessoa').val('');
+                    $('#dataNascimentoPessoa').val('');
                     $('#conjugeHiddenPessoa').val('');
                     $('#cepCliente').val('');
                     $('#logradouroCliente').val('');
@@ -45,6 +52,12 @@ $(document).ready(function(){
 
                     href2 = $('#linkRenda').html();
                     $('#rendaCliente').attr('href',href2);
+
+                    href3 = $('#linkConjuge').html();
+                    $('#conjugeCliente').attr('href',href3);
+
+                    href4 = $('#linkDependente').html();
+                    $('#dependenteCliente').attr('href',href4);
                 }else {
 
                     var cli = jQuery.parseJSON(result);
@@ -83,6 +96,7 @@ $(document).ready(function(){
                     $('#sexoPessoa').val(cli.pessoa.sexo);
                     $('#rgPessoa').val(cli.pessoa.rg);
                     $('#estadoCivilPessoa').val(cli.pessoa.estado_civil);
+                    $('#dataNascimentoPessoa').val(cli.pessoa.data_nascimento);
                     $('#filhosPessoa').val(cli.pessoa.filhos);
                     $('#conjugeHiddenPessoa').val(cli.pessoa.conjuge_id);
                     $('#cepCliente').val(endereco.cep);
@@ -115,8 +129,16 @@ $(document).ready(function(){
 
                     href2 = $('#rendaCliente').attr('href');
                     href2 = href2 + '/' + $('#pessoa_id').val();
-
                     $('#rendaCliente').attr('href',href2);
+
+                    href3 = $('#dependenteCliente').attr('href');
+                    href3 = href3 + '/' + $('#pessoa_id').val();
+                    $('#dependenteCliente').attr('href',href3);
+
+
+                    $('#tab-c1-1').attr('style','display:block');
+                    $('#tab-c1-2').attr('style','display:block');
+                    $('#salvar').prop('disabled',false);
                 }
             },
             contentType: "application/json; charset=utf-8",

@@ -17,6 +17,7 @@ use App\Utility\Apoio;
  * @property string|null $sexo
  * @property string $tipo
  * @property string|null $cpf_cnpj
+ * @property \Cake\I18n\FrozenDate|null $data_nascimento
  * @property string|null $rg
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
@@ -30,6 +31,7 @@ use App\Utility\Apoio;
  * @property \App\Model\Entity\Fornecedor[] $fornecedores
  * @property \App\Model\Entity\Pedreiro[] $pedreiros
  * @property \App\Model\Entity\Renda[] $rendas
+ * @property \App\Model\Entity\Dependente[] $dependentes
  */
 class Pessoa extends Entity
 {
@@ -62,7 +64,9 @@ class Pessoa extends Entity
         'enderecos' => true,
         'fornecedores' => true,
         'pedreiros' => true,
-        'rendas' => true
+        'rendas' => true,
+        'dependentes' => true,
+        'data_nascimento' => true
     ];
 
     public function firstTelefone(){

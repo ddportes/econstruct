@@ -108,4 +108,126 @@ class PessoasController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function addConjuge($conjuge_id = null){
+        $user = $this->Auth->user();
+
+        if ($this->request->is('post')) {
+            $this->loadModel('Contatos');
+            $this->loadModel('Modificacoes');
+
+            $dados = $this->request->getData();
+
+            $dados_pessoa['id'] = '';
+            $dados_cliente['observacao'] = '';
+            $dados_contatos['valor'] = '';
+
+            $dados_pessoa['nome'] = (!empty($dados['nomePessoa'])?$dados['nomePessoa']: null);
+            $dados_pessoa['nome_social'] = (!empty($dados['nomeSocialPessoa'])?$dados['nomeSocialPessoa']: null);
+            $dados_pessoa['estado_civil'] = (!empty($dados['estadoCivilPessoa'])?$dados['estadoCivilPessoa']: null);
+            $dados_pessoa['conjuge_id'] = null;
+            $dados_pessoa['filhos'] = (!empty($dados['filhosPessoa'])?$dados['filhosPessoa']: 0);
+            $dados_pessoa['sexo'] = (!empty($dados['sexoPessoa'])?$dados['sexoPessoa']: null);
+            $dados_pessoa['tipo'] = 'F';
+            $dt = explode('/',$dados['dataNascimentoPessoa']);
+            $dados_pessoa['data_nascimento'] = ($dados['dataNascimentoPessoa']<>''? date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0])):null);
+            $dados_pessoa['cpf_cnpj'] = (!empty($dados['cpfPessoaConjuge'])?preg_replace('/[^0-9]/', '', $dados['cpfPessoaConjuge']): null);
+            $dados_pessoa['rg'] = (!empty($dados['rgPessoa'])?$dados['rgPessoa']: null);
+            $dados_pessoa['empresa_id'] = $user['empresa_id'];
+            $dados_pessoa['u_id'] = $user['id'];
+            $pessoa = $this->Pessoas->newEntity($dados_pessoa);
+
+            if ($this->Pessoas->save($pessoa)) {
+                //cria contato;
+                $dados_contato[0]['pessoa_id'] = $pessoa->id;
+                $dados_contato[0]['tipo'] = 'telefone';
+                $dados_contato[0]['valor'] = (!empty($dados['telefoneCliente'])?$dados['telefoneCliente']: null);
+                $dados_contato[0]['principal'] = 'S';
+                $dados_contato[0]['empresa_id'] = $user['empresa_id'] ;
+                $dados_contato[0]['u_id'] = $user['id'];
+
+                $contatos = $this->Pessoas->Contatos->newEntities($dados_contato);//saveMany
+                if ($this->Contatos->saveMany($contatos)) {
+                    $dados_originais = json_encode([$user['id'],$user['username'],'Cadastro Conjuge']);
+                    $dados_novos = json_encode([$user['id'],$user['username'],$contatos,$pessoa]);
+                    if($this->Modificacoes->emiteLog('Clientes','addConjuge',$dados_originais,$dados_novos)) {
+                        //$this->Flash->success(__('Cônjuge cadastrada(o) com sucesso.'));
+                    }else{
+                        //$this->Flash->error(__('Erro ao gravar log.'));
+                    }
+                }else{
+                    //$this->Flash->error(__('Erro ao gravar Contatos. Tente Novamente.'));
+                    $this->Pessoas->delete($pessoa);
+                }
+            }else {
+                //$this->Flash->error(__('Erro ao gravar Pessoa. Tente Novamente.'));
+            }
+        }
+        if($conjuge_id || (isset($pessoa->id) && !empty($pessoa->id))){
+            if(empty($conjuge_id)){
+                $conjuge_id = $pessoa->id;
+            }
+
+            $conjuge = $this->Pessoas->get($conjuge_id,['contain'=>['Contatos']]);
+        }
+
+        $this->set(compact('conjuge_id'));
+    }
+
+    public function editConjuge($conjuge_id){
+        $user = $this->Auth->user();
+
+        $conjuge = $this->Pessoas->get($conjuge_id,['contain'=>['Contatos']]);
+
+        if ($this->request->is('post')) {
+            $this->loadModel('Contatos');
+            $this->loadModel('Modificacoes');
+
+            $dados = $this->request->getData();
+
+            $dados_cliente['observacao'] = '';
+            $dados_contatos['valor'] = '';
+            $dados_pessoa['nome'] = (!empty($dados['nomePessoa'])?$dados['nomePessoa']: null);
+            $dados_pessoa['nome_social'] = (!empty($dados['nomeSocialPessoa'])?$dados['nomeSocialPessoa']: null);
+            $dados_pessoa['estado_civil'] = (!empty($dados['estadoCivilPessoa'])?$dados['estadoCivilPessoa']: null);
+            $dados_pessoa['conjuge_id'] = null;
+            $dados_pessoa['filhos'] = (!empty($dados['filhosPessoa'])?$dados['filhosPessoa']: 0);
+            $dados_pessoa['sexo'] = (!empty($dados['sexoPessoa'])?$dados['sexoPessoa']: null);
+            $dados_pessoa['tipo'] = 'F';
+            $dt = explode('/',$dados['dataNascimentoPessoa']);
+            $dados_pessoa['data_nascimento'] = ($dados['dataNascimentoPessoa']<>''? date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0])):null);
+            $dados_pessoa['cpf_cnpj'] =  (!empty($dados['cpfPessoaConjuge'])?preg_replace('/[^0-9]/', '', $dados['cpfPessoaConjuge']): null);
+            $dados_pessoa['rg'] = (!empty($dados['rgPessoa'])?$dados['rgPessoa']: null);
+            $dados_pessoa['empresa_id'] = $user['empresa_id'];
+            $dados_pessoa['u_id'] = $user['id'];
+
+            $pessoa = $this->Pessoas->get($conjuge_id,['contain'=>['Contatos']]);
+            $pessoa = $this->Pessoas->patchEntity($pessoa,$dados_pessoa);
+            if ($this->Pessoas->save($pessoa)) {
+                foreach($pessoa->contatos as $val){
+                    if($val->tipo == 'telefone'){
+                        $val->valor = (!empty($dados['telefoneCliente'])?$dados['telefoneCliente']: null);
+                        $val->u_id = $user['id'];
+                    }
+                }
+                $contatos = $pessoa->contatos;
+                if ($this->Contatos->saveMany($contatos)) {
+                    $dados_originais = json_encode([$user['id'],$user['username'],'Cadastro Conjuge']);
+                    $dados_novos = json_encode([$user['id'],$user['username'],$contatos,$pessoa]);
+                    if($this->Modificacoes->emiteLog('Clientes','addConjuge',$dados_originais,$dados_novos)) {
+                        //$this->Flash->success(__('Cônjuge editada(o) com sucesso.'));
+                    }else{
+                        //$this->Flash->error(__('Erro ao gravar log.'));
+                    }
+                }else{
+                    //$this->Flash->error(__('Erro ao gravar Contatos. Tente Novamente.'));
+                }
+
+            }else {
+                //$this->Flash->error(__('Erro ao gravar Pessoa. Tente Novamente.'));
+            }
+        }
+
+        $this->set(compact('conjuge_id','conjuge'));
+    }
 }

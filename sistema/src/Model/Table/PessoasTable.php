@@ -17,6 +17,7 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\FornecedoresTable&\Cake\ORM\Association\HasMany $Fornecedores
  * @property \App\Model\Table\PedreirosTable&\Cake\ORM\Association\HasMany $Pedreiros
  * @property \App\Model\Table\RendasTable&\Cake\ORM\Association\HasMany $Rendas
+ * @property \App\Model\Table\DependentesTable&\Cake\ORM\Association\HasMany $Dependentes
  *
  * @method \App\Model\Entity\Pessoa get($primaryKey, $options = [])
  * @method \App\Model\Entity\Pessoa newEntity($data = null, array $options = [])
@@ -112,6 +113,10 @@ class PessoasTable extends Table
             ->scalar('sexo')
             ->maxLength('sexo', 1)
             ->allowEmptyString('sexo');
+
+        $validator
+            ->date('data_nascimento')
+            ->allowEmptyDate('data_nascimento');
 
         $validator
             ->scalar('tipo')

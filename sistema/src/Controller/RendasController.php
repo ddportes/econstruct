@@ -51,7 +51,13 @@ class RendasController extends AppController
     public function add($pessoa_id = null)
     {
         $user = $sessao = $this->Auth->user();
+
+        $rendas = null;
+        $pessoa = null;
+        $pessoas = null;
+        $conjuge = null;
         $renda = $this->Rendas->newEntity();
+
         if($pessoa_id) {
             if ($this->request->is('post')) {
                 $dados = $this->request->getData();
@@ -70,20 +76,28 @@ class RendasController extends AppController
             $pessoa = $this->Rendas->Pessoas->get($pessoa_id,['contain'=>['Rendas']]);
             $pessoas[$pessoa->id] = $pessoa->nome;
 
-            $criterio = "{$pessoa->id}";
+            $criterio = $pessoa->id;
             if($pessoa->conjuge_id){
                 $conjuge = $this->Rendas->Pessoas->get($pessoa->conjuge_id,['contain'=>['Rendas']]);
-                $pessoas[$conjuge->id] = $conjuge->nome;
-                $criterio .= ",{$conjuge->id}";
+
+                if($conjuge) {
+                    $pessoas[$conjuge->id] = $conjuge->nome;
+                    $criterio .= ",{$conjuge->id}";
+                }
             }
 
-            $rendas = $this->Rendas->find()->where(["pessoa_id in ({$criterio})"])->contain(['Pessoas']);
-        }else{
-            //$this->Flash->error(__('Selecione um cliente.'));
-            $rendas = null;
+            $rendas = $this->Rendas->find()->where(["pessoa_id in (".$criterio.")"])->contain(['Pessoas']);
         }
 
-        $this->set(compact('renda', 'rendas','pessoa_id','pessoa','pessoas','conjuge'));
+        $todas_rendas_bruta = null;
+        $todas_rendas_liquida = null;
+
+        if($conjuge){
+            $todas_rendas_bruta[]=$conjuge->totalRendaBruta();
+            $todas_rendas_liquida[]=$conjuge->totalRendaLiquida();
+        }
+
+        $this->set(compact('renda', 'rendas','pessoa_id','pessoa','pessoas','conjuge','todas_rendas_bruta','todas_rendas_liquida'));
     }
 
     /**
@@ -118,17 +132,18 @@ class RendasController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($id = null,$pessoa_id)
     {
         $this->request->allowMethod(['post', 'delete']);
         $renda = $this->Rendas->get($id);
+
         if ($this->Rendas->delete($renda)) {
             //$this->Flash->success(__('The renda has been deleted.'));
         } else {
             //$this->Flash->error(__('The renda could not be deleted. Please, try again.'));
         }
-        $this->set('pessoa_id',$id);
+        $this->set('pessoa_id',$pessoa_id);
 
-        return $this->redirect(['action' => 'add',$id]);
+        return $this->redirect(['action' => 'add',$pessoa_id]);
     }
 }

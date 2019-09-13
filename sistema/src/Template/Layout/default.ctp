@@ -8,7 +8,7 @@ $cakeDescription = 'e-Construct';
     <meta http-equiv="Content-Language" content="pt-br">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="shortcut icon" type="image/x-icon" href="<?= $this->Url->build('favicon.ico') ?>">
+    <link rel="shortcut icon" type="image/x-icon" href="<?= $this->Url->build('/favicon.ico') ?>">
     <title>
         <?= $cakeDescription ?>:
         <?= $this->fetch('title').' - '.$empresa->nome_fantasia ?>

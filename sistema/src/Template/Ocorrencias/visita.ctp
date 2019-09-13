@@ -7,6 +7,13 @@
 <?= $this->Html->scriptStart(['block' => true]); ?>
     var hashVisit = '<?= $this->request->getParam("_csrfToken") ?>';
     var urlVisit = "<?= $this->Url->build(['controller'=>'Clientes','action'=>'retornaCliente']) ?>/";
+
+$(document).ready(function(){
+    $('#tab-c1-1').attr('style','display:none');
+    $('#tab-c1-2').attr('style','display:none');
+    $('#salvar').prop('disabled',true);
+    $('#tab-c1-0').click();
+});
 <?= $this->Html->scriptEnd(); ?>
 
 <?= $this->Html->script('visita.js',['block'=>true]) ?>
@@ -117,15 +124,21 @@
                                         <?= $this->Form->control('estadoCivilPessoa', ['options'=>[''=>'','1'=>'Solteiro(a)','2'=>'Casado(a)','3'=>'Separado(a)','4'=>'Viúvo(a)','5'=>'União Estável(a)'],'id'=>'estadoCivilPessoa','label'=>'Estado Civil','class' => 'form-control']); ?>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('dataNascimentoPessoa',['label'=>'Data de Nascimento','type'=>'text','name'=>'dataNascimentoPessoa','id'=>'dataNascimentoPessoa','class'=>'form-control']); ?>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-2">
                                     <div class="position-relative form-group">
                                         <?= $this->Form->control('filhosPessoa', ['id'=>'filhosPessoa','type'=>'number','label'=>'Filhos (Qtd)','class' => 'form-control']); ?>
                                     </div>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-md-7">
                                     <div class="position-relative form-group">
                                         <?= $this->Html->link(__('Cadastrar Cônjuge'),
-                                            ['controller' => 'Clientes', 'action' => 'addConjuge'], [
+                                            ['controller' => 'Pessoas', 'action' => 'addConjuge'], [
                                                 'id' => 'conjugeCliente',
                                                 'class' => 'btn btn-primary modal_lg_link',
                                                 'style'=>'top:2.5em',
@@ -135,6 +148,16 @@
                                                 'escape' => false
                                             ]) ?>
                                         <?= $this->Form->control('conjugeHiddenPessoa', ['id'=>'conjugeHiddenPessoa','type'=>'hidden']); ?>
+                                        <?= $this->Html->link(__('Cadastrar Dependentes'),
+                                            ['controller' => 'Dependentes', 'action' => 'add'], [
+                                                'id' => 'dependenteCliente',
+                                                'class' => 'btn btn-primary modal_xl_link',
+                                                'style'=>'top:2.5em',
+                                                'role' => 'button',
+                                                'data-toggle'=>"modal",
+                                                'data-target'=>".modal_econstruct",
+                                                'escape' => false
+                                            ]) ?>
                                         <?= $this->Html->link(__('Cadastrar Renda'),
                                             ['controller' => 'Rendas', 'action' => 'add'], [
                                                 'id' => 'rendaCliente',
@@ -145,7 +168,10 @@
                                                 'data-target'=>".modal_econstruct",
                                                 'escape' => false
                                             ]) ?>
+
                                         <span id="linkRenda" style="display:none"><?= $this->Url->build(['controller' => 'Rendas', 'action' => 'add']) ?></span>
+                                        <span id="linkDependente" style="display:none"><?= $this->Url->build(['controller' => 'Dependentes', 'action' => 'add']) ?></span>
+                                        <span id="linkConjuge" style="display:none"><?= $this->Url->build(['controller' => 'Pessoas', 'action' => 'addConjuge']) ?></span>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -242,6 +268,13 @@
 <script>
     $( function() {
         $( "#dataPendenciaOcorrencia" ).datepicker({
+            format: 'dd/mm/yyyy',
+            todayBtn: true,
+            language: "pt-BR"
+        });
+    } );
+    $( function() {
+        $( "#dataNascimentoPessoa" ).datepicker({
             format: 'dd/mm/yyyy',
             todayBtn: true,
             language: "pt-BR"

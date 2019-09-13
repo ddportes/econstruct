@@ -5,7 +5,7 @@
 ?>
 
 <?php //echo $this->Html->script('https://code.jquery.com/jquery-3.4.1.min.js',['block'=>true]) ?>
-<?= $this->Html->script('visita-min.js',['block'=>true]) ?>
+<?= $this->Html->script('visita.js',['block'=>true]) ?>
 
 <div class="app-page-title">
     <div class="page-title-wrapper">
@@ -111,16 +111,21 @@
                                             <?= $this->Form->control('estadoCivilPessoa', ['options'=>[''=>'','1'=>'Solteiro(a)','2'=>'Casado(a)','3'=>'Separado(a)','4'=>'Viúvo(a)','5'=>'União Estável(a)'],'id'=>'estadoCivilPessoa','label'=>'Estado Civil','class' => 'form-control']); ?>
                                         </div>
                                     </div>
+                                    <div class="col-md-3">
+                                        <div class="position-relative form-group">
+                                            <?= $this->Form->control('dataNascimentoPessoa',['label'=>'Data de Nascimento','type'=>'text','name'=>'dataNascimentoPessoa','id'=>'dataNascimentoPessoa','class'=>'form-control']); ?>
+                                        </div>
+                                    </div>
                                     <div class="col-md-2">
                                         <div class="position-relative form-group">
                                             <?= $this->Form->control('filhosPessoa', ['id'=>'filhosPessoa','type'=>'number','label'=>'Filhos (Qtd)','class' => 'form-control']); ?>
                                         </div>
                                     </div>
-                                    <div class="col-md-10">
+                                    <div class="col-md-7">
                                         <div class="position-relative form-group">
 
                                             <?= $this->Html->link(__('Cadastrar Cônjuge'),
-                                                ['controller' => 'Clientes', 'action' => 'addConjuge'], [
+                                                ['controller' => 'Pessoas', 'action' => 'addConjuge'], [
                                                     'id' => 'conjugeCliente',
                                                     'class' => 'btn btn-primary modal_lg_link',
                                                     'style'=>'top:2.5em',
@@ -189,21 +194,6 @@
                                             <?= $this->Form->control('custoEstimadoProjeto', ['id'=>'custoEstimadoProjeto','label'=>'Custo Estimado','placeholder'=>'R$','class' => 'form-control']); ?>
                                         </div>
                                     </div>
-                                    <div class="col-md-9">
-                                        <div class="position-relative form-group">
-                                            <?= $this->Html->link(__('Novo Orçamento'),
-                                                ['controller' => 'Orcamentos', 'action' => 'add'], [
-                                                    'id' => 'rendaCliente',
-                                                    'class' => 'btn btn-primary modal_lg_link',
-                                                    'style'=>'top:2.5em',
-                                                    'role' => 'button',
-                                                    'data-toggle'=>"modal",
-                                                    'data-target'=>".modal_econstruct",
-                                                    'escape' => false
-                                                ]) ?>
-                                            <?= $this->Form->control('orcamentoHidden', ['id'=>'orcamentoHidden','type'=>'hidden']); ?>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -221,6 +211,13 @@
 <script>
     $( function() {
         $( "#dataPendenciaOcorrencia" ).datepicker({
+            format: 'dd/mm/yyyy',
+            todayBtn: true,
+            language: "pt-BR"
+        });
+    } );
+    $( function() {
+        $( "#dataNascimentoPessoa" ).datepicker({
             format: 'dd/mm/yyyy',
             todayBtn: true,
             language: "pt-BR"

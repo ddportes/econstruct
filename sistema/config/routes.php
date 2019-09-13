@@ -81,8 +81,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/trocar_empresa', ['controller' => 'Users', 'action' => 'troca_empresa']);
     $routes->connect('/trocar_minha_senha/*', ['controller' => 'Users', 'action' => 'edit']);
     $routes->connect('/sair', ['controller' => 'Users', 'action' => 'logout']);
-    $routes->connect('/novo_conjuge', ['controller' => 'Clientes', 'action' => 'addConjuge']);
-    $routes->connect('/editar_conjuge/*', ['controller' => 'Clientes', 'action' => 'editConjuge']);
+    $routes->connect('/novo_conjuge', ['controller' => 'Pessoas', 'action' => 'addConjuge']);
+    $routes->connect('/editar_conjuge/*', ['controller' => 'Pessoas', 'action' => 'editConjuge']);
     $routes->connect('/rendas/*', ['controller' => 'Rendas', 'action' => 'add']);
     $routes->connect('/excluir_renda/*', ['controller' => 'Rendas', 'action' => 'delete']);
 
