@@ -63,12 +63,12 @@ class ClientesTable extends Table
             'foreignKey' => 'cliente_id'
         ]);
 
-
+/*
         $this->belongsTo('Projetos')
             ->setBindingKey('cliente_id')
             ->setForeignKey('id')
             ->setJoinType('INNER');
-
+*/
     }
 
     /**
@@ -107,13 +107,4 @@ class ClientesTable extends Table
         return $rules;
     }
 
-    public function isConjuge($id){
-        $pessoa = ($this->Pessoas->find()->where(['conjuge_id'=>$id]))->first();
-
-        if($pessoa){
-            return true;
-        }
-
-        return false;
-    }
 }

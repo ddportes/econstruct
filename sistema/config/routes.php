@@ -80,11 +80,12 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/excluir_usuario', ['controller' => 'Users', 'action' => 'delete']);
     $routes->connect('/trocar_empresa', ['controller' => 'Users', 'action' => 'troca_empresa']);
     $routes->connect('/trocar_minha_senha/*', ['controller' => 'Users', 'action' => 'edit']);
-    $routes->connect('/sair', ['controller' => 'Users', 'action' => 'logout']);
     $routes->connect('/novo_conjuge', ['controller' => 'Pessoas', 'action' => 'addConjuge']);
     $routes->connect('/editar_conjuge/*', ['controller' => 'Pessoas', 'action' => 'editConjuge']);
     $routes->connect('/rendas/*', ['controller' => 'Rendas', 'action' => 'add']);
     $routes->connect('/excluir_renda/*', ['controller' => 'Rendas', 'action' => 'delete']);
+    $routes->connect('/editar_visita/*', ['controller' => 'Ocorrencias', 'action' => 'edit']);
+    $routes->connect('/editar_orcamento/*', ['controller' => 'Orcamentos', 'action' => 'view']);
 
     /**
      * Connect catchall routes for all controllers.

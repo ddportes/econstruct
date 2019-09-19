@@ -4,15 +4,25 @@
  * @var \App\Model\Entity\Renda $renda
  */
 ?>
-<?= $this->Html->script('renda.js') ?>
-<div id="addRenda" >
+<script>
+    var stSitDep = {
+        sE: true,
+        sF: true,
+        sJ: true,
+        sC: true,
+        sP: true,
+        sL: true
+    }
+</script>
+<?= $this->Html->script('dependente.js') ?>
+<div id="addDependente" >
     <div class="modal-header">
         <h5 class="modal-title">Cadastro de Dependentes</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="fechar">
             <span aria-hidden="true">×</span>
         </button>
     </div>
-    <?php if(!empty($pessoa_id)): ?>
+    <?php if(!empty($pai_mae_id)): ?>
         <div class="modal-body">
             <h5 class="card-title">Dependentes Cadastrados</h5>
             <div class="table-responsive">
@@ -28,32 +38,30 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php if($rendas->count() > 0): ?>
-                        <?php foreach ($rendas as $r): ?>
+                    <?php if($dependentes->count() > 0): ?>
+                        <?php foreach ($dependentes as $d): ?>
                             <tr>
-                                <td scope="row" style="vertical-align: top"><?= $this->Number->format($r->id) ?></td>
-                                <td style="vertical-align: top"><?= $r->pessoa->nome ?></td>
-                                <td style="vertical-align: top"><?= h($r->fonte_pagadora) ?></td>
-                                <td style="vertical-align: top"><?= $r->tipo() ?></td>
-                                <td style="vertical-align: top"><?= $r->cpfCnpj(true) ?></td>
-                                <td style="vertical-align: top"><?= $r->rendaBruta(true) ?></td>
-                                <td style="vertical-align: top"><?= $r->rendaLiquida(true) ?></td>
+                                <td scope="row" style="vertical-align: top"><?= $this->Number->format($d->id) ?></td>
+                                <td style="vertical-align: top"><?= $d->pessoa->nome ?></td>
+                                <td style="vertical-align: top"><?= ($d->pessoa->sexo == 'M'?'Masculino':'Feminino') ?></td>
+                                <td style="vertical-align: top"><?= $d->pessoa->cpfCnpj(true) ?></td>
+                                <td style="vertical-align: top"><?= (is_null($d->pessoa->data_nascimento)?'':h(date_format($d->pessoa->data_nascimento,'d/m/Y'))) ?></td>
                                 <td class="actions" style="vertical-align: top">
                                     <?= $this->Form->postButton('<i class="fas fa-trash-alt"></i>', [
                                         'action' => 'delete',
-                                        $r->id,$pessoa_id
+                                        $d->id,$pai_mae_id
                                     ],
                                         [
-                                            'data'=>['id'=>$r->id,'pessoa_id'=>$pessoa_id],
+                                            'data'=>['id'=>$d->id,'pessoa_id'=>$pai_mae_id],
                                             'form' => [
-                                                'id' => 'form-delete-renda-' . $r->id,
-                                                'class' => 'form-delete-renda'
+                                                'id' => 'form-delete-dependente-' . $d->id,
+                                                'class' => 'form-delete-dependente'
                                             ],
                                             'block' => true,
-                                            'id' => 'botaoExcluirRenda',
+                                            'id' => 'botaoExcluirDependente',
                                             'class' => 'btn btn-xs',
-                                            'confirm' => __('Deseja realmente excluir a renda {0}?', $r->fonte_pagadora),
-                                            'title' => __('Excluir Renda'),
+                                            'confirm' => __('Deseja realmente excluir o dependente {0}?', $d->pessoa->nome),
+                                            'title' => __('Excluir Dependente'),
                                             'escape' => false
                                         ]) ?>
                                 </td>
@@ -61,74 +69,61 @@
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <th colspan="4" scope="row"><?= __('Não há renda cadastrada.') ?></th>
+                            <th colspan="4" scope="row"><?= __('Não há dependentes cadastrados.') ?></th>
                         </tr>
                     <?php endif; ?>
                     </tbody>
                 </table>
             </div>
-            <div class="table-responsive">
-                <table class="mb-0 table">
-                    <tr>
-                        <th scope="row"><?= __('Total Renda Bruta') ?></th>
-
-                        <?php ?>
-
-                        <td><?= $pessoa->totalRendaBruta(true,$todas_rendas_bruta) ?></td>
-                        <th scope="row"><?= __('Total Renda Líquida') ?></th>
-                        <td><?= $pessoa->totalRendaLiquida(true,$todas_rendas_liquida) ?></td>
-                    </tr>
-                </table>
-            </div>
         </div>
 
-        <?= $this->Form->create($renda,['id'=>'formRenda']) ?>
+        <?= $this->Form->create(null,['id'=>'formDependente']) ?>
         <div class="modal-body">
             <h5 class="card-title">Preencha as informações abaixo</h5>
+            <?= $this->Form->control('pai_mae_id', ['id'=>'pai_mae_id','type' => 'hidden','value'=>$pai_mae_id]); ?>
             <div class="position-relative row form-group">
-                <label for="pessoa_id" class="col-sm-2 col-form-label">Pessoa:</label>
+                <label for="nomeDependente" class="col-sm-2 col-form-label">Nome:</label>
                 <div class="col-sm-10">
-                    <?= $this->Form->control('pessoa_id',['label'=>false,'options'=>$pessoas,'value' => $pessoa_id,'name'=>'pessoa_id','id'=>'pessoa_id','class'=>'form-control']); ?>
-                </div>
-            </div>
-            <div class="position-relative row form-group">
-                <label for="fonte_pagadora" class="col-sm-2 col-form-label">Fonte Pagadora:</label>
-                <div class="col-sm-10">
-                    <?= $this->Form->control('fonte_pagadora',['label'=>false,'type'=>'text','name'=>'fonte_pagadora','id'=>'fonte_pagadora','class'=>'form-control','placeholder'=>'Digite a razão social da Fonte Pagadora']); ?>
+                    <?= $this->Form->control('nomeDependente',['label'=>false,'type'=>'text','name'=>'nomeDependente','id'=>'nomeDependente','class'=>'form-control','placeholder'=>'Digite o nome da(o) Dependente']); ?>
                 </div>
             </div>
 
             <div class="position-relative row form-group">
-                <label for="tipo" class="col-sm-2 col-form-label">Tipo de Pessoa:</label>
+                <label for="sexoDependente" class="col-sm-2 col-form-label">Sexo:</label>
                 <div class="col-sm-10">
-                    <?= $this->Form->control('tipo', ['label'=>false,'options'=>['J'=>'Jurídica','F'=>'Física'],'id'=>'tipo','class' => 'form-control']); ?>
+                    <?= $this->Form->control('sexoDependente', ['label'=>false,'options'=>['M'=>'Masculino','F'=>'Feminino'],'id'=>'sexoDependente','class' => 'form-control']); ?>
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                <label for="estadoCivilDependente" class="col-sm-2 col-form-label">Estado Civil:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('estadoCivilDependente', ['options'=>[''=>'','1'=>'Solteiro(a)','2'=>'Casado(a)','3'=>'Separado(a)','4'=>'Viúvo(a)','5'=>'União Estável(a)'],'id'=>'estadoCivilDependente','label'=>false,'class' => 'form-control']); ?>
                 </div>
             </div>
 
-            <div class="position-relative row form-group">
-                <label for="cpf_cnpj" class="col-sm-2 col-form-label">CPF/CNPJ:</label>
-                <div class="col-sm-10">
-                    <?= $this->Form->control('cpf_cnpj', ['id'=>'cpf_cnpj','label'=>false,'placeholder'=>'Somente números','class' => 'form-control cpf']); ?>
-                    <div id="erro_cpf_cnpj" role="alert" style="margin-top:4px;"></div>
-                </div>
-            </div>
 
             <div class="position-relative row form-group">
-                <label for="renda_bruta" class="col-sm-2 col-form-label">Renda Bruta:</label>
+                <label for="cpfDepentente" class="col-sm-2 col-form-label">CPF:</label>
                 <div class="col-sm-10">
-                    <?= $this->Form->control('renda_bruta', ['id'=>'renda_bruta','type'=>'text','label'=>false,'placeholder'=>'R$','class' => 'form-control']); ?>
+                    <?= $this->Form->control('cpfDependente', ['id'=>'cpfDependente','label'=>false,'placeholder'=>'Somente números','class' => 'form-control cpf']); ?>
+                    <div id="erro_cpf_dependente" role="alert" style="margin-top:4px;"></div>
                 </div>
             </div>
-
             <div class="position-relative row form-group">
-                <label for="renda_liquida" class="col-sm-2 col-form-label">Renda Líquida:</label>
+                <label for="rgDependente" class="col-sm-2 col-form-label">RG:</label>
                 <div class="col-sm-10">
-                    <?= $this->Form->control('renda_liquida', ['id'=>'renda_liquida','type'=>'text','label'=>false,'placeholder'=>'R$','class' => 'form-control']); ?>
+                    <?= $this->Form->control('rgDependente',['label'=>false,'type'=>'text','name'=>'rgDependente','id'=>'rgDependente','class'=>'form-control']); ?>
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                <label for="dataNascimento" class="col-sm-2 col-form-label">Data de Nascimento:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('dataNascimento',['label'=>false,'type'=>'text','name'=>'dataNascimento','id'=>'dataNascimento','class'=>'form-control']); ?>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
-            <?= $this->Form->button(__('Salvar'),['id'=>'salvarRenda','class'=>'btn btn-secondary']) ?>
+            <?= $this->Form->button(__('Salvar'),['id'=>'salvarDependente','class'=>'btn btn-secondary']) ?>
             <button id="fechaModal" type="button" class="btn btn-secondary close-popdown" data-dismiss="modal">fechar</button>
         </div>
         <?= $this->Form->end() ?>
@@ -137,37 +132,21 @@
         <div class="modal-body"><h5 class="card-title">Selecione um cliente</h5>
         </div>
     <?php endif; ?>
-</div>
-
-
-
-
-
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Dependente $dependente
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Dependentes'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Pessoas'), ['controller' => 'Pessoas', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Pessoa'), ['controller' => 'Pessoas', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Empresas'), ['controller' => 'Empresas', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Empresa'), ['controller' => 'Empresas', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="dependentes form large-9 medium-8 columns content">
-    <?= $this->Form->create($dependente) ?>
-    <fieldset>
-        <legend><?= __('Add Dependente') ?></legend>
-        <?php
-            echo $this->Form->control('pessoa_id', ['options' => $pessoas, 'empty' => true]);
-        ?>
-        <label>Pai/Mãe: </label> <?= $paiMae->nome ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+    <script>
+        $(document).ready(function(){
+            $("#erro_cpf_dependente").hide();
+            $('.cpf').mask('000.000.000-00');
+            $('.cpf').on('blur',function()
+            {
+                validaCpf($('.cpf'),$("#erro_cpf_dependente"),$('#salvarDependente'),stSitDep);
+            });
+        });
+        $( function() {
+            $( "#dataNascimento" ).datepicker({
+                format: 'dd/mm/yyyy',
+                todayBtn: false,
+                language: "pt-BR"
+            });
+        } );
+    </script>
 </div>

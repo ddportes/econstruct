@@ -5,6 +5,7 @@
 ?>
 
 <?php //echo $this->Html->script('https://code.jquery.com/jquery-3.4.1.min.js',['block'=>true]) ?>
+<script>stSit['sC'] = true,stSit['sP'] = true;</script>
 <?= $this->Html->script('visita.js',['block'=>true]) ?>
 
 <div class="app-page-title">
@@ -111,7 +112,7 @@
                                             <?= $this->Form->control('estadoCivilPessoa', ['options'=>[''=>'','1'=>'Solteiro(a)','2'=>'Casado(a)','3'=>'Separado(a)','4'=>'Viúvo(a)','5'=>'União Estável(a)'],'id'=>'estadoCivilPessoa','label'=>'Estado Civil','class' => 'form-control']); ?>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="position-relative form-group">
                                             <?= $this->Form->control('dataNascimentoPessoa',['label'=>'Data de Nascimento','type'=>'text','name'=>'dataNascimentoPessoa','id'=>'dataNascimentoPessoa','class'=>'form-control']); ?>
                                         </div>
@@ -121,7 +122,7 @@
                                             <?= $this->Form->control('filhosPessoa', ['id'=>'filhosPessoa','type'=>'number','label'=>'Filhos (Qtd)','class' => 'form-control']); ?>
                                         </div>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-8">
                                         <div class="position-relative form-group">
 
                                             <?= $this->Html->link(__('Cadastrar Cônjuge'),
@@ -210,16 +211,23 @@
 
 <script>
     $( function() {
+        $( "#dataOcorrencia" ).datepicker({
+            format: 'dd/mm/yyyy',
+            todayBtn: false,
+            language: "pt-BR"
+        });
+    } );
+    $( function() {
         $( "#dataPendenciaOcorrencia" ).datepicker({
             format: 'dd/mm/yyyy',
-            todayBtn: true,
+            todayBtn: false,
             language: "pt-BR"
         });
     } );
     $( function() {
         $( "#dataNascimentoPessoa" ).datepicker({
             format: 'dd/mm/yyyy',
-            todayBtn: true,
+            todayBtn: false,
             language: "pt-BR"
         });
     } );

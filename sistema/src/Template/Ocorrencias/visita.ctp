@@ -45,12 +45,12 @@ $(document).ready(function(){
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a role="tab" class="nav-link show" id="tab-c1-1" data-toggle="tab" href="#tab-animated1-1" aria-selected="false">
+                        <a role="tab" class="nav-link show" id="tab-c1-1" data-toggle="tab" href="#tab-animated1-1" aria-selected="false" style="display:none">
                             <span class="nav-text">Detalhar Cliente (Opcional)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a role="tab" class="nav-link show" id="tab-c1-2" data-toggle="tab" href="#tab-animated1-2" aria-selected="false">
+                        <a role="tab" class="nav-link show" id="tab-c1-2" data-toggle="tab" href="#tab-animated1-2" aria-selected="false" style="display:none">
                             <span class="nav-text">Detalhar Projeto (Opcional)</span>
                         </a>
                     </li>
@@ -124,7 +124,7 @@ $(document).ready(function(){
                                         <?= $this->Form->control('estadoCivilPessoa', ['options'=>[''=>'','1'=>'Solteiro(a)','2'=>'Casado(a)','3'=>'Separado(a)','4'=>'Viúvo(a)','5'=>'União Estável(a)'],'id'=>'estadoCivilPessoa','label'=>'Estado Civil','class' => 'form-control']); ?>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="position-relative form-group">
                                         <?= $this->Form->control('dataNascimentoPessoa',['label'=>'Data de Nascimento','type'=>'text','name'=>'dataNascimentoPessoa','id'=>'dataNascimentoPessoa','class'=>'form-control']); ?>
                                     </div>
@@ -135,7 +135,7 @@ $(document).ready(function(){
                                         <?= $this->Form->control('filhosPessoa', ['id'=>'filhosPessoa','type'=>'number','label'=>'Filhos (Qtd)','class' => 'form-control']); ?>
                                     </div>
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-8">
                                     <div class="position-relative form-group">
                                         <?= $this->Html->link(__('Cadastrar Cônjuge'),
                                             ['controller' => 'Pessoas', 'action' => 'addConjuge'], [
@@ -221,6 +221,20 @@ $(document).ready(function(){
                     </div>
                     <div class="tab-pane show" id="tab-animated1-2" role="tabpanel">
                         <div class="card-body"><h5 class="card-title">Detalhes do Projeto</h5>
+                            <div class="form-row">
+                                <div class="col-md-10">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('projetoId', ['type'=>'select','id'=>'projetoId','label'=>'Selecione o Projeto','class' => 'form-control']); ?>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="position-relative form-check" style='top:2.5em'>
+                                        <?= $this->Form->control('checkNovoProjeto', ['type'=>'checkbox','id'=>'checkNovoProjeto','label'=>'É um novo Projeto?','class' => 'form-check-input']); ?>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="position-relative form-group">
                                 <?= $this->Form->control('descricaoProjeto', ['id'=>'descricaoProjeto','label'=>'Descrição Rápida do Projeto','placeholder'=>'Escreve uma descrição rápida','class' => 'form-control']); ?>
                             </div>
@@ -236,28 +250,13 @@ $(document).ready(function(){
                                         <?= $this->Form->control('custoEstimadoProjeto', ['id'=>'custoEstimadoProjeto','label'=>'Custo Estimado','placeholder'=>'R$','class' => 'form-control']); ?>
                                     </div>
                                 </div>
-                                <div class="col-md-9">
-                                    <div class="position-relative form-group">
-                                        <?= $this->Html->link(__('Novo Orçamento'),
-                                            ['controller' => 'Orcamentos', 'action' => 'add'], [
-                                                'id' => 'rendaCliente',
-                                                'class' => 'btn btn-primary modal_lg_link',
-                                                'style'=>'top:2.5em',
-                                                'role' => 'button',
-                                                'data-toggle'=>"modal",
-                                                'data-target'=>".modal_econstruct",
-                                                'escape' => false
-                                            ]) ?>
-                                        <?= $this->Form->control('orcamentoHidden', ['id'=>'orcamentoHidden','type'=>'hidden']); ?>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="card-body" style="text-align: right;">
-                <?= $this->Form->button(__('Salvar Informações'),['id'=>'salvar','type'=>'submit','class'=>'btn btn-success']) ?>
+                <?= $this->Form->button(__('Salvar Informações'),['id'=>'salvar','title'=>'Para habilitar, selecione um cliente','type'=>'submit','class'=>'btn btn-success']) ?>
             </div>
         </div>
         <?= $this->Form->end() ?>
@@ -267,16 +266,23 @@ $(document).ready(function(){
 
 <script>
     $( function() {
+        $( "#dataOcorrencia" ).datepicker({
+            format: 'dd/mm/yyyy',
+            todayBtn: false,
+            language: "pt-BR"
+        });
+    } );
+    $( function() {
         $( "#dataPendenciaOcorrencia" ).datepicker({
             format: 'dd/mm/yyyy',
-            todayBtn: true,
+            todayBtn: false,
             language: "pt-BR"
         });
     } );
     $( function() {
         $( "#dataNascimentoPessoa" ).datepicker({
             format: 'dd/mm/yyyy',
-            todayBtn: true,
+            todayBtn: false,
             language: "pt-BR"
         });
     } );

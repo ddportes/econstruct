@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Renda $renda
  */
 ?>
+
 <?= $this->Html->script('renda.js') ?>
 <div id="addRenda" >
     <div class="modal-header">

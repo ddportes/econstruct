@@ -163,12 +163,11 @@ function drawMultSeries() {
 <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
-            <div class="card-header">Últimas 10 Visitas Realizadas</div>
+            <div class="card-header">Últimas 5 Visitas Realizadas</div>
             <div class="table-responsive">
                 <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                     <thead>
                     <tr>
-                        <th class="text-center">#</th>
                         <th>Nome do Cliente</th>
                         <th class="text-center">Situação do Cliente</th>
                         <th class="text-center">Projeto</th>
@@ -177,12 +176,11 @@ function drawMultSeries() {
                     </tr>
                     </thead>
                     <tbody>
-                    <?php $ocorrencias = $ocorrencias->limit(10)->order(['Ocorrencias.id DESC']); ?>
+                    <?php $ocorrencias = $ocorrencias->limit(5)->order(['Ocorrencias.id DESC']); ?>
                     <?php if($ocorrencias->count() > 0): ?>
                         <?php foreach($ocorrencias as $val): ?>
 
                         <tr>
-                            <td class="text-center text-muted"><?= $val->id ?></td>
                             <td>
                                 <div class="widget-content p-0">
                                     <div class="widget-content-wrapper">

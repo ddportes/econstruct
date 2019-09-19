@@ -1,7 +1,173 @@
+var stSit = {
+    sE: true,
+    sF: true,
+    sJ: true,
+    sC: false,
+    sP: false,
+    sL: true
+}
+
+function statusSalvar(salvar,funcao,acao,arrayStatus){
+    //1-email-sE, 2-cpf-sF, 3-cnpj-sJ, 4-cliente-SC, 5-projeto-sP, 6-cep-sL
+    //alert(funcao+' - '+acao+': '+sE+'-'+sF+'-'+sJ+'-'+sC+'-'+sP+'-'+sL);
+    if(funcao == 1){
+        if(acao == 2) {
+            arrayStatus['sE'] = false;
+            salvar.prop('title', 'Para habilitar, digite um e-mail válido');
+            salvar.prop('disabled',true);
+        }else{
+            arrayStatus['sE'] = true;
+            if(arrayStatus['sF'] === true && arrayStatus['sJ'] === true && arrayStatus['sC'] === true && arrayStatus['sP'] === true && arrayStatus['sL'] === true){
+                salvar.prop('title', '');
+                salvar.prop('disabled',false);
+            }else{
+                if(arrayStatus['sL'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um CEP válido ou deixe o CEP em branco');
+                }else if(arrayStatus['sF'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um CPF válido ou deixe o CPF em branco');
+                }else if(arrayStatus['sJ'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um CNPJ válido ou deixe o CNPJ em branco');
+                }else if(arrayStatus['sC'] === false){
+                    salvar.prop('title', 'Para habilitar, selecione um cliente');
+                }else if(arrayStatus['sP'] === false){
+                    salvar.prop('title', 'Para habilitar, selecione um projeto ou crie um projeto novo');
+                }
+                salvar.prop('disabled',true);
+            }
+        }
+    }else if(funcao == 6){
+        if(acao == 2){
+            arrayStatus['sL'] = false;
+            salvar.prop('title', 'Para habilitar, digite um CEP válido');
+            salvar.prop('disabled',true);
+        }else{
+            arrayStatus['sL'] = true;
+            if(arrayStatus['sE'] === true && arrayStatus['sJ'] === true && arrayStatus['sC'] === true && arrayStatus['sP'] === true && arrayStatus['sF'] === true){
+                salvar.prop('title', '');
+                salvar.prop('disabled',false);
+            }else{
+                if(arrayStatus['sE'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um e-mail válido');
+                }else if(arrayStatus['sF'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um CPF válido');
+                }else if(arrayStatus['sJ'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um CNPJ válido');
+                }else if(arrayStatus['sC'] === false){
+                    salvar.prop('title', 'Para habilitar, selecione um cliente');
+                }else if(arrayStatus['sP'] === false){
+                    salvar.prop('title', 'Para habilitar, selecione um projeto ou crie um projeto novo');
+                }
+                salvar.prop('disabled',true);
+            }
+        }
+    }else if(funcao == 2){
+        if(acao == 2){
+            arrayStatus['sF'] = false;
+            salvar.prop('title', 'Para habilitar, digite um CPF válido');
+            salvar.prop('disabled',true);
+        }else{
+            arrayStatus['sF'] = true;
+            if(arrayStatus['sE'] === true && arrayStatus['sJ'] === true && arrayStatus['sC'] === true && arrayStatus['sP'] === true && arrayStatus['sL'] === true){
+                salvar.prop('title', '');
+                salvar.prop('disabled',false);
+            }else{
+                if(arrayStatus['sE'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um e-mail válido');
+                }else if(arrayStatus['sL'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um CEP válido');
+                }else if(arrayStatus['sJ'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um CNPJ válido');
+                }else if(arrayStatus['sC'] === false){
+                    salvar.prop('title', 'Para habilitar, selecione um cliente');
+                }else if(arrayStatus['sP'] === false){
+                    salvar.prop('title', 'Para habilitar, selecione um projeto ou crie um projeto novo');
+                }
+                salvar.prop('disabled',true);
+            }
+        }
+    }else if(funcao == 3){
+        if(acao == 2){
+            arrayStatus['sJ'] = false;
+            salvar.prop('title', 'Para habilitar, digite um CNPJ válido');
+            salvar.prop('disabled',true);
+        }else{
+            arrayStatus['sJ'] = true;
+            if(arrayStatus['sE'] === true && arrayStatus['sF'] === true && arrayStatus['sC'] === true && arrayStatus['sP'] === true && arrayStatus['sL'] === true){
+                salvar.prop('title', '');
+                salvar.prop('disabled',false);
+            }else{
+                if(arrayStatus['sE'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um e-mail válido');
+                }else if(arrayStatus['sL'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um CEP válido');
+                }else if(arrayStatus['sF'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um CPF válido');
+                }else if(arrayStatus['sC'] === false){
+                    salvar.prop('title', 'Para habilitar, selecione um cliente');
+                }else if(arrayStatus['sP'] === false){
+                    salvar.prop('title', 'Para habilitar, selecione um projeto ou crie um projeto novo');
+                }
+                salvar.prop('disabled',true);
+            }
+        }
+    }else if(funcao == 4){
+        if(acao == 2){
+            arrayStatus['sC'] = false;
+            salvar.prop('title', 'Para habilitar, selecione um cliente');
+            salvar.prop('disabled',true);
+        }else{
+            arrayStatus['sC'] = true;
+            if(arrayStatus['sE'] === true && arrayStatus['sF'] === true && arrayStatus['sJ'] === true && arrayStatus['sP'] === true && arrayStatus['sL'] === true){
+                salvar.prop('title', '');
+                salvar.prop('disabled',false);
+            }else{
+                if(arrayStatus['sE'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um e-mail válido');
+                }else if(arrayStatus['sL'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um CEP válido');
+                }else if(arrayStatus['sF'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um CPF válido');
+                }else if(arrayStatus['sJ'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um CNPJ válido');
+                }else if(arrayStatus['sP'] === false){
+                    salvar.prop('title', 'Para habilitar, selecione um projeto ou crie um projeto novo');
+                }
+                salvar.prop('disabled',true);
+            }
+        }
+    }else if(funcao == 5){
+        if(acao == 2){
+            arrayStatus['sP'] = false;
+            salvar.prop('title', 'Para habilitar, selecione um projeto ou crie um projeto novo');
+            salvar.prop('disabled',true);
+        }else{
+            arrayStatus['sP'] = true;
+            if(arrayStatus['sE'] === true && arrayStatus['sF'] === true && arrayStatus['sJ'] === true && arrayStatus['sC'] === true && arrayStatus['sL'] === true){
+                salvar.prop('title', '');
+                salvar.prop('disabled',false);
+            }else{
+                if(arrayStatus['sE'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um e-mail válido');
+                }else if(arrayStatus['sL'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um CEP válido');
+                }else if(arrayStatus['sF'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um CPF válido');
+                }else if(arrayStatus['sJ'] === false){
+                    salvar.prop('title', 'Para habilitar, digite um CNPJ válido');
+                }else if(arrayStatus['sC'] === false){
+                    salvar.prop('title', 'Para habilitar, selecione um cliente');
+                }
+                salvar.prop('disabled',true);
+            }
+        }
+    }
+}
+
+
 /*
 * validações de email
 * */
-function validaEmail(campo,erro,salvar){
+function validaEmail(campo,erro,salvar,status){
     //atribuindo o valor do campo
     var sEmail	= campo.val();
 
@@ -11,19 +177,22 @@ function validaEmail(campo,erro,salvar){
     // condição
     if(!(emailFilter.test(sEmail))||sEmail.match(illegalChars)){
         if(sEmail.length == 0){
-            salvar.prop('disabled',false);
+            statusSalvar(salvar,1,1,status);
+            //salvar.prop('disabled',false);
             erro.hide();
         }else {
             erro.show().removeClass("alert alert-success alert-dismissible fade show").addClass("alert alert-danger alert-dismissible fade show")
                 .text('Por favor, informe um email válido.');
             erro.append('<button onclick="$(\'#'+erro.attr('id')+'\').hide();" type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>');
-            salvar.prop('disabled',true);
+            //salvar.prop('disabled',true);
+            statusSalvar(salvar,1,2,status);
         }
     }else{
         erro.show().removeClass("alert alert-danger alert-dismissible fade show").addClass("alert alert-success alert-dismissible fade show")
             .text('Email informado está correto!');
         erro.append('<button onclick="$(\'#'+erro.attr('id')+'\').hide();" type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>');
-        salvar.prop('disabled',false);
+        //salvar.prop('disabled',false);
+        statusSalvar(salvar,1,1,status);
     }
 }
 
@@ -31,15 +200,16 @@ function validaEmail(campo,erro,salvar){
 /*
     * Validação do CEP e autopreenchimento
     * */
-function limpa_formulário_cep(l,b,c,e) {
+function limpa_formulário_cep(l,b,c,e,n) {
     // Limpa valores do formulário de cep.
     l.val("");
     b.val("");
     c.val("");
     e.val("");
+    n.val("");
 }
 
-function validaCep(campo,l,b,c,e,n,erro) {
+function validaCep(campo,l,b,c,e,n,erro,salvar,status) {
 
     //Nova variável "cep" somente com dígitos.
     var cep = campo.val().replace(/\D/g, '');
@@ -58,6 +228,7 @@ function validaCep(campo,l,b,c,e,n,erro) {
             b.val("...");
             c.val("...");
             e.val("...");
+            n.val("...");
 
             //Consulta o webservice viacep.com.br/
             $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
@@ -69,29 +240,32 @@ function validaCep(campo,l,b,c,e,n,erro) {
                     b.val(dados.bairro);
                     c.val(dados.localidade);
                     e.val(dados.uf);
-
+                    statusSalvar(salvar,6,1,status);
                     n.focus();
                 } //end if.
                 else {
                     //CEP pesquisado não foi encontrado.
-                    limpa_formulário_cep();
+                    limpa_formulário_cep(l,b,c,e,n);
                     erro.show().removeClass("alert alert-success alert-dismissible fade show").addClass("alert alert-danger alert-dismissible fade show")
                         .text('CEP não encontrado.');
                     erro.append('<button onclick="$(\'#'+erro.attr('id')+'\').hide();" type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>');
+                    statusSalvar(salvar,6,1,status);
                 }
             });
         } //end if.
         else {
             //cep é inválido.
-            limpa_formulário_cep();
+            limpa_formulário_cep(l,b,c,e,n);
             erro.show().removeClass("alert alert-success alert-dismissible fade show").addClass("alert alert-danger alert-dismissible fade show")
                 .text("Formato de CEP inválido.");
             erro.append('<button onclick="$(\'#'+erro.attr('id')+'\').hide();" type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>');
+            statusSalvar(salvar,6,2,status);
         }
     } //end if.
     else {
         //cep sem valor, limpa formulário.
-        limpa_formulário_cep();
+        limpa_formulário_cep(l,b,c,e,n);
+        statusSalvar(salvar,6,1,status);
         erro.hide();
     }
 }
@@ -108,8 +282,7 @@ var SPMaskBehavior = function (val) {
         }
     };
 
-function validaCpf(campo,msg,salvar)
-{
+function validaCpf(campo,msg,salvar,status){
     var cpf = campo.val().replace(/[^0-9]/g, '').toString();
 
     if( cpf.length == 11 )
@@ -136,12 +309,14 @@ function validaCpf(campo,msg,salvar)
            msg.show().removeClass("alert alert-success alert-dismissible fade show").addClass("alert alert-danger alert-dismissible fade show")
                 .text('CPF Inválido: '+cpf);
             msg.append('<button onclick=$(\'#'+msg.attr('id')+'\').hide();" type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>');
-            salvar.prop('disabled',true);
+            //salvar.prop('disabled',true);
+            statusSalvar(salvar,2,2,status);
         }else{
             msg.show().removeClass("alert alert-danger alert-dismissible fade show").addClass("alert alert-success alert-dismissible fade show")
                 .text('CPF Válido');
             msg.append('<button onclick="$(\'#'+msg.attr('id')+'\').hide();" type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>');
-            salvar.prop('disabled',false);
+            //salvar.prop('disabled',false);
+            statusSalvar(salvar,2,1,status);
         }
     }
     else
@@ -150,18 +325,20 @@ function validaCpf(campo,msg,salvar)
             msg.show().removeClass("alert alert-success alert-dismissible fade show").addClass("alert alert-danger alert-dismissible fade show")
                 .text('CPF Inválido: ' + cpf);
             msg.append('<button onclick="$(\'#'+msg.attr('id')+'\').hide();" type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>');
-
-            salvar.prop('disabled', true);
+            //salvar.prop('disabled', true);
+            statusSalvar(salvar,2,2,status);
         }else{
-            salvar.prop('disabled',false);
+            //salvar.prop('disabled',false);
+            statusSalvar(salvar,2,1,status);
             msg.hide();
         }
     }
 }
 
-function validaCnpj(campo,msg,salvar) {
+function validaCnpj(campo,msg,salvar,status) {
     if(campo.val() == '' || campo.val() == null || campo.val() == undefined) {
-        salvar.prop('disabled',false);
+        //salvar.prop('disabled',false);
+        statusSalvar(salvar,3,1,status);
         msg.hide();
         return false;
     }else {
@@ -172,10 +349,11 @@ function validaCnpj(campo,msg,salvar) {
                 msg.show().removeClass("alert alert-success alert-dismissible fade show").addClass("alert alert-danger alert-dismissible fade show")
                     .text('CNPJ Inválido: ' + cnpj);
                 msg.append('<button onclick="$(\'#' + msg.attr('id') + '\').hide();" type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>');
-
-                salvar.prop('disabled', true);
+                //salvar.prop('disabled', true);
+                statusSalvar(salvar,3,2,status);
             } else {
-                salvar.prop('disabled', false);
+                //salvar.prop('disabled', false);
+                statusSalvar(salvar,3,1,status);
                 msg.hide();
             }
         }
@@ -194,8 +372,8 @@ function validaCnpj(campo,msg,salvar) {
             msg.show().removeClass("alert alert-success alert-dismissible fade show").addClass("alert alert-danger alert-dismissible fade show")
                 .text('CNPJ Inválido: ' + cnpj);
             msg.append('<button onclick="$(\'#' + msg.attr('id') + '\').hide();" type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>');
-
-            salvar.prop('disabled', true);
+            //salvar.prop('disabled', true);
+            statusSalvar(salvar,3,2,status);
         }else {
 
             // Valida DVs
@@ -214,8 +392,8 @@ function validaCnpj(campo,msg,salvar) {
                 msg.show().removeClass("alert alert-success alert-dismissible fade show").addClass("alert alert-danger alert-dismissible fade show")
                     .text('CNPJ Inválido: ' + cnpj);
                 msg.append('<button onclick="$(\'#' + msg.attr('id') + '\').hide();" type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>');
-
-                salvar.prop('disabled', true);
+                //salvar.prop('disabled', true);
+                statusSalvar(salvar,3,2,status);
             }else {
 
                 tamanho = tamanho + 1;
@@ -232,14 +410,15 @@ function validaCnpj(campo,msg,salvar) {
                     msg.show().removeClass("alert alert-success alert-dismissible fade show").addClass("alert alert-danger alert-dismissible fade show")
                         .text('CNPJ Inválido: ' + cnpj);
                     msg.append('<button onclick="$(\'#' + msg.attr('id') + '\').hide();" type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>');
-
-                    salvar.prop('disabled', true);
+                    //salvar.prop('disabled', true);
+                    statusSalvar(salvar,3,2,status);
                 }else {
 
                     msg.show().removeClass("alert alert-danger alert-dismissible fade show").addClass("alert alert-success alert-dismissible fade show")
                         .text('CNPJ Válido');
                     msg.append('<button onclick="$(\'#' + msg.attr('id') + '\').hide();" type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button>');
-                    salvar.prop('disabled', false);
+                    //salvar.prop('disabled', false);
+                    statusSalvar(salvar,3,1,status);
                 }
             }
         }

@@ -50,21 +50,57 @@ class DependentesController extends AppController
      */
     public function add($pai_mae_id)
     {
-        $dependente = $this->Dependentes->newEntity();
+        $user = $this->Auth->user();
         if ($this->request->is('post')) {
-            $dependente = $this->Dependentes->patchEntity($dependente, $this->request->getData());
-            if ($this->Dependentes->save($dependente)) {
-                $this->Flash->success(__('The dependente has been saved.'));
+            $this->loadModel('Modificacoes');
+            $dados = $this->request->getData();
 
-                return $this->redirect(['action' => 'index']);
+            $dados_pessoa['id'] = '';
+            $dados_pessoa['nome'] = (!empty($dados['nomeDependente'])?$dados['nomeDependente']: null);
+            $dados_pessoa['nome_social'] = (!empty($dados['nomeSocialDependente'])?$dados['nomeSocialDependente']: null);
+            $dados_pessoa['estado_civil'] = (!empty($dados['estadoCivilDependente'])?$dados['estadoCivilDependente']: null);
+            $dados_pessoa['conjuge_id'] = null;
+            $dados_pessoa['filhos'] = 0;
+            $dados_pessoa['sexo'] = (!empty($dados['sexoDependente'])?$dados['sexoDependente']: null);
+            $dados_pessoa['tipo'] = 'F';
+            $dt = explode('/',$dados['dataNascimento']);
+            $dados_pessoa['data_nascimento'] = ($dados['dataNascimento']<>''? date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0])):null);
+            $dados_pessoa['cpf_cnpj'] = (!empty($dados['cpfDependente'])?preg_replace('/[^0-9]/', '', $dados['cpfDependente']): null);
+            $dados_pessoa['rg'] = (!empty($dados['rgDependente'])?$dados['rgDependente']: null);
+            $dados_pessoa['empresa_id'] = $user['empresa_id'];
+            $dados_pessoa['u_id'] = $user['id'];
+            $pessoa = $this->Dependentes->Pessoas->newEntity($dados_pessoa);
+
+            if ($this->Dependentes->Pessoas->save($pessoa)) {
+                $dados_dependente['pessoa_id'] = $pessoa->id;
+                $dados_dependente['pai_mae_id'] = $pai_mae_id;
+                $dados_dependente['empresa_id'] = $user['empresa_id'];
+                $dados_dependente['u_id'] = $user['id'];
+
+                $dependente = $this->Dependentes->newEntity($dados_dependente);
+
+                if ($this->Dependentes->save($dependente)) {
+                    //dd($dependente);
+
+                    $dados_originais = json_encode([$user['id'],$user['username'],'Cadastro Dependente']);
+                    $dados_novos = json_encode([$user['id'],$user['username'],$dependente,$pessoa]);
+                    if($this->Modificacoes->emiteLog('Dependentes','add',$dados_originais,$dados_novos)) {
+                        //$this->Flash->success(__('Cônjuge cadastrada(o) com sucesso.'));
+                    }else{
+                        //$this->Flash->error(__('Erro ao gravar log.'));
+                    }
+                }else{
+
+                }
+
+            }else{
+                //$this->Flash->error(__('Não foi possível gravar pessoa.'));
             }
-            $this->Flash->error(__('The dependente could not be saved. Please, try again.'));
         }
-        $pessoas = $this->Dependentes->Pessoas->find('list', ['limit' => 200]);
         $paiMae = $this->Dependentes->Pessoas->get($pai_mae_id);
-        $empresas = $this->Dependentes->Empresas->find('list', ['limit' => 200]);
+        $dependentes = $this->Dependentes->find('all')->where(['pai_mae_id'=>$pai_mae_id])->contain(['Pessoas']);
 
-        $this->set(compact('dependente', 'pessoas', 'paiMae', 'empresas'));
+        $this->set(compact( 'dependentes','paiMae','pai_mae_id'));
     }
 
     /**
@@ -102,16 +138,17 @@ class DependentesController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($id = null,$pai_mae_id)
     {
         $this->request->allowMethod(['post', 'delete']);
         $dependente = $this->Dependentes->get($id);
         if ($this->Dependentes->delete($dependente)) {
-            $this->Flash->success(__('The dependente has been deleted.'));
+            //$this->Flash->success(__('The dependente has been deleted.'));
         } else {
-            $this->Flash->error(__('The dependente could not be deleted. Please, try again.'));
+            //$this->Flash->error(__('The dependente could not be deleted. Please, try again.'));
         }
+        $this->set('pai_mae_id',$pai_mae_id);
+        return $this->redirect(['action' => 'add',$pai_mae_id]);
 
-        return $this->redirect(['action' => 'index']);
     }
 }

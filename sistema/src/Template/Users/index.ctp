@@ -27,7 +27,7 @@
                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <?= $this->Html->link('<i class="nav-link-icon lnr-inbox"></i><span>'.__('Novo Usuário').'</span>', ['action' => 'add'],['role'=>'button','title'=>'Adicionar novo usuário','class'=>'nav-link','escape'=>false]) ?>
+                            <?= $this->Html->link('<i class="nav-link-icon lnr lnr-plus-circle"></i><span>'.__('Novo Usuário').'</span>', ['action' => 'add'],['role'=>'button','title'=>'Adicionar novo usuário','class'=>'nav-link','escape'=>false]) ?>
                         </li>
                     </ul>
                 </div>

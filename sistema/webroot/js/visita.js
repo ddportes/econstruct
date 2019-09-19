@@ -1,9 +1,71 @@
 $(document).ready(function(){
+    var projetos;
+
+    $('#checkNovoProjeto').on('change',function(){
+
+       if($('#checkNovoProjeto').is(":checked") === true) {
+           if ($('#projeto_id').val() == '' || $('#projeto_id').val() == null || $('#projeto_id').val() == undefined) {
+               //$('#salvar').prop('disabled', false);
+               statusSalvar($('#salvar'),5,1,stSit);
+           } else {
+               //$('#salvar').prop('disabled', true);
+               statusSalvar($('#salvar'),5,2,stSit);
+           }
+       }else{
+           //$('#salvar').prop('disabled', true);
+           statusSalvar($('#salvar'),5,2,stSit);
+       }
+    });
+
+    $('#projetoId').on('change',function() {
+        var id = $(this).val();
+
+        if(id != '') {
+            if (projetos != '' && projetos != null && projetos != undefined) {
+                projetos.forEach(function (el, i) {
+                    proj = el;
+                });
+
+                $('#projeto_id').val(proj.id);
+                $('#descricaoProjeto').val(proj.descricao);
+                $('#detalhesProjeto').val(proj.detalhes);
+                $('#custoEstimadoProjeto').val(proj.custo_estimado);
+                $('#observacaoProjeto').val(proj.observacao);
+                //$('#salvar').prop('disabled',false);
+                statusSalvar($('#salvar'),5,1,stSit);
+                $('#checkNovoProjeto').prop('disabled',true);
+
+            }else{
+                $('#projeto_id').val('');
+                $('#descricaoProjeto').val('');
+                $('#detalhesProjeto').val('');
+                $('#custoEstimadoProjeto').val('');
+                $('#observacaoProjeto').val('');
+                //$('#salvar').prop('disabled',true);
+                statusSalvar($('#salvar'),5,2,stSit);
+                $('#checkNovoProjeto').prop('disabled',false);
+            }
+        }else{
+            $('#projeto_id').val('');
+            $('#descricaoProjeto').val('');
+            $('#detalhesProjeto').val('');
+            $('#custoEstimadoProjeto').val('');
+            $('#observacaoProjeto').val('');
+            //$('#salvar').prop('disabled',true);
+            statusSalvar($('#salvar'),5,2,stSit);
+            $('#checkNovoProjeto').prop('disabled',false);
+        }
+    });
+
+
     $('#clienteId').on('change',function(){
+        $('#checkNovoProjeto').prop('checked',false);
+        statusSalvar($('#salvar'),4,2,stSit);
         if($('#clienteId').val() == ''){
             $('#tab-c1-1').attr('style','display:none');
             $('#tab-c1-2').attr('style','display:none');
-            $('#salvar').prop('disabled',true);
+            //$('#salvar').prop('disabled',true);
+            statusSalvar($('#salvar'),4,2,stSit);
         }
 
         var id = $(this).val();
@@ -41,6 +103,7 @@ $(document).ready(function(){
                     $('#pessoa_id').val('');
                     $('#projeto_id').val('');
                     $('#cliente_id').val('');
+                    $('#projetoId').empty();
 
                     href = $('#conjugeCliente').attr('href');
 
@@ -58,6 +121,7 @@ $(document).ready(function(){
 
                     href4 = $('#linkDependente').html();
                     $('#dependenteCliente').attr('href',href4);
+                    statusSalvar($('#salvar'),4,2,stSit);
                 }else {
 
                     var cli = jQuery.parseJSON(result);
@@ -67,8 +131,6 @@ $(document).ready(function(){
                         if (el.tipo == 'telefone') {
                             if (telefone == '') {
                                 telefone = el.valor;
-                            } else {
-                                telefone = telefone + '/' + el.valor;
                             }
 
                         }
@@ -78,8 +140,6 @@ $(document).ready(function(){
                         if (el.tipo == 'email') {
                             if (email == '') {
                                 email = el.valor;
-                            } else {
-                                email = email + '/' + el.valor;
                             }
 
                         }
@@ -96,7 +156,20 @@ $(document).ready(function(){
                     $('#sexoPessoa').val(cli.pessoa.sexo);
                     $('#rgPessoa').val(cli.pessoa.rg);
                     $('#estadoCivilPessoa').val(cli.pessoa.estado_civil);
-                    $('#dataNascimentoPessoa').val(cli.pessoa.data_nascimento);
+
+                    dt = cli.pessoa.data_nascimento;
+                    if(dt != null && dt != undefined) {
+                        dt = dt.split('-');
+                        day = dt[2];
+                        day = day.split('T');
+                        dt_r = day[0] + '/' + dt[1] + '/' + dt[0];
+                        $('#dataNascimentoPessoa').val(dt_r);
+                        $('#dataNascimentoPessoa').datepicker('update', dt_r);
+                    }else{
+                        $('#dataNascimentoPessoa').val('');
+                        $('#dataNascimentoPessoa').datepicker('update', '');
+                    }
+
                     $('#filhosPessoa').val(cli.pessoa.filhos);
                     $('#conjugeHiddenPessoa').val(cli.pessoa.conjuge_id);
                     $('#cepCliente').val(endereco.cep);
@@ -108,12 +181,16 @@ $(document).ready(function(){
                     $('#estadoCliente').val(endereco.estado);
                     $('#nomeSocialPessoa').val(cli.pessoa.nome_social);
                     $('#observacaoCliente').val(cli.pessoa.observacao);
-                    $('#descricaoProjeto').val(cli.projeto.descricao);
-                    $('#detalhesProjeto').val(cli.projeto.detalhes);
-                    $('#custoEstimadoProjeto').val(cli.projeto.custo_estimado);
-                    $('#observacaoProjeto').val(cli.projeto.observacao);
+
+                    projetos = cli.projetos;
+                    $('#projetoId').empty();
+                    $('#projetoId').append('<option id="" ></option>');
+                    cli.projetos.forEach(function(item){
+                        $('#projetoId').append('<option id="'+ item.id +'" >' + item.descricao + '</option>');
+                    });
+
+
                     $('#pessoa_id').val(cli.pessoa.id);
-                    $('#projeto_id').val(cli.projeto.id);
                     $('#cliente_id').val(cli.id);
 
                     if($('#conjugeHiddenPessoa').val() != null && $('#conjugeHiddenPessoa').val() != undefined && $('#conjugeHiddenPessoa').val() != ''){
@@ -127,18 +204,18 @@ $(document).ready(function(){
                         }
                     }
 
-                    href2 = $('#rendaCliente').attr('href');
+                    href2 = $('#linkRenda').html();
                     href2 = href2 + '/' + $('#pessoa_id').val();
                     $('#rendaCliente').attr('href',href2);
 
-                    href3 = $('#dependenteCliente').attr('href');
+                    href3 = $('#linkDependente').html();
                     href3 = href3 + '/' + $('#pessoa_id').val();
                     $('#dependenteCliente').attr('href',href3);
 
 
                     $('#tab-c1-1').attr('style','display:block');
                     $('#tab-c1-2').attr('style','display:block');
-                    $('#salvar').prop('disabled',false);
+                    statusSalvar($('#salvar'),4,1,stSit);
                 }
             },
             contentType: "application/json; charset=utf-8",
@@ -151,31 +228,30 @@ $(document).ready(function(){
     * */
     $("#erro_email").hide();
     $('.email').on('blur',function(){
-        validaEmail($(this),$("#erro_email"),$('#salvar'))
+        validaEmail($(this),$("#erro_email"),$('#salvar'),stSit)
     });
     $('.email').focus(function(){
-        $('#salvar').prop('disabled',false);
+        //$('#salvar').prop('disabled',false);
+        statusSalvar($('#salvar'),1,1,stSit);
         $("#erro_email").hide();
     });
-
-
 
     /*
     * Validação do CEP e autopreenchimento
     * */
-    lc =  $("#logradouroCliente");
+    lc = $("#logradouroCliente");
     bc = $("#bairroCliente");
     cc = $("#cidadeCliente");
     ec = $("#estadoCliente");
     nc = $("#numeroCliente");
-    limpa_formulário_cep(lc,bc,cc,ec);
+    limpa_formulário_cep(lc,bc,cc,ec,nc);
 
     //Quando o campo cep perde o foco.
     $("#erro_cep").hide();
     $('.cep').mask('00.000-000');
 
     $(".cep").blur(function() {
-        validaCep($(this),lc,bc,cc,ec,nc,$("#erro_cep"))
+        validaCep($(this),lc,bc,cc,ec,nc,$("#erro_cep"),$('#salvar'),stSit)
     });
 
 
@@ -186,7 +262,7 @@ $(document).ready(function(){
     $('#cpfPessoa').mask('000.000.000-00');
     $('#cpfPessoa').on('blur',function()
     {
-        validaCpf($('#cpfPessoa'),$("#erro_cpf"),$('#salvar'));
+        validaCpf($('#cpfPessoa'),$("#erro_cpf"),$('#salvar'),stSit);
 
     });
 

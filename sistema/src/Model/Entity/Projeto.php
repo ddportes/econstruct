@@ -16,7 +16,6 @@ use Cake\I18n\Number;
  * @property int|null $contrato_id
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
- * @property float|null $orcamento
  * @property float|null $custo_estimado
  * @property string|null $observacao
  * @property int|null $empresa_id
@@ -24,7 +23,7 @@ use Cake\I18n\Number;
  *
  * @property \App\Model\Entity\Cliente $cliente
  * @property \App\Model\Entity\ProjetoSituacao $projeto_situacao
- * @property \App\Model\Entity\Contrato[] $contratos
+ * @property \App\Model\Entity\Contrato $contrato
  * @property \App\Model\Entity\Equipe[] $equipes
  * @property \App\Model\Entity\Nota[] $notas
  * @property \App\Model\Entity\Ocorrencia[] $ocorrencias
@@ -52,14 +51,13 @@ class Projeto extends Entity
         'contrato_id' => true,
         'created' => true,
         'modified' => true,
-        'orcamento' => true,
         'custo_estimado' => true,
         'observacao' => true,
         'empresa_id' => true,
         'u_id' => true,
         'cliente' => true,
         'projeto_situacao' => true,
-        'contratos' => true,
+        'contrato' => true,
         'equipes' => true,
         'notas' => true,
         'ocorrencias' => true,

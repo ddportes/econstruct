@@ -27,7 +27,17 @@
                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <?= $this->Html->link('<i class="nav-link-icon lnr-inbox"></i><span>'.__('Novo Projeto').'</span>', ['action' => 'add'],['role'=>'button','title'=>'Novo Projeto','class'=>'nav-link','escape'=>false]) ?>
+                            <?= $this->Html->link('<i class="nav-link-icon lnr lnr-plus-circle"></i><span>'.__('Novo Projeto').'</span>', ['action' => 'add'],['role'=>'button','title'=>'Novo Projeto','class'=>'nav-link','escape'=>false]) ?>
+                            <?= $this->Html->link('<i class="nav-link-icon lnr lnr-layers"></i><span>'.__('Orçamentos').'</span>',
+                                ['controller' => 'Orcamentos', 'action' => 'add'], [
+                                    'id' => 'addOrcamentoAcao',
+                                    'class' => 'nav-link modal_xl_link',
+                                    'style'=>'top:2.5em',
+                                    'role' => 'button',
+                                    'data-toggle'=>"modal",
+                                    'data-target'=>".modal_econstruct",
+                                    'escape' => false
+                                ]) ?>
                         </li>
                     </ul>
                 </div>
@@ -73,12 +83,44 @@
                                     <td class="actions">
                                         <?= $this->Html->link('<i class="fas fa-search"></i>', ['action' => 'view', $projeto->id],['Title'=>'Visualizar detalhes do Projeto','escape'=>false]) ?>
                                         <?= $this->Html->link('<i class="fas fa-user-edit"></i>', ['action' => 'edit', $projeto->id],['Title'=>'Alterar Projeto','escape'=>false]) ?>
+                                        <?= $this->Html->link('<i class="fas fa-file-invoice-dollar"></i>',
+                                            ['controller' => 'Orcamentos', 'action' => 'add', $projeto->id], [
+                                                'id' => 'addOrcamento',
+                                                'class' => 'modal_xl_link',
+                                                'style'=>'top:2.5em',
+                                                'role' => 'button',
+                                                'data-toggle'=>"modal",
+                                                'data-target'=>".modal_econstruct",
+                                                'title'=>'Novo Orçamento',
+                                                'escape' => false
+                                            ]) ?>
                                         <?php if(is_null($projeto->contrato_id)): ?>
-                                            <?= $this->Html->link('<i class="fas fa-file-alt"></i>', ['controller'=>'Contratos','action' => 'add', $projeto->id],['Title'=>'Emitir Contrato','escape'=>false]) ?>
+                                            <?= $this->Html->link('<i class="fas fa-file-alt"></i>',
+                                                ['controller'=>'Contratos','action' => 'add', $projeto->id], [
+                                                    'id' => 'addContrato',
+                                                    'class' => 'modal_xl_link',
+                                                    'style'=>'top:2.5em',
+                                                    'role' => 'button',
+                                                    'data-toggle'=>"modal",
+                                                    'data-target'=>".modal_econstruct",
+                                                    'Title'=>'Gerar Contrato',
+                                                    'escape' => false
+                                                ]) ?>
                                         <?php else: ?>
-                                            <?= $this->Html->link('<i class="fas fa-file-alt"></i>', ['controller'=>'Contratos','action' => 'view', $projeto->id],['Title'=>'Visualizar Contrato','escape'=>false]) ?>
+                                            <?= $this->Html->link('<i class="fas fa-file-alt"></i>',
+                                                ['controller'=>'Contratos','action' => 'view', $projeto->id], [
+                                                    'id' => 'viewContrato',
+                                                    'class' => 'modal_xl_link',
+                                                    'style'=>'top:2.5em',
+                                                    'role' => 'button',
+                                                    'data-toggle'=>"modal",
+                                                    'data-target'=>".modal_econstruct",
+                                                    'Title'=>'Visualizar Contrato',
+                                                    'escape' => false
+                                                ]) ?>
                                         <?php endif; ?>
                                         <?= $this->Form->postLink('<i class="fas fa-trash-alt"></i>', ['action' => 'delete', $projeto->id],['data'=>['id'=>$projeto->id],'confirm' => __('Deseja realmente excluir o projeto {0}?', $projeto->id),'Title'=>'Excluir Projeto','escape'=>false]) ?>
+
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

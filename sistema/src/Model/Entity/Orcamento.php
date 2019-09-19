@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\I18n\Number;
 
 /**
  * Orcamento Entity
@@ -46,4 +47,27 @@ class Orcamento extends Entity
         'projeto' => true,
         'contratos' => true
     ];
+
+    public function hasContrato(){
+        if(!empty($this->projeto->contrato->orcamento_id)){
+            if($this->id == $this->projeto->contrato->orcamento_id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function custo($moeda = null){
+        if($moeda === true){
+            return Number::format($this->custo,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return Number::format($this->custo,['pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+    }
+
+    public function total($moeda = null){
+        if($moeda === true){
+            return Number::format($this->total,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return Number::format($this->total,['pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+    }
 }

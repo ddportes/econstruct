@@ -27,10 +27,10 @@
                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <?= $this->Html->link('<i class="nav-link-icon lnr-inbox"></i><span>'.__('Visita de Novo Cliente').'</span>', ['action' => 'visitaNovoCliente'],['role'=>'button','title'=>'Visita de um Novo Cliente','class'=>'nav-link','escape'=>false]) ?>
+                            <?= $this->Html->link('<i class="nav-link-icon lnr lnr-plus-circle"></i><span>'.__('Visita de Novo Cliente').'</span>', ['action' => 'visitaNovoCliente'],['role'=>'button','title'=>'Visita de um Novo Cliente','class'=>'nav-link','escape'=>false]) ?>
                         </li>
                         <li class="nav-item">
-                            <?= $this->Html->link('<i class="nav-link-icon lnr-inbox"></i><span>'.__('Visita Cliente Antigo').'</span>', ['action' => 'visita'],['role'=>'button','title'=>'Visita de Cliente já Cadastrado','class'=>'nav-link','escape'=>false]) ?>
+                            <?= $this->Html->link('<i class="nav-link-icon lnr lnr-file-add"></i><span>'.__('Visita Cliente Antigo').'</span>', ['action' => 'visita'],['role'=>'button','title'=>'Visita de Cliente já Cadastrado','class'=>'nav-link','escape'=>false]) ?>
                         </li>
                     </ul>
                 </div>

@@ -56,9 +56,6 @@ class ContratosTable extends Table
         $this->belongsTo('Empresas', [
             'foreignKey' => 'empresa_id'
         ]);
-        $this->hasMany('Projetos', [
-            'foreignKey' => 'contrato_id'
-        ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'u_id'
         ]);

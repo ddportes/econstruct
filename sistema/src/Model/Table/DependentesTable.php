@@ -46,9 +46,6 @@ class DependentesTable extends Table
         $this->belongsTo('Pessoas', [
             'foreignKey' => 'pessoa_id'
         ]);
-        $this->belongsTo('Pessoas', [
-            'foreignKey' => 'pai_mae_id'
-        ]);
         $this->belongsTo('Empresas', [
             'foreignKey' => 'empresa_id'
         ]);

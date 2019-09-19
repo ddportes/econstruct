@@ -63,6 +63,10 @@ class ClientesController extends AppController
             $cliente = $this->Clientes->get($id, [
                 'contain' => ['Pessoas', 'ClienteSituacoes', 'Projetos', 'Pessoas.Contatos', 'Pessoas.Enderecos']
             ]);
+
+            foreach($cliente->projetos as $val){
+                $val->custo_estimado = $val->custoEstimado();
+            }
             $retorno = json_encode($cliente);
         }
 

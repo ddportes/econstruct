@@ -76,6 +76,9 @@ class PessoasTable extends Table
         $this->hasMany('Rendas', [
             'foreignKey' => 'pessoa_id'
         ]);
+        $this->hasMany('Dependentes', [
+            'foreignKey' => 'pessoa_id'
+        ]);
     }
 
     /**

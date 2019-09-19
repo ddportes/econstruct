@@ -285,14 +285,22 @@ class OcorrenciasController extends AppController
                             $endereco = $pessoa->enderecos;
                             if ($this->Enderecos->saveMany($endereco)) {
                                 //cria projeto
+
                                 $dados_projeto['descricao'] = (!empty($dados['descricaoProjeto'])?$dados['descricaoProjeto']: null);
                                 $dados_projeto['detalhes'] = (!empty($dados['detalhesProjeto'])?$dados['detalhesProjeto']: null);
                                 $dados_projeto['projeto_situacao_id'] = 1;
                                 $dados_projeto['custo_estimado'] = (!empty($dados['custoEstimadoProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['custoEstimadoProjeto'])): null);
-                                $dados_projeto['observacao'] = (!empty($dados['anotacoesOcorrencia'])?$dados['anotacoesOcorrencia']: null);
+                                $dados_projeto['observacao'] = (!empty($dados['observacaoProjeto'])?$dados['observacaoProjeto']: null);
                                 $dados_projeto['u_id'] = $user['id'];
-                                $projeto = $this->Projetos->get($dados['projeto_id']);
-                                $projeto = $this->Projetos->patchEntity($projeto,$dados_projeto);
+
+                                if(!empty($dados['projeto_id'])){
+                                    $projeto = $this->Projetos->get($dados['projeto_id']);
+                                    $projeto = $this->Projetos->patchEntity($projeto,$dados_projeto);
+                                }else{
+                                    $dados_projeto['empresa_id'] = $user['empresa_id'];
+                                    $dados_projeto['cliente_id'] = $cliente->id;
+                                    $projeto = $this->Projetos->newEntity($dados_projeto);
+                                }
                                 if ($this->Projetos->save($projeto)) {
                                     //cria ocorrencia
                                     $dados_ocorrencia['projeto_id'] = $projeto->id;
@@ -305,8 +313,8 @@ class OcorrenciasController extends AppController
                                     $dados_ocorrencia['empresa_id'] = $user['empresa_id'];
                                     $dados_ocorrencia['u_id'] = $user['id'];
                                     $ocorrencia = $this->Ocorrencias->newEntity($dados_ocorrencia);
-                                    if ($this->Ocorrencias->save($ocorrencia)) {
 
+                                    if ($this->Ocorrencias->save($ocorrencia)) {
                                         $dados_originais = json_encode([$user['id'],$user['username'],'Nova Visita']);
                                         $dados_novos = json_encode([$user['id'],$user['username'],$ocorrencia,$projeto,$contatos,$endereco,$cliente,$pessoa]);
                                         if($this->Modificacoes->emiteLog('Ocorrencias','visitaNovoCliente',$dados_originais,$dados_novos)) {
@@ -316,6 +324,9 @@ class OcorrenciasController extends AppController
                                         }
 
                                         return $this->redirect(['action' => 'todasVisitas']);
+                                    }
+                                    else{
+                                        $this->Flash->error(__('Erro ao gravar a visita.'));
                                     }
                                 }else{
                                     $this->Flash->error(__('Erro ao gravar Projeto. Tente Novamente.'));

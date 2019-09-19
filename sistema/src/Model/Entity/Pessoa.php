@@ -58,6 +58,7 @@ class Pessoa extends Entity
         'modified' => true,
         'empresa_id' => true,
         'u_id' => true,
+        'data_nascimento' => true,
         'pessoa' => true,
         'clientes' => true,
         'contatos' => true,
@@ -65,14 +66,13 @@ class Pessoa extends Entity
         'fornecedores' => true,
         'pedreiros' => true,
         'rendas' => true,
-        'dependentes' => true,
-        'data_nascimento' => true
+        'dependentes' => true
     ];
 
     public function firstTelefone(){
         foreach($this->contatos as $val){
             if($val->tipo=='telefone'){
-                return $val;
+                return $val->valor;
             }
         }
         return null;
@@ -97,7 +97,7 @@ class Pessoa extends Entity
     public function firstEmail(){
         foreach($this->contatos as $val){
             if($val->tipo=='email'){
-                return $val;
+                return $val->valors;
             }
         }
         return null;
@@ -121,6 +121,8 @@ class Pessoa extends Entity
 
     public function totalRendaBruta($moeda = null,Array $complemento = null){
         $sum = 0;
+
+        //dd($this);
         foreach($this->rendas as $val){
             $sum = $sum + $val->renda_bruta;
         }

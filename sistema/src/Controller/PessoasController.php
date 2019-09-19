@@ -119,9 +119,6 @@ class PessoasController extends AppController
             $dados = $this->request->getData();
 
             $dados_pessoa['id'] = '';
-            $dados_cliente['observacao'] = '';
-            $dados_contatos['valor'] = '';
-
             $dados_pessoa['nome'] = (!empty($dados['nomePessoa'])?$dados['nomePessoa']: null);
             $dados_pessoa['nome_social'] = (!empty($dados['nomeSocialPessoa'])?$dados['nomeSocialPessoa']: null);
             $dados_pessoa['estado_civil'] = (!empty($dados['estadoCivilPessoa'])?$dados['estadoCivilPessoa']: null);
@@ -129,8 +126,8 @@ class PessoasController extends AppController
             $dados_pessoa['filhos'] = (!empty($dados['filhosPessoa'])?$dados['filhosPessoa']: 0);
             $dados_pessoa['sexo'] = (!empty($dados['sexoPessoa'])?$dados['sexoPessoa']: null);
             $dados_pessoa['tipo'] = 'F';
-            $dt = explode('/',$dados['dataNascimentoPessoa']);
-            $dados_pessoa['data_nascimento'] = ($dados['dataNascimentoPessoa']<>''? date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0])):null);
+            $dt = explode('/',$dados['dataNascimento']);
+            $dados_pessoa['data_nascimento'] = ($dados['dataNascimento']<>''? date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0])):null);
             $dados_pessoa['cpf_cnpj'] = (!empty($dados['cpfPessoaConjuge'])?preg_replace('/[^0-9]/', '', $dados['cpfPessoaConjuge']): null);
             $dados_pessoa['rg'] = (!empty($dados['rgPessoa'])?$dados['rgPessoa']: null);
             $dados_pessoa['empresa_id'] = $user['empresa_id'];
@@ -185,8 +182,6 @@ class PessoasController extends AppController
 
             $dados = $this->request->getData();
 
-            $dados_cliente['observacao'] = '';
-            $dados_contatos['valor'] = '';
             $dados_pessoa['nome'] = (!empty($dados['nomePessoa'])?$dados['nomePessoa']: null);
             $dados_pessoa['nome_social'] = (!empty($dados['nomeSocialPessoa'])?$dados['nomeSocialPessoa']: null);
             $dados_pessoa['estado_civil'] = (!empty($dados['estadoCivilPessoa'])?$dados['estadoCivilPessoa']: null);
@@ -194,8 +189,8 @@ class PessoasController extends AppController
             $dados_pessoa['filhos'] = (!empty($dados['filhosPessoa'])?$dados['filhosPessoa']: 0);
             $dados_pessoa['sexo'] = (!empty($dados['sexoPessoa'])?$dados['sexoPessoa']: null);
             $dados_pessoa['tipo'] = 'F';
-            $dt = explode('/',$dados['dataNascimentoPessoa']);
-            $dados_pessoa['data_nascimento'] = ($dados['dataNascimentoPessoa']<>''? date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0])):null);
+            $dt = explode('/',$dados['dataNascimento']);
+            $dados_pessoa['data_nascimento'] = ($dados['dataNascimento']<>''? date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0])):null);
             $dados_pessoa['cpf_cnpj'] =  (!empty($dados['cpfPessoaConjuge'])?preg_replace('/[^0-9]/', '', $dados['cpfPessoaConjuge']): null);
             $dados_pessoa['rg'] = (!empty($dados['rgPessoa'])?$dados['rgPessoa']: null);
             $dados_pessoa['empresa_id'] = $user['empresa_id'];

@@ -1,6 +1,6 @@
 <?php
 namespace App\Controller;
-
+use Cake\Http\Exception\NotFoundException;
 use App\Controller\AppController;
 
 /**
@@ -13,43 +13,16 @@ use App\Controller\AppController;
 class RendasController extends AppController
 {
     /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
-    public function index()
-    {
-        $this->paginate = [
-            'contain' => ['Pessoas']
-        ];
-        $rendas = $this->paginate($this->Rendas);
-
-        $this->set(compact('rendas'));
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Renda id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $renda = $this->Rendas->get($id, [
-            'contain' => ['Pessoas']
-        ]);
-
-        $this->set('renda', $renda);
-    }
-
-    /**
      * Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add($pessoa_id = null)
+    public function add($pessoa_id=null)
     {
+        if(empty($pessoa_id)){
+            throw new NotFoundException('Selecione um cliente');
+        }
+
         $user = $sessao = $this->Auth->user();
 
         $rendas = null;
@@ -74,23 +47,34 @@ class RendasController extends AppController
                 //$this->Flash->error(__('A renda não foi gravada. Por favor, tente novamente.'));
             }
             $pessoa = $this->Rendas->Pessoas->get($pessoa_id,['contain'=>['Rendas']]);
-            $pessoas[$pessoa->id] = $pessoa->nome;
+            $pessoas[$pessoa->id] = 'Titular - '.$pessoa->nome;
+
+            $todas_rendas_bruta = null;
+            $todas_rendas_liquida = null;
 
             $criterio = $pessoa->id;
             if($pessoa->conjuge_id){
                 $conjuge = $this->Rendas->Pessoas->get($pessoa->conjuge_id,['contain'=>['Rendas']]);
 
                 if($conjuge) {
-                    $pessoas[$conjuge->id] = $conjuge->nome;
-                    $criterio .= ",{$conjuge->id}";
+                    $pessoas[$conjuge->id] = 'Conjuge - '.$conjuge->nome;
+                    $criterio .= ",".$conjuge->id;
                 }
             }
 
+            $dependentes = $this->Rendas->Pessoas->Dependentes->find('all')->where(['pai_mae_id'=>$pessoa_id])->contain(['Pessoas','Pessoas.Rendas']);
+            $crit_dep = '';
+            foreach($dependentes as $d){
+                $pessoas[$d->pessoa->id] = 'Dependente - '.$d->pessoa->nome;
+                $crit_dep .= ",".$d->pessoa->id;
+                $todas_rendas_bruta[]=$d->pessoa->totalRendaBruta();
+                $todas_rendas_liquida[]=$d->pessoa->totalRendaLiquida();
+            }
+
+            $criterio .= $crit_dep;
+
             $rendas = $this->Rendas->find()->where(["pessoa_id in (".$criterio.")"])->contain(['Pessoas']);
         }
-
-        $todas_rendas_bruta = null;
-        $todas_rendas_liquida = null;
 
         if($conjuge){
             $todas_rendas_bruta[]=$conjuge->totalRendaBruta();
@@ -101,39 +85,18 @@ class RendasController extends AppController
     }
 
     /**
-     * Edit method
-     *
-     * @param string|null $id Renda id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $renda = $this->Rendas->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $renda = $this->Rendas->patchEntity($renda, $this->request->getData());
-            if ($this->Rendas->save($renda)) {
-                $this->Flash->success(__('The renda has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The renda could not be saved. Please, try again.'));
-        }
-        $pessoas = $this->Rendas->Pessoas->find('list', ['limit' => 200]);
-        $this->set(compact('renda', 'pessoas'));
-    }
-
-    /**
      * Delete method
      *
      * @param string|null $id Renda id.
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null,$pessoa_id)
+    public function delete($id = null,$pessoa_id=null)
     {
+        if(empty($id) || empty($pessoa_id)){
+            throw new NotFoundException('Selecione a renda a ser excluída');
+        }
+
         $this->request->allowMethod(['post', 'delete']);
         $renda = $this->Rendas->get($id);
 

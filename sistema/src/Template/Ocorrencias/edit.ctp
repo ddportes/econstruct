@@ -93,14 +93,14 @@
     $( function() {
         $( "#data" ).datepicker({
             format: 'dd/mm/yyyy',
-            todayBtn: true,
+            todayBtn: false,
             language: "pt-BR"
         });
     } );
     $( function() {
         $( "#data_pendencia" ).datepicker({
             format: 'dd/mm/yyyy',
-            todayBtn: true,
+            todayBtn: false,
             language: "pt-BR"
         });
     } );

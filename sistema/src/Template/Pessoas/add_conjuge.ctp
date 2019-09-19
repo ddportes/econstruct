@@ -4,6 +4,16 @@
  * @var \App\Model\Entity\Cliente $cliente
  */
 ?>
+<script>
+    var stSitConj = {
+        sE: true,
+        sF: true,
+        sJ: true,
+        sC: true,
+        sP: true,
+        sL: true
+    }
+</script>
 <?= $this->Html->script('conjuge.js') ?>
 
 <div id="addConjuge" >
@@ -53,9 +63,9 @@
             </div>
         </div>
         <div class="position-relative row form-group">
-            <label for="dataNascimentoPessoa" class="col-sm-2 col-form-label">Data de Nascimento:</label>
+            <label for="dataNascimento" class="col-sm-2 col-form-label">Data de Nascimento:</label>
             <div class="col-sm-10">
-                <?= $this->Form->control('dataNascimentoPessoa',['label'=>false,'type'=>'text','name'=>'dataNascimentoPessoa','id'=>'dataNascimentoPessoa','class'=>'form-control']); ?>
+                <?= $this->Form->control('dataNascimento',['label'=>false,'type'=>'text','name'=>'dataNascimento','id'=>'dataNascimento','class'=>'form-control']); ?>
             </div>
         </div>
     </div>
@@ -64,23 +74,23 @@
         <button id="fechaModal" type="button" class="btn btn-secondary close-popdown" data-dismiss="modal">fechar</button>
     </div>
     <?= $this->Form->end() ?>
+    <script>
+        $(document).ready(function(){
+            $("#erro_cpf_conjuge").hide();
+            $('.cpf').mask('000.000.000-00');
+            $('.cpf').on('blur',function()
+            {
+                validaCpf($('.cpf'),$("#erro_cpf_conjuge"),$('#salvarConjuge'),stSitConj);
+            });
+        });
+        $( function() {
+            $( "#dataNascimento" ).datepicker({
+                format: 'dd/mm/yyyy',
+                todayBtn: false,
+                language: "pt-BR"
+            });
+        } );
+        $('.telefone').mask(SPMaskBehavior, spOptions);
+    </script>
 </div>
 
-<script>
-    $(document).ready(function(){
-        $("#erro_cpf_conjuge").hide();
-        $('.cpf').mask('000.000.000-00');
-        $('.cpf').on('blur',function()
-        {
-            validaCpf($('.cpf'),$("#erro_cpf_conjuge"),$('#salvarConjuge'));
-        });
-    });
-    $( function() {
-        $( "#dataNascimentoPessoa" ).datepicker({
-            format: 'dd/mm/yyyy',
-            todayBtn: true,
-            language: "pt-BR"
-        });
-    } );
-    $('.telefone').mask(SPMaskBehavior, spOptions);
-</script>
