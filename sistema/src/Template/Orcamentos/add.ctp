@@ -50,8 +50,8 @@
                                     <?= $this->Html->link('<i class="fas fa-file-alt"></i>',
                                                                 ['controller'=>'Contratos','action'=>'add'],
                                                                 ['title'=>'Gerar Contrato',
-                                                                 'id'=>'botaoContratoModal',
-                                                                 'class'=>'btn btn-xs modal_xl_link',
+                                                                 'id'=>'botaoContratoModal'.$o->id,
+                                                                 'class'=>'btn btn-xs modal_xl_link gera-contrato-orcamento',
                                                                  'style'=>'padding: 0',
                                                                  'escape'=>false]) ?>
                                     <div style="display:inline-block;padding:0">

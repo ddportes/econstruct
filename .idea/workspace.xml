@@ -2,46 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4b11381-2abc-46e9-9b6b-dd8d9d944bb3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/sistema/src/Template/Orcamentos/retorna_orcamento.ctp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sistema/webroot/js/orcamento.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sistema/webroot/js/menu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/config/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Controller/ClientesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Controller/ClientesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Controller/DependentesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Controller/DependentesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Controller/OcorrenciasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Controller/OcorrenciasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Controller/OrcamentosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Controller/OrcamentosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Controller/PessoasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Controller/PessoasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Controller/RendasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Controller/RendasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Model/Entity/Dependente.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Model/Entity/Dependente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Model/Entity/Orcamento.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Model/Entity/Orcamento.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Model/Entity/Pessoa.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Model/Entity/Pessoa.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Model/Entity/Projeto.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Model/Entity/Projeto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Model/Table/ClientesTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Model/Table/ClientesTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Model/Table/ContratosTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Model/Table/ContratosTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Model/Table/DependentesTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Model/Table/DependentesTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Model/Table/PessoasTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Model/Table/PessoasTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Clientes/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Clientes/index.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Dependentes/add.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Dependentes/add.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Element/Layout/header.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Element/Layout/header.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Layout/default.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Layout/default.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Ocorrencias/edit.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Ocorrencias/edit.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Ocorrencias/todas_visitas.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Ocorrencias/todas_visitas.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Ocorrencias/visita.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Ocorrencias/visita.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Ocorrencias/visita_novo_cliente.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Ocorrencias/visita_novo_cliente.ctp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema/src/Template/Orcamentos/add.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Orcamentos/add.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Pages/home.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Pages/home.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Pessoas/add_conjuge.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Pessoas/add_conjuge.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Pessoas/edit_conjuge.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Pessoas/edit_conjuge.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Projetos/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Projetos/index.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Rendas/add.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Rendas/add.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Rendas/edit.ctp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Rendas/index.ctp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Rendas/view.ctp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Users/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Users/index.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/webroot/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/webroot/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema/webroot/js/conjuge.js" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/webroot/js/conjuge.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema/webroot/js/dependente.js" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/webroot/js/dependente.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema/webroot/js/orcamento.js" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/webroot/js/orcamento.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema/webroot/js/renda.js" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/webroot/js/renda.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/webroot/js/validacoes.js" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/webroot/js/validacoes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema/webroot/js/visita.js" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/webroot/js/visita.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -72,11 +39,50 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sistema/src/Controller/OrcamentosController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="892">
+            <state relative-caret-position="739">
               <caret line="114" column="5" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
               <folding>
                 <element signature="e#33#66#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sistema/webroot/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="587">
+              <caret line="37" column="248709" selection-start-line="37" selection-start-column="247461" selection-end-line="37" selection-end-column="248709" />
+              <folding>
+                <element signature="e#22#29#1" expanded="true" />
+                <element signature="e#58#64#1" expanded="true" />
+                <element signature="e#58#64#1" expanded="true" />
+                <element signature="n#style#0;n#hr#0;n#!!top" expanded="true" />
+                <element signature="e#4#10#1" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#li#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#li#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#li#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sistema/webroot/js/menu.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="51" lean-forward="true" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sistema/src/Template/Layout/default.ctp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="31" column="81" selection-start-line="31" selection-start-column="72" selection-end-line="31" selection-end-column="81" />
             </state>
           </provider>
         </entry>
@@ -93,8 +99,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sistema/src/Template/Orcamentos/add.ctp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="53" column="98" selection-start-line="53" selection-start-column="98" selection-end-line="53" selection-end-column="98" />
+            <state relative-caret-position="391">
+              <caret line="52" column="98" selection-start-line="52" selection-start-column="98" selection-end-line="52" selection-end-column="98" />
               <folding>
                 <element signature="n#div#0;n#div#1;n#!!top" />
                 <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
@@ -112,65 +118,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sistema/src/Template/Projetos/index.ctp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="92" column="83" selection-start-line="90" selection-start-column="48" selection-end-line="92" selection-end-column="83" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sistema/webroot/js/orcamento.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1057">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#557#564#1" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#560#567#1" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#557#564#1" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#560#567#1" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#560#567#1" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>script</find>
-      <find>find</find>
-      <find>success</find>
       <find>primeiroEmail</find>
       <find>todosEmails</find>
       <find>todosTelefones</find>
@@ -198,6 +156,9 @@
       <find>addDepen</find>
       <find>addRenda</find>
       <find>cadOrcamento</find>
+      <find>form-aprova-orcamento</find>
+      <find>metis</find>
+      <find>closed-sidebar</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\econstruct\sistema\webroot\css</dir>
@@ -212,7 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/sistema/src/Template/Element/Flash/warning.ctp" />
         <option value="$PROJECT_DIR$/sistema/logs/error.log" />
         <option value="$PROJECT_DIR$/sistema/src/Template/Clientes/add_conjuge.ctp" />
         <option value="$PROJECT_DIR$/sistema/src/Template/Clientes/edit_conjuge.ctp" />
@@ -251,18 +211,19 @@
         <option value="$PROJECT_DIR$/sistema/src/Controller/RendasController.php" />
         <option value="$PROJECT_DIR$/sistema/config/routes.php" />
         <option value="$PROJECT_DIR$/sistema/src/Controller/ClientesController.php" />
-        <option value="$PROJECT_DIR$/sistema/webroot/js/visita.js" />
         <option value="$PROJECT_DIR$/sistema/webroot/js/validacoes.js" />
-        <option value="$PROJECT_DIR$/sistema/webroot/js/renda.js" />
-        <option value="$PROJECT_DIR$/sistema/webroot/js/dependente.js" />
-        <option value="$PROJECT_DIR$/sistema/webroot/js/conjuge.js" />
         <option value="$PROJECT_DIR$/sistema/src/Controller/OrcamentosController.php" />
         <option value="$PROJECT_DIR$/sistema/src/Controller/ProjetosController.php" />
         <option value="$PROJECT_DIR$/sistema/src/Model/Entity/Orcamento.php" />
         <option value="$PROJECT_DIR$/sistema/src/Model/Entity/Projeto.php" />
         <option value="$PROJECT_DIR$/sistema/src/Model/Table/ContratosTable.php" />
+        <option value="$PROJECT_DIR$/sistema/webroot/js/visita.js" />
         <option value="$PROJECT_DIR$/sistema/src/Template/Orcamentos/add.ctp" />
         <option value="$PROJECT_DIR$/sistema/webroot/js/orcamento.js" />
+        <option value="$PROJECT_DIR$/sistema/webroot/js/renda.js" />
+        <option value="$PROJECT_DIR$/sistema/webroot/js/dependente.js" />
+        <option value="$PROJECT_DIR$/sistema/webroot/js/conjuge.js" />
+        <option value="$PROJECT_DIR$/sistema/webroot/js/menu.js" />
       </list>
     </option>
   </component>
@@ -340,10 +301,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="172" />
+    <option name="y" value="432" />
+    <option name="width" value="1614" />
+    <option name="height" value="914" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -374,20 +335,21 @@
               <item name="econstruct" type="462c0819:PsiDirectoryNode" />
               <item name="sistema" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="Template" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="econstruct" type="b2602c69:ProjectViewProjectNode" />
+              <item name="econstruct" type="462c0819:PsiDirectoryNode" />
+              <item name="sistema" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Template" type="462c0819:PsiDirectoryNode" />
+              <item name="Layout" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="econstruct" type="b2602c69:ProjectViewProjectNode" />
               <item name="econstruct" type="462c0819:PsiDirectoryNode" />
               <item name="sistema" type="462c0819:PsiDirectoryNode" />
               <item name="webroot" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="econstruct" type="b2602c69:ProjectViewProjectNode" />
-              <item name="econstruct" type="462c0819:PsiDirectoryNode" />
-              <item name="sistema" type="462c0819:PsiDirectoryNode" />
-              <item name="webroot" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="econstruct" type="b2602c69:ProjectViewProjectNode" />
@@ -413,11 +375,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\econstruct\sistema\webroot\img" />
       <recent name="C:\xampp\htdocs\econstruct\sistema\src\Template\Orcamentos" />
       <recent name="C:\xampp\htdocs\econstruct\sistema\webroot\js" />
       <recent name="C:\xampp\htdocs\econstruct\sistema\src\Template\Clientes" />
       <recent name="C:\xampp\htdocs\econstruct\sistema" />
-      <recent name="C:\xampp\htdocs\econstruct\sistema\src\Template\Users" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\econstruct\sistema\src\Template\Pessoas" />
@@ -493,12 +455,12 @@
       <workItem from="1568286691219" duration="9509000" />
       <workItem from="1568308633980" duration="7712000" />
       <workItem from="1568374665601" duration="13779000" />
-      <workItem from="1568634006734" duration="54229000" />
+      <workItem from="1568634006734" duration="58441000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="387479000" />
+    <option name="totallyTimeSpent" value="391691000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -554,11 +516,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/css/jquery.popdown.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-31" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sistema/webroot/css/magnific-popup.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-31" />
@@ -743,129 +700,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Layout/default.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="20" column="91" selection-start-line="20" selection-start-column="91" selection-end-line="20" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/visita.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="893">
-          <caret line="74" column="23" selection-start-line="74" selection-start-column="19" selection-end-line="74" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/validacoes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="28" column="95" selection-start-line="28" selection-start-column="95" selection-end-line="28" selection-end-column="95" />
-          <folding>
-            <element signature="n#!!block;n#validaEmail#0" />
-            <element signature="n#!!block;n#validaCpf#0" />
-            <element signature="n#!!block;n#validaCnpj#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sistema/src/Controller/OcorrenciasController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-431">
           <caret line="378" column="60" selection-start-line="378" selection-start-column="57" selection-end-line="378" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/conjuge.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="38" column="46" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#557#564#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#560#567#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#557#564#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/dependente.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="32" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="32" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#557#564#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#560#567#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#557#564#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#560#567#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/renda.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#557#564#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#560#567#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#557#564#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#560#567#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -932,9 +770,190 @@
     <entry file="file://$PROJECT_DIR$/sistema/src/Model/Table/ContatosTable.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/loadModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/visita.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="139" column="31" lean-forward="true" selection-start-line="139" selection-start-column="31" selection-end-line="139" selection-end-column="31" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/renda.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-108">
+          <caret line="58" column="43" selection-start-line="58" selection-start-column="43" selection-end-line="58" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#557#564#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#560#567#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#557#564#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#560#567#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/dependente.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="50" column="16" lean-forward="true" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#557#564#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#560#567#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#557#564#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#560#567#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/conjuge.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="43" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#557#564#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#560#567#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#557#564#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/validacoes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3171">
+          <caret line="28" column="95" selection-start-line="28" selection-start-column="95" selection-end-line="28" selection-end-column="95" />
+          <folding>
+            <element signature="n#!!block;n#validaEmail#0" />
+            <element signature="n#!!block;n#validaCpf#0" />
+            <element signature="n#!!block;n#validaCnpj#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/orcamento.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="53" lean-forward="true" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#557#564#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#560#567#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#557#564#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#560#567#1" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Projetos/index.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="91" column="71" selection-start-line="91" selection-start-column="71" selection-end-line="91" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sistema/src/Controller/OrcamentosController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="892">
+        <state relative-caret-position="739">
           <caret line="114" column="5" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
           <folding>
             <element signature="e#33#66#0#PHP" expanded="true" />
@@ -949,27 +968,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Projetos/index.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="92" column="83" selection-start-line="90" selection-start-column="48" selection-end-line="92" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/main.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/loadModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sistema/src/Template/Orcamentos/add.ctp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="53" column="98" selection-start-line="53" selection-start-column="98" selection-end-line="53" selection-end-column="98" />
+        <state relative-caret-position="391">
+          <caret line="52" column="98" selection-start-line="52" selection-start-column="98" selection-end-line="52" selection-end-column="98" />
           <folding>
             <element signature="n#div#0;n#div#1;n#!!top" />
             <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#1;n#!!top" expanded="true" />
@@ -986,44 +988,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/orcamento.js">
+    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Layout/default.ctp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1057">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        <state relative-caret-position="450">
+          <caret line="31" column="81" selection-start-line="31" selection-start-column="72" selection-end-line="31" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="587">
+          <caret line="37" column="248709" selection-start-line="37" selection-start-column="247461" selection-end-line="37" selection-end-column="248709" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#22#29#1" expanded="true" />
+            <element signature="e#58#64#1" expanded="true" />
+            <element signature="e#58#64#1" expanded="true" />
+            <element signature="n#style#0;n#hr#0;n#!!top" expanded="true" />
+            <element signature="e#4#10#1" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#557#564#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#560#567#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#557#564#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#560#567#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#strong#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#560#567#1" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#li#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/menu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="51" lean-forward="true" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
         </state>
       </provider>
     </entry>

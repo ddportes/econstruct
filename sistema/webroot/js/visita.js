@@ -59,6 +59,7 @@ $(document).ready(function(){
 
 
     $('#clienteId').on('change',function(){
+        $('body').append("<div id='loadingAjax' style='display: block;position:fixed; top:0;left:0; z-index: 99999; width: 100%; height: 100%; opacity: .5; transition: opacity 0.15s linear;   background-color: #000;  box-sizing: border-box;'><img style='position: absolute;top:50%;left:50%' src='img/ajax-loader.gif'></div>");
         $('#checkNovoProjeto').prop('checked',false);
         statusSalvar($('#salvar'),4,2,stSit);
         if($('#clienteId').val() == ''){
@@ -69,13 +70,14 @@ $(document).ready(function(){
         }
 
         var id = $(this).val();
+
         $.ajax({
             type: "GET",
             url: urlVisit+id,
             ProcessData: true,
             data: {hash: hashVisit},
             success: function(result){
-
+                $('#loadingAjax').remove();
                 if(result == ''){
                     $('#nomePessoa').val('');
                     $('#telefoneCliente').val('');
