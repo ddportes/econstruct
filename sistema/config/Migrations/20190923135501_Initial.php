@@ -38,9 +38,19 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -84,6 +94,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'pessoa_id',
@@ -99,6 +114,56 @@ class Initial extends AbstractMigration
                     'empresa_id',
                 ]
             )
+            ->addIndex(
+                [
+                    'u_id',
+                ]
+            )
+            ->create();
+
+        $this->table('configuracoes')
+            ->addColumn('id', 'integer', [
+                'autoIncrement' => true,
+                'default' => null,
+                'limit' => 11,
+                'null' => false,
+            ])
+            ->addPrimaryKey(['id'])
+            ->addColumn('minuta_default', 'text', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('minuta_equipe_default', 'text', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('recibo_default', 'text', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('empresa_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
             ->create();
 
         $this->table('contatos')
@@ -140,9 +205,24 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
+            ->addColumn('empresa_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'pessoa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -181,6 +261,11 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => false,
             ])
+            ->addColumn('minuta', 'text', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
             ->addColumn('created', 'datetime', [
                 'default' => null,
                 'limit' => null,
@@ -192,6 +277,11 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('empresa_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('u_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => true,
@@ -209,6 +299,71 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
+                ]
+            )
+            ->create();
+
+        $this->table('dependentes')
+            ->addColumn('id', 'integer', [
+                'autoIncrement' => true,
+                'default' => null,
+                'limit' => 11,
+                'null' => false,
+            ])
+            ->addPrimaryKey(['id'])
+            ->addColumn('pessoa_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('pai_mae_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('empresa_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addIndex(
+                [
+                    'pessoa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'pai_mae_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -273,6 +428,46 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('endereco_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('contato_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('representante_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addIndex(
+                [
+                    'u_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'endereco_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'contato_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'representante_id',
+                ]
+            )
             ->create();
 
         $this->table('enderecos')
@@ -292,7 +487,7 @@ class Initial extends AbstractMigration
             ->addColumn('logradouro', 'string', [
                 'default' => null,
                 'limit' => 255,
-                'null' => false,
+                'null' => true,
             ])
             ->addColumn('numero', 'integer', [
                 'default' => null,
@@ -314,9 +509,14 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
-            ->addColumn('cidade_id', 'integer', [
+            ->addColumn('cidade', 'string', [
                 'default' => null,
-                'limit' => 11,
+                'limit' => 255,
+                'null' => true,
+            ])
+            ->addColumn('estado', 'string', [
+                'default' => null,
+                'limit' => 2,
                 'null' => true,
             ])
             ->addColumn('principal', 'string', [
@@ -339,6 +539,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'pessoa_id',
@@ -347,6 +552,11 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -385,6 +595,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'equipe_id',
@@ -398,6 +613,11 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -436,6 +656,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'projeto_id',
@@ -444,6 +669,11 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -477,9 +707,19 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -523,6 +763,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'fornecedor_situacao_id',
@@ -536,6 +781,11 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -552,11 +802,6 @@ class Initial extends AbstractMigration
                 'default' => null,
                 'limit' => 11,
                 'null' => false,
-            ])
-            ->addColumn('fornecedor_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => true,
             ])
             ->addColumn('produto_id', 'integer', [
                 'default' => null,
@@ -601,14 +846,14 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'produto_id',
-                ]
-            )
-            ->addIndex(
-                [
-                    'fornecedor_id',
                 ]
             )
             ->addIndex(
@@ -621,6 +866,57 @@ class Initial extends AbstractMigration
                     'empresa_id',
                 ]
             )
+            ->addIndex(
+                [
+                    'u_id',
+                ]
+            )
+            ->create();
+
+        $this->table('modificacoes')
+            ->addColumn('id', 'integer', [
+                'autoIncrement' => true,
+                'default' => null,
+                'limit' => 10,
+                'null' => false,
+                'signed' => false,
+            ])
+            ->addPrimaryKey(['id'])
+            ->addColumn('datahora', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('user_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => false,
+            ])
+            ->addColumn('empresa_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('controller', 'string', [
+                'default' => null,
+                'limit' => 125,
+                'null' => false,
+            ])
+            ->addColumn('action', 'string', [
+                'default' => null,
+                'limit' => 125,
+                'null' => false,
+            ])
+            ->addColumn('dados_originais', 'text', [
+                'default' => null,
+                'limit' => 4294967295,
+                'null' => false,
+            ])
+            ->addColumn('dados_novos', 'text', [
+                'default' => null,
+                'limit' => 4294967295,
+                'null' => false,
+            ])
             ->create();
 
         $this->table('notas')
@@ -648,6 +944,11 @@ class Initial extends AbstractMigration
                 'precision' => 17,
                 'scale' => 2,
             ])
+            ->addColumn('fornecedor_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addColumn('created', 'datetime', [
                 'default' => null,
                 'limit' => null,
@@ -663,6 +964,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'projeto_id',
@@ -671,6 +977,16 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'fornecedor_id',
                 ]
             )
             ->create();
@@ -704,9 +1020,19 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -760,6 +1086,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'ocorrencia_tipo_id',
@@ -773,6 +1104,11 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -833,6 +1169,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'projeto_id',
@@ -841,6 +1182,11 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -880,9 +1226,19 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -916,9 +1272,19 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -962,6 +1328,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'pessoa_id',
@@ -975,6 +1346,11 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -1013,6 +1389,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'papel_id',
@@ -1026,6 +1407,11 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -1043,6 +1429,11 @@ class Initial extends AbstractMigration
                 'default' => null,
                 'limit' => 125,
                 'null' => false,
+            ])
+            ->addColumn('descricao_amigavel', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => true,
             ])
             ->addColumn('permissao_pai_id', 'integer', [
                 'default' => null,
@@ -1064,9 +1455,19 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -1125,6 +1526,11 @@ class Initial extends AbstractMigration
                 'limit' => 125,
                 'null' => true,
             ])
+            ->addColumn('data_nascimento', 'date', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
             ->addColumn('created', 'datetime', [
                 'default' => null,
                 'limit' => null,
@@ -1140,6 +1546,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'conjuge_id',
@@ -1148,6 +1559,11 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -1181,9 +1597,19 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -1197,15 +1623,15 @@ class Initial extends AbstractMigration
                 'signed' => false,
             ])
             ->addPrimaryKey(['id'])
-            ->addColumn('descricao', 'string', [
-                'default' => null,
-                'limit' => 255,
-                'null' => false,
-            ])
             ->addColumn('produto_pai_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => true,
+            ])
+            ->addColumn('descricao', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
             ])
             ->addColumn('produto_tipo_id', 'integer', [
                 'default' => null,
@@ -1227,11 +1653,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
-            ->addIndex(
-                [
-                    'produto_pai_id',
-                ]
-            )
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'produto_tipo_id',
@@ -1240,6 +1666,16 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'produto_pai_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -1273,9 +1709,19 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -1329,13 +1775,25 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('orcamento', 'decimal', [
+            ->addColumn('custo_estimado', 'decimal', [
                 'default' => null,
                 'null' => true,
                 'precision' => 17,
                 'scale' => 2,
             ])
-            ->addColumn('custo_estimado', 'decimal', [
+            ->addColumn('terreno', 'decimal', [
+                'default' => null,
+                'null' => true,
+                'precision' => 17,
+                'scale' => 2,
+            ])
+            ->addColumn('area_construida_coberta', 'decimal', [
+                'default' => null,
+                'null' => true,
+                'precision' => 17,
+                'scale' => 2,
+            ])
+            ->addColumn('area_construida_aberta', 'decimal', [
                 'default' => null,
                 'null' => true,
                 'precision' => 17,
@@ -1347,6 +1805,11 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('empresa_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('u_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => true,
@@ -1369,6 +1832,11 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -1418,6 +1886,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'projeto_id',
@@ -1426,6 +1899,11 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -1475,6 +1953,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'equipe_id',
@@ -1488,6 +1971,11 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -1547,6 +2035,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'pessoa_id',
@@ -1555,6 +2048,11 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -1594,11 +2092,11 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
-            ->addIndex(
-                [
-                    'user_id',
-                ]
-            )
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'papel_id',
@@ -1607,6 +2105,16 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'user_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
                 ]
             )
             ->create();
@@ -1625,9 +2133,24 @@ class Initial extends AbstractMigration
                 'limit' => 63,
                 'null' => true,
             ])
+            ->addColumn('email', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => true,
+            ])
             ->addColumn('password', 'string', [
                 'default' => null,
                 'limit' => 255,
+                'null' => true,
+            ])
+            ->addColumn('status', 'string', [
+                'default' => null,
+                'limit' => 31,
+                'null' => true,
+            ])
+            ->addColumn('hash', 'string', [
+                'default' => null,
+                'limit' => 1023,
                 'null' => true,
             ])
             ->addColumn('created', 'datetime', [
@@ -1645,58 +2168,21 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addIndex(
                 [
                     'empresa_id',
                 ]
             )
-            ->create();
-
-        $this->table('modificacoes')
-            ->addColumn('id', 'integer', [
-                'autoIncrement' => true,
-                'default' => null,
-                'limit' => 10,
-                'null' => false,
-                'signed' => false,
-            ])
-            ->addPrimaryKey(['id'])
-            ->addColumn('created', 'datahora', [
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
-            ->addColumn('user_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => false,
-            ])
-            ->addColumn('empresa_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => false,
-            ])
-            ->addColumn('controller', 'string', [
-                'default' => null,
-                'limit' => 125,
-                'null' => false,
-            ])
-            ->addColumn('action', 'string', [
-                'default' => null,
-                'limit' => 1255,
-                'null' => false,
-            ])
-
-            ->addColumn('dados_originais', 'text', [
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
-            ->addColumn('dados_novos', 'text', [
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
+            ->addIndex(
+                [
+                    'u_id',
+                ]
+            )
             ->create();
     }
 
@@ -1704,8 +2190,10 @@ class Initial extends AbstractMigration
     {
         $this->table('cliente_situacoes')->drop()->save();
         $this->table('clientes')->drop()->save();
+        $this->table('configuracoes')->drop()->save();
         $this->table('contatos')->drop()->save();
         $this->table('contratos')->drop()->save();
+        $this->table('dependentes')->drop()->save();
         $this->table('empresas')->drop()->save();
         $this->table('enderecos')->drop()->save();
         $this->table('equipe_pedreiros')->drop()->save();
@@ -1713,6 +2201,7 @@ class Initial extends AbstractMigration
         $this->table('fornecedor_situacoes')->drop()->save();
         $this->table('fornecedores')->drop()->save();
         $this->table('itens')->drop()->save();
+        $this->table('modificacoes')->drop()->save();
         $this->table('notas')->drop()->save();
         $this->table('ocorrencia_tipos')->drop()->save();
         $this->table('ocorrencias')->drop()->save();
@@ -1732,6 +2221,5 @@ class Initial extends AbstractMigration
         $this->table('rendas')->drop()->save();
         $this->table('user_papeis')->drop()->save();
         $this->table('users')->drop()->save();
-        $this->table('modificacoes')->drop()->save();
     }
 }

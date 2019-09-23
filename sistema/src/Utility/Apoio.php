@@ -71,4 +71,50 @@ class Apoio{
          return $maskared;
     }
 
+    public static function tags(){
+        $retorno=['NOMECLIENTE',
+            'CPFCNPJCLIENTE',
+            'RGCLIENTE',
+            'LOGRADOUROCLIENTE',
+            'BAIRROCLIENTE',
+            'COMPLEMENTOCLIENTE',
+            'CIDADECLIENTE',
+            'ESTADOCLIENTE',
+            'RAZAOSOCIALEMPRESA',
+            'CPFCNPJEMPRESA',
+            'INSCRICAOEMPRESA',
+            'LOGRADOUROEMPRESA',
+            'BAIRROEMPRESA',
+            'COMPLEMENTOEMPRESA',
+            'CIDADEEMPRESA',
+            'ESTADOEMPRESA',
+            'NOMECONJUGE',
+            'CPFCNPJCONJUGE',
+            'RGCONJUGE',
+            'LOGRADOUROCONJUGE',
+            'BAIRROCONJUGE',
+            'COMPLEMENTOCONJUGE',
+            'CIDADECONJUGE',
+            'ESTADOCONJUGE',
+            'DESCRICAOPROJETO',
+            'CUSTOESTIMADOPROJETO',
+            'DATAINICIOPROJETO',
+            'DATAENTREGAPROJETO',
+            'TERRENOPROJETO',
+            'AREACOBERTACONSTRUIDAPROJETO',
+            'AREAABERTACONSTRUIDAPROJETO',
+            'AREATOTALCONSTRUIDAPROJETO',
+            'OCUPACAOPROJETO',
+            'LOGRADOUROPROJETO',
+            'BAIRROPROJETO',
+            'COMPLEMENTOPROJETO',
+            'CIDADEPROJETO',
+            'ESTADOPROJETO',
+            'VALORORCAMENTO',
+            'DETALHESORCAMENTO'
+        ];
+
+        return $retorno;
+    }
+
 }

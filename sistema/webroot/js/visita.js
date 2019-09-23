@@ -30,16 +30,21 @@ $(document).ready(function(){
                 $('#descricaoProjeto').val(proj.descricao);
                 $('#detalhesProjeto').val(proj.detalhes);
                 $('#custoEstimadoProjeto').val(proj.custo_estimado);
+                $('#terrenoProjeto').val(proj.terreno);
+                $('#areaCobertaProjeto').val(proj.area_construida_aberta);
+                $('#areaAbertaProjeto').val(proj.area_construida_coberta);
                 $('#observacaoProjeto').val(proj.observacao);
                 //$('#salvar').prop('disabled',false);
                 statusSalvar($('#salvar'),5,1,stSit);
                 $('#checkNovoProjeto').prop('disabled',true);
-
             }else{
                 $('#projeto_id').val('');
                 $('#descricaoProjeto').val('');
                 $('#detalhesProjeto').val('');
                 $('#custoEstimadoProjeto').val('');
+                $('#terrenoProjeto').val('');
+                $('#areaCobertaProjeto').val('');
+                $('#areaAbertaProjeto').val('');
                 $('#observacaoProjeto').val('');
                 //$('#salvar').prop('disabled',true);
                 statusSalvar($('#salvar'),5,2,stSit);
@@ -50,6 +55,9 @@ $(document).ready(function(){
             $('#descricaoProjeto').val('');
             $('#detalhesProjeto').val('');
             $('#custoEstimadoProjeto').val('');
+            $('#terrenoProjeto').val('');
+            $('#areaCobertaProjeto').val('');
+            $('#areaAbertaProjeto').val('');
             $('#observacaoProjeto').val('');
             //$('#salvar').prop('disabled',true);
             statusSalvar($('#salvar'),5,2,stSit);
@@ -101,6 +109,9 @@ $(document).ready(function(){
                     $('#descricaoProjeto').val('');
                     $('#detalhesProjeto').val('');
                     $('#custoEstimadoProjeto').val('');
+                    $('#terrenoProjeto').val('');
+                    $('#areaCobertaProjeto').val('');
+                    $('#areaAbertaProjeto').val('');
                     $('#observacaoProjeto').val('');
                     $('#pessoa_id').val('');
                     $('#projeto_id').val('');
@@ -268,10 +279,50 @@ $(document).ready(function(){
 
     });
 
-
     $("#custoEstimadoProjeto").maskMoney({
         prefix: "R$ ",
         decimal: ",",
         thousands: "."
     });
+
+    $('#terrenoProjeto').maskMoney({
+        suffix: " m²",
+        decimal: ",",
+        thousands: "."
+    });
+
+    $('#areaCobertaProjeto').maskMoney({
+        suffix: " m²",
+        decimal: ",",
+        thousands: "."
+    });
+
+    $('#areaAbertaProjeto').maskMoney({
+        suffix: " m²",
+        decimal: ",",
+        thousands: "."
+    });
+
+    $( function() {
+        $( "#dataOcorrencia" ).datepicker({
+            format: 'dd/mm/yyyy',
+            todayBtn: false,
+            language: "pt-BR"
+        });
+    } );
+    $( function() {
+        $( "#dataPendenciaOcorrencia" ).datepicker({
+            format: 'dd/mm/yyyy',
+            todayBtn: false,
+            language: "pt-BR"
+        });
+    } );
+    $( function() {
+        $( "#dataNascimentoPessoa" ).datepicker({
+            format: 'dd/mm/yyyy',
+            todayBtn: false,
+            language: "pt-BR"
+        });
+    } );
+    $('.telefone').mask(SPMaskBehavior, spOptions);
 });

@@ -239,6 +239,27 @@ class FiltroAcessoBehavior extends Behavior
 
                 $query->andWhere(['AND' => $conditions]);
                 break;
+            case 'Modificacoes':
+                $conditions = [];
+
+                $conditions[] = ['Modificacoes.empresa_id =' => $usuario['empresa_id']];
+
+                $query->andWhere(['AND' => $conditions]);
+                break;
+            case 'Configuracoes':
+                $conditions = [];
+
+                $conditions[] = ['Configuracoes.empresa_id =' => $usuario['empresa_id']];
+
+                $query->andWhere(['AND' => $conditions]);
+                break;
+            case '':
+                $conditions = [];
+
+                $conditions[] = ['Itens.empresa_id =' => $usuario['empresa_id']];
+
+                $query->andWhere(['AND' => $conditions]);
+                break;
 
         }
 

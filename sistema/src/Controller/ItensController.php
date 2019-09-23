@@ -20,7 +20,7 @@ class ItensController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Notas', 'Fornecedores', 'Produtos']
+            'contain' => ['Notas', 'Fornecedores', 'Produtos', 'Empresas', 'users']
         ];
         $itens = $this->paginate($this->Itens);
 
@@ -37,7 +37,7 @@ class ItensController extends AppController
     public function view($id = null)
     {
         $item = $this->Itens->get($id, [
-            'contain' => ['Notas', 'Fornecedores', 'Produtos']
+            'contain' => ['Notas', 'Fornecedores', 'Produtos', 'Empresas', 'users']
         ]);
 
         $this->set('item', $item);
@@ -63,7 +63,9 @@ class ItensController extends AppController
         $notas = $this->Itens->Notas->find('list', ['limit' => 200]);
         $fornecedores = $this->Itens->Fornecedores->find('list', ['limit' => 200]);
         $produtos = $this->Itens->Produtos->find('list', ['limit' => 200]);
-        $this->set(compact('item', 'notas', 'fornecedores', 'produtos'));
+        $empresas = $this->Itens->Empresas->find('list', ['limit' => 200]);
+        $users = $this->Itens->users->find('list', ['limit' => 200]);
+        $this->set(compact('item', 'notas', 'fornecedores', 'produtos', 'empresas', 'users'));
     }
 
     /**
@@ -90,7 +92,9 @@ class ItensController extends AppController
         $notas = $this->Itens->Notas->find('list', ['limit' => 200]);
         $fornecedores = $this->Itens->Fornecedores->find('list', ['limit' => 200]);
         $produtos = $this->Itens->Produtos->find('list', ['limit' => 200]);
-        $this->set(compact('item', 'notas', 'fornecedores', 'produtos'));
+        $empresas = $this->Itens->Empresas->find('list', ['limit' => 200]);
+        $users = $this->Itens->users->find('list', ['limit' => 200]);
+        $this->set(compact('item', 'notas', 'fornecedores', 'produtos', 'empresas', 'users'));
     }
 
     /**

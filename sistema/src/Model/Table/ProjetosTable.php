@@ -127,6 +127,18 @@ class ProjetosTable extends Table
             ->allowEmptyString('custo_estimado');
 
         $validator
+            ->decimal('terreno')
+            ->allowEmptyString('terreno');
+
+        $validator
+            ->decimal('area_construida_coberta')
+            ->allowEmptyString('area_construida_coberta');
+
+        $validator
+            ->decimal('area_construida_aberta')
+            ->allowEmptyString('area_construida_aberta');
+
+        $validator
             ->scalar('observacao')
             ->allowEmptyString('observacao');
 

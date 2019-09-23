@@ -151,6 +151,9 @@ class OcorrenciasController extends AppController
                                 $dados_projeto['projeto_situacao_id'] = 1;
                                 $dados_projeto['contrato_id'] = null;
                                 $dados_projeto['custo_estimado'] = (!empty($dados['custoEstimadoProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['custoEstimadoProjeto'])): null);
+                                $dados_projeto['terreno'] = (!empty($dados['terrenoProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['terrenoProjeto'])): null);
+                                $dados_projeto['area_construida_coberta'] = (!empty($dados['areaCobertaProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['areaCobertaProjeto'])): null);
+                                $dados_projeto['area_construida_aberta'] = (!empty($dados['areaAbertaProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['areaAbertaProjeto'])): null);
                                 $dados_projeto['observacao'] = (!empty($dados['anotacoesOcorrencia'])?$dados['anotacoesOcorrencia']: null);
                                 $dados_projeto['empresa_id'] = $user['empresa_id'];
                                 $dados_projeto['u_id'] = $user['id'];
@@ -290,6 +293,9 @@ class OcorrenciasController extends AppController
                                 $dados_projeto['detalhes'] = (!empty($dados['detalhesProjeto'])?$dados['detalhesProjeto']: null);
                                 $dados_projeto['projeto_situacao_id'] = 1;
                                 $dados_projeto['custo_estimado'] = (!empty($dados['custoEstimadoProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['custoEstimadoProjeto'])): null);
+                                $dados_projeto['terreno'] = (!empty($dados['terrenoProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['terrenoProjeto'])): null);
+                                $dados_projeto['area_construida_coberta'] = (!empty($dados['areaCobertaProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['areaCobertaProjeto'])): null);
+                                $dados_projeto['area_construida_aberta'] = (!empty($dados['areaAbertaProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['areaAbertaProjeto'])): null);
                                 $dados_projeto['observacao'] = (!empty($dados['observacaoProjeto'])?$dados['observacaoProjeto']: null);
                                 $dados_projeto['u_id'] = $user['id'];
 

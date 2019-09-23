@@ -10,6 +10,10 @@
         <li><?= $this->Html->link(__('List Notas'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Projetos'), ['controller' => 'Projetos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Projeto'), ['controller' => 'Projetos', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Empresas'), ['controller' => 'Empresas', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Empresa'), ['controller' => 'Empresas', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Itens'), ['controller' => 'Itens', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Item'), ['controller' => 'Itens', 'action' => 'add']) ?></li>
     </ul>
@@ -22,7 +26,9 @@
             echo $this->Form->control('projeto_id', ['options' => $projetos, 'empty' => true]);
             echo $this->Form->control('data');
             echo $this->Form->control('valor');
-            echo $this->Form->control('empresa_id');
+            echo $this->Form->control('fornecedor_id');
+            echo $this->Form->control('empresa_id', ['options' => $empresas, 'empty' => true]);
+            echo $this->Form->control('u_id', ['options' => $users, 'empty' => true]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

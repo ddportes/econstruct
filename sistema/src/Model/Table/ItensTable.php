@@ -10,9 +10,9 @@ use Cake\Validation\Validator;
  * Itens Model
  *
  * @property \App\Model\Table\NotasTable&\Cake\ORM\Association\BelongsTo $Notas
- * @property \App\Model\Table\FornecedoresTable&\Cake\ORM\Association\BelongsTo $Fornecedores
  * @property \App\Model\Table\ProdutosTable&\Cake\ORM\Association\BelongsTo $Produtos
- * @property &\Cake\ORM\Association\BelongsTo $Empresas
+ * @property \App\Model\Table\EmpresasTable&\Cake\ORM\Association\BelongsTo $Empresas
+ * @property &\Cake\ORM\Association\BelongsTo $Users
  *
  * @method \App\Model\Entity\Item get($primaryKey, $options = [])
  * @method \App\Model\Entity\Item newEntity($data = null, array $options = [])
@@ -42,14 +42,10 @@ class ItensTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('FiltroAcesso');
 
         $this->belongsTo('Notas', [
             'foreignKey' => 'nota_id',
             'joinType' => 'INNER'
-        ]);
-        $this->belongsTo('Fornecedores', [
-            'foreignKey' => 'fornecedor_id'
         ]);
         $this->belongsTo('Produtos', [
             'foreignKey' => 'produto_id'
@@ -57,7 +53,7 @@ class ItensTable extends Table
         $this->belongsTo('Empresas', [
             'foreignKey' => 'empresa_id'
         ]);
-        $this->belongsTo('users', [
+        $this->belongsTo('Users', [
             'foreignKey' => 'u_id'
         ]);
     }
@@ -104,7 +100,6 @@ class ItensTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['nota_id'], 'Notas'));
-        $rules->add($rules->existsIn(['fornecedor_id'], 'Fornecedores'));
         $rules->add($rules->existsIn(['produto_id'], 'Produtos'));
         $rules->add($rules->existsIn(['empresa_id'], 'Empresas'));
         $rules->add($rules->existsIn(['u_id'], 'Users'));

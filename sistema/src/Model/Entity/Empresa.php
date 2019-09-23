@@ -18,6 +18,9 @@ use Cake\ORM\Entity;
  * @property float|null $mensal
  * @property int|null $u_id
  * @property string|null $observacao
+ * @property int|null $endereco_id
+ * @property int|null $contato_id
+ * @property int|null $representante_id
  *
  * @property \App\Model\Entity\ClienteSituacao[] $cliente_situacoes
  * @property \App\Model\Entity\Cliente[] $clientes
@@ -98,6 +101,9 @@ class Empresa extends Entity
         'rendas' => true,
         'user_papeis' => true,
         'users' => true,
-        'u_id'=>true
+        'u_id'=>true,
+        'endereco_id' => true,
+        'contato_id' => true,
+        'representante_id' => true
     ];
 }

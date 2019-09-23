@@ -4,24 +4,21 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Nota Entity
+ * Configuracao Entity
  *
  * @property int $id
- * @property int|null $projeto_id
- * @property \Cake\I18n\FrozenDate $data
- * @property float $valor
- * @property int|null $fornecedor_id
- * @property \Cake\I18n\FrozenTime|null $created
- * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string|null $minuta_default
+ * @property string|null $minuta_equipe_default
+ * @property string|null $recibo_default
  * @property int|null $empresa_id
  * @property int|null $u_id
+ * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\FrozenTime|null $modified
  *
- * @property \App\Model\Entity\Projeto $projeto
  * @property \App\Model\Entity\Empresa $empresa
- * @property \App\Model\Entity\User $user
- * @property \App\Model\Entity\Item[] $itens
+ * @property \App\Model\Entity\Users $user
  */
-class Nota extends Entity
+class Configuracao extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -33,17 +30,14 @@ class Nota extends Entity
      * @var array
      */
     protected $_accessible = [
-        'projeto_id' => true,
-        'data' => true,
-        'valor' => true,
-        'fornecedor_id' => true,
-        'created' => true,
-        'modified' => true,
+        'minuta_default' => true,
+        'minuta_equipe_default' => true,
+        'recibo_default' => true,
         'empresa_id' => true,
         'u_id' => true,
-        'projeto' => true,
+        'created' => true,
+        'modified' => true,
         'empresa' => true,
-        'user' => true,
-        'itens' => true
+        'user' => true
     ];
 }

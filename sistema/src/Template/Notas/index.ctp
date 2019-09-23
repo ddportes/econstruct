@@ -10,6 +10,10 @@
         <li><?= $this->Html->link(__('New Nota'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Projetos'), ['controller' => 'Projetos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Projeto'), ['controller' => 'Projetos', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Empresas'), ['controller' => 'Empresas', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Empresa'), ['controller' => 'Empresas', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Itens'), ['controller' => 'Itens', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Item'), ['controller' => 'Itens', 'action' => 'add']) ?></li>
     </ul>
@@ -23,9 +27,11 @@
                 <th scope="col"><?= $this->Paginator->sort('projeto_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('data') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('valor') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('fornecedor_id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('empresa_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('u_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -33,12 +39,14 @@
             <?php foreach ($notas as $nota): ?>
             <tr>
                 <td><?= $this->Number->format($nota->id) ?></td>
-                <td><?= $nota->has('projeto') ? $this->Html->link($nota->projeto->id, ['controller' => 'Projetos', 'action' => 'view', $nota->projeto->id]) : '' ?></td>
+                <td><?= $nota->has('projeto') ? $this->Html->link($nota->projeto->descricao, ['controller' => 'Projetos', 'action' => 'view', $nota->projeto->id]) : '' ?></td>
                 <td><?= h($nota->data) ?></td>
                 <td><?= $this->Number->format($nota->valor) ?></td>
+                <td><?= $this->Number->format($nota->fornecedor_id) ?></td>
                 <td><?= h($nota->created) ?></td>
                 <td><?= h($nota->modified) ?></td>
-                <td><?= $this->Number->format($nota->empresa_id) ?></td>
+                <td><?= $nota->has('empresa') ? $this->Html->link($nota->empresa->nome_fantasia, ['controller' => 'Empresas', 'action' => 'view', $nota->empresa->id]) : '' ?></td>
+                <td><?= $nota->has('user') ? $this->Html->link($nota->user->username, ['controller' => 'Users', 'action' => 'view', $nota->user->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $nota->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $nota->id]) ?>

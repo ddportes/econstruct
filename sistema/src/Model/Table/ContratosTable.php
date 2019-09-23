@@ -6,14 +6,13 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-// @property \App\Model\Table\ProjetosTable&\Cake\ORM\Association\HasMany $Projetos
-
 /**
  * Contratos Model
  *
  * @property \App\Model\Table\ProjetosTable&\Cake\ORM\Association\BelongsTo $Projetos
  * @property \App\Model\Table\OrcamentosTable&\Cake\ORM\Association\BelongsTo $Orcamentos
- * @property &\Cake\ORM\Association\BelongsTo $Empresas
+ * @property \App\Model\Table\EmpresasTable&\Cake\ORM\Association\BelongsTo $Empresas
+ * @property &\Cake\ORM\Association\BelongsTo $Users
  *
  * @method \App\Model\Entity\Contrato get($primaryKey, $options = [])
  * @method \App\Model\Entity\Contrato newEntity($data = null, array $options = [])
@@ -43,7 +42,6 @@ class ContratosTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('FiltroAcesso');
 
         $this->belongsTo('Projetos', [
             'foreignKey' => 'projeto_id',
@@ -59,6 +57,7 @@ class ContratosTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'u_id'
         ]);
+
     }
 
     /**
@@ -87,6 +86,10 @@ class ContratosTable extends Table
             ->date('data_final')
             ->requirePresence('data_final', 'create')
             ->notEmptyDate('data_final');
+
+        $validator
+            ->scalar('minuta')
+            ->allowEmptyString('minuta');
 
         return $validator;
     }

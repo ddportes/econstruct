@@ -20,7 +20,7 @@ class NotasController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Projetos']
+            'contain' => ['Projetos', 'Empresas', 'Users']
         ];
         $notas = $this->paginate($this->Notas);
 
@@ -37,7 +37,7 @@ class NotasController extends AppController
     public function view($id = null)
     {
         $nota = $this->Notas->get($id, [
-            'contain' => ['Projetos', 'Itens']
+            'contain' => ['Projetos', 'Empresas', 'Users', 'Itens']
         ]);
 
         $this->set('nota', $nota);
@@ -61,7 +61,9 @@ class NotasController extends AppController
             $this->Flash->error(__('The nota could not be saved. Please, try again.'));
         }
         $projetos = $this->Notas->Projetos->find('list', ['limit' => 200]);
-        $this->set(compact('nota', 'projetos'));
+        $empresas = $this->Notas->Empresas->find('list', ['limit' => 200]);
+        $users = $this->Notas->Users->find('list', ['limit' => 200]);
+        $this->set(compact('nota', 'projetos', 'empresas', 'users'));
     }
 
     /**
@@ -86,7 +88,9 @@ class NotasController extends AppController
             $this->Flash->error(__('The nota could not be saved. Please, try again.'));
         }
         $projetos = $this->Notas->Projetos->find('list', ['limit' => 200]);
-        $this->set(compact('nota', 'projetos'));
+        $empresas = $this->Notas->Empresas->find('list', ['limit' => 200]);
+        $users = $this->Notas->Users->find('list', ['limit' => 200]);
+        $this->set(compact('nota', 'projetos', 'empresas', 'users'));
     }
 
     /**

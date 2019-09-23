@@ -12,13 +12,16 @@ use Cake\ORM\Entity;
  * @property int $data_assinatura
  * @property \Cake\I18n\FrozenDate $data_inicial
  * @property \Cake\I18n\FrozenDate $data_final
+ * @property string|null $minuta
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  * @property int|null $empresa_id
  * @property int|null $u_id
  *
- * @property \App\Model\Entity\Projeto[] $projetos
+ * @property \App\Model\Entity\Projeto $projeto
  * @property \App\Model\Entity\Orcamento $orcamento
+ * @property \App\Model\Entity\Empresa $empresa
+ * @property \App\Model\Entity\User $user
  */
 class Contrato extends Entity
 {
@@ -37,11 +40,14 @@ class Contrato extends Entity
         'data_assinatura' => true,
         'data_inicial' => true,
         'data_final' => true,
+        'minuta' => true,
         'created' => true,
         'modified' => true,
         'empresa_id' => true,
         'u_id' => true,
-        'projetos' => true,
-        'orcamento' => true
+        'projeto' => true,
+        'orcamento' => true,
+        'empresa' => true,
+        'user' => true
     ];
 }

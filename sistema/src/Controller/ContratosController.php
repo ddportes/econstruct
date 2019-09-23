@@ -20,7 +20,7 @@ class ContratosController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Orcamentos']
+            'contain' => ['Projetos', 'Orcamentos', 'Empresas', 'Users']
         ];
         $contratos = $this->paginate($this->Contratos);
 
@@ -37,7 +37,7 @@ class ContratosController extends AppController
     public function view($id = null)
     {
         $contrato = $this->Contratos->get($id, [
-            'contain' => ['Orcamentos', 'Projetos']
+            'contain' => ['Projetos', 'Orcamentos', 'Empresas', 'Users']
         ]);
 
         $this->set('contrato', $contrato);
@@ -48,7 +48,7 @@ class ContratosController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add($projeto_id = null)
+    public function add($projeto_id=null)
     {
         $contrato = $this->Contratos->newEntity();
         if ($this->request->is('post')) {
@@ -60,8 +60,11 @@ class ContratosController extends AppController
             }
             $this->Flash->error(__('The contrato could not be saved. Please, try again.'));
         }
+        $projetos = $this->Contratos->Projetos->find('list', ['limit' => 200]);
         $orcamentos = $this->Contratos->Orcamentos->find('list', ['limit' => 200]);
-        $this->set(compact('contrato', 'orcamentos'));
+        $empresas = $this->Contratos->Empresas->find('list', ['limit' => 200]);
+        $users = $this->Contratos->Users->find('list', ['limit' => 200]);
+        $this->set(compact('contrato', 'projetos', 'orcamentos', 'empresas', 'users'));
     }
 
     /**
@@ -85,8 +88,11 @@ class ContratosController extends AppController
             }
             $this->Flash->error(__('The contrato could not be saved. Please, try again.'));
         }
+        $projetos = $this->Contratos->Projetos->find('list', ['limit' => 200]);
         $orcamentos = $this->Contratos->Orcamentos->find('list', ['limit' => 200]);
-        $this->set(compact('contrato', 'orcamentos'));
+        $empresas = $this->Contratos->Empresas->find('list', ['limit' => 200]);
+        $users = $this->Contratos->Users->find('list', ['limit' => 200]);
+        $this->set(compact('contrato', 'projetos', 'orcamentos', 'empresas', 'users'));
     }
 
     /**

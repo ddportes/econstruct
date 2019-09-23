@@ -1,21 +1,21 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\ItensTable;
+use App\Model\Table\ConfiguracoesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\ItensTable Test Case
+ * App\Model\Table\ConfiguracoesTable Test Case
  */
-class ItensTableTest extends TestCase
+class ConfiguracoesTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\ItensTable
+     * @var \App\Model\Table\ConfiguracoesTable
      */
-    public $Itens;
+    public $Configuracoes;
 
     /**
      * Fixtures
@@ -23,12 +23,9 @@ class ItensTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Itens',
-        'app.Notas',
-        'app.Fornecedores',
-        'app.Produtos',
+        'app.Configuracoes',
         'app.Empresas',
-        'app.Users'
+        'app.Us'
     ];
 
     /**
@@ -39,8 +36,8 @@ class ItensTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Itens') ? [] : ['className' => ItensTable::class];
-        $this->Itens = TableRegistry::getTableLocator()->get('Itens', $config);
+        $config = TableRegistry::getTableLocator()->exists('Configuracoes') ? [] : ['className' => ConfiguracoesTable::class];
+        $this->Configuracoes = TableRegistry::getTableLocator()->get('Configuracoes', $config);
     }
 
     /**
@@ -50,7 +47,7 @@ class ItensTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Itens);
+        unset($this->Configuracoes);
 
         parent::tearDown();
     }

@@ -10,7 +10,9 @@ use Cake\Validation\Validator;
  * Notas Model
  *
  * @property \App\Model\Table\ProjetosTable&\Cake\ORM\Association\BelongsTo $Projetos
- * @property &\Cake\ORM\Association\BelongsTo $Empresas
+ * @property &\Cake\ORM\Association\BelongsTo $Fornecedores
+ * @property \App\Model\Table\EmpresasTable&\Cake\ORM\Association\BelongsTo $Empresas
+ * @property &\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\ItensTable&\Cake\ORM\Association\HasMany $Itens
  *
  * @method \App\Model\Entity\Nota get($primaryKey, $options = [])
@@ -41,10 +43,12 @@ class NotasTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('FiltroAcesso');
 
         $this->belongsTo('Projetos', [
             'foreignKey' => 'projeto_id'
+        ]);
+        $this->belongsTo('Fornecedores', [
+            'foreignKey' => 'fornecedor_id'
         ]);
         $this->belongsTo('Empresas', [
             'foreignKey' => 'empresa_id'
@@ -92,8 +96,9 @@ class NotasTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['projeto_id'], 'Projetos'));
+        $rules->add($rules->existsIn(['fornecedor_id'], 'Fornecedores'));
         $rules->add($rules->existsIn(['empresa_id'], 'Empresas'));
-        $rules->add($rules->existsIn(['u_id'], 'users'));
+        $rules->add($rules->existsIn(['u_id'], 'Users'));
 
         return $rules;
     }

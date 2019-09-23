@@ -250,6 +250,21 @@ $(document).ready(function(){
                                         <?= $this->Form->control('custoEstimadoProjeto', ['id'=>'custoEstimadoProjeto','label'=>'Custo Estimado','placeholder'=>'R$','class' => 'form-control']); ?>
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('terrenoProjeto', ['id'=>'terrenoProjeto','label'=>'Área do Terreno','placeholder'=>'m²','class' => 'form-control']); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('areaCobertaProjeto', ['id'=>'areaCobertaProjeto','label'=>'Área Coberta Construída','placeholder'=>'m²','class' => 'form-control']); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('areaAbertaProjeto', ['id'=>'areaAbertaProjeto','label'=>'Área Aberta Construída','placeholder'=>'m²','class' => 'form-control']); ?>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -265,26 +280,6 @@ $(document).ready(function(){
 
 
 <script>
-    $( function() {
-        $( "#dataOcorrencia" ).datepicker({
-            format: 'dd/mm/yyyy',
-            todayBtn: false,
-            language: "pt-BR"
-        });
-    } );
-    $( function() {
-        $( "#dataPendenciaOcorrencia" ).datepicker({
-            format: 'dd/mm/yyyy',
-            todayBtn: false,
-            language: "pt-BR"
-        });
-    } );
-    $( function() {
-        $( "#dataNascimentoPessoa" ).datepicker({
-            format: 'dd/mm/yyyy',
-            todayBtn: false,
-            language: "pt-BR"
-        });
-    } );
-    $('.telefone').mask(SPMaskBehavior, spOptions);
+
+
 </script>

@@ -8,7 +8,6 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $nota_id
- * @property int|null $fornecedor_id
  * @property int|null $produto_id
  * @property string|null $observacao
  * @property float $valor
@@ -22,6 +21,8 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Nota $nota
  * @property \App\Model\Entity\Fornecedor $fornecedor
  * @property \App\Model\Entity\Produto $produto
+ * @property \App\Model\Entity\Empresa $empresa
+ * @property \App\Model\Entity\User $user
  */
 class Item extends Entity
 {
@@ -36,7 +37,6 @@ class Item extends Entity
      */
     protected $_accessible = [
         'nota_id' => true,
-        'fornecedor_id' => true,
         'produto_id' => true,
         'observacao' => true,
         'valor' => true,
@@ -48,6 +48,8 @@ class Item extends Entity
         'u_id' => true,
         'nota' => true,
         'fornecedor' => true,
-        'produto' => true
+        'produto' => true,
+        'empresa' => true,
+        'user' => true
     ];
 }

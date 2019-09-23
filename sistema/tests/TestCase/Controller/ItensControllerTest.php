@@ -23,7 +23,9 @@ class ItensControllerTest extends TestCase
         'app.Itens',
         'app.Notas',
         'app.Fornecedores',
-        'app.Produtos'
+        'app.Produtos',
+        'app.Empresas',
+        'app.Users'
     ];
 
     /**

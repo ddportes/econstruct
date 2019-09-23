@@ -154,6 +154,15 @@ class EmpresasTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'u_id'
         ]);
+        $this->belongsTo('Enderecos', [
+            'foreignKey' => 'endereco_id'
+        ]);
+        $this->belongsTo('Contatos', [
+            'foreignKey' => 'contato_id'
+        ]);
+        $this->belongsTo('Pessoas', [
+            'foreignKey' => 'representante_id'
+        ]);
     }
 
     /**
@@ -220,6 +229,9 @@ class EmpresasTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['u_id'], 'Users'));
+        $rules->add($rules->existsIn(['endereco_id'], 'Enderecos'));
+        $rules->add($rules->existsIn(['contato_id'], 'Contatos'));
+        $rules->add($rules->existsIn(['representante_id'], 'Pessoas'));
 
         return $rules;
     }

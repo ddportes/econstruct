@@ -17,6 +17,9 @@ use Cake\I18n\Number;
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  * @property float|null $custo_estimado
+ * @property float|null $terreno
+ * @property float|null $area_construida_coberta
+ * @property float|null $area_construida_aberta
  * @property string|null $observacao
  * @property int|null $empresa_id
  * @property int|null $u_id
@@ -63,7 +66,10 @@ class Projeto extends Entity
         'ocorrencias' => true,
         'orcamentos' => true,
         'recebimentos' => true,
-        'recibos' => true
+        'recibos' => true,
+        'terreno'=>true,
+        'area_construida_coberta'=>true,
+        'area_construida_aberta'=>true
     ];
 
     /**

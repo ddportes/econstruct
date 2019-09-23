@@ -13,6 +13,10 @@
         <li><?= $this->Html->link(__('New Nota'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Projetos'), ['controller' => 'Projetos', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Projeto'), ['controller' => 'Projetos', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Empresas'), ['controller' => 'Empresas', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Empresa'), ['controller' => 'Empresas', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Itens'), ['controller' => 'Itens', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Item'), ['controller' => 'Itens', 'action' => 'add']) ?> </li>
     </ul>
@@ -22,7 +26,15 @@
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Projeto') ?></th>
-            <td><?= $nota->has('projeto') ? $this->Html->link($nota->projeto->id, ['controller' => 'Projetos', 'action' => 'view', $nota->projeto->id]) : '' ?></td>
+            <td><?= $nota->has('projeto') ? $this->Html->link($nota->projeto->descricao, ['controller' => 'Projetos', 'action' => 'view', $nota->projeto->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Empresa') ?></th>
+            <td><?= $nota->has('empresa') ? $this->Html->link($nota->empresa->nome_fantasia, ['controller' => 'Empresas', 'action' => 'view', $nota->empresa->id]) : '' ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('User') ?></th>
+            <td><?= $nota->has('user') ? $this->Html->link($nota->user->username, ['controller' => 'Users', 'action' => 'view', $nota->user->id]) : '' ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Id') ?></th>
@@ -33,8 +45,8 @@
             <td><?= $this->Number->format($nota->valor) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Empresa Id') ?></th>
-            <td><?= $this->Number->format($nota->empresa_id) ?></td>
+            <th scope="row"><?= __('Fornecedor Id') ?></th>
+            <td><?= $this->Number->format($nota->fornecedor_id) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Data') ?></th>
@@ -56,7 +68,6 @@
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Nota Id') ?></th>
-                <th scope="col"><?= __('Fornecedor Id') ?></th>
                 <th scope="col"><?= __('Produto Id') ?></th>
                 <th scope="col"><?= __('Observacao') ?></th>
                 <th scope="col"><?= __('Valor') ?></th>
@@ -65,13 +76,13 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($nota->itens as $itens): ?>
             <tr>
                 <td><?= h($itens->id) ?></td>
                 <td><?= h($itens->nota_id) ?></td>
-                <td><?= h($itens->fornecedor_id) ?></td>
                 <td><?= h($itens->produto_id) ?></td>
                 <td><?= h($itens->observacao) ?></td>
                 <td><?= h($itens->valor) ?></td>
@@ -80,6 +91,7 @@
                 <td><?= h($itens->created) ?></td>
                 <td><?= h($itens->modified) ?></td>
                 <td><?= h($itens->empresa_id) ?></td>
+                <td><?= h($itens->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Itens', 'action' => 'view', $itens->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Itens', 'action' => 'edit', $itens->id]) ?>
