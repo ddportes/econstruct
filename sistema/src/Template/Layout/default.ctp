@@ -23,6 +23,7 @@ $cakeDescription = 'e-Construct';
 
     <?= $this->fetch('css') ?>
     <?= $this->Html->css('jquery.popdown.css') ?>
+    <?php //echo $this->Html->css('menu.css') ?>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sizzle/2.3.3/sizzle.min.js"></script>
@@ -37,6 +38,7 @@ $cakeDescription = 'e-Construct';
     <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js',['block'=>true]) ?>
     <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js',['block'=>true]) ?>
     <?= $this->Html->script('validacoes.js') ?>
+    <?php //echo $this->Html->script('menu.js') ?>
 
     <?= $this->fetch('script') ?>
 

@@ -71,6 +71,7 @@
       <path value="$PROJECT_DIR$/sistema/vendor/sebastian/version" />
       <path value="$PROJECT_DIR$/sistema/vendor/josegonzalez/dotenv" />
       <path value="$PROJECT_DIR$/sistema/vendor/holt59/cakephp3-bootstrap-helpers" />
+      <path value="$PROJECT_DIR$/sistema/vendor/firebase/php-jwt" />
     </include_path>
   </component>
   <component name="PhpUnit">

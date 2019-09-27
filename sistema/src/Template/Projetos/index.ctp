@@ -28,16 +28,6 @@
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <?= $this->Html->link('<i class="nav-link-icon lnr lnr-plus-circle"></i><span>'.__('Novo Projeto').'</span>', ['action' => 'add'],['role'=>'button','title'=>'Novo Projeto','class'=>'nav-link','escape'=>false]) ?>
-                            <?= $this->Html->link('<i class="nav-link-icon lnr lnr-layers"></i><span>'.__('Orçamentos').'</span>',
-                                ['controller' => 'Orcamentos', 'action' => 'add'], [
-                                    'id' => 'addOrcamentoAcao',
-                                    'class' => 'nav-link modal_xl_link',
-                                    'style'=>'top:2.5em',
-                                    'role' => 'button',
-                                    'data-toggle'=>"modal",
-                                    'data-target'=>".modal_econstruct",
-                                    'escape' => false
-                                ]) ?>
                         </li>
                     </ul>
                 </div>
