@@ -1,23 +1,88 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Renda $renda
+ */
+?>
+
+<?php //echo $this->Html->script('renda.js') ?>
+<div id="addContrato" >
+    <div class="modal-header">
+        <h5 class="modal-title">Contrato</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="fechar">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <?php if(!empty($pessoa_id)): ?>
+        <?= $this->Form->create($renda,['id'=>'formContrato']) ?>
+        <div class="modal-body">
+            <h5 class="card-title">Preencha as informações abaixo</h5>
+            <div class="position-relative row form-group">
+                <label for="pessoa_id" class="col-sm-2 col-form-label">Pessoa:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('pessoa_id',['label'=>false,'options'=>$pessoas,'value' => $pessoa_id,'name'=>'pessoa_id','id'=>'pessoa_id','class'=>'form-control']); ?>
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                <label for="fonte_pagadora" class="col-sm-2 col-form-label">Fonte Pagadora:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('fonte_pagadora',['label'=>false,'type'=>'text','name'=>'fonte_pagadora','id'=>'fonte_pagadora','class'=>'form-control','placeholder'=>'Digite a razão social da Fonte Pagadora']); ?>
+                </div>
+            </div>
+
+            <div class="position-relative row form-group">
+                <label for="tipo" class="col-sm-2 col-form-label">Tipo de Pessoa:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('tipo', ['label'=>false,'options'=>['J'=>'Jurídica','F'=>'Física'],'id'=>'tipo','class' => 'form-control']); ?>
+                </div>
+            </div>
+
+            <div class="position-relative row form-group">
+                <label for="cpf_cnpj" class="col-sm-2 col-form-label">CPF/CNPJ:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('cpf_cnpj', ['id'=>'cpf_cnpj','label'=>false,'placeholder'=>'Somente números','class' => 'form-control cpf']); ?>
+                    <div id="erro_cpf_cnpj" role="alert" style="margin-top:4px;"></div>
+                </div>
+            </div>
+
+            <div class="position-relative row form-group">
+                <label for="renda_bruta" class="col-sm-2 col-form-label">Renda Bruta:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('renda_bruta', ['id'=>'renda_bruta','type'=>'text','label'=>false,'placeholder'=>'R$','class' => 'form-control']); ?>
+                </div>
+            </div>
+
+            <div class="position-relative row form-group">
+                <label for="renda_liquida" class="col-sm-2 col-form-label">Renda Líquida:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('renda_liquida', ['id'=>'renda_liquida','type'=>'text','label'=>false,'placeholder'=>'R$','class' => 'form-control']); ?>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <?= $this->Form->button(__('Salvar'),['id'=>'salvarRenda','class'=>'btn btn-secondary']) ?>
+            <button id="fechaModal" type="button" class="btn btn-secondary close-popdown" data-dismiss="modal">fechar</button>
+        </div>
+        <?= $this->Form->end() ?>
+
+    <?php else: ?>
+        <div class="modal-body"><h5 class="card-title">Selecione um cliente</h5>
+        </div>
+    <?php endif; ?>
+</div>
+
+
+
+
+
+
+
+<?php
+/**
+ * @var \App\View\AppView $this
  * @var \App\Model\Entity\Contrato $contrato
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Contratos'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Projetos'), ['controller' => 'Projetos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Projeto'), ['controller' => 'Projetos', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Orcamentos'), ['controller' => 'Orcamentos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Orcamento'), ['controller' => 'Orcamentos', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Empresas'), ['controller' => 'Empresas', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Empresa'), ['controller' => 'Empresas', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
 <div class="contratos form large-9 medium-8 columns content">
     <?= $this->Form->create($contrato) ?>
     <fieldset>

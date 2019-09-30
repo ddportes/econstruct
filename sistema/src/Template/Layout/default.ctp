@@ -23,9 +23,10 @@ $cakeDescription = 'e-Construct';
 
     <?= $this->fetch('css') ?>
     <?= $this->Html->css('jquery.popdown.css') ?>
-    <?php //echo $this->Html->css('menu.css') ?>
 
+    <?php echo $this->Html->script('main.js') ?>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sizzle/2.3.3/sizzle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
@@ -38,9 +39,10 @@ $cakeDescription = 'e-Construct';
     <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js',['block'=>true]) ?>
     <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js',['block'=>true]) ?>
     <?= $this->Html->script('validacoes.js') ?>
-    <?php //echo $this->Html->script('menu.js') ?>
+
 
     <?= $this->fetch('script') ?>
+
 
 </head>
 <body>

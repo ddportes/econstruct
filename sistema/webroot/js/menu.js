@@ -1,16 +1,13 @@
-(function() {
+$(document).on('read',function() {
 
-    var hamburger = {
-        navToggle: document.querySelector('.nav-toggle'),
-        nav: document.querySelector('nav'),
+    $(".close-sidebar-btn").on('click',function(){
+            alert('1');
 
-        doToggle: function(e) {
-            e.preventDefault();
-            this.navToggle.classList.toggle('expanded');
-            this.nav.classList.toggle('expanded');
+            var t=$(this).attr("data-class");
+            $(".app-container").toggleClass(t);
+            var n=$(this);
+            n.hasClass("is-active")?n.removeClass("is-active"):n.addClass("is-active")
         }
-    };
+    )
 
-    hamburger.navToggle.addEventListener('click', function(e) { hamburger.doToggle(e); });
-
-}());
+});

@@ -41,12 +41,12 @@
         <ul class="header-menu nav">
             <li class="nav-item">
                 <div class="btn-group">
-                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
+                    <a data-toggle="dropdown" aria-haspopup="true" onclick="$('#menu_visita').toggle();" aria-expanded="false" class="nav-link">
                         <i class="nav-link-icon fas fa-id-badge"> </i>
                         <?= __('Nova Visita') ?>
                         <i class="fa fa-angle-down ml-2 opacity-8"></i>
                     </a>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                    <div id="menu_visita" tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                         <?= $this->Html->Link('Cliente Novo',['controller'=>'Ocorrencias','action'=>'visitaNovoCliente'],['role'=>'button','class'=>'dropdown-item','tabindex'=>'0']) ?>
                         <?= $this->Html->Link('Cliente Existente',['controller'=>'Ocorrencias','action'=>'visita'],['role'=>'button','class'=>'dropdown-item','tabindex'=>'0']) ?>
                         <?= $this->Html->Link('Todas as Visitas',['controller'=>'Ocorrencias','action'=>'todasVisitas'],['role'=>'button','class'=>'dropdown-item','tabindex'=>'0']) ?>
@@ -56,12 +56,12 @@
             </li>
             <li class="nav-item">
                 <div class="btn-group">
-                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link">
+                    <a data-toggle="dropdown" aria-haspopup="true" onclick="$('#menu_projeto').toggle();" aria-expanded="false" class="nav-link">
                         <i class="nav-link-icon fas fa-project-diagram"></i>
                         <?= __('Projetos') ?>
                         <i class="fa fa-angle-down ml-2 opacity-8"></i>
                     </a>
-                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                    <div id="menu_projeto" tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                         <?= $this->Html->Link('Novo Projeto',['controller'=>'Projetos','action'=>'add'],['role'=>'button','class'=>'dropdown-item','tabindex'=>'0']) ?>
                         <?= $this->Html->Link('Todos os Projetos',['controller'=>'Projetos','action'=>'index'],['role'=>'button','class'=>'dropdown-item','tabindex'=>'0']) ?>
 
@@ -88,11 +88,11 @@
                 <div class="widget-content-wrapper">
                     <div class="widget-content-left">
                         <div class="btn-group">
-                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
+                            <a data-toggle="dropdown" aria-haspopup="true" onclick="$('#menu_user').toggle();" aria-expanded="false" class="p-0 btn">
                                 <?= empty($userSession) ? '' : ($userSession['username']) ?>
                                 <i class="fa fa-angle-down ml-2 opacity-8"></i>
                             </a>
-                            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
+                            <div id="menu_user" tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                 <?= $this->Html->Link('Trocar Senha',['controller'=>'Users','action'=>'edit',$userSession['id']],['role'=>'button','class'=>'dropdown-item','tabindex'=>'0']) ?>
 
                                 <?php if(isset($isAdmin)): ?>
