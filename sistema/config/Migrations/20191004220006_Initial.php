@@ -246,20 +246,10 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => false,
             ])
-            ->addColumn('data_assinatura', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => false,
-            ])
-            ->addColumn('data_inicial', 'date', [
+            ->addColumn('data_assinatura', 'date', [
                 'default' => null,
                 'limit' => null,
-                'null' => false,
-            ])
-            ->addColumn('data_final', 'date', [
-                'default' => null,
-                'limit' => null,
-                'null' => false,
+                'null' => true,
             ])
             ->addColumn('minuta', 'text', [
                 'default' => null,
@@ -386,6 +376,11 @@ class Initial extends AbstractMigration
                 'default' => null,
                 'limit' => 15,
                 'null' => false,
+            ])
+            ->addColumn('inscricao', 'string', [
+                'default' => null,
+                'limit' => 63,
+                'null' => true,
             ])
             ->addColumn('razao_social', 'string', [
                 'default' => null,
@@ -1804,6 +1799,11 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
+            ->addColumn('endereco_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
             ->addColumn('empresa_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
@@ -1837,6 +1837,11 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'u_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'endereco_id',
                 ]
             )
             ->create();
