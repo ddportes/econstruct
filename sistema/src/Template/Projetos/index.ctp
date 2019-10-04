@@ -86,13 +86,10 @@
                                             ]) ?>
                                         <?php if(!is_null($projeto->contrato_id)): ?>
                                             <?= $this->Html->link('<i class="fas fa-file-pdf"></i>',
-                                                ['controller'=>'Contratos','action' => 'exportarPdf', $projeto->id], [
+                                                ['controller'=>'Contratos','action' => 'exportarPdf', $projeto->contrato_id], [
                                                     'id' => 'pdfContrato',
-                                                    'class' => 'modal_xl_link',
                                                     'style'=>'top:2.5em',
                                                     'role' => 'button',
-                                                    'data-toggle'=>"modal",
-                                                    'data-target'=>".modal_econstruct",
                                                     'Title'=>'Download Contrato',
                                                     'escape' => false
                                                 ]) ?>

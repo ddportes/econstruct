@@ -97,10 +97,28 @@ class Apoio{
             'valor_orcamento'=>'valor_orcamento',
             'detalhes_orcamento'=>'detalhes_orcamento',
             'dataassinatura_contrato'=>'dataassinatura_contrato',
+            'dataassinaturaextenso_contrato'=>'dataassinaturaextenso_contrato',
             'error'=>''
         ];
 
         return $retorno;
+    }
+
+    public function meses(){
+        return [
+            [1=>'Janeiro'],
+            [2=>'Fevereiro'],
+            [3=>'Março'],
+            [4=>'Abril'],
+            [5=>'Maio'],
+            [6=>'Junho'],
+            [7=>'Julho'],
+            [8=>'Agosto'],
+            [9=>'Setembro'],
+            [10=>'Outubro'],
+            [11=>'Novembro'],
+            [12=>'Dezembro'],
+        ];
     }
 
 }

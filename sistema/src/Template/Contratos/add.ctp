@@ -67,7 +67,7 @@
             <div class="position-relative row form-group">
                 <label for="minuta" class="col-sm-2 col-form-label">Minuta:</label>
                 <div class="col-sm-10">
-                    <?= $this->Form->control('minuta',['label'=>false,'type'=>'textarea','name'=>'minuta','id'=>'minuta','class'=>'form-control']); ?>
+                    <?= $this->Form->control('minuta',['label'=>false,'type'=>'textarea','value'=>$config->minuta_default,'name'=>'minuta','id'=>'minuta','class'=>'form-control']); ?>
                 </div>
             </div>
 

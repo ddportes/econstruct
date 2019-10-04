@@ -45,24 +45,62 @@ class ContratosController extends AppController
     }
 
     /**
+     * exportarPdf method
+     *
+     * @param string|null $id Contrato id.
+     * @return \Cake\Http\Response|null
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function exportarPdf($id = null)
+    {
+        $contrato = $this->Contratos->get($id, [
+            'contain' => ['Projetos','Projetos.Clientes','Projetos.Clientes.Pessoas', 'Orcamentos', 'Empresas', 'Users']
+        ]);
+
+        $tags = $this->Contratos->tags($contrato->orcamento_id);
+
+        if($tags['error'] <> ''){
+            $this->Flash->error(__($tags['error']));
+            return $this->redirect(['controller'=>'Projetos','action'=>'index']);
+        }else{
+            $contrato->minuta = str_replace(array_keys($tags),array_values($tags),$contrato->minuta) ;
+        }
+
+        $this->viewBuilder()
+            ->className('Dompdf.Pdf')
+            ->setlayout('Contrato/contratopdf')
+            ->options([
+                'config' => [
+                    'filename' => 'Contrato '.$contrato->projeto->cliente->pessoa->nome.' - '.$contrato->projeto->descricao,
+                    'render' => 'download',
+                    'orientation' => 'landscape',
+                    'paginate' => [
+                        'x' => 1500,
+                        'y' => 5,
+                    ],
+                ]
+            ]);
+
+        $this->set('contrato', $contrato);
+    }
+
+
+    /**
      * Add method
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
     public function add($projeto_id=null,$orcamento_id=null)
     {
+        $user = $this->Auth->user();
         $contrato = $this->Contratos->newEntity();
         if ($this->request->is(['patch', 'post', 'put'])) {
-
-            $user = $this->Auth->user();
 
             $dados =  $this->request->getData();
             $dt = explode('/',$dados['data_assinatura']);
             $dados['data_assinatura'] = ($dados['data_assinatura']<>''? date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0])):null);
             $dados['empresa_id'] = $user['empresa_id'];
             $dados['u_id'] = $user['id'];
-
-            ////dd($dados);
 
             $contrato = $this->Contratos->patchEntity($contrato, $dados);
             if ($this->Contratos->save($contrato)) {
@@ -87,8 +125,10 @@ class ContratosController extends AppController
             $this->set('orcamento',$orcamento);
         }
         $tags = $this->Contratos->tags();
+        $this->loadModel('Configuracoes');
+        $config = $this->Configuracoes->find('all')->first();
 
-        $this->set(compact('contrato', 'orcamentos', 'projeto_id','orcamento_id','tags'));
+        $this->set(compact('contrato', 'orcamentos', 'projeto_id','orcamento_id','tags','config'));
     }
 
     /**
@@ -109,8 +149,6 @@ class ContratosController extends AppController
             $dt = explode('/',$dados['data_assinatura']);
             $dados['data_assinatura'] = ($dados['data_assinatura']<>''? date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0])):null);
             $dados['u_id'] = $user['id'];
-
-            //dd($dados);
 
             $contrato = $this->Contratos->patchEntity($contrato, $dados);
             if ($this->Contratos->save($contrato)) {

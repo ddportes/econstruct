@@ -5,8 +5,14 @@
       <sourceFolder url="file://$MODULE_DIR$/sistema/tests" isTestSource="true" packagePrefix="App\Test\" />
       <sourceFolder url="file://$MODULE_DIR$/sistema/src" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/sistema/vendor/cakephp/cakephp/tests" isTestSource="true" packagePrefix="Cake\Test\" />
+      <excludeFolder url="file://$MODULE_DIR$/sistema/vendor/daoandco/cakephp-dompdf" />
+      <excludeFolder url="file://$MODULE_DIR$/sistema/vendor/dompdf/dompdf" />
       <excludeFolder url="file://$MODULE_DIR$/sistema/vendor/firebase/php-jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/sistema/vendor/friendsofcake/cakepdf" />
       <excludeFolder url="file://$MODULE_DIR$/sistema/vendor/holt59/cakephp3-bootstrap-helpers" />
+      <excludeFolder url="file://$MODULE_DIR$/sistema/vendor/phenx/php-font-lib" />
+      <excludeFolder url="file://$MODULE_DIR$/sistema/vendor/phenx/php-svg-lib" />
+      <excludeFolder url="file://$MODULE_DIR$/sistema/vendor/sabberworm/php-css-parser" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use App\Utility\Apoio;
 
 /**
  * Contrato Entity
@@ -46,4 +47,25 @@ class Contrato extends Entity
         'empresa' => true,
         'user' => true
     ];
+
+    public function dataAssinaturaExtenso(){
+        if(!empty($this->data_assinatura)) {
+            $meses = Apoio::meses();
+            $dt = explode('/', $this->data_assinatura);
+
+            return $dt[2].' de '.$meses[$dt[1]].' de '.$dt[0];
+        }
+        return null;
+    }
+
+    public function dataAssinatura($string = null){
+        if(!empty($this->data_assinatura)) {
+            $dt = explode('/', $this->data_assinatura);
+            if($string) {
+                return $dt[2] . '/' . $dt[1] . '/' . $dt[0];
+            }
+            return date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0]));
+        }
+        return null;
+    }
 }

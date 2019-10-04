@@ -3,6 +3,7 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 use Cake\I18n\Number;
+use Apoio\Utility\Apoio;
 
 /**
  * Orcamento Entity
@@ -58,6 +59,49 @@ class Orcamento extends Entity
 
         return false;
     }
+
+    public function dataInicialExtenso(){
+        if(!empty($this->data_inicial)) {
+            $meses = Apoio::meses();
+            $dt = explode('/', $this->data_inicial);
+
+            return $dt[2].' de '.$meses[$dt[1]].' de '.$dt[0];
+        }
+        return null;
+    }
+
+    public function dataInicial($string = null){
+        if(!empty($this->data_inicial)) {
+            $dt = explode('/', $this->data_inicial);
+            if($string) {
+                return $dt[2] . '/' . $dt[1] . '/' . $dt[0];
+            }
+            return date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0]));
+        }
+        return null;
+    }
+
+    public function dataEntrega($string = null){
+        if(!empty($this->data_entrega)) {
+            $dt = explode('/', $this->data_entrega);
+            if($string) {
+                return $dt[2] . '/' . $dt[1] . '/' . $dt[0];
+            }
+            return date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0]));
+        }
+        return null;
+    }
+
+    public function dataEntregaExtenso(){
+        if(!empty($this->data_entrega)) {
+            $meses = Apoio::meses();
+            $dt = explode('/', $this->data_entrega);
+
+            return $dt[2].' de '.$meses[$dt[1]].' de '.$dt[0];
+        }
+        return null;
+    }
+
 
     public function custo($moeda = null){
         if($moeda === true){

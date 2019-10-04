@@ -72,6 +72,12 @@
       <path value="$PROJECT_DIR$/sistema/vendor/josegonzalez/dotenv" />
       <path value="$PROJECT_DIR$/sistema/vendor/holt59/cakephp3-bootstrap-helpers" />
       <path value="$PROJECT_DIR$/sistema/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/sistema/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/sistema/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/sistema/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/sistema/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/sistema/vendor/friendsofcake/cakepdf" />
+      <path value="$PROJECT_DIR$/sistema/vendor/daoandco/cakephp-dompdf" />
     </include_path>
   </component>
   <component name="PhpUnit">

@@ -44,4 +44,26 @@ class Ocorrencia extends Entity
         'ocorrencia_tipo' => true,
         'projeto' => true
     ];
+
+    public function data($string = null){
+        if(!empty($this->data)) {
+            $dt = explode('/', $this->data);
+            if($string) {
+                return $dt[2] . '/' . $dt[1] . '/' . $dt[0];
+            }
+            return date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0]));
+        }
+        return null;
+    }
+
+    public function dataPendencia($string = null){
+        if(!empty($this->data_pendencia)) {
+            $dt = explode('/', $this->data_pendencia);
+            if($string) {
+                return $dt[2] . '/' . $dt[1] . '/' . $dt[0];
+            }
+            return date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0]));
+        }
+        return null;
+    }
 }
