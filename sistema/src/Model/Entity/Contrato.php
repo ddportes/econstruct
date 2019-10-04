@@ -9,9 +9,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $projeto_id
  * @property int $orcamento_id
- * @property int $data_assinatura
- * @property \Cake\I18n\FrozenDate $data_inicial
- * @property \Cake\I18n\FrozenDate $data_final
+ * @property \Cake\I18n\FrozenDate $data_assinatura
  * @property string|null $minuta
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
@@ -38,8 +36,6 @@ class Contrato extends Entity
         'projeto_id' => true,
         'orcamento_id' => true,
         'data_assinatura' => true,
-        'data_inicial' => true,
-        'data_final' => true,
         'minuta' => true,
         'created' => true,
         'modified' => true,

@@ -38,12 +38,12 @@ $cakeDescription = 'e-Construct';
     <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt-BR.min.js',['block'=>true]) ?>
     <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js',['block'=>true]) ?>
     <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js',['block'=>true]) ?>
+
+
     <?= $this->Html->script('validacoes.js') ?>
 
 
     <?= $this->fetch('script') ?>
-
-
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">

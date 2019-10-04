@@ -199,10 +199,10 @@ class FiltroAcessoBehavior extends Behavior
                 break;
             case 'Empresas':
                 $conditions = [];
-
-                $conditions[] = ['Empresas.id =' => $usuario['empresa_id']];
-
-                $query->andWhere(['AND' => $conditions]);
+                if($usuario['empresa_id'] <> 0) {
+                    $conditions[] = ['Empresas.id =' => $usuario['empresa_id']];
+                    $query->andWhere(['AND' => $conditions]);
+                }
                 break;
             case 'Contratos':
                 $conditions = [];
@@ -253,7 +253,7 @@ class FiltroAcessoBehavior extends Behavior
 
                 $query->andWhere(['AND' => $conditions]);
                 break;
-            case '':
+            case 'Itens':
                 $conditions = [];
 
                 $conditions[] = ['Itens.empresa_id =' => $usuario['empresa_id']];

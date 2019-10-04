@@ -159,34 +159,59 @@ class OcorrenciasController extends AppController
                                 $dados_projeto['u_id'] = $user['id'];
                                 $projeto = $this->Projetos->newEntity($dados_projeto);
                                 if ($this->Projetos->save($projeto)) {
-                                    //cria ocorrencia
-                                    $dados_ocorrencia['projeto_id'] = $projeto->id;
-                                    $dados_ocorrencia['ocorrencia_tipo_id'] = 1;
-                                    $dados_ocorrencia['observacao'] = (!empty($dados['anotacoesOcorrencia'])?$dados['anotacoesOcorrencia']: null);
-                                    $dt = explode('/',$dados['dataOcorrencia']);
-                                    $dados_ocorrencia['data'] = ($dados['dataOcorrencia']<>''? date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0])):null);
-                                    $dt = explode('/',$dados['dataPendenciaOcorrencia']);
-                                    $dados_ocorrencia['data_pendencia'] = ($dados['dataPendenciaOcorrencia']<>''? date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0])):null);
-                                    $dados_ocorrencia['empresa_id'] = $user['empresa_id'];
-                                    $dados_ocorrencia['u_id'] = $user['id'];
-                                    $ocorrencia = $this->Ocorrencias->newEntity($dados_ocorrencia);
-                                    if ($this->Ocorrencias->save($ocorrencia)) {
+                                    $dados_endereco_proj['logradouro'] = (!empty($dados['logradouroProj'])?$dados['logradouroProj']: null);
+                                    $dados_endereco_proj['numero'] = (!empty($dados['numeroProj'])?$dados['numeroProj']: null);
+                                    $dados_endereco_proj['complemento'] = (!empty($dados['complementoProj'])?$dados['complementoProj']: null);
+                                    $dados_endereco_proj['bairro'] = (!empty($dados['bairroProj'])?$dados['bairroProj']: null);
+                                    $dados_endereco_proj['cep'] = (!empty($dados['cepProj'])?preg_replace('/[^0-9]/', '', $dados['cepProj']): null);
+                                    $dados_endereco_proj['cidade'] = (!empty($dados['cidadeProj'])?$dados['cidadeProj']: null);
+                                    $dados_endereco_proj['estado'] = (!empty($dados['estadoProj'])?$dados['estadoProj']: null);
+                                    $dados_endereco_proj['principal'] = 'S';
+                                    $dados_endereco_proj['empresa_id'] = $user['empresa_id'];
+                                    $dados_endereco_proj['u_id'] = $user['id'];
+                                    $endereco_proj = $this->Enderecos->newEntity($dados_endereco_proj);
 
-                                        $dados_originais = json_encode([$user['id'],$user['username'],'Nova Visita']);
-                                        $dados_novos = json_encode([$user['id'],$user['username'],$ocorrencia,$projeto,$contatos,$endereco,$cliente,$pessoa]);
-                                        if($this->Modificacoes->emiteLog('Ocorrencias','visitaNovoCliente',$dados_originais,$dados_novos)) {
-                                            $this->Flash->success(__('Visita cadastrada com sucesso.'));
-                                        }else{
-                                            $this->Flash->error(__('Erro ao gravar log.'));
+                                    if ($this->Enderecos->save($endereco_proj)) {
+                                        //cria ocorrencia
+                                        $dados_ocorrencia['projeto_id'] = $projeto->id;
+                                        $dados_ocorrencia['ocorrencia_tipo_id'] = 1;
+                                        $dados_ocorrencia['observacao'] = (!empty($dados['anotacoesOcorrencia']) ? $dados['anotacoesOcorrencia'] : null);
+                                        $dt = explode('/', $dados['dataOcorrencia']);
+                                        $dados_ocorrencia['data'] = ($dados['dataOcorrencia'] <> '' ? date('Y-m-d', strtotime($dt[2] . '-' . $dt[1] . '-' . $dt[0])) : null);
+                                        $dt = explode('/', $dados['dataPendenciaOcorrencia']);
+                                        $dados_ocorrencia['data_pendencia'] = ($dados['dataPendenciaOcorrencia'] <> '' ? date('Y-m-d', strtotime($dt[2] . '-' . $dt[1] . '-' . $dt[0])) : null);
+                                        $dados_ocorrencia['empresa_id'] = $user['empresa_id'];
+                                        $dados_ocorrencia['u_id'] = $user['id'];
+                                        $ocorrencia = $this->Ocorrencias->newEntity($dados_ocorrencia);
+                                        if ($this->Ocorrencias->save($ocorrencia)) {
+
+                                            $dados_originais = json_encode([$user['id'], $user['username'], 'Nova Visita']);
+                                            $dados_novos = json_encode([$user['id'], $user['username'], $ocorrencia, $projeto, $contatos, $endereco, $cliente, $pessoa]);
+                                            if ($this->Modificacoes->emiteLog('Ocorrencias', 'visitaNovoCliente', $dados_originais, $dados_novos)) {
+                                                $this->Flash->success(__('Visita cadastrada com sucesso.'));
+                                            } else {
+                                                $this->Flash->error(__('Erro ao gravar log.'));
+                                            }
+
+                                            return $this->redirect(['action' => 'todasVisitas']);
+                                        } else {
+                                            $this->Flash->error(__('Erro ao gravar Visita. Tente Novamente.'));
+                                            $this->Projetos->delete($projeto);
+                                            foreach ($contatos as $c) {
+                                                $this->Contatos->delete($c);
+                                            }
+                                            $this->Enderecos->delete($endereco);
+                                            $this->Enderecos->delete($endereco_proj);
+                                            $this->Clientes->delete($cliente);
+                                            $this->Pessoas->delete($pessoa);
                                         }
-
-                                        return $this->redirect(['action' => 'todasVisitas']);
                                     }else{
-                                        $this->Flash->error(__('Erro ao gravar Visita. Tente Novamente.'));
-                                        $this->Projetos->delete($projeto);
+                                        $this->Flash->error(__('Erro ao gravar endereço do projeto. Tente Novamente.'));
                                         foreach($contatos as $c){
                                             $this->Contatos->delete($c);
                                         }
+                                        $this->Projetos->delete($projeto);
+                                        $this->Enderecos->delete($endereco);
                                         $this->Clientes->delete($cliente);
                                         $this->Pessoas->delete($pessoa);
                                     }
@@ -195,6 +220,7 @@ class OcorrenciasController extends AppController
                                     foreach($contatos as $c){
                                         $this->Contatos->delete($c);
                                     }
+                                    $this->Enderecos->delete($endereco);
                                     $this->Clientes->delete($cliente);
                                     $this->Pessoas->delete($pessoa);
                                 }
@@ -308,31 +334,45 @@ class OcorrenciasController extends AppController
                                     $projeto = $this->Projetos->newEntity($dados_projeto);
                                 }
                                 if ($this->Projetos->save($projeto)) {
-                                    //cria ocorrencia
-                                    $dados_ocorrencia['projeto_id'] = $projeto->id;
-                                    $dados_ocorrencia['ocorrencia_tipo_id'] = 1;
-                                    $dados_ocorrencia['observacao'] = (!empty($dados['anotacoesOcorrencia'])?$dados['anotacoesOcorrencia']: null);
-                                    $dt = explode('/',$dados['dataOcorrencia']);
-                                    $dados_ocorrencia['data'] = ($dados['dataOcorrencia']<>''? date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0])):null);
-                                    $dt = explode('/',$dados['dataPendenciaOcorrencia']);
-                                    $dados_ocorrencia['data_pendencia'] = ($dados['dataPendenciaOcorrencia']<>''? date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0])):null);
-                                    $dados_ocorrencia['empresa_id'] = $user['empresa_id'];
-                                    $dados_ocorrencia['u_id'] = $user['id'];
-                                    $ocorrencia = $this->Ocorrencias->newEntity($dados_ocorrencia);
+                                    $dados_endereco_proj['logradouro'] = (!empty($dados['logradouroProj'])?$dados['logradouroProj']: null);
+                                    $dados_endereco_proj['numero'] = (!empty($dados['numeroProj'])?$dados['numeroProj']: null);
+                                    $dados_endereco_proj['complemento'] = (!empty($dados['complementoProj'])?$dados['complementoProj']: null);
+                                    $dados_endereco_proj['bairro'] = (!empty($dados['bairroProj'])?$dados['bairroProj']: null);
+                                    $dados_endereco_proj['cep'] = (!empty($dados['cepProj'])?preg_replace('/[^0-9]/', '', $dados['cepProj']): null);
+                                    $dados_endereco_proj['cidade'] = (!empty($dados['cidadeProj'])?$dados['cidadeProj']: null);
+                                    $dados_endereco_proj['estado'] = (!empty($dados['estadoProj'])?$dados['estadoProj']: null);
+                                    $dados_endereco_proj['empresa_id'] = $user['empresa_id'];
+                                    $dados_endereco_proj['u_id'] = $user['id'];
+                                    $endereco_proj = $this->Enderecos->newEntity($dados_endereco_proj);
 
-                                    if ($this->Ocorrencias->save($ocorrencia)) {
-                                        $dados_originais = json_encode([$user['id'],$user['username'],'Nova Visita']);
-                                        $dados_novos = json_encode([$user['id'],$user['username'],$ocorrencia,$projeto,$contatos,$endereco,$cliente,$pessoa]);
-                                        if($this->Modificacoes->emiteLog('Ocorrencias','visitaNovoCliente',$dados_originais,$dados_novos)) {
-                                            $this->Flash->success(__('Visita gravada com sucesso.'));
-                                        }else{
-                                            $this->Flash->error(__('Erro ao gravar log.'));
+                                    if ($this->Enderecos->save($endereco_proj)) {
+                                        //cria ocorrencia
+                                        $dados_ocorrencia['projeto_id'] = $projeto->id;
+                                        $dados_ocorrencia['ocorrencia_tipo_id'] = 1;
+                                        $dados_ocorrencia['observacao'] = (!empty($dados['anotacoesOcorrencia']) ? $dados['anotacoesOcorrencia'] : null);
+                                        $dt = explode('/', $dados['dataOcorrencia']);
+                                        $dados_ocorrencia['data'] = ($dados['dataOcorrencia'] <> '' ? date('Y-m-d', strtotime($dt[2] . '-' . $dt[1] . '-' . $dt[0])) : null);
+                                        $dt = explode('/', $dados['dataPendenciaOcorrencia']);
+                                        $dados_ocorrencia['data_pendencia'] = ($dados['dataPendenciaOcorrencia'] <> '' ? date('Y-m-d', strtotime($dt[2] . '-' . $dt[1] . '-' . $dt[0])) : null);
+                                        $dados_ocorrencia['empresa_id'] = $user['empresa_id'];
+                                        $dados_ocorrencia['u_id'] = $user['id'];
+                                        $ocorrencia = $this->Ocorrencias->newEntity($dados_ocorrencia);
+
+                                        if ($this->Ocorrencias->save($ocorrencia)) {
+                                            $dados_originais = json_encode([$user['id'], $user['username'], 'Nova Visita']);
+                                            $dados_novos = json_encode([$user['id'], $user['username'], $ocorrencia, $projeto, $contatos, $endereco, $cliente, $pessoa]);
+                                            if ($this->Modificacoes->emiteLog('Ocorrencias', 'visitaNovoCliente', $dados_originais, $dados_novos)) {
+                                                $this->Flash->success(__('Visita gravada com sucesso.'));
+                                            } else {
+                                                $this->Flash->error(__('Erro ao gravar log.'));
+                                            }
+
+                                            return $this->redirect(['action' => 'todasVisitas']);
+                                        } else {
+                                            $this->Flash->error(__('Erro ao gravar a visita.'));
                                         }
-
-                                        return $this->redirect(['action' => 'todasVisitas']);
-                                    }
-                                    else{
-                                        $this->Flash->error(__('Erro ao gravar a visita.'));
+                                    }else{
+                                        $this->Flash->error(__('Erro ao gravar endereco do projeto. Tente Novamente.'));
                                     }
                                 }else{
                                     $this->Flash->error(__('Erro ao gravar Projeto. Tente Novamente.'));
@@ -355,7 +395,7 @@ class OcorrenciasController extends AppController
             }
         }
 
-        $clientes = $this->Clientes->find()->contain(['Pessoas','Pessoas.Contatos','Pessoas.Enderecos','Projetos']);
+        $clientes = $this->Clientes->find()->contain(['Pessoas','Pessoas.Contatos','Pessoas.Enderecos','Projetos','Projetos.Enderecos']);
 
         $listaClientes = [];
         $listaClientes+= [''=>''];

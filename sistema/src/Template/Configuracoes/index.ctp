@@ -1,55 +1,61 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Configuracao[]|\Cake\Collection\CollectionInterface $configuracoes
+ * @var \App\Model\Entity\Renda $renda
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Configuracao'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Empresas'), ['controller' => 'Empresas', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Empresa'), ['controller' => 'Empresas', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="configuracoes index large-9 medium-8 columns content">
-    <h3><?= __('Configuracoes') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('empresa_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('u_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($configuracoes as $configuracao): ?>
-            <tr>
-                <td><?= $this->Number->format($configuracao->id) ?></td>
-                <td><?= $configuracao->has('empresa') ? $this->Html->link($configuracao->empresa->nome_fantasia, ['controller' => 'Empresas', 'action' => 'view', $configuracao->empresa->id]) : '' ?></td>
-                <td><?= $this->Number->format($configuracao->u_id) ?></td>
-                <td><?= h($configuracao->created) ?></td>
-                <td><?= h($configuracao->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $configuracao->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $configuracao->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $configuracao->id], ['confirm' => __('Are you sure you want to delete # {0}?', $configuracao->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+
+<?php //echo $this->Html->script('renda.js') ?>
+
+<script>
+    var lista_campos_dinamicos = [];
+
+    <?php foreach($tags as $key=>$tag): ?>
+    lista_campos_dinamicos.push(["<?= $tag ?>","<?= $key ?>","<?= $key ?>"]);
+    <?php endforeach; ?>
+</script>
+
+<script src="ckeditor/ckeditor.js"></script>
+
+<div id="addContrato" >
+    <div class="modal-header">
+        <h5 class="modal-title">Configurações</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="fechar">
+            <span aria-hidden="true">×</span>
+        </button>
     </div>
+
+        <?= $this->Form->create($configuracao,['method'=>'post']) ?>
+        <div class="modal-body">
+            <h5 class="card-title">Preencha as informações abaixo</h5>
+            <div class="position-relative row form-group">
+                <label for="minuta_default" class="col-sm-2 col-form-label">Minuta Default:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('minuta_default',['label'=>false,'type'=>'textarea','name'=>'minuta_default','id'=>'minuta_default','class'=>'form-control']); ?>
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                <label for="minuta_equipe_default" class="col-sm-2 col-form-label">Minuta Equipe Default:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('minuta_equipe_default',['label'=>false,'type'=>'textarea','name'=>'minuta_equipe_default','id'=>'minuta_equipe_default','class'=>'form-control']); ?>
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                <label for="recibo_default" class="col-sm-2 col-form-label">Recibo Default:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('recibo_default',['label'=>false,'type'=>'textarea','name'=>'recibo_default','id'=>'recibo_default','class'=>'form-control']); ?>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <?= $this->Form->button(__('Salvar'),['type'=>'submit','id'=>'salvarConfig','class'=>'btn btn-secondary']) ?>
+            <button id="fechaModal" type="button" class="btn btn-secondary close-popdown" data-dismiss="modal">fechar</button>
+        </div>
+        <?= $this->Form->end() ?>
 </div>
+<script>
+    CKEDITOR.replace( 'minuta_default' );
+    CKEDITOR.replace( 'minuta_equipe_default' );
+    CKEDITOR.replace( 'recibo_default' );
+</script>

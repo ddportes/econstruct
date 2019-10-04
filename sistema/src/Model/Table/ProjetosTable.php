@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
  * Projetos Model
  *
  * @property \App\Model\Table\ClientesTable&\Cake\ORM\Association\BelongsTo $Clientes
+ * @property \App\Model\Table\ClientesTable&\Cake\ORM\Association\BelongsTo $Enderecos
  * @property \App\Model\Table\ProjetoSituacoesTable&\Cake\ORM\Association\BelongsTo $ProjetoSituacoes
  * @property \App\Model\Table\ContratosTable&\Cake\ORM\Association\BelongsTo $Contratos
  * @property &\Cake\ORM\Association\BelongsTo $Empresas
@@ -55,6 +56,11 @@ class ProjetosTable extends Table
             'foreignKey' => 'cliente_id',
             'joinType' => 'INNER'
         ]);
+
+        $this->belongsTo('Enderecos', [
+            'foreignKey' => 'endereco_id',
+        ]);
+
         $this->belongsTo('ProjetoSituacoes', [
             'foreignKey' => 'projeto_situacao_id',
             'joinType' => 'INNER'
@@ -155,6 +161,7 @@ class ProjetosTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['cliente_id'], 'Clientes'));
+        $rules->add($rules->existsIn(['endereco_id'], 'Enderecos'));
         $rules->add($rules->existsIn(['projeto_situacao_id'], 'ProjetoSituacoes'));
         $rules->add($rules->existsIn(['contrato_id'], 'Contratos'));
         $rules->add($rules->existsIn(['empresa_id'], 'Empresas'));

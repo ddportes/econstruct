@@ -4,63 +4,82 @@
  * @var \App\Model\Entity\Renda $renda
  */
 ?>
+<?= $this->Html->script('contrato.js') ?>
+<script>
+    var lista_campos_dinamicos = [];
 
-<?php //echo $this->Html->script('renda.js') ?>
-<div id="addContrato" >
+        <?php foreach($tags as $key=>$tag): ?>
+            <?php if($key <> 'error'):  ?>
+            lista_campos_dinamicos.push(["<?= $tag ?>","<?= $key ?>","<?= $key ?>"]);
+            <?php endif; ?>
+        <?php endforeach; ?>
+</script>
+
+<script src="ckeditor/ckeditor.js"></script>
+
+
+<div id="cadContrato" >
+    <?php echo $this->Flash->render() ?>
     <div class="modal-header">
         <h5 class="modal-title">Contrato</h5>
+
         <button type="button" class="close" data-dismiss="modal" aria-label="fechar">
             <span aria-hidden="true">×</span>
         </button>
     </div>
-    <?php if(!empty($pessoa_id)): ?>
-        <?= $this->Form->create($renda,['id'=>'formContrato']) ?>
+
+    <?php if(!empty($projeto_id)): ?>
+        <?= $this->Form->create($contrato,['id'=>'formContrato','method'=>'post']) ?>
         <div class="modal-body">
+            <?php if(!empty($orcamento_id)): ?>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><?= $this->Html->link('Voltar para Orçamentos',
+                            ['controller' => 'Orcamentos', 'action' => 'add', $projeto_id], [
+                                'id' => 'addOrcamento',
+                                'class' => 'modal_xl_link addOrcamento',
+                                'style'=>'top:2.5em',
+                                'title'=>'Voltar para Orçamentos',
+                                'escape' => false
+                            ]) ?></li>
+                    <li class="breadcrumb-item active" aria-current="page">Gerar Contrato</li>
+                </ol>
+            </nav>
+            <?php endif; ?>
             <h5 class="card-title">Preencha as informações abaixo</h5>
-            <div class="position-relative row form-group">
-                <label for="pessoa_id" class="col-sm-2 col-form-label">Pessoa:</label>
-                <div class="col-sm-10">
-                    <?= $this->Form->control('pessoa_id',['label'=>false,'options'=>$pessoas,'value' => $pessoa_id,'name'=>'pessoa_id','id'=>'pessoa_id','class'=>'form-control']); ?>
+            <?php if(empty($orcamento_id)): ?>
+                <div class="position-relative row form-group">
+                    <label for="orcamento_id" class="col-sm-2 col-form-label">Orçamento:</label>
+                    <div class="col-sm-10">
+                        <?= $this->Form->control('orcamento_id',['label'=>false,'options'=>$orcamentos,'name'=>'orcamento_id','id'=>'orcamento_id','class'=>'form-control']); ?>
+                    </div>
                 </div>
-            </div>
-            <div class="position-relative row form-group">
-                <label for="fonte_pagadora" class="col-sm-2 col-form-label">Fonte Pagadora:</label>
-                <div class="col-sm-10">
-                    <?= $this->Form->control('fonte_pagadora',['label'=>false,'type'=>'text','name'=>'fonte_pagadora','id'=>'fonte_pagadora','class'=>'form-control','placeholder'=>'Digite a razão social da Fonte Pagadora']); ?>
+            <?php else: ?>
+                <div class="position-relative row form-group">
+                    <label class="col-sm-2 col-form-label">Orçamento:</label>
+                    <div class="col-sm-10" style="margin-top: 0.5em">
+                        <b><?= $orcamento->id.' - '.$orcamento->total(true) ?></b>
+                    </div>
                 </div>
-            </div>
-
+                <?= $this->Form->control('orcamento_id',['label'=>false,'type'=>'hidden','value'=>$orcamento_id,'name'=>'orcamento_id','id'=>'orcamento_id']); ?>
+            <?php endif; ?>
+            <?= $this->Form->control('projeto_id',['label'=>false,'type'=>'hidden','value'=>$projeto_id,'name'=>'projeto_id','id'=>'projeto_id']); ?>
             <div class="position-relative row form-group">
-                <label for="tipo" class="col-sm-2 col-form-label">Tipo de Pessoa:</label>
+                <label for="minuta" class="col-sm-2 col-form-label">Minuta:</label>
                 <div class="col-sm-10">
-                    <?= $this->Form->control('tipo', ['label'=>false,'options'=>['J'=>'Jurídica','F'=>'Física'],'id'=>'tipo','class' => 'form-control']); ?>
-                </div>
-            </div>
-
-            <div class="position-relative row form-group">
-                <label for="cpf_cnpj" class="col-sm-2 col-form-label">CPF/CNPJ:</label>
-                <div class="col-sm-10">
-                    <?= $this->Form->control('cpf_cnpj', ['id'=>'cpf_cnpj','label'=>false,'placeholder'=>'Somente números','class' => 'form-control cpf']); ?>
-                    <div id="erro_cpf_cnpj" role="alert" style="margin-top:4px;"></div>
+                    <?= $this->Form->control('minuta',['label'=>false,'type'=>'textarea','name'=>'minuta','id'=>'minuta','class'=>'form-control']); ?>
                 </div>
             </div>
 
             <div class="position-relative row form-group">
-                <label for="renda_bruta" class="col-sm-2 col-form-label">Renda Bruta:</label>
+                <label for="data_assinatura" class="col-sm-2 col-form-label">Data Assinatura:</label>
                 <div class="col-sm-10">
-                    <?= $this->Form->control('renda_bruta', ['id'=>'renda_bruta','type'=>'text','label'=>false,'placeholder'=>'R$','class' => 'form-control']); ?>
-                </div>
-            </div>
-
-            <div class="position-relative row form-group">
-                <label for="renda_liquida" class="col-sm-2 col-form-label">Renda Líquida:</label>
-                <div class="col-sm-10">
-                    <?= $this->Form->control('renda_liquida', ['id'=>'renda_liquida','type'=>'text','label'=>false,'placeholder'=>'R$','class' => 'form-control']); ?>
+                    <?= $this->Form->control('data_assinatura',['label'=>false,'type'=>'text','name'=>'data_assinatura','id'=>'data_assinatura','class'=>'form-control']); ?>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
-            <?= $this->Form->button(__('Salvar'),['id'=>'salvarRenda','class'=>'btn btn-secondary']) ?>
+            <?= $this->Form->button(__('Salvar'),['id'=>'salvarContrato','class'=>'btn btn-secondary']) ?>
             <button id="fechaModal" type="button" class="btn btn-secondary close-popdown" data-dismiss="modal">fechar</button>
         </div>
         <?= $this->Form->end() ?>
@@ -70,34 +89,9 @@
         </div>
     <?php endif; ?>
 </div>
+<script>
+
+    CKEDITOR.replace( 'minuta' );
 
 
-
-
-
-
-
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Contrato $contrato
- */
-?>
-<div class="contratos form large-9 medium-8 columns content">
-    <?= $this->Form->create($contrato) ?>
-    <fieldset>
-        <legend><?= __('Add Contrato') ?></legend>
-        <?php
-            echo $this->Form->control('projeto_id', ['options' => $projetos]);
-            echo $this->Form->control('orcamento_id', ['options' => $orcamentos]);
-            echo $this->Form->control('data_assinatura');
-            echo $this->Form->control('data_inicial');
-            echo $this->Form->control('data_final');
-            echo $this->Form->control('minuta');
-            echo $this->Form->control('empresa_id', ['options' => $empresas, 'empty' => true]);
-            echo $this->Form->control('u_id', ['options' => $users, 'empty' => true]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+</script>

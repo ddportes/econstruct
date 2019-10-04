@@ -9,6 +9,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $tipo
  * @property string $cpf_cnpj
+ * @property string $inscricao
  * @property string|null $razao_social
  * @property string $nome_fantasia
  * @property \Cake\I18n\FrozenDate|null $data_inicio
@@ -65,6 +66,7 @@ class Empresa extends Entity
     protected $_accessible = [
         'tipo' => true,
         'cpf_cnpj' => true,
+        'inscricao' => true,
         'razao_social' => true,
         'nome_fantasia' => true,
         'data_inicio' => true,

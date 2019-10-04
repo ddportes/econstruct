@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Utility\Apoio;
 
 /**
  * Configuracoes Controller
@@ -17,48 +18,25 @@ class ConfiguracoesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
-    public function configuracoes($empresa_id = null)
+    public function index()
     {
-        $configuracoes = $this->paginate($this->Configuracoes);
+        $user = $this->Auth->user();
+        $configuracao = ($this->Configuracoes->find()->where(['empresa_id'=>$user['empresa_id']]))->first();
+        $tags = Apoio::tags();
+        //dd($this->request->getMethod());
+        if ($this->request->is(['put','post','patch'])) {
+            $dados = $this->request->getData();
 
-        $this->set(compact('configuracoes'));
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Configuracao id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function tags($empresa_id = null)
-    {
-        $configuracao = $this->Configuracoes->get($empresa_id, [
-            'contain' => ['Empresas']
-        ]);
-
-        $this->set('configuracao', $configuracao);
-    }
-
-    /**
-     * Configurar method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function configurar($empresa_id = null)
-    {
-        $configuracao = $this->Configuracoes->newEntity();
-        if ($this->request->is('post')) {
-            $configuracao = $this->Configuracoes->patchEntity($configuracao, $this->request->getData());
+            //dd($dados);
+            $configuracao = $this->Configuracoes->patchEntity($configuracao,$dados);
             if ($this->Configuracoes->save($configuracao)) {
-                $this->Flash->success(__('The configuracao has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+                $this->Flash->success(__('A configuração foi salva com sucesso.'));
+            }else {
+                $this->Flash->error(__('A configuração não pode ser salva. Tente mais tarde novamente.'));
             }
-            $this->Flash->error(__('The configuracao could not be saved. Please, try again.'));
-        }
-        $empresas = $this->Configuracoes->Empresas->find('list', ['limit' => 200]);
 
-        $this->set(compact('configuracao', 'empresas'));
+            return $this->redirect(['controller'=>'Pages','action' => 'display','home']);
+        }
+        $this->set(compact('configuracao','tags'));
     }
 }

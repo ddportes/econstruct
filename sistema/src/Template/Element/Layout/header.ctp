@@ -41,7 +41,7 @@
         <ul class="header-menu nav">
             <li class="nav-item">
                 <div class="btn-group">
-                    <a data-toggle="dropdown" aria-haspopup="true" onclick="$('#menu_visita').toggle();" aria-expanded="false" class="nav-link">
+                    <a data-toggle="dropdown" aria-haspopup="true" onclick="$('#menu_visita').toggle();" aria-expanded="false" class="nav-link menu_button">
                         <i class="nav-link-icon fas fa-id-badge"> </i>
                         <?= __('Nova Visita') ?>
                         <i class="fa fa-angle-down ml-2 opacity-8"></i>
@@ -56,7 +56,7 @@
             </li>
             <li class="nav-item">
                 <div class="btn-group">
-                    <a data-toggle="dropdown" aria-haspopup="true" onclick="$('#menu_projeto').toggle();" aria-expanded="false" class="nav-link">
+                    <a data-toggle="dropdown" aria-haspopup="true" onclick="$('#menu_projeto').toggle();" aria-expanded="false" class="nav-link menu_button">
                         <i class="nav-link-icon fas fa-project-diagram"></i>
                         <?= __('Projetos') ?>
                         <i class="fa fa-angle-down ml-2 opacity-8"></i>
@@ -97,13 +97,15 @@
 
                                 <?php if(isset($isAdmin)): ?>
                                     <?= $this->Html->Link('Trocar Empresa',['controller'=>'Users','action'=>'trocarEmpresa'],['role'=>'button','class'=>'dropdown-item','tabindex'=>'0']) ?>
-                                <?php endif; ?>
 
-                                <?php if(isset($isAdmin)): ?>
                                     <?= $this->Html->Link('Gerenciar Usuários',['controller'=>'Users','action'=>'index'],['role'=>'button','class'=>'dropdown-item','tabindex'=>'0']) ?>
+
+                                    <?= $this->Html->Link('Configuração Padrão',['controller'=>'Configuracoes','action'=>'index'],['role'=>'button','class'=>'dropdown-item modal_lg_link','data-toggle'=>"modal",'data-target'=>".modal_econstruct",'tabindex'=>'0']) ?>
+
+                                    <?= $this->Html->Link('Configuração Empresa',['controller'=>'Empresas','action'=>'index'],['role'=>'button','class'=>'dropdown-item modal_lg_link','data-toggle'=>"modal",'data-target'=>".modal_econstruct",'tabindex'=>'0']) ?>
                                 <?php endif; ?>
 
-                                <?= $this->Html->Link('Logout',['controller'=>'Users','action'=>'logout'],['role'=>'button','class'=>'dropdown-item','tabindex'=>'0']) ?>
+                                <?= $this->Html->Link('Logout',['controller'=>'Users','action'=>'logout'],['confirm' => __('Tem certeza que deseja sair do sistema?'),'role'=>'button','class'=>'dropdown-item','tabindex'=>'0']) ?>
 
                             </div>
                         </div>

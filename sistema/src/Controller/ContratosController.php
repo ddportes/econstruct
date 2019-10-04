@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Utility\Apoio;
 
 /**
  * Contratos Controller
@@ -48,23 +49,46 @@ class ContratosController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add($projeto_id=null)
+    public function add($projeto_id=null,$orcamento_id=null)
     {
         $contrato = $this->Contratos->newEntity();
-        if ($this->request->is('post')) {
-            $contrato = $this->Contratos->patchEntity($contrato, $this->request->getData());
-            if ($this->Contratos->save($contrato)) {
-                $this->Flash->success(__('The contrato has been saved.'));
+        if ($this->request->is(['patch', 'post', 'put'])) {
 
-                return $this->redirect(['action' => 'index']);
+            $user = $this->Auth->user();
+
+            $dados =  $this->request->getData();
+            $dt = explode('/',$dados['data_assinatura']);
+            $dados['data_assinatura'] = ($dados['data_assinatura']<>''? date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0])):null);
+            $dados['empresa_id'] = $user['empresa_id'];
+            $dados['u_id'] = $user['id'];
+
+            ////dd($dados);
+
+            $contrato = $this->Contratos->patchEntity($contrato, $dados);
+            if ($this->Contratos->save($contrato)) {
+
+                $projeto = $this->Contratos->Projetos->get($projeto_id);
+                $projeto->contrato_id = $contrato->id;
+                if ($this->Contratos->Projetos->save($projeto)) {
+                    $this->Flash->success(__('Contrato criado com sucesso.'));
+                    return $this->redirect(['action' => 'edit',$contrato->id,$projeto_id]);
+                }else{
+                    $this->Flash->error(__('O contrato não pode ser criado. Tente novamente.'));
+                }
+
+            }else {
+                $this->Flash->error(__('O contrato não pode ser criado. Tente novamente.'));
             }
-            $this->Flash->error(__('The contrato could not be saved. Please, try again.'));
+            return $this->redirect(['controller'=>'Orcamentos','action' => 'add',$projeto_id]);
         }
-        $projetos = $this->Contratos->Projetos->find('list', ['limit' => 200]);
-        $orcamentos = $this->Contratos->Orcamentos->find('list', ['limit' => 200]);
-        $empresas = $this->Contratos->Empresas->find('list', ['limit' => 200]);
-        $users = $this->Contratos->Users->find('list', ['limit' => 200]);
-        $this->set(compact('contrato', 'projetos', 'orcamentos', 'empresas', 'users'));
+        $orcamentos = $this->Contratos->Orcamentos->todosOrcamentosCombo($projeto_id);
+        if(!empty($orcamento_id)) {
+            $orcamento = $this->Contratos->Orcamentos->get($orcamento_id);
+            $this->set('orcamento',$orcamento);
+        }
+        $tags = $this->Contratos->tags();
+
+        $this->set(compact('contrato', 'orcamentos', 'projeto_id','orcamento_id','tags'));
     }
 
     /**
@@ -74,25 +98,30 @@ class ContratosController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function edit($id = null)
+    public function edit($id,$projeto_id)
     {
         $contrato = $this->Contratos->get($id, [
-            'contain' => []
+            'contain' => ['Projetos','Orcamentos']
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $contrato = $this->Contratos->patchEntity($contrato, $this->request->getData());
-            if ($this->Contratos->save($contrato)) {
-                $this->Flash->success(__('The contrato has been saved.'));
+        if ($this->request->is(['post', 'put'])) {
+            $user = $this->Auth->user();
+            $dados = $this->request->getData();
+            $dt = explode('/',$dados['data_assinatura']);
+            $dados['data_assinatura'] = ($dados['data_assinatura']<>''? date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0])):null);
+            $dados['u_id'] = $user['id'];
 
-                return $this->redirect(['action' => 'index']);
+            //dd($dados);
+
+            $contrato = $this->Contratos->patchEntity($contrato, $dados);
+            if ($this->Contratos->save($contrato)) {
+                $this->Flash->success(__('Contrato editado com sucesso.'));
+
+            }else {
+                $this->Flash->error(__('Contrato não pode ser editado. Tente novamente mais tarde.'));
             }
-            $this->Flash->error(__('The contrato could not be saved. Please, try again.'));
         }
-        $projetos = $this->Contratos->Projetos->find('list', ['limit' => 200]);
-        $orcamentos = $this->Contratos->Orcamentos->find('list', ['limit' => 200]);
-        $empresas = $this->Contratos->Empresas->find('list', ['limit' => 200]);
-        $users = $this->Contratos->Users->find('list', ['limit' => 200]);
-        $this->set(compact('contrato', 'projetos', 'orcamentos', 'empresas', 'users'));
+        $tags = $this->Contratos->tags();
+        $this->set(compact('contrato','projeto_id', 'tags'));
     }
 
     /**
@@ -102,16 +131,23 @@ class ContratosController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($id = null,$projeto_id)
     {
         $this->request->allowMethod(['post', 'delete']);
         $contrato = $this->Contratos->get($id);
+
         if ($this->Contratos->delete($contrato)) {
-            $this->Flash->success(__('The contrato has been deleted.'));
+            $projeto = $this->Contratos->Projetos->get($projeto_id);
+            $projeto->contrato_id = null;
+            if ($this->Contratos->Projetos->save($projeto)) {
+                $this->Flash->success(__('Contrato foi removido com sucesso.'));
+            }else{
+                $this->Flash->error(__('Contrato não pode ser removido. Tente novamente.'));
+            }
         } else {
-            $this->Flash->error(__('The contrato could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Contrato não pode ser removido. Tente novamente.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['controller'=>'Orcamentos','action' => 'add',$projeto_id]);
     }
 }

@@ -16,6 +16,7 @@
 </script>
 <?= $this->Html->script('dependente.js') ?>
 <div id="addDependente" >
+    <?php echo $this->Flash->render() ?>
     <div class="modal-header">
         <h5 class="modal-title">Cadastro de Dependentes</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="fechar">

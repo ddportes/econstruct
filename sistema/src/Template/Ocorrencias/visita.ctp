@@ -234,7 +234,6 @@ $(document).ready(function(){
                                     </div>
                                 </div>
                             </div>
-
                             <div class="position-relative form-group">
                                 <?= $this->Form->control('descricaoProjeto', ['id'=>'descricaoProjeto','label'=>'Descrição Rápida do Projeto','placeholder'=>'Escreve uma descrição rápida','class' => 'form-control']); ?>
                             </div>
@@ -244,6 +243,46 @@ $(document).ready(function(){
                             <div class="position-relative form-group">
                                 <?= $this->Form->control('observacaoProjeto', ['type'=>'textarea','rows'=>6,'id'=>'observacaoProjeto','label'=>'Observações sobre do Projeto','placeholder'=>'Observações sobre do Projeto','class' => 'form-control']); ?>
                             </div>
+
+                            <div class="form-row">
+                                <div class="col-md-2">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('cepProj', ['id'=>'cepProj','label'=>'CEP','placeholder'=>'Somente Números','class' => 'form-control cep']); ?>
+                                        <div id="erro_cep_proj" role="alert" style="margin-top:4px;"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('logradouroProj', ['id'=>'logradouroProj','label'=>'Logradouro','class' => 'form-control']); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('numeroProj', ['id'=>'numeroProj','label'=>'Número','class' => 'form-control']); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('bairroProj', ['id'=>'bairroProj','label'=>'Bairro','class' => 'form-control']); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('complementoProj', ['id'=>'complementoProj','label'=>'Complemento','class' => 'form-control']); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('cidadeProj', ['id'=>'cidadeProj','label'=>'Cidade','class' => 'form-control']); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('estadoProj', ['id'=>'estadoProj','label'=>'Estado','class' => 'form-control']); ?>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-row">
                                 <div class="col-md-3">
                                     <div class="position-relative form-group">
@@ -277,9 +316,3 @@ $(document).ready(function(){
         <?= $this->Form->end() ?>
     </div>
 </div>
-
-
-<script>
-
-
-</script>

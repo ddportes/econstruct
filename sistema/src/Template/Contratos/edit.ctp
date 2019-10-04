@@ -1,44 +1,89 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Contrato $contrato
+ * @var \App\Model\Entity\Renda $renda
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $contrato->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $contrato->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Contratos'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Projetos'), ['controller' => 'Projetos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Projeto'), ['controller' => 'Projetos', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Orcamentos'), ['controller' => 'Orcamentos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Orcamento'), ['controller' => 'Orcamentos', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Empresas'), ['controller' => 'Empresas', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Empresa'), ['controller' => 'Empresas', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="contratos form large-9 medium-8 columns content">
-    <?= $this->Form->create($contrato) ?>
-    <fieldset>
-        <legend><?= __('Edit Contrato') ?></legend>
-        <?php
-            echo $this->Form->control('projeto_id', ['options' => $projetos]);
-            echo $this->Form->control('orcamento_id', ['options' => $orcamentos]);
-            echo $this->Form->control('data_assinatura');
-            echo $this->Form->control('data_inicial');
-            echo $this->Form->control('data_final');
-            echo $this->Form->control('minuta');
-            echo $this->Form->control('empresa_id', ['options' => $empresas, 'empty' => true]);
-            echo $this->Form->control('u_id', ['options' => $users, 'empty' => true]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<?= $this->Html->script('contrato.js') ?>
+<script>
+    var lista_campos_dinamicos = [];
+
+    <?php foreach($tags as $key=>$tag): ?>
+    <?php if($key <> 'error'):  ?>
+    lista_campos_dinamicos.push(["<?= $tag ?>","<?= $key ?>","<?= $key ?>"]);
+    <?php endif; ?>
+    <?php endforeach; ?>
+</script>
+
+<script src="ckeditor/ckeditor.js"></script>
+
+<div id="cadContrato" >
+    <?php echo $this->Flash->render() ?>
+    <div class="modal-header">
+        <h5 class="modal-title">Editar Contrato</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="fechar">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+
+    <?php if(!empty($projeto_id)): ?>
+        <?= $this->Form->create($contrato,['id'=>'formContrato']) ?>
+        <div class="modal-body">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><?= $this->Html->link('Voltar para Orçamentos',
+                                ['controller' => 'Orcamentos', 'action' => 'add', $projeto_id], [
+                                    'id' => 'addOrcamento',
+                                    'class' => 'modal_xl_link addOrcamento',
+                                    'style'=>'top:2.5em',
+                                    'title'=>'Voltar para Orçamentos',
+                                    'escape' => false
+                                ]) ?></li>
+                        <li class="breadcrumb-item active" aria-current="page">Gerar Contrato</li>
+                    </ol>
+                </nav>
+            <h5 class="card-title">Preencha as informações abaixo</h5>
+
+                <div class="position-relative row form-group">
+                    <label class="col-sm-2 col-form-label">Orçamento:</label>
+                    <div class="col-sm-10" style="margin-top: 0.5em">
+                        <b><?= $contrato->orcamento_id.' - '.$contrato->orcamento->total(true) ?></b>
+                    </div>
+                </div>
+                <?= $this->Form->control('orcamento_id',['label'=>false,'type'=>'hidden','value'=>$contrato->orcamento_id,'name'=>'orcamento_id','id'=>'orcamento_id']); ?>
+
+            <?= $this->Form->control('projeto_id',['label'=>false,'type'=>'hidden','value'=>$projeto_id,'name'=>'projeto_id','id'=>'projeto_id']); ?>
+            <?= $this->Form->control('id',['label'=>false,'type'=>'hidden','name'=>'id','id'=>'id']); ?>
+            <div class="position-relative row form-group">
+                <label for="minutaEdit" class="col-sm-2 col-form-label">Minuta:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('minuta',['label'=>false,'type'=>'textarea','value'=>$contrato->minuta,'id'=>'minuta','class'=>'form-control']); ?>
+                </div>
+            </div>
+
+            <div class="position-relative row form-group">
+                <label for="data_assinatura" class="col-sm-2 col-form-label">Data Assinatura:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('data_assinatura',['label'=>false,'type'=>'text','name'=>'data_assinatura','id'=>'data_assinatura','value'=>($contrato->data_assinatura <> ''?date('d/m/Y',strtotime($contrato->data_assinatura)):''),'class'=>'form-control']); ?>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <?= $this->Form->button(__('Salvar'),['id'=>'salvarContrato','class'=>'btn btn-secondary']) ?>
+            <button id="fechaModal" type="button" class="btn btn-secondary close-popdown" data-dismiss="modal">fechar</button>
+        </div>
+        <?= $this->Form->end() ?>
+
+    <?php else: ?>
+        <div class="modal-body"><h5 class="card-title">Selecione um cliente</h5>
+        </div>
+    <?php endif; ?>
 </div>
+<script>
+
+
+    CKEDITOR.replace( 'minuta' );
+
+
+</script>

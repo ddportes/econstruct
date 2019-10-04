@@ -37,7 +37,7 @@ class OrcamentosTable extends Table
         parent::initialize($config);
 
         $this->setTable('orcamentos');
-        $this->setDisplayField('id');
+        $this->setDisplayField('total');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -107,5 +107,16 @@ class OrcamentosTable extends Table
         $rules->add($rules->existsIn(['u_id'], 'Users'));
 
         return $rules;
+    }
+
+    public function todosOrcamentosCombo($projeto_id){
+        $listOrcamentos = $this->Contratos->Orcamentos->find('all')->where(['projeto_id'=>$projeto_id]);
+
+        $retorno = null;
+        foreach($listOrcamentos as $orc){
+            $retorno[$orc->id] = $orc->id.' - '.$orc->total(true);
+        }
+
+        return $retorno;
     }
 }

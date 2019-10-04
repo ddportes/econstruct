@@ -7,6 +7,7 @@
 
 <?= $this->Html->script('renda.js') ?>
 <div id="addRenda" >
+    <?php echo $this->Flash->render() ?>
     <div class="modal-header">
         <h5 class="modal-title">Cadastro de Renda</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="fechar">

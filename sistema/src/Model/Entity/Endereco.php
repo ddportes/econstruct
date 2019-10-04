@@ -51,4 +51,38 @@ class Endereco extends Entity
         'u_id' => true,
         'pessoa' => true,
     ];
+
+    public function enderecoCompleto(){
+        return 'Rua/Avenida '.$this->logradouro.', '
+              .(empty($this->numero)?'s/n':$this->numero)
+              .(!empty($this->complemento)?', '.$this->complemento:'')
+              .(!empty($this->bairro)?', bairro '.$this->bairro:'')
+              .', CEP '.$this->cep.', '
+              .$this->cidade.', '
+              .$this->estado;
+    }
+
+    public function validaEnderecoCompleto(){
+        $retorno = '';
+        if(empty($this->logradouro)){
+            $retorno.='1';
+        }
+        if(empty($this->bairro)){
+            $retorno.='2';
+        }
+        if(empty($this->cep)){
+            $retorno.='3';
+        }
+        if(empty($this->cidade)){
+            $retorno.='4';
+        }
+        if(empty($this->estado)){
+            $retorno.='5';
+        }
+
+        if($retorno == '')
+            return true;
+        else
+            return $retorno;
+    }
 }

@@ -66,6 +66,7 @@ class EmpresasTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('FiltroAcesso');
 
         $this->hasMany('ClienteSituacoes', [
             'foreignKey' => 'empresa_id'
@@ -193,6 +194,11 @@ class EmpresasTable extends Table
             ->scalar('razao_social')
             ->maxLength('razao_social', 255)
             ->allowEmptyString('razao_social');
+
+        $validator
+            ->scalar('inscricao')
+            ->maxLength('inscricao', 63)
+            ->allowEmptyString('inscricao');
 
         $validator
             ->scalar('nome_fantasia')

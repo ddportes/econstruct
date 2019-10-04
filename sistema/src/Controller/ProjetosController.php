@@ -33,7 +33,8 @@ class ProjetosController extends AppController
                           'Equipes',
                           'Equipes.EquipePedreiros',
                           'Equipes.EquipePedreiros.Pedreiros',
-                          'Equipes.EquipePedreiros.Pedreiros.Pessoas']
+                          'Equipes.EquipePedreiros.Pedreiros.Pessoas',
+                          'Enderecos']
         ];
         $projetos = $this->paginate($this->Projetos);
 

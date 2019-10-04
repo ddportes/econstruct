@@ -8,6 +8,7 @@
 
 <?= $this->Html->script('orcamento.js') ?>
 <div id="cadOrcamento" >
+    <?php echo $this->Flash->render() ?>
     <script>
         var hashOrcamento = '<?= $this->request->getParam("_csrfToken") ?>';
     </script>
@@ -47,13 +48,44 @@
                                 <td style="vertical-align: top"><?= ($o->hasContrato()?'Sim':'Não') ?></td>
                                 <td class="actions" style="vertical-align: top">
                                     <?= $this->Html->link('<i class="fas fa-pen-square"></i>', ['action'=>'retornaOrcamento',$o->id],['Title'=>'Editar Orcamento','class'=>'btn btn-xs form-edit-orcamento','style'=>'padding: 0','escape'=>false]) ?>
-                                    <?= $this->Html->link('<i class="fas fa-file-alt"></i>',
-                                                                ['controller'=>'Contratos','action'=>'add'],
+
+                                    <?php if(!is_null($o->projeto->contrato_id) && $o->projeto->contratos[0]->orcamento_id == $o->id): ?>
+                                        <?= $this->Html->link('<i class="fas fa-file-alt"></i>',
+                                            ['controller'=>'Contratos','action'=>'edit',$o->projeto->contrato_id,$projeto_id],
+                                            ['title'=>'Editar Contrato',
+                                                'id'=>'botaoContratoModal'.$o->id,
+                                                'class'=>'btn btn-xs modal_xl_link edita-contrato-orcamento',
+                                                'style'=>'padding: 0',
+                                                'escape'=>false]) ?>
+                                        <div style="display:inline-block;padding:0">
+                                            <?= $this->Form->postButton('<i class="fas fa-eraser"></i>', [
+                                                'controller' => 'Contratos',
+                                                'action' => 'delete',
+                                                $o->projeto->contrato_id,$projeto_id
+                                            ],
+                                                [
+                                                    'form' => [
+                                                        'id' => 'form-delete-contrato-' . $o->projeto->contrato_id,
+                                                        'class' => 'form-delete-contrato'
+                                                    ],
+                                                    'block' => true,
+                                                    'id' => 'botaoExcluirContrato',
+                                                    'class' => 'btn btn-xs',
+                                                    'style'=>'padding:0',
+                                                    'confirm' => __('Deseja realmente excluir o contrato do orçamento {0}?', $o->id),
+                                                    'title' => __('Excluir Contrato'),
+                                                    'escape' => false
+                                                ]) ?>
+                                        </div>
+                                    <?php else: ?>
+                                        <?= $this->Html->link('<i class="fas fa-file-alt"></i>',
+                                                                ['controller'=>'Contratos','action'=>'add',$projeto_id,$o->id],
                                                                 ['title'=>'Gerar Contrato',
                                                                  'id'=>'botaoContratoModal'.$o->id,
                                                                  'class'=>'btn btn-xs modal_xl_link gera-contrato-orcamento',
                                                                  'style'=>'padding: 0',
                                                                  'escape'=>false]) ?>
+                                    <?php endif; ?>
                                     <div style="display:inline-block;padding:0">
                                         <?= $this->Form->postButton('<i class="fas fa-trash-alt"></i>', [
                                             'action' => 'delete',

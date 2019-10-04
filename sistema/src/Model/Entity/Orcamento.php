@@ -49,11 +49,13 @@ class Orcamento extends Entity
     ];
 
     public function hasContrato(){
-        if(!empty($this->projeto->contrato->orcamento_id)){
-            if($this->id == $this->projeto->contrato->orcamento_id){
-                return true;
+
+            if(!empty($this->contratos)){
+                if($this->id == $this->contratos[0]->orcamento_id){
+                    return true;
+                }
             }
-        }
+
         return false;
     }
 

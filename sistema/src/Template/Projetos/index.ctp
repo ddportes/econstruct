@@ -84,28 +84,16 @@
                                                 'title'=>'Novo Orçamento',
                                                 'escape' => false
                                             ]) ?>
-                                        <?php if(is_null($projeto->contrato_id)): ?>
-                                            <?= $this->Html->link('<i class="fas fa-file-alt"></i>',
-                                                ['controller'=>'Contratos','action' => 'add', $projeto->id], [
-                                                    'id' => 'addContrato',
+                                        <?php if(!is_null($projeto->contrato_id)): ?>
+                                            <?= $this->Html->link('<i class="fas fa-file-pdf"></i>',
+                                                ['controller'=>'Contratos','action' => 'exportarPdf', $projeto->id], [
+                                                    'id' => 'pdfContrato',
                                                     'class' => 'modal_xl_link',
                                                     'style'=>'top:2.5em',
                                                     'role' => 'button',
                                                     'data-toggle'=>"modal",
                                                     'data-target'=>".modal_econstruct",
-                                                    'Title'=>'Gerar Contrato',
-                                                    'escape' => false
-                                                ]) ?>
-                                        <?php else: ?>
-                                            <?= $this->Html->link('<i class="fas fa-file-alt"></i>',
-                                                ['controller'=>'Contratos','action' => 'view', $projeto->id], [
-                                                    'id' => 'viewContrato',
-                                                    'class' => 'modal_xl_link',
-                                                    'style'=>'top:2.5em',
-                                                    'role' => 'button',
-                                                    'data-toggle'=>"modal",
-                                                    'data-target'=>".modal_econstruct",
-                                                    'Title'=>'Visualizar Contrato',
+                                                    'Title'=>'Download Contrato',
                                                     'escape' => false
                                                 ]) ?>
                                         <?php endif; ?>

@@ -34,6 +34,24 @@ $(document).ready(function(){
                 $('#areaCobertaProjeto').val(proj.area_construida_aberta);
                 $('#areaAbertaProjeto').val(proj.area_construida_coberta);
                 $('#observacaoProjeto').val(proj.observacao);
+
+                if (proj.endereco != '' && proj.endereco != null && proj.endereco != undefined) {
+                    $('#cepProj').val(proj.endereco.cep);
+                    $('#logradouroProj').val(proj.endereco.cep);
+                    $('#numeroProj').val(proj.endereco.cep);
+                    $('#bairroProj').val(proj.endereco.cep);
+                    $('#complementoProj').val(proj.endereco.cep);
+                    $('#cidadeProj').val(proj.endereco.cep);
+                    $('#estadoProj').val(proj.endereco.cep);
+                }else{
+                    $('#cepProj').val('');
+                    $('#logradouroProj').val('');
+                    $('#numeroProj').val('');
+                    $('#bairroProj').val('');
+                    $('#complementoProj').val('');
+                    $('#cidadeProj').val('');
+                    $('#estadoProj').val('');
+                }
                 //$('#salvar').prop('disabled',false);
                 statusSalvar($('#salvar'),5,1,stSit);
                 $('#checkNovoProjeto').prop('disabled',true);
@@ -46,6 +64,13 @@ $(document).ready(function(){
                 $('#areaCobertaProjeto').val('');
                 $('#areaAbertaProjeto').val('');
                 $('#observacaoProjeto').val('');
+                $('#cepProj').val('');
+                $('#logradouroProj').val('');
+                $('#numeroProj').val('');
+                $('#bairroProj').val('');
+                $('#complementoProj').val('');
+                $('#cidadeProj').val('');
+                $('#estadoProj').val('');
                 //$('#salvar').prop('disabled',true);
                 statusSalvar($('#salvar'),5,2,stSit);
                 $('#checkNovoProjeto').prop('disabled',false);
@@ -59,6 +84,13 @@ $(document).ready(function(){
             $('#areaCobertaProjeto').val('');
             $('#areaAbertaProjeto').val('');
             $('#observacaoProjeto').val('');
+            $('#cepProj').val('');
+            $('#logradouroProj').val('');
+            $('#numeroProj').val('');
+            $('#bairroProj').val('');
+            $('#complementoProj').val('');
+            $('#cidadeProj').val('');
+            $('#estadoProj').val('');
             //$('#salvar').prop('disabled',true);
             statusSalvar($('#salvar'),5,2,stSit);
             $('#checkNovoProjeto').prop('disabled',false);
@@ -113,6 +145,14 @@ $(document).ready(function(){
                     $('#areaCobertaProjeto').val('');
                     $('#areaAbertaProjeto').val('');
                     $('#observacaoProjeto').val('');
+                    $('#cepProj').val('');
+                    $('#logradouroProj').val('');
+                    $('#numeroProj').val('');
+                    $('#bairroProj').val('');
+                    $('#complementoProj').val('');
+                    $('#cidadeProj').val('');
+                    $('#estadoProj').val('');
+
                     $('#pessoa_id').val('');
                     $('#projeto_id').val('');
                     $('#cliente_id').val('');
@@ -259,12 +299,28 @@ $(document).ready(function(){
     nc = $("#numeroCliente");
     limpa_formulário_cep(lc,bc,cc,ec,nc);
 
+    lp = $("#logradouroProj");
+    bp = $("#bairroProj");
+    cp = $("#cidadeProj");
+    ep = $("#estadoProj");
+    np = $("#numeroProj");
+    limpa_formulário_cep(lp,bp,cp,ep,np);
+
+
     //Quando o campo cep perde o foco.
     $("#erro_cep").hide();
-    $('.cep').mask('00.000-000');
+    $('#cepCliente').mask('00.000-000');
 
-    $(".cep").blur(function() {
+    $("#cepCliente").blur(function() {
         validaCep($(this),lc,bc,cc,ec,nc,$("#erro_cep"),$('#salvar'),stSit)
+    });
+
+
+    //Quando o campo cep perde o foco.
+    $("#erro_cep_proj").hide();
+    $('#cepProj').mask('00.000-000');
+    $("#cepProj").blur(function() {
+        validaCep($(this),lp,bp,cp,ep,np,$("#erro_cep_proj"),$('#salvar'),stSit)
     });
 
 

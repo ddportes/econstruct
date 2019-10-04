@@ -81,7 +81,7 @@ class OrcamentosController extends AppController
                 }
                 //$this->Flash->error(__('The orcamento could not be saved. Please, try again.'));
             }
-            $orcamentos = $this->Orcamentos->find()->where(["projeto_id"=>$projeto_id])->contain(['Projetos']);
+            $orcamentos = $this->Orcamentos->find()->where(["projeto_id"=>$projeto_id])->contain(['Projetos','Contratos','Projetos.Contratos']);
         }
 
 

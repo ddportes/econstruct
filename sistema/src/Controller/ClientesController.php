@@ -61,7 +61,7 @@ class ClientesController extends AppController
         }else {
 
             $cliente = $this->Clientes->get($id, [
-                'contain' => ['Pessoas', 'ClienteSituacoes', 'Projetos', 'Pessoas.Contatos', 'Pessoas.Enderecos']
+                'contain' => ['Pessoas', 'ClienteSituacoes', 'Projetos', 'Projetos.Enderecos', 'Pessoas.Contatos', 'Pessoas.Enderecos']
             ]);
 
             foreach($cliente->projetos as $val){

@@ -424,3 +424,7 @@ function validaCnpj(campo,msg,salvar,status) {
         }
     }
 }
+
+$(document).on('click',function(){
+    $('.dropdown-menu-right').hide();
+});

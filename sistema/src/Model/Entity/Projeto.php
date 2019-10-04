@@ -21,6 +21,7 @@ use Cake\I18n\Number;
  * @property float|null $area_construida_coberta
  * @property float|null $area_construida_aberta
  * @property string|null $observacao
+ * @property int|null $endereco_id
  * @property int|null $empresa_id
  * @property int|null $u_id
  *
@@ -33,6 +34,7 @@ use Cake\I18n\Number;
  * @property \App\Model\Entity\Orcamento[] $orcamentos
  * @property \App\Model\Entity\Recebimento[] $recebimentos
  * @property \App\Model\Entity\Recibo[] $recibos
+ * @property \App\Model\Entity\Endereco $endereco
  */
 class Projeto extends Entity
 {
@@ -69,7 +71,8 @@ class Projeto extends Entity
         'recibos' => true,
         'terreno'=>true,
         'area_construida_coberta'=>true,
-        'area_construida_aberta'=>true
+        'area_construida_aberta'=>true,
+        'endereco_id' => true
     ];
 
     /**
@@ -128,5 +131,47 @@ class Projeto extends Entity
             return Number::format($valor,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
         }
         return Number::format($valor,['pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+    }
+
+    public function areaConstruidaCoberta($unidade = null){
+        $areaCob = (!empty($this->area_construida_coberta)?$this->area_construida_coberta:0.0);
+
+        if($unidade){
+            return Number::format($areaCob,['after' => 'm²', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return $areaCob;
+    }
+
+    public function areaConstruidaAberta($unidade = null){
+        $areaAbe = (!empty($this->area_construida_aberta)?$this->area_construida_aberta:0.0);
+
+        if($unidade){
+            return Number::format($areaAbe,['after' => 'm²', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return $areaAbe;
+    }
+
+    public function areaTotalConstruida($unidade = null){
+        $areaCob = (!empty($this->area_construida_coberta)?$this->area_construida_coberta:0.0);
+        $areaAbe = (!empty($this->area_construida_aberta)?$this->area_construida_aberta:0.0);
+        $soma = $areaCob+$areaAbe;
+
+        if($unidade){
+            return Number::format($soma,['after' => 'm²', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return $soma;
+    }
+
+    public function taxaOcupacao($perc = null){
+        $areaCob = (!empty($this->area_construida_coberta)?$this->area_construida_coberta:0.0);
+        $areaAbe = (!empty($this->area_construida_aberta)?$this->area_construida_aberta:0.0);
+        $terr = (!empty($this->terreno)?$this->terreno:0.0);
+        $ocupacao = ($areaCob+$areaAbe) / $terr;
+
+        if($perc){
+            return Number::format($ocupacao,['after' => '%', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+
+        return $ocupacao;
     }
 }
