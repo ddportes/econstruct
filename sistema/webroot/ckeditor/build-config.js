@@ -52,17 +52,14 @@ var CKBUILDER_CONFIG = {
 		'tests'
 	],
 	plugins : {
-		'a11yhelp' : 1,
 		'basicstyles' : 1,
 		'blockquote' : 1,
-		'ckwebspeech' : 1,
 		'clipboard' : 1,
 		'contextmenu' : 1,
 		'copyformatting' : 1,
 		'elementspath' : 1,
 		'enterkey' : 1,
 		'entities' : 1,
-		'filebrowser' : 1,
 		'floatingspace' : 1,
 		'font' : 1,
 		'format' : 1,
@@ -72,8 +69,8 @@ var CKBUILDER_CONFIG = {
 		'justify' : 1,
 		'list' : 1,
 		'magicline' : 1,
+		'maximize' : 1,
 		'pagebreak' : 1,
-		'pastefromgdocs' : 1,
 		'pastefromword' : 1,
 		'pastetext' : 1,
 		'pastetools' : 1,
@@ -95,7 +92,6 @@ var CKBUILDER_CONFIG = {
 		'undo' : 1,
 		'uploadimage' : 1,
 		'widgetcontextmenu' : 1,
-		'wsc' : 1,
 		'wysiwygarea' : 1
 	},
 	languages : {

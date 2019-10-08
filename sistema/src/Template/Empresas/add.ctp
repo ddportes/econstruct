@@ -8,14 +8,20 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Empresas'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Enderecos'), ['controller' => 'Enderecos', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Endereco'), ['controller' => 'Enderecos', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Cliente Situacoes'), ['controller' => 'ClienteSituacoes', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Cliente Situacao'), ['controller' => 'ClienteSituacoes', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Clientes'), ['controller' => 'Clientes', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Configuracoes'), ['controller' => 'Configuracoes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Configuracao'), ['controller' => 'Configuracoes', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Contatos'), ['controller' => 'Contatos', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Contato'), ['controller' => 'Contatos', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Contratos'), ['controller' => 'Contratos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Contrato'), ['controller' => 'Contratos', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Enderecos'), ['controller' => 'Enderecos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Endereco'), ['controller' => 'Enderecos', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Dependentes'), ['controller' => 'Dependentes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Dependente'), ['controller' => 'Dependentes', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Equipe Pedreiros'), ['controller' => 'EquipePedreiros', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Equipe Pedreiro'), ['controller' => 'EquipePedreiros', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Equipes'), ['controller' => 'Equipes', 'action' => 'index']) ?></li>
@@ -26,6 +32,8 @@
         <li><?= $this->Html->link(__('New Fornecedor'), ['controller' => 'Fornecedores', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Itens'), ['controller' => 'Itens', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Item'), ['controller' => 'Itens', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Modificacoes'), ['controller' => 'Modificacoes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Modificacao'), ['controller' => 'Modificacoes', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Notas'), ['controller' => 'Notas', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Nota'), ['controller' => 'Notas', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Ocorrencia Tipos'), ['controller' => 'OcorrenciaTipos', 'action' => 'index']) ?></li>
@@ -73,12 +81,18 @@
         <?php
             echo $this->Form->control('tipo');
             echo $this->Form->control('cpf_cnpj');
+            echo $this->Form->control('inscricao');
             echo $this->Form->control('razao_social');
             echo $this->Form->control('nome_fantasia');
             echo $this->Form->control('data_inicio', ['empty' => true]);
             echo $this->Form->control('data_fim', ['empty' => true]);
             echo $this->Form->control('mensal');
             echo $this->Form->control('observacao');
+            echo $this->Form->control('u_id');
+            echo $this->Form->control('endereco_id');
+            echo $this->Form->control('representante_id');
+            echo $this->Form->control('telefone');
+            echo $this->Form->control('email');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

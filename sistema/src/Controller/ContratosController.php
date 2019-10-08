@@ -60,7 +60,8 @@ class ContratosController extends AppController
         $tags = $this->Contratos->tags($contrato->orcamento_id);
 
         if($tags['error'] <> ''){
-            $this->Flash->error(__($tags['error']));
+            $this->Flash->error(__(substr($tags['error'],5,strlen($tags['error']))));
+
             return $this->redirect(['controller'=>'Projetos','action'=>'index']);
         }else{
             $contrato->minuta = str_replace(array_keys($tags),array_values($tags),$contrato->minuta) ;
@@ -109,6 +110,12 @@ class ContratosController extends AppController
                 $projeto->contrato_id = $contrato->id;
                 if ($this->Contratos->Projetos->save($projeto)) {
                     $this->Flash->success(__('Contrato criado com sucesso.'));
+                    $this->loadModel('Modificacoes');
+                    $dados_originais = json_encode([$user['id'], $user['username'], 'Novo Contrato']);
+                    $dados_novos = json_encode([$user['id'], $user['username'], $contrato,$projeto]);
+
+                    $this->Modificacoes->emiteLog('Contratos', 'add', $dados_originais, $dados_novos);
+
                     return $this->redirect(['action' => 'edit',$contrato->id,$projeto_id]);
                 }else{
                     $this->Flash->error(__('O contrato não pode ser criado. Tente novamente.'));
@@ -152,6 +159,12 @@ class ContratosController extends AppController
 
             $contrato = $this->Contratos->patchEntity($contrato, $dados);
             if ($this->Contratos->save($contrato)) {
+                $this->loadModel('Modificacoes');
+                $dados_originais = json_encode([$user['id'], $user['username'], 'Edita Contrato']);
+                $dados_novos = json_encode([$user['id'], $user['username'], $contrato]);
+
+                $this->Modificacoes->emiteLog('Contratos', 'edit', $dados_originais, $dados_novos);
+
                 $this->Flash->success(__('Contrato editado com sucesso.'));
 
             }else {
@@ -171,6 +184,7 @@ class ContratosController extends AppController
      */
     public function delete($id = null,$projeto_id)
     {
+        $user = $this->Auth->user();
         $this->request->allowMethod(['post', 'delete']);
         $contrato = $this->Contratos->get($id);
 
@@ -179,6 +193,11 @@ class ContratosController extends AppController
             $projeto->contrato_id = null;
             if ($this->Contratos->Projetos->save($projeto)) {
                 $this->Flash->success(__('Contrato foi removido com sucesso.'));
+                $this->loadModel('Modificacoes');
+                $dados_originais = json_encode([$user['id'], $user['username'], 'Exclui Contrato']);
+                $dados_novos = json_encode([$user['id'], $user['username'], $contrato,$projeto]);
+
+                $this->Modificacoes->emiteLog('Contratos', 'delete', $dados_originais, $dados_novos);
             }else{
                 $this->Flash->error(__('Contrato não pode ser removido. Tente novamente.'));
             }

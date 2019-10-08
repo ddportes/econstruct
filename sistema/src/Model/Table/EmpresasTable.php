@@ -9,15 +9,22 @@ use Cake\Validation\Validator;
 /**
  * Empresas Model
  *
+ * @property &\Cake\ORM\Association\BelongsTo $Users
+ * @property &\Cake\ORM\Association\BelongsTo $Pessoas
+ * @property &\Cake\ORM\Association\BelongsTo $Enderecos
  * @property \App\Model\Table\ClienteSituacoesTable&\Cake\ORM\Association\HasMany $ClienteSituacoes
  * @property \App\Model\Table\ClientesTable&\Cake\ORM\Association\HasMany $Clientes
+ * @property &\Cake\ORM\Association\HasMany $Configuracoes
+ * @property \App\Model\Table\ContatosTable&\Cake\ORM\Association\HasMany $Contatos
  * @property \App\Model\Table\ContratosTable&\Cake\ORM\Association\HasMany $Contratos
+ * @property &\Cake\ORM\Association\HasMany $Dependentes
  * @property \App\Model\Table\EnderecosTable&\Cake\ORM\Association\HasMany $Enderecos
  * @property \App\Model\Table\EquipePedreirosTable&\Cake\ORM\Association\HasMany $EquipePedreiros
  * @property \App\Model\Table\EquipesTable&\Cake\ORM\Association\HasMany $Equipes
  * @property \App\Model\Table\FornecedorSituacoesTable&\Cake\ORM\Association\HasMany $FornecedorSituacoes
  * @property \App\Model\Table\FornecedoresTable&\Cake\ORM\Association\HasMany $Fornecedores
  * @property \App\Model\Table\ItensTable&\Cake\ORM\Association\HasMany $Itens
+ * @property &\Cake\ORM\Association\HasMany $Modificacoes
  * @property \App\Model\Table\NotasTable&\Cake\ORM\Association\HasMany $Notas
  * @property \App\Model\Table\OcorrenciaTiposTable&\Cake\ORM\Association\HasMany $OcorrenciaTipos
  * @property \App\Model\Table\OcorrenciasTable&\Cake\ORM\Association\HasMany $Ocorrencias
@@ -66,19 +73,38 @@ class EmpresasTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('FiltroAcesso');
 
+        $this->belongsTo('Users', [
+            'foreignKey' => 'u_id'
+        ]);
+        $this->belongsTo('Enderecos', [
+            'foreignKey' => 'endereco_id',
+            'propertyName' => 'endereco'
+        ]);
+        $this->belongsTo('Pessoas', [
+            'foreignKey' => 'representante_id'
+        ]);
         $this->hasMany('ClienteSituacoes', [
             'foreignKey' => 'empresa_id'
         ]);
         $this->hasMany('Clientes', [
             'foreignKey' => 'empresa_id'
         ]);
+        $this->hasMany('Configuracoes', [
+            'foreignKey' => 'empresa_id'
+        ]);
+        $this->hasMany('Contatos', [
+            'foreignKey' => 'empresa_id'
+        ]);
         $this->hasMany('Contratos', [
             'foreignKey' => 'empresa_id'
         ]);
-        $this->hasMany('Enderecos', [
+        $this->hasMany('Dependentes', [
             'foreignKey' => 'empresa_id'
+        ]);
+        $this->hasMany('Enderecos', [
+            'foreignKey' => 'empresa_id',
+            'propertyName' => 'enderecos'
         ]);
         $this->hasMany('EquipePedreiros', [
             'foreignKey' => 'empresa_id'
@@ -93,6 +119,9 @@ class EmpresasTable extends Table
             'foreignKey' => 'empresa_id'
         ]);
         $this->hasMany('Itens', [
+            'foreignKey' => 'empresa_id'
+        ]);
+        $this->hasMany('Modificacoes', [
             'foreignKey' => 'empresa_id'
         ]);
         $this->hasMany('Notas', [
@@ -150,19 +179,7 @@ class EmpresasTable extends Table
             'foreignKey' => 'empresa_id'
         ]);
         $this->hasMany('Users', [
-            'foreignKey' => 'empresa_id',
-        ]);
-        $this->belongsTo('Users', [
-            'foreignKey' => 'u_id'
-        ]);
-        $this->belongsTo('Enderecos', [
-            'foreignKey' => 'endereco_id'
-        ]);
-        $this->belongsTo('Contatos', [
-            'foreignKey' => 'contato_id'
-        ]);
-        $this->belongsTo('Pessoas', [
-            'foreignKey' => 'representante_id'
+            'foreignKey' => 'empresa_id'
         ]);
     }
 
@@ -191,14 +208,14 @@ class EmpresasTable extends Table
             ->notEmptyString('cpf_cnpj');
 
         $validator
-            ->scalar('razao_social')
-            ->maxLength('razao_social', 255)
-            ->allowEmptyString('razao_social');
-
-        $validator
             ->scalar('inscricao')
             ->maxLength('inscricao', 63)
             ->allowEmptyString('inscricao');
+
+        $validator
+            ->scalar('razao_social')
+            ->maxLength('razao_social', 255)
+            ->allowEmptyString('razao_social');
 
         $validator
             ->scalar('nome_fantasia')
@@ -222,6 +239,15 @@ class EmpresasTable extends Table
             ->scalar('observacao')
             ->allowEmptyString('observacao');
 
+        $validator
+            ->scalar('telefone')
+            ->maxLength('telefone', 63)
+            ->allowEmptyString('telefone');
+
+        $validator
+            ->email('email')
+            ->allowEmptyString('email');
+
         return $validator;
     }
 
@@ -234,10 +260,10 @@ class EmpresasTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
+        $rules->add($rules->isUnique(['email']));
         $rules->add($rules->existsIn(['u_id'], 'Users'));
         $rules->add($rules->existsIn(['endereco_id'], 'Enderecos'));
-        $rules->add($rules->existsIn(['contato_id'], 'Contatos'));
-        $rules->add($rules->existsIn(['representante_id'], 'Pessoas'));
+        $rules->add($rules->existsIn(['representante_id'], 'Representantes'));
 
         return $rules;
     }

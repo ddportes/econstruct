@@ -15,11 +15,11 @@
     <?php endforeach; ?>
 </script>
 
-<script src="ckeditor/ckeditor.js"></script>
+<script src="<?= $this->Url->build('/ckeditor/ckeditor.js') ?>"></script>
 
 <div id="addContrato" >
     <div class="modal-header">
-        <h5 class="modal-title">Configurações</h5>
+        <h5 class="modal-title">Configurações Padrão</h5>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="fechar">
             <span aria-hidden="true">×</span>

@@ -11,14 +11,20 @@
         <li><?= $this->Form->postLink(__('Delete Empresa'), ['action' => 'delete', $empresa->id], ['confirm' => __('Are you sure you want to delete # {0}?', $empresa->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Empresas'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Empresa'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Enderecos'), ['controller' => 'Enderecos', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Endereco'), ['controller' => 'Enderecos', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Cliente Situacoes'), ['controller' => 'ClienteSituacoes', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Cliente Situacao'), ['controller' => 'ClienteSituacoes', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Clientes'), ['controller' => 'Clientes', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Configuracoes'), ['controller' => 'Configuracoes', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Configuracao'), ['controller' => 'Configuracoes', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Contatos'), ['controller' => 'Contatos', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Contato'), ['controller' => 'Contatos', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Contratos'), ['controller' => 'Contratos', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Contrato'), ['controller' => 'Contratos', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Enderecos'), ['controller' => 'Enderecos', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Endereco'), ['controller' => 'Enderecos', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Dependentes'), ['controller' => 'Dependentes', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Dependente'), ['controller' => 'Dependentes', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Equipe Pedreiros'), ['controller' => 'EquipePedreiros', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Equipe Pedreiro'), ['controller' => 'EquipePedreiros', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Equipes'), ['controller' => 'Equipes', 'action' => 'index']) ?> </li>
@@ -29,6 +35,8 @@
         <li><?= $this->Html->link(__('New Fornecedor'), ['controller' => 'Fornecedores', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Itens'), ['controller' => 'Itens', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Item'), ['controller' => 'Itens', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Modificacoes'), ['controller' => 'Modificacoes', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Modificacao'), ['controller' => 'Modificacoes', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Notas'), ['controller' => 'Notas', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Nota'), ['controller' => 'Notas', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Ocorrencia Tipos'), ['controller' => 'OcorrenciaTipos', 'action' => 'index']) ?> </li>
@@ -70,7 +78,7 @@
     </ul>
 </nav>
 <div class="empresas view large-9 medium-8 columns content">
-    <h3><?= h($empresa->id) ?></h3>
+    <h3><?= h($empresa->nome_fantasia) ?></h3>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Tipo') ?></th>
@@ -81,6 +89,10 @@
             <td><?= h($empresa->cpf_cnpj) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Inscricao') ?></th>
+            <td><?= h($empresa->inscricao) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Razao Social') ?></th>
             <td><?= h($empresa->razao_social) ?></td>
         </tr>
@@ -89,12 +101,32 @@
             <td><?= h($empresa->nome_fantasia) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Telefone') ?></th>
+            <td><?= h($empresa->telefone) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Email') ?></th>
+            <td><?= h($empresa->email) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Id') ?></th>
             <td><?= $this->Number->format($empresa->id) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Mensal') ?></th>
             <td><?= $this->Number->format($empresa->mensal) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('U Id') ?></th>
+            <td><?= $this->Number->format($empresa->u_id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Endereco Id') ?></th>
+            <td><?= $this->Number->format($empresa->endereco_id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Representante Id') ?></th>
+            <td><?= $this->Number->format($empresa->representante_id) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Data Inicio') ?></th>
@@ -118,6 +150,53 @@
         <?= $this->Text->autoParagraph(h($empresa->observacao)); ?>
     </div>
     <div class="related">
+        <h4><?= __('Related Enderecos') ?></h4>
+        <?php if (!empty($empresa->enderecos)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('Pessoa Id') ?></th>
+                <th scope="col"><?= __('Logradouro') ?></th>
+                <th scope="col"><?= __('Numero') ?></th>
+                <th scope="col"><?= __('Complemento') ?></th>
+                <th scope="col"><?= __('Bairro') ?></th>
+                <th scope="col"><?= __('Cep') ?></th>
+                <th scope="col"><?= __('Cidade') ?></th>
+                <th scope="col"><?= __('Estado') ?></th>
+                <th scope="col"><?= __('Principal') ?></th>
+                <th scope="col"><?= __('Created') ?></th>
+                <th scope="col"><?= __('Modified') ?></th>
+                <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($empresa->enderecos as $enderecos): ?>
+            <tr>
+                <td><?= h($enderecos->id) ?></td>
+                <td><?= h($enderecos->pessoa_id) ?></td>
+                <td><?= h($enderecos->logradouro) ?></td>
+                <td><?= h($enderecos->numero) ?></td>
+                <td><?= h($enderecos->complemento) ?></td>
+                <td><?= h($enderecos->bairro) ?></td>
+                <td><?= h($enderecos->cep) ?></td>
+                <td><?= h($enderecos->cidade) ?></td>
+                <td><?= h($enderecos->estado) ?></td>
+                <td><?= h($enderecos->principal) ?></td>
+                <td><?= h($enderecos->created) ?></td>
+                <td><?= h($enderecos->modified) ?></td>
+                <td><?= h($enderecos->empresa_id) ?></td>
+                <td><?= h($enderecos->u_id) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Enderecos', 'action' => 'view', $enderecos->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Enderecos', 'action' => 'edit', $enderecos->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Enderecos', 'action' => 'delete', $enderecos->id], ['confirm' => __('Are you sure you want to delete # {0}?', $enderecos->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
         <h4><?= __('Related Cliente Situacoes') ?></h4>
         <?php if (!empty($empresa->cliente_situacoes)): ?>
         <table cellpadding="0" cellspacing="0">
@@ -127,6 +206,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->cliente_situacoes as $clienteSituacoes): ?>
@@ -136,6 +216,7 @@
                 <td><?= h($clienteSituacoes->created) ?></td>
                 <td><?= h($clienteSituacoes->modified) ?></td>
                 <td><?= h($clienteSituacoes->empresa_id) ?></td>
+                <td><?= h($clienteSituacoes->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'ClienteSituacoes', 'action' => 'view', $clienteSituacoes->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'ClienteSituacoes', 'action' => 'edit', $clienteSituacoes->id]) ?>
@@ -158,6 +239,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->clientes as $clientes): ?>
@@ -169,10 +251,83 @@
                 <td><?= h($clientes->created) ?></td>
                 <td><?= h($clientes->modified) ?></td>
                 <td><?= h($clientes->empresa_id) ?></td>
+                <td><?= h($clientes->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Clientes', 'action' => 'view', $clientes->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Clientes', 'action' => 'edit', $clientes->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'Clientes', 'action' => 'delete', $clientes->id], ['confirm' => __('Are you sure you want to delete # {0}?', $clientes->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Configuracoes') ?></h4>
+        <?php if (!empty($empresa->configuracoes)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('Minuta Default') ?></th>
+                <th scope="col"><?= __('Minuta Equipe Default') ?></th>
+                <th scope="col"><?= __('Recibo Default') ?></th>
+                <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
+                <th scope="col"><?= __('Created') ?></th>
+                <th scope="col"><?= __('Modified') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($empresa->configuracoes as $configuracoes): ?>
+            <tr>
+                <td><?= h($configuracoes->id) ?></td>
+                <td><?= h($configuracoes->minuta_default) ?></td>
+                <td><?= h($configuracoes->minuta_equipe_default) ?></td>
+                <td><?= h($configuracoes->recibo_default) ?></td>
+                <td><?= h($configuracoes->empresa_id) ?></td>
+                <td><?= h($configuracoes->u_id) ?></td>
+                <td><?= h($configuracoes->created) ?></td>
+                <td><?= h($configuracoes->modified) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Configuracoes', 'action' => 'view', $configuracoes->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Configuracoes', 'action' => 'edit', $configuracoes->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Configuracoes', 'action' => 'delete', $configuracoes->id], ['confirm' => __('Are you sure you want to delete # {0}?', $configuracoes->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Contatos') ?></h4>
+        <?php if (!empty($empresa->contatos)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('Pessoa Id') ?></th>
+                <th scope="col"><?= __('Tipo') ?></th>
+                <th scope="col"><?= __('Valor') ?></th>
+                <th scope="col"><?= __('Principal') ?></th>
+                <th scope="col"><?= __('Created') ?></th>
+                <th scope="col"><?= __('Modified') ?></th>
+                <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($empresa->contatos as $contatos): ?>
+            <tr>
+                <td><?= h($contatos->id) ?></td>
+                <td><?= h($contatos->pessoa_id) ?></td>
+                <td><?= h($contatos->tipo) ?></td>
+                <td><?= h($contatos->valor) ?></td>
+                <td><?= h($contatos->principal) ?></td>
+                <td><?= h($contatos->created) ?></td>
+                <td><?= h($contatos->modified) ?></td>
+                <td><?= h($contatos->empresa_id) ?></td>
+                <td><?= h($contatos->u_id) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Contatos', 'action' => 'view', $contatos->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Contatos', 'action' => 'edit', $contatos->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Contatos', 'action' => 'delete', $contatos->id], ['confirm' => __('Are you sure you want to delete # {0}?', $contatos->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -188,11 +343,11 @@
                 <th scope="col"><?= __('Projeto Id') ?></th>
                 <th scope="col"><?= __('Orcamento Id') ?></th>
                 <th scope="col"><?= __('Data Assinatura') ?></th>
-                <th scope="col"><?= __('Data Inicial') ?></th>
-                <th scope="col"><?= __('Data Final') ?></th>
+                <th scope="col"><?= __('Minuta') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->contratos as $contratos): ?>
@@ -201,11 +356,11 @@
                 <td><?= h($contratos->projeto_id) ?></td>
                 <td><?= h($contratos->orcamento_id) ?></td>
                 <td><?= h($contratos->data_assinatura) ?></td>
-                <td><?= h($contratos->data_inicial) ?></td>
-                <td><?= h($contratos->data_final) ?></td>
+                <td><?= h($contratos->minuta) ?></td>
                 <td><?= h($contratos->created) ?></td>
                 <td><?= h($contratos->modified) ?></td>
                 <td><?= h($contratos->empresa_id) ?></td>
+                <td><?= h($contratos->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Contratos', 'action' => 'view', $contratos->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Contratos', 'action' => 'edit', $contratos->id]) ?>
@@ -217,42 +372,32 @@
         <?php endif; ?>
     </div>
     <div class="related">
-        <h4><?= __('Related Enderecos') ?></h4>
-        <?php if (!empty($empresa->enderecos)): ?>
+        <h4><?= __('Related Dependentes') ?></h4>
+        <?php if (!empty($empresa->dependentes)): ?>
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Pessoa Id') ?></th>
-                <th scope="col"><?= __('Logradouro') ?></th>
-                <th scope="col"><?= __('Numero') ?></th>
-                <th scope="col"><?= __('Complemento') ?></th>
-                <th scope="col"><?= __('Bairro') ?></th>
-                <th scope="col"><?= __('Cep') ?></th>
-                <th scope="col"><?= __('Cidade Id') ?></th>
-                <th scope="col"><?= __('Principal') ?></th>
+                <th scope="col"><?= __('Pai Mae Id') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
-            <?php foreach ($empresa->enderecos as $enderecos): ?>
+            <?php foreach ($empresa->dependentes as $dependentes): ?>
             <tr>
-                <td><?= h($enderecos->id) ?></td>
-                <td><?= h($enderecos->pessoa_id) ?></td>
-                <td><?= h($enderecos->logradouro) ?></td>
-                <td><?= h($enderecos->numero) ?></td>
-                <td><?= h($enderecos->complemento) ?></td>
-                <td><?= h($enderecos->bairro) ?></td>
-                <td><?= h($enderecos->cep) ?></td>
-                <td><?= h($enderecos->cidade_id) ?></td>
-                <td><?= h($enderecos->principal) ?></td>
-                <td><?= h($enderecos->created) ?></td>
-                <td><?= h($enderecos->modified) ?></td>
-                <td><?= h($enderecos->empresa_id) ?></td>
+                <td><?= h($dependentes->id) ?></td>
+                <td><?= h($dependentes->pessoa_id) ?></td>
+                <td><?= h($dependentes->pai_mae_id) ?></td>
+                <td><?= h($dependentes->created) ?></td>
+                <td><?= h($dependentes->modified) ?></td>
+                <td><?= h($dependentes->empresa_id) ?></td>
+                <td><?= h($dependentes->u_id) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Enderecos', 'action' => 'view', $enderecos->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Enderecos', 'action' => 'edit', $enderecos->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Enderecos', 'action' => 'delete', $enderecos->id], ['confirm' => __('Are you sure you want to delete # {0}?', $enderecos->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['controller' => 'Dependentes', 'action' => 'view', $dependentes->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Dependentes', 'action' => 'edit', $dependentes->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Dependentes', 'action' => 'delete', $dependentes->id], ['confirm' => __('Are you sure you want to delete # {0}?', $dependentes->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -270,6 +415,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->equipe_pedreiros as $equipePedreiros): ?>
@@ -280,6 +426,7 @@
                 <td><?= h($equipePedreiros->created) ?></td>
                 <td><?= h($equipePedreiros->modified) ?></td>
                 <td><?= h($equipePedreiros->empresa_id) ?></td>
+                <td><?= h($equipePedreiros->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'EquipePedreiros', 'action' => 'view', $equipePedreiros->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'EquipePedreiros', 'action' => 'edit', $equipePedreiros->id]) ?>
@@ -301,6 +448,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->equipes as $equipes): ?>
@@ -311,6 +459,7 @@
                 <td><?= h($equipes->created) ?></td>
                 <td><?= h($equipes->modified) ?></td>
                 <td><?= h($equipes->empresa_id) ?></td>
+                <td><?= h($equipes->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Equipes', 'action' => 'view', $equipes->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Equipes', 'action' => 'edit', $equipes->id]) ?>
@@ -331,6 +480,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->fornecedor_situacoes as $fornecedorSituacoes): ?>
@@ -340,6 +490,7 @@
                 <td><?= h($fornecedorSituacoes->created) ?></td>
                 <td><?= h($fornecedorSituacoes->modified) ?></td>
                 <td><?= h($fornecedorSituacoes->empresa_id) ?></td>
+                <td><?= h($fornecedorSituacoes->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'FornecedorSituacoes', 'action' => 'view', $fornecedorSituacoes->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'FornecedorSituacoes', 'action' => 'edit', $fornecedorSituacoes->id]) ?>
@@ -362,6 +513,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->fornecedores as $fornecedores): ?>
@@ -373,6 +525,7 @@
                 <td><?= h($fornecedores->created) ?></td>
                 <td><?= h($fornecedores->modified) ?></td>
                 <td><?= h($fornecedores->empresa_id) ?></td>
+                <td><?= h($fornecedores->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Fornecedores', 'action' => 'view', $fornecedores->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Fornecedores', 'action' => 'edit', $fornecedores->id]) ?>
@@ -390,7 +543,6 @@
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Nota Id') ?></th>
-                <th scope="col"><?= __('Fornecedor Id') ?></th>
                 <th scope="col"><?= __('Produto Id') ?></th>
                 <th scope="col"><?= __('Observacao') ?></th>
                 <th scope="col"><?= __('Valor') ?></th>
@@ -399,13 +551,13 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->itens as $itens): ?>
             <tr>
                 <td><?= h($itens->id) ?></td>
                 <td><?= h($itens->nota_id) ?></td>
-                <td><?= h($itens->fornecedor_id) ?></td>
                 <td><?= h($itens->produto_id) ?></td>
                 <td><?= h($itens->observacao) ?></td>
                 <td><?= h($itens->valor) ?></td>
@@ -414,10 +566,46 @@
                 <td><?= h($itens->created) ?></td>
                 <td><?= h($itens->modified) ?></td>
                 <td><?= h($itens->empresa_id) ?></td>
+                <td><?= h($itens->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Itens', 'action' => 'view', $itens->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Itens', 'action' => 'edit', $itens->id]) ?>
                     <?= $this->Form->postLink(__('Delete'), ['controller' => 'Itens', 'action' => 'delete', $itens->id], ['confirm' => __('Are you sure you want to delete # {0}?', $itens->id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
+    <div class="related">
+        <h4><?= __('Related Modificacoes') ?></h4>
+        <?php if (!empty($empresa->modificacoes)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('Datahora') ?></th>
+                <th scope="col"><?= __('User Id') ?></th>
+                <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('Controller') ?></th>
+                <th scope="col"><?= __('Action') ?></th>
+                <th scope="col"><?= __('Dados Originais') ?></th>
+                <th scope="col"><?= __('Dados Novos') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($empresa->modificacoes as $modificacoes): ?>
+            <tr>
+                <td><?= h($modificacoes->id) ?></td>
+                <td><?= h($modificacoes->datahora) ?></td>
+                <td><?= h($modificacoes->user_id) ?></td>
+                <td><?= h($modificacoes->empresa_id) ?></td>
+                <td><?= h($modificacoes->controller) ?></td>
+                <td><?= h($modificacoes->action) ?></td>
+                <td><?= h($modificacoes->dados_originais) ?></td>
+                <td><?= h($modificacoes->dados_novos) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'Modificacoes', 'action' => 'view', $modificacoes->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'Modificacoes', 'action' => 'edit', $modificacoes->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Modificacoes', 'action' => 'delete', $modificacoes->id], ['confirm' => __('Are you sure you want to delete # {0}?', $modificacoes->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -433,9 +621,11 @@
                 <th scope="col"><?= __('Projeto Id') ?></th>
                 <th scope="col"><?= __('Data') ?></th>
                 <th scope="col"><?= __('Valor') ?></th>
+                <th scope="col"><?= __('Fornecedor Id') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->notas as $notas): ?>
@@ -444,9 +634,11 @@
                 <td><?= h($notas->projeto_id) ?></td>
                 <td><?= h($notas->data) ?></td>
                 <td><?= h($notas->valor) ?></td>
+                <td><?= h($notas->fornecedor_id) ?></td>
                 <td><?= h($notas->created) ?></td>
                 <td><?= h($notas->modified) ?></td>
                 <td><?= h($notas->empresa_id) ?></td>
+                <td><?= h($notas->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Notas', 'action' => 'view', $notas->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Notas', 'action' => 'edit', $notas->id]) ?>
@@ -467,6 +659,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->ocorrencia_tipos as $ocorrenciaTipos): ?>
@@ -476,6 +669,7 @@
                 <td><?= h($ocorrenciaTipos->created) ?></td>
                 <td><?= h($ocorrenciaTipos->modified) ?></td>
                 <td><?= h($ocorrenciaTipos->empresa_id) ?></td>
+                <td><?= h($ocorrenciaTipos->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'OcorrenciaTipos', 'action' => 'view', $ocorrenciaTipos->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'OcorrenciaTipos', 'action' => 'edit', $ocorrenciaTipos->id]) ?>
@@ -496,9 +690,11 @@
                 <th scope="col"><?= __('Projeto Id') ?></th>
                 <th scope="col"><?= __('Observacao') ?></th>
                 <th scope="col"><?= __('Data') ?></th>
+                <th scope="col"><?= __('Data Pendencia') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->ocorrencias as $ocorrencias): ?>
@@ -508,9 +704,11 @@
                 <td><?= h($ocorrencias->projeto_id) ?></td>
                 <td><?= h($ocorrencias->observacao) ?></td>
                 <td><?= h($ocorrencias->data) ?></td>
+                <td><?= h($ocorrencias->data_pendencia) ?></td>
                 <td><?= h($ocorrencias->created) ?></td>
                 <td><?= h($ocorrencias->modified) ?></td>
                 <td><?= h($ocorrencias->empresa_id) ?></td>
+                <td><?= h($ocorrencias->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Ocorrencias', 'action' => 'view', $ocorrencias->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Ocorrencias', 'action' => 'edit', $ocorrencias->id]) ?>
@@ -536,6 +734,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->orcamentos as $orcamentos): ?>
@@ -550,6 +749,7 @@
                 <td><?= h($orcamentos->created) ?></td>
                 <td><?= h($orcamentos->modified) ?></td>
                 <td><?= h($orcamentos->empresa_id) ?></td>
+                <td><?= h($orcamentos->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Orcamentos', 'action' => 'view', $orcamentos->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Orcamentos', 'action' => 'edit', $orcamentos->id]) ?>
@@ -571,6 +771,7 @@
                 <th scope="col"><?= __('Empresa Id') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->papeis as $papeis): ?>
@@ -581,6 +782,7 @@
                 <td><?= h($papeis->empresa_id) ?></td>
                 <td><?= h($papeis->created) ?></td>
                 <td><?= h($papeis->modified) ?></td>
+                <td><?= h($papeis->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Papeis', 'action' => 'view', $papeis->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Papeis', 'action' => 'edit', $papeis->id]) ?>
@@ -601,6 +803,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->pedreiro_situacoes as $pedreiroSituacoes): ?>
@@ -610,6 +813,7 @@
                 <td><?= h($pedreiroSituacoes->created) ?></td>
                 <td><?= h($pedreiroSituacoes->modified) ?></td>
                 <td><?= h($pedreiroSituacoes->empresa_id) ?></td>
+                <td><?= h($pedreiroSituacoes->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'PedreiroSituacoes', 'action' => 'view', $pedreiroSituacoes->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'PedreiroSituacoes', 'action' => 'edit', $pedreiroSituacoes->id]) ?>
@@ -632,6 +836,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->pedreiros as $pedreiros): ?>
@@ -643,6 +848,7 @@
                 <td><?= h($pedreiros->created) ?></td>
                 <td><?= h($pedreiros->modified) ?></td>
                 <td><?= h($pedreiros->empresa_id) ?></td>
+                <td><?= h($pedreiros->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Pedreiros', 'action' => 'view', $pedreiros->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Pedreiros', 'action' => 'edit', $pedreiros->id]) ?>
@@ -664,6 +870,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->permissao_papeis as $permissaoPapeis): ?>
@@ -674,6 +881,7 @@
                 <td><?= h($permissaoPapeis->created) ?></td>
                 <td><?= h($permissaoPapeis->modified) ?></td>
                 <td><?= h($permissaoPapeis->empresa_id) ?></td>
+                <td><?= h($permissaoPapeis->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'PermissaoPapeis', 'action' => 'view', $permissaoPapeis->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'PermissaoPapeis', 'action' => 'edit', $permissaoPapeis->id]) ?>
@@ -691,20 +899,24 @@
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Descricao') ?></th>
+                <th scope="col"><?= __('Descricao Amigavel') ?></th>
                 <th scope="col"><?= __('Permissao Pai Id') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->permissoes as $permissoes): ?>
             <tr>
                 <td><?= h($permissoes->id) ?></td>
                 <td><?= h($permissoes->descricao) ?></td>
+                <td><?= h($permissoes->descricao_amigavel) ?></td>
                 <td><?= h($permissoes->permissao_pai_id) ?></td>
                 <td><?= h($permissoes->created) ?></td>
                 <td><?= h($permissoes->modified) ?></td>
                 <td><?= h($permissoes->empresa_id) ?></td>
+                <td><?= h($permissoes->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Permissoes', 'action' => 'view', $permissoes->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Permissoes', 'action' => 'edit', $permissoes->id]) ?>
@@ -730,9 +942,11 @@
                 <th scope="col"><?= __('Tipo') ?></th>
                 <th scope="col"><?= __('Cpf Cnpj') ?></th>
                 <th scope="col"><?= __('Rg') ?></th>
+                <th scope="col"><?= __('Data Nascimento') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->pessoas as $pessoas): ?>
@@ -747,9 +961,11 @@
                 <td><?= h($pessoas->tipo) ?></td>
                 <td><?= h($pessoas->cpf_cnpj) ?></td>
                 <td><?= h($pessoas->rg) ?></td>
+                <td><?= h($pessoas->data_nascimento) ?></td>
                 <td><?= h($pessoas->created) ?></td>
                 <td><?= h($pessoas->modified) ?></td>
                 <td><?= h($pessoas->empresa_id) ?></td>
+                <td><?= h($pessoas->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Pessoas', 'action' => 'view', $pessoas->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Pessoas', 'action' => 'edit', $pessoas->id]) ?>
@@ -770,6 +986,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->produto_tipos as $produtoTipos): ?>
@@ -779,6 +996,7 @@
                 <td><?= h($produtoTipos->created) ?></td>
                 <td><?= h($produtoTipos->modified) ?></td>
                 <td><?= h($produtoTipos->empresa_id) ?></td>
+                <td><?= h($produtoTipos->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'ProdutoTipos', 'action' => 'view', $produtoTipos->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'ProdutoTipos', 'action' => 'edit', $produtoTipos->id]) ?>
@@ -795,21 +1013,25 @@
         <table cellpadding="0" cellspacing="0">
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
+                <th scope="col"><?= __('Produto Pai Id') ?></th>
                 <th scope="col"><?= __('Descricao') ?></th>
                 <th scope="col"><?= __('Produto Tipo Id') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->produtos as $produtos): ?>
             <tr>
                 <td><?= h($produtos->id) ?></td>
+                <td><?= h($produtos->produto_pai_id) ?></td>
                 <td><?= h($produtos->descricao) ?></td>
                 <td><?= h($produtos->produto_tipo_id) ?></td>
                 <td><?= h($produtos->created) ?></td>
                 <td><?= h($produtos->modified) ?></td>
                 <td><?= h($produtos->empresa_id) ?></td>
+                <td><?= h($produtos->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Produtos', 'action' => 'view', $produtos->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Produtos', 'action' => 'edit', $produtos->id]) ?>
@@ -830,6 +1052,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->projeto_situacoes as $projetoSituacoes): ?>
@@ -839,6 +1062,7 @@
                 <td><?= h($projetoSituacoes->created) ?></td>
                 <td><?= h($projetoSituacoes->modified) ?></td>
                 <td><?= h($projetoSituacoes->empresa_id) ?></td>
+                <td><?= h($projetoSituacoes->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'ProjetoSituacoes', 'action' => 'view', $projetoSituacoes->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'ProjetoSituacoes', 'action' => 'edit', $projetoSituacoes->id]) ?>
@@ -863,10 +1087,14 @@
                 <th scope="col"><?= __('Contrato Id') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
-                <th scope="col"><?= __('Orcamento') ?></th>
                 <th scope="col"><?= __('Custo Estimado') ?></th>
+                <th scope="col"><?= __('Terreno') ?></th>
+                <th scope="col"><?= __('Area Construida Coberta') ?></th>
+                <th scope="col"><?= __('Area Construida Aberta') ?></th>
                 <th scope="col"><?= __('Observacao') ?></th>
+                <th scope="col"><?= __('Endereco Id') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->projetos as $projetos): ?>
@@ -880,10 +1108,14 @@
                 <td><?= h($projetos->contrato_id) ?></td>
                 <td><?= h($projetos->created) ?></td>
                 <td><?= h($projetos->modified) ?></td>
-                <td><?= h($projetos->orcamento) ?></td>
                 <td><?= h($projetos->custo_estimado) ?></td>
+                <td><?= h($projetos->terreno) ?></td>
+                <td><?= h($projetos->area_construida_coberta) ?></td>
+                <td><?= h($projetos->area_construida_aberta) ?></td>
                 <td><?= h($projetos->observacao) ?></td>
+                <td><?= h($projetos->endereco_id) ?></td>
                 <td><?= h($projetos->empresa_id) ?></td>
+                <td><?= h($projetos->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Projetos', 'action' => 'view', $projetos->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Projetos', 'action' => 'edit', $projetos->id]) ?>
@@ -907,6 +1139,7 @@
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Observacao') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->recebimentos as $recebimentos): ?>
@@ -919,6 +1152,7 @@
                 <td><?= h($recebimentos->modified) ?></td>
                 <td><?= h($recebimentos->observacao) ?></td>
                 <td><?= h($recebimentos->empresa_id) ?></td>
+                <td><?= h($recebimentos->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Recebimentos', 'action' => 'view', $recebimentos->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Recebimentos', 'action' => 'edit', $recebimentos->id]) ?>
@@ -942,6 +1176,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->recibos as $recibos): ?>
@@ -954,6 +1189,7 @@
                 <td><?= h($recibos->created) ?></td>
                 <td><?= h($recibos->modified) ?></td>
                 <td><?= h($recibos->empresa_id) ?></td>
+                <td><?= h($recibos->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Recibos', 'action' => 'view', $recibos->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Recibos', 'action' => 'edit', $recibos->id]) ?>
@@ -979,6 +1215,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->rendas as $rendas): ?>
@@ -993,6 +1230,7 @@
                 <td><?= h($rendas->created) ?></td>
                 <td><?= h($rendas->modified) ?></td>
                 <td><?= h($rendas->empresa_id) ?></td>
+                <td><?= h($rendas->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Rendas', 'action' => 'view', $rendas->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Rendas', 'action' => 'edit', $rendas->id]) ?>
@@ -1014,6 +1252,7 @@
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->user_papeis as $userPapeis): ?>
@@ -1024,6 +1263,7 @@
                 <td><?= h($userPapeis->created) ?></td>
                 <td><?= h($userPapeis->modified) ?></td>
                 <td><?= h($userPapeis->empresa_id) ?></td>
+                <td><?= h($userPapeis->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'UserPapeis', 'action' => 'view', $userPapeis->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'UserPapeis', 'action' => 'edit', $userPapeis->id]) ?>
@@ -1041,20 +1281,28 @@
             <tr>
                 <th scope="col"><?= __('Id') ?></th>
                 <th scope="col"><?= __('Username') ?></th>
+                <th scope="col"><?= __('Email') ?></th>
                 <th scope="col"><?= __('Password') ?></th>
+                <th scope="col"><?= __('Status') ?></th>
+                <th scope="col"><?= __('Hash') ?></th>
                 <th scope="col"><?= __('Created') ?></th>
                 <th scope="col"><?= __('Modified') ?></th>
                 <th scope="col"><?= __('Empresa Id') ?></th>
+                <th scope="col"><?= __('U Id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($empresa->users as $users): ?>
             <tr>
                 <td><?= h($users->id) ?></td>
                 <td><?= h($users->username) ?></td>
+                <td><?= h($users->email) ?></td>
                 <td><?= h($users->password) ?></td>
+                <td><?= h($users->status) ?></td>
+                <td><?= h($users->hash) ?></td>
                 <td><?= h($users->created) ?></td>
                 <td><?= h($users->modified) ?></td>
                 <td><?= h($users->empresa_id) ?></td>
+                <td><?= h($users->u_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $users->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['controller' => 'Users', 'action' => 'edit', $users->id]) ?>

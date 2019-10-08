@@ -51,7 +51,8 @@ class EmpresasTableTest extends TestCase
         'app.Recibos',
         'app.Rendas',
         'app.UserPapeis',
-        'app.Users'
+        'app.Users',
+        'app.Contatos'
     ];
 
     /**
@@ -94,6 +95,16 @@ class EmpresasTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

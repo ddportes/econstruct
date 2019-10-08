@@ -8,14 +8,20 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Empresa'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Enderecos'), ['controller' => 'Enderecos', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Endereco'), ['controller' => 'Enderecos', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Cliente Situacoes'), ['controller' => 'ClienteSituacoes', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Cliente Situacao'), ['controller' => 'ClienteSituacoes', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Clientes'), ['controller' => 'Clientes', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Cliente'), ['controller' => 'Clientes', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Configuracoes'), ['controller' => 'Configuracoes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Configuracao'), ['controller' => 'Configuracoes', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Contatos'), ['controller' => 'Contatos', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Contato'), ['controller' => 'Contatos', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Contratos'), ['controller' => 'Contratos', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Contrato'), ['controller' => 'Contratos', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Enderecos'), ['controller' => 'Enderecos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Endereco'), ['controller' => 'Enderecos', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Dependentes'), ['controller' => 'Dependentes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Dependente'), ['controller' => 'Dependentes', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Equipe Pedreiros'), ['controller' => 'EquipePedreiros', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Equipe Pedreiro'), ['controller' => 'EquipePedreiros', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Equipes'), ['controller' => 'Equipes', 'action' => 'index']) ?></li>
@@ -26,6 +32,8 @@
         <li><?= $this->Html->link(__('New Fornecedor'), ['controller' => 'Fornecedores', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Itens'), ['controller' => 'Itens', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Item'), ['controller' => 'Itens', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Modificacoes'), ['controller' => 'Modificacoes', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Modificacao'), ['controller' => 'Modificacoes', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Notas'), ['controller' => 'Notas', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Nota'), ['controller' => 'Notas', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Ocorrencia Tipos'), ['controller' => 'OcorrenciaTipos', 'action' => 'index']) ?></li>
@@ -74,6 +82,7 @@
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('tipo') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('cpf_cnpj') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('inscricao') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('razao_social') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('nome_fantasia') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('data_inicio') ?></th>
@@ -81,6 +90,11 @@
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('mensal') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('u_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('endereco_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('representante_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('telefone') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -90,6 +104,7 @@
                 <td><?= $this->Number->format($empresa->id) ?></td>
                 <td><?= h($empresa->tipo) ?></td>
                 <td><?= h($empresa->cpf_cnpj) ?></td>
+                <td><?= h($empresa->inscricao) ?></td>
                 <td><?= h($empresa->razao_social) ?></td>
                 <td><?= h($empresa->nome_fantasia) ?></td>
                 <td><?= h($empresa->data_inicio) ?></td>
@@ -97,6 +112,11 @@
                 <td><?= h($empresa->created) ?></td>
                 <td><?= h($empresa->modified) ?></td>
                 <td><?= $this->Number->format($empresa->mensal) ?></td>
+                <td><?= $this->Number->format($empresa->u_id) ?></td>
+                <td><?= $this->Number->format($empresa->endereco_id) ?></td>
+                <td><?= $this->Number->format($empresa->representante_id) ?></td>
+                <td><?= h($empresa->telefone) ?></td>
+                <td><?= h($empresa->email) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $empresa->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $empresa->id]) ?>

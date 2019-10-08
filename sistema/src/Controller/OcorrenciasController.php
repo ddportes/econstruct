@@ -131,7 +131,7 @@ class OcorrenciasController extends AppController
                             //cria endereço
                             $dados_endereco['pessoa_id'] = $pessoa->id;
                             $dados_endereco['logradouro'] = (!empty($dados['logradouroCliente'])?$dados['logradouroCliente']: null);
-                            $dados_endereco['numero'] = (!empty($dados['numeroCliente'])?$dados['numeroCliente']: null);
+                            $dados_endereco['numero'] = (!empty($dados['numeroCliente'])?preg_replace("/[^0-9,]/", "",$dados['numeroCliente']): null);
                             $dados_endereco['complemento'] = (!empty($dados['complementoCliente'])?$dados['complementoCliente']: null);
                             $dados_endereco['bairro'] = (!empty($dados['bairroCliente'])?$dados['bairroCliente']: null);
                             $dados_endereco['cep'] = (!empty($dados['cepCliente'])?preg_replace('/[^0-9]/', '', $dados['cepCliente']): null);
@@ -303,7 +303,7 @@ class OcorrenciasController extends AppController
                         if ($this->Contatos->saveMany($contatos)) {
                             foreach($pessoa->enderecos as $val){
                                 $val->logradouro = (!empty($dados['logradouroCliente'])?$dados['logradouroCliente']: null);
-                                $val->numero = (!empty($dados['numeroCliente'])?$dados['numeroCliente']: null);
+                                $val->numero = (!empty($dados['numeroCliente'])?preg_replace("/[^0-9,]/", "",$dados['numeroCliente']): null);
                                 $val->complemento = (!empty($dados['complementoCliente'])?$dados['complementoCliente']: null);
                                 $val->bairro = (!empty($dados['bairroCliente'])?$dados['bairroCliente']: null);
                                 $val->cep = (!empty($dados['cepCliente'])?preg_replace('/[^0-9]/', '', $dados['cepCliente']): null);

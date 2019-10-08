@@ -102,7 +102,7 @@
 
                                     <?= $this->Html->Link('Configuração Padrão',['controller'=>'Configuracoes','action'=>'index'],['role'=>'button','class'=>'dropdown-item modal_lg_link','data-toggle'=>"modal",'data-target'=>".modal_econstruct",'tabindex'=>'0']) ?>
 
-                                    <?= $this->Html->Link('Configuração Empresa',['controller'=>'Empresas','action'=>'index'],['role'=>'button','class'=>'dropdown-item modal_lg_link','data-toggle'=>"modal",'data-target'=>".modal_econstruct",'tabindex'=>'0']) ?>
+                                    <?= $this->Html->Link('Configuração Empresa',['controller'=>'Empresas','action'=>'edit',$userSession['empresa_id']],['role'=>'button','class'=>'dropdown-item modal_lg_link','data-toggle'=>"modal",'data-target'=>".modal_econstruct",'tabindex'=>'0']) ?>
                                 <?php endif; ?>
 
                                 <?= $this->Html->Link('Logout',['controller'=>'Users','action'=>'logout'],['confirm' => __('Tem certeza que deseja sair do sistema?'),'role'=>'button','class'=>'dropdown-item','tabindex'=>'0']) ?>

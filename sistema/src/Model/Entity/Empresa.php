@@ -9,7 +9,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $tipo
  * @property string $cpf_cnpj
- * @property string $inscricao
+ * @property string|null $inscricao
  * @property string|null $razao_social
  * @property string $nome_fantasia
  * @property \Cake\I18n\FrozenDate|null $data_inicio
@@ -17,16 +17,17 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
  * @property float|null $mensal
- * @property int|null $u_id
  * @property string|null $observacao
+ * @property int|null $u_id
  * @property int|null $endereco_id
- * @property int|null $contato_id
  * @property int|null $representante_id
+ * @property string|null $telefone
+ * @property string|null $email
  *
  * @property \App\Model\Entity\ClienteSituacao[] $cliente_situacoes
  * @property \App\Model\Entity\Cliente[] $clientes
  * @property \App\Model\Entity\Contrato[] $contratos
- * @property \App\Model\Entity\Endereco[] $enderecos
+ * @property \App\Model\Entity\Endereco $endereco
  * @property \App\Model\Entity\EquipePedreiro[] $equipe_pedreiros
  * @property \App\Model\Entity\Equipe[] $equipes
  * @property \App\Model\Entity\FornecedorSituacao[] $fornecedor_situacoes
@@ -41,7 +42,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Pedreiro[] $pedreiros
  * @property \App\Model\Entity\PermissaoPapel[] $permissao_papeis
  * @property \App\Model\Entity\Permissao[] $permissoes
- * @property \App\Model\Entity\Pessoa[] $pessoas
+ * @property \App\Model\Entity\Pessoa $pessoa
  * @property \App\Model\Entity\ProdutoTipo[] $produto_tipos
  * @property \App\Model\Entity\Produto[] $produtos
  * @property \App\Model\Entity\ProjetoSituacao[] $projeto_situacoes
@@ -50,7 +51,8 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Recibo[] $recibos
  * @property \App\Model\Entity\Renda[] $rendas
  * @property \App\Model\Entity\UserPapel[] $user_papeis
- * @property \App\Model\Entity\User[] $users
+ * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Contato $contato
  */
 class Empresa extends Entity
 {
@@ -75,10 +77,15 @@ class Empresa extends Entity
         'modified' => true,
         'mensal' => true,
         'observacao' => true,
+        'u_id' => true,
+        'endereco_id' => true,
+        'representante_id' => true,
+        'telefone' => true,
+        'email' => true,
         'cliente_situacoes' => true,
         'clientes' => true,
         'contratos' => true,
-        'enderecos' => true,
+        'endereco' => true,
         'equipe_pedreiros' => true,
         'equipes' => true,
         'fornecedor_situacoes' => true,
@@ -93,7 +100,7 @@ class Empresa extends Entity
         'pedreiros' => true,
         'permissao_papeis' => true,
         'permissoes' => true,
-        'pessoas' => true,
+        'pessoa' => true,
         'produto_tipos' => true,
         'produtos' => true,
         'projeto_situacoes' => true,
@@ -102,10 +109,7 @@ class Empresa extends Entity
         'recibos' => true,
         'rendas' => true,
         'user_papeis' => true,
-        'users' => true,
-        'u_id'=>true,
-        'endereco_id' => true,
-        'contato_id' => true,
-        'representante_id' => true
+        'user' => true,
+        'contato' => true
     ];
 }

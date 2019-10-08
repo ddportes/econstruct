@@ -19,6 +19,9 @@ class EmpresasController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Us', 'Representantes']
+        ];
         $empresas = $this->paginate($this->Empresas);
 
         $this->set(compact('empresas'));
@@ -34,7 +37,7 @@ class EmpresasController extends AppController
     public function view($id = null)
     {
         $empresa = $this->Empresas->get($id, [
-            'contain' => ['ClienteSituacoes', 'Clientes', 'Contratos', 'Enderecos', 'EquipePedreiros', 'Equipes', 'FornecedorSituacoes', 'Fornecedores', 'Itens', 'Notas', 'OcorrenciaTipos', 'Ocorrencias', 'Orcamentos', 'Papeis', 'PedreiroSituacoes', 'Pedreiros', 'PermissaoPapeis', 'Permissoes', 'Pessoas', 'ProdutoTipos', 'Produtos', 'ProjetoSituacoes', 'Projetos', 'Recebimentos', 'Recibos', 'Rendas', 'UserPapeis', 'Users']
+            'contain' => ['Us', 'Representantes', 'Enderecos', 'ClienteSituacoes', 'Clientes', 'Configuracoes', 'Contatos', 'Contratos', 'Dependentes', 'EquipePedreiros', 'Equipes', 'FornecedorSituacoes', 'Fornecedores', 'Itens', 'Modificacoes', 'Notas', 'OcorrenciaTipos', 'Ocorrencias', 'Orcamentos', 'Papeis', 'PedreiroSituacoes', 'Pedreiros', 'PermissaoPapeis', 'Permissoes', 'Pessoas', 'ProdutoTipos', 'Produtos', 'ProjetoSituacoes', 'Projetos', 'Recebimentos', 'Recibos', 'Rendas', 'UserPapeis', 'Users']
         ]);
 
         $this->set('empresa', $empresa);
@@ -57,7 +60,9 @@ class EmpresasController extends AppController
             }
             $this->Flash->error(__('The empresa could not be saved. Please, try again.'));
         }
-        $this->set(compact('empresa'));
+        $user = $this->Empresas->Users->find('list', ['limit' => 200]);
+        $representantes = $this->Empresas->Pessoas->find('list', ['limit' => 200]);
+        $this->set(compact('empresa', 'user', 'representantes'));
     }
 
     /**
@@ -69,9 +74,18 @@ class EmpresasController extends AppController
      */
     public function edit($id = null)
     {
-        $empresa = $this->Empresas->get($id, [
-            'contain' => []
-        ]);
+        $empresa = $this->Empresas->get($id);
+
+        $endereco = null;
+        if (!empty($empresa->endereco_id)){
+            $endereco = $this->Empresas->Enderecos->get($empresa->endereco_id);
+        }
+
+        $representante = null;
+        if (!empty($empresa->representante_id)){
+            $representante = $this->Empresas->Pessoas->get($empresa->representante_id);
+        }
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $empresa = $this->Empresas->patchEntity($empresa, $this->request->getData());
             if ($this->Empresas->save($empresa)) {
@@ -81,7 +95,8 @@ class EmpresasController extends AppController
             }
             $this->Flash->error(__('The empresa could not be saved. Please, try again.'));
         }
-        $this->set(compact('empresa'));
+
+        $this->set(compact('empresa','endereco','representante'));
     }
 
     /**

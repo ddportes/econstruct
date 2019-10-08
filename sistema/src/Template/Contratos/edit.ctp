@@ -15,14 +15,14 @@
     <?php endforeach; ?>
 </script>
 
-<script src="ckeditor/ckeditor.js"></script>
+<script src="<?= $this->Url->build('/ckeditor/ckeditor.js') ?>"></script>
 
 <div id="cadContrato" >
     <?php echo $this->Flash->render() ?>
     <div class="modal-header">
         <h5 class="modal-title">Editar Contrato</h5>
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="fechar">
+        <button type="button" class="close" onclick="location.reload();" data-dismiss="modal" aria-label="fechar">
             <span aria-hidden="true">×</span>
         </button>
     </div>
@@ -71,7 +71,7 @@
         </div>
         <div class="modal-footer">
             <?= $this->Form->button(__('Salvar'),['id'=>'salvarContrato','class'=>'btn btn-secondary']) ?>
-            <button id="fechaModal" type="button" class="btn btn-secondary close-popdown" data-dismiss="modal">fechar</button>
+            <button id="fechaModal" type="button" class="btn btn-secondary close-popdown" onclick="location.reload();" data-dismiss="modal">fechar</button>
         </div>
         <?= $this->Form->end() ?>
 

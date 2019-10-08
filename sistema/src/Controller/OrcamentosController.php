@@ -77,6 +77,12 @@ class OrcamentosController extends AppController
                 $orcamento = $this->Orcamentos->patchEntity($orcamento, $dados);
 
                 if ($this->Orcamentos->save($orcamento)) {
+                    $this->loadModel('Modificacoes');
+                    $dados_originais = json_encode([$user['id'], $user['username'], 'Novo Orçamento']);
+                    $dados_novos = json_encode([$user['id'], $user['username'], $orcamento]);
+
+                    $this->Modificacoes->emiteLog('Orcamentos', 'add', $dados_originais, $dados_novos);
+
                     //$this->Flash->success(__('The orcamento has been saved.'));
                 }
                 //$this->Flash->error(__('The orcamento could not be saved. Please, try again.'));
@@ -106,6 +112,12 @@ class OrcamentosController extends AppController
 
         if ($this->Orcamentos->delete($orcamento)) {
             //$this->Flash->success(__('The renda has been deleted.'));
+            $user = $sessao = $this->Auth->user();
+            $this->loadModel('Modificacoes');
+            $dados_originais = json_encode([$user['id'], $user['username'], 'Exclui Orçamento']);
+            $dados_novos = json_encode([$user['id'], $user['username'], $orcamento]);
+
+            $this->Modificacoes->emiteLog('Orcamentos', 'delete', $dados_originais, $dados_novos);
         } else {
             //$this->Flash->error(__('The renda could not be deleted. Please, try again.'));
         }

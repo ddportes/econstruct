@@ -14,7 +14,7 @@
     </script>
     <div class="modal-header">
         <h5 class="modal-title">Cadastro de Orçamentos</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="fechar">
+        <button type="button" class="close" onclick="location.reload();" data-dismiss="modal" aria-label="fechar">
             <span aria-hidden="true">×</span>
         </button>
     </div>
@@ -171,7 +171,7 @@
         </div>
         <div class="modal-footer">
             <?= $this->Form->button(__('Salvar'),['id'=>'salvarOrcamento','class'=>'btn btn-secondary']) ?>
-            <button id="fechaModal" type="button" class="btn btn-secondary close-popdown" data-dismiss="modal">fechar</button>
+            <button id="fechaModal" type="button" class="btn btn-secondary close-popdown" onclick="location.reload();" data-dismiss="modal">fechar</button>
         </div>
         <?= $this->Form->end() ?>
 

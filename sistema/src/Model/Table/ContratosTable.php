@@ -146,15 +146,15 @@ class ContratosTable extends Table
                     $valida = (isset($dados->projeto->cliente->pessoa->enderecos[0]) ? $dados->projeto->cliente->pessoa->enderecos[0]->validaEnderecoCompleto() : '12345');
 
                     if (strpos($valida, '1'))
-                        $erros_endereco .= '<br/> Preencha o logradouro do cliente';
+                        $erros_endereco .= '<br/>Preencha o logradouro do cliente';
                     if (strpos($valida, '2'))
-                        $erros_endereco .= '<br/> Preencha o bairro do cliente.';
+                        $erros_endereco .= '<br/>Preencha o bairro do cliente.';
                     if (strpos($valida, '3'))
-                        $erros_endereco .= '<br/> Preencha o cep do cliente.';
+                        $erros_endereco .= '<br/>Preencha o cep do cliente.';
                     if (strpos($valida, '4'))
-                        $erros_endereco .= '<br/> Preencha a cidade do cliente.';
+                        $erros_endereco .= '<br/>Preencha a cidade do cliente.';
                     if (strpos($valida, '5'))
-                        $erros_endereco .= '<br/> Preencha o estado do cliente.';
+                        $erros_endereco .= '<br/>Preencha o estado do cliente.';
 
                     $retorno['error'] .= $erros_endereco;
                 }
@@ -198,15 +198,15 @@ class ContratosTable extends Table
                     $valida = (isset($dados->empresa->endereco) ? $dados->empresa->endereco->validaEnderecoCompleto() : '12345');
 
                     if (strpos($valida, '1'))
-                        $erros_endereco .= '<br/> Preencha o logradouro da empresa.';
+                        $erros_endereco .= '<br/>Preencha o logradouro da empresa.';
                     if (strpos($valida, '2'))
-                        $erros_endereco .= '<br/> Preencha o bairro da empresa.';
+                        $erros_endereco .= '<br/>Preencha o bairro da empresa.';
                     if (strpos($valida, '3'))
-                        $erros_endereco .= '<br/> Preencha o cep da empresa.';
+                        $erros_endereco .= '<br/>Preencha o cep da empresa.';
                     if (strpos($valida, '4'))
-                        $erros_endereco .= '<br/> Preencha a cidade da empresa.';
+                        $erros_endereco .= '<br/>Preencha a cidade da empresa.';
                     if (strpos($valida, '5'))
-                        $erros_endereco .= '<br/> Preencha o estado da empresa.';
+                        $erros_endereco .= '<br/>Preencha o estado da empresa.';
 
                     $retorno['error'] .= $erros_endereco;
                 }
@@ -300,15 +300,15 @@ class ContratosTable extends Table
                     $valida = (isset($dados->projeto->endereco) ? $dados->projeto->endereco->validaEnderecoCompleto() : '12345');
 
                     if (strpos($valida, '1'))
-                        $erros_endereco .= '<br/> Preencha o logradouro do projeto.';
+                        $erros_endereco .= '<br/>Preencha o logradouro do projeto.';
                     if (strpos($valida, '2'))
-                        $erros_endereco .= '<br/> Preencha o bairro do projeto.';
+                        $erros_endereco .= '<br/>Preencha o bairro do projeto.';
                     if (strpos($valida, '3'))
-                        $erros_endereco .= '<br/> Preencha o cep do projeto.';
+                        $erros_endereco .= '<br/>Preencha o cep do projeto.';
                     if (strpos($valida, '4'))
-                        $erros_endereco .= '<br/> Preencha a cidade do projeto.';
+                        $erros_endereco .= '<br/>Preencha a cidade do projeto.';
                     if (strpos($valida, '5'))
-                        $erros_endereco .= '<br/> Preencha o estado do projeto.';
+                        $erros_endereco .= '<br/>Preencha o estado do projeto.';
 
                     $retorno['error'] .= $erros_endereco;
                 }
