@@ -2,6 +2,7 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\I18n\Number;
 
 /**
  * Empresa Entity
@@ -112,4 +113,12 @@ class Empresa extends Entity
         'user' => true,
         'contato' => true
     ];
+
+    public function mensal($moeda = null){
+        if($moeda === true){
+            return Number::format($this->mensal,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return Number::format($this->mensal,['pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+
+    }
 }

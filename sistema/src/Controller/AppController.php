@@ -90,9 +90,14 @@ class AppController extends Controller
         $this->set('userSession', $this->user);
 
         $isAdmin = 0;
+        $isManager = 0;
         if(array_key_exists('administrador',$this->user['papeis'])){
             $isAdmin = 1;
             $this->set('isAdmin',$isAdmin);
+            if($this->user['id'] == 1){
+                $isManager = 1;
+            }
+            $this->set('isManager',$isManager);
         }
 
         if($event->getSubject()->request->params['action'] <> 'loginAdmin') {

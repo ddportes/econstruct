@@ -433,14 +433,19 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => true,
             ])
-            ->addColumn('contato_id', 'integer', [
+            ->addColumn('representante_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => true,
             ])
-            ->addColumn('representante_id', 'integer', [
+            ->addColumn('telefone', 'string', [
                 'default' => null,
-                'limit' => 11,
+                'limit' => 63,
+                'null' => true,
+            ])
+            ->addColumn('email', 'string', [
+                'default' => null,
+                'limit' => 125,
                 'null' => true,
             ])
             ->addIndex(
@@ -451,11 +456,6 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'endereco_id',
-                ]
-            )
-            ->addIndex(
-                [
-                    'contato_id',
                 ]
             )
             ->addIndex(
@@ -477,7 +477,7 @@ class Initial extends AbstractMigration
             ->addColumn('pessoa_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
-                'null' => false,
+                'null' => true,
             ])
             ->addColumn('logradouro', 'string', [
                 'default' => null,

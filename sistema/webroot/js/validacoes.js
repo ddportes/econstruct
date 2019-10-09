@@ -207,13 +207,13 @@ function limpa_formulário_cep(l,b,c,e,n) {
     c.val("");
     e.val("");
     n.val("");
+    alert(1);
 }
 
 function validaCep(campo,l,b,c,e,n,erro,salvar,status) {
 
     //Nova variável "cep" somente com dígitos.
     var cep = campo.val().replace(/\D/g, '');
-
     //Verifica se campo cep possui valor informado.
     if (cep != "") {
 

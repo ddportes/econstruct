@@ -3,33 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="c4b11381-2abc-46e9-9b6b-dd8d9d944bb3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Controller/ContratosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Controller/ContratosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema/config/Migrations/20191004220006_Initial.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema/config/econstruct.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/config/econstruct.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema/src/Controller/AppController.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Controller/AppController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema/src/Controller/EmpresasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Controller/EmpresasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Controller/OcorrenciasController.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Controller/OcorrenciasController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Controller/OrcamentosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Controller/OrcamentosController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema/src/Model/Entity/Empresa.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Model/Entity/Empresa.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Model/Table/ContratosTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Model/Table/ContratosTable.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema/src/Model/Table/EmpresasTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Model/Table/EmpresasTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Configuracoes/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Configuracoes/index.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Contratos/add.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Contratos/add.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Contratos/edit.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Contratos/edit.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Element/Layout/header.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Element/Layout/header.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Element/Layout/modals.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Element/Layout/modals.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Empresas/add.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Empresas/add.ctp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sistema/src/Template/Empresas/edit.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Empresas/edit.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Empresas/index.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Empresas/index.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Empresas/view.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Empresas/view.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Orcamentos/add.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Orcamentos/add.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/src/Template/Projetos/view.ctp" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/src/Template/Projetos/view.ctp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/tests/Fixture/EmpresasFixture.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/tests/Fixture/EmpresasFixture.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/tests/TestCase/Controller/EmpresasControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/tests/TestCase/Controller/EmpresasControllerTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/tests/TestCase/Model/Table/EmpresasTableTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/tests/TestCase/Model/Table/EmpresasTableTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/webroot/ckeditor/build-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/webroot/ckeditor/build-config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/webroot/ckeditor/ckeditor.js" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/webroot/ckeditor/ckeditor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/webroot/ckeditor/lang/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/webroot/ckeditor/lang/en.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/webroot/ckeditor/lang/pt-br.js" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/webroot/ckeditor/lang/pt-br.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/webroot/ckeditor/plugins/icons.png" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/webroot/ckeditor/plugins/icons.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sistema/webroot/ckeditor/plugins/icons_hidpi.png" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/webroot/ckeditor/plugins/icons_hidpi.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sistema/webroot/js/validacoes.js" beforeDir="false" afterPath="$PROJECT_DIR$/sistema/webroot/js/validacoes.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,32 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sistema/src/Controller/EmpresasController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="98" column="37" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sistema/src/Template/Empresas/edit.ctp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="654">
-              <caret line="115" column="13" selection-start-line="115" selection-start-column="13" selection-end-line="115" selection-end-column="13" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#7;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#8;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#9;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#10;n#div#1;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sistema/src/Template/Rendas/add.ctp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="759">
-              <caret line="143" column="6" selection-end-line="143" selection-end-column="6" />
+            <state relative-caret-position="467">
+              <caret line="160" column="46" selection-start-line="160" selection-start-column="38" selection-end-line="160" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -92,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sistema/src/Model/Table/EmpresasTable.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="98" column="37" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
+            <state relative-caret-position="623">
+              <caret line="263" column="50" selection-start-line="263" selection-start-column="48" selection-end-line="263" selection-end-column="50" />
               <folding>
                 <element signature="e#34#53#0#PHP" expanded="true" />
               </folding>
@@ -102,10 +59,37 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sistema/src/Model/Entity/Empresa.php">
+        <entry file="file://$PROJECT_DIR$/sistema/src/Template/Empresas/edit.ctp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
+            <state relative-caret-position="196">
+              <caret line="120" column="50" selection-start-line="120" selection-start-column="50" selection-end-line="120" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sistema/webroot/js/empresa.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="38" column="38" lean-forward="true" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sistema/webroot/js/validacoes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="367">
+              <caret line="209" column="13" lean-forward="true" selection-start-line="209" selection-start-column="13" selection-end-line="209" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sistema/src/Controller/OcorrenciasController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="186" selection-start-line="186" selection-end-line="186" />
             </state>
           </provider>
         </entry>
@@ -121,11 +105,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>endereco</find>
-      <find>$erros_endereco</find>
-      <find>strpos</find>
-      <find>resizer</find>
-      <find>resize</find>
       <find>window.noUiSlider=require(&quot;nouislider&quot;)</find>
       <find>maxToolbar</find>
       <find>strinsert</find>
@@ -151,6 +130,11 @@
       <find>ckeditor</find>
       <find>contato</find>
       <find>endere</find>
+      <find>email</find>
+      <find>$this-&gt;hasMany('Enderecos', [</find>
+      <find>represe</find>
+      <find>Us</find>
+      <find>Pessoa</find>
     </findStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\econstruct\sistema\webroot\css</dir>
@@ -165,9 +149,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/sistema/webroot/js/visita.js" />
-        <option value="$PROJECT_DIR$/sistema/src/Template/Ocorrencias/visita.ctp" />
-        <option value="$PROJECT_DIR$/sistema/src/Model/Entity/Endereco.php" />
         <option value="$PROJECT_DIR$/sistema/src/Model/Entity/Projeto.php" />
         <option value="$PROJECT_DIR$/sistema/webroot/js/orcamento.js" />
         <option value="$PROJECT_DIR$/sistema/src/Template/Pessoas/edit_conjuge.ctp" />
@@ -179,7 +160,6 @@
         <option value="$PROJECT_DIR$/sistema/src/Template/Pessoas/add_conjuge.ctp" />
         <option value="$PROJECT_DIR$/sistema/src/Template/Layout/default.ctp" />
         <option value="$PROJECT_DIR$/sistema/src/Controller/ConfiguracoesController.php" />
-        <option value="$PROJECT_DIR$/sistema/webroot/js/validacoes.js" />
         <option value="$PROJECT_DIR$/sistema/webroot/js/contrato.js" />
         <option value="$PROJECT_DIR$/sistema/src/Utility/Apoio.php" />
         <option value="$PROJECT_DIR$/sistema/src/Model/Entity/Ocorrencia.php" />
@@ -211,11 +191,15 @@
         <option value="$PROJECT_DIR$/sistema/src/Template/Configuracoes/index.ctp" />
         <option value="$PROJECT_DIR$/sistema/src/Controller/OrcamentosController.php" />
         <option value="$PROJECT_DIR$/sistema/src/Controller/ContratosController.php" />
-        <option value="$PROJECT_DIR$/sistema/src/Model/Entity/Empresa.php" />
         <option value="$PROJECT_DIR$/sistema/src/Controller/OcorrenciasController.php" />
+        <option value="$PROJECT_DIR$/sistema/src/Model/Entity/Empresa.php" />
+        <option value="$PROJECT_DIR$/sistema/src/Controller/AppController.php" />
         <option value="$PROJECT_DIR$/sistema/src/Model/Table/EmpresasTable.php" />
+        <option value="$PROJECT_DIR$/sistema/src/Template/Ocorrencias/visita.ctp" />
         <option value="$PROJECT_DIR$/sistema/src/Controller/EmpresasController.php" />
         <option value="$PROJECT_DIR$/sistema/src/Template/Empresas/edit.ctp" />
+        <option value="$PROJECT_DIR$/sistema/webroot/js/validacoes.js" />
+        <option value="$PROJECT_DIR$/sistema/webroot/js/empresa.js" />
       </list>
     </option>
   </component>
@@ -300,10 +284,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="56" />
-    <option name="y" value="152" />
-    <option name="width" value="1614" />
-    <option name="height" value="914" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -350,7 +334,28 @@
               <item name="sistema" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Template" type="462c0819:PsiDirectoryNode" />
-              <item name="Rendas" type="462c0819:PsiDirectoryNode" />
+              <item name="Ocorrencias" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="econstruct" type="b2602c69:ProjectViewProjectNode" />
+              <item name="econstruct" type="462c0819:PsiDirectoryNode" />
+              <item name="sistema" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Template" type="462c0819:PsiDirectoryNode" />
+              <item name="Orcamentos" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="econstruct" type="b2602c69:ProjectViewProjectNode" />
+              <item name="econstruct" type="462c0819:PsiDirectoryNode" />
+              <item name="sistema" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="View" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="econstruct" type="b2602c69:ProjectViewProjectNode" />
+              <item name="econstruct" type="462c0819:PsiDirectoryNode" />
+              <item name="sistema" type="462c0819:PsiDirectoryNode" />
+              <item name="webroot" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -464,7 +469,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="500630000" />
+    <option name="totallyTimeSpent" value="512722000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -520,62 +525,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/ckeditor_funciona/ckeditor.js" />
-    <entry file="file://$USER_HOME$/Downloads/ckeditor_4.13.0_ffaffa084e1a/ckeditor/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/ckeditor/samples/js/sample.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-308" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/ckeditor/samples/old/sample.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/ckeditor/samples/old/htmlwriter/assets/outputforflash/swfobject.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/ckeditor/samples/old/dialog/assets/my_dialog.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/ckeditor_funciona/config.js" />
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/ckeditor_funciona/build-config.js" />
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/__ckeditor/ckeditor.js" />
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/__ckeditor/contents.css" />
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/ckeditor/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/__ckeditor/config.js" />
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/ckeditor/CHANGES.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-816" />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/__ckeditor/styles.js" />
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/ckeditor/styles.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/ckeditor/build-config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="71" column="23" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/__ckeditor/build-config.js" />
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/__ckeditor/lang/en.js" />
-    <entry file="file://$PROJECT_DIR$/sistema/webroot/__ckeditor/lang/pt-br.js" />
     <entry file="file://$PROJECT_DIR$/sistema/webroot/__ckeditor/plugins/icons_hidpi.png" />
     <entry file="file://$PROJECT_DIR$/sistema/webroot/__ckeditor/plugins/icons.png" />
     <entry file="file://$PROJECT_DIR$/sistema/webroot/ckeditor/plugins/icons_hidpi.png">
@@ -662,13 +611,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Ocorrencias/visita.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="183" column="60" selection-start-line="183" selection-start-column="60" selection-end-line="183" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sistema/src/Model/Entity/Dependente.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -696,47 +638,10 @@
         <state relative-caret-position="-1071" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/src/Controller/ContratosController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-119">
-          <caret line="23" column="72" selection-start-line="23" selection-start-column="72" selection-end-line="23" selection-end-column="72" />
-          <folding>
-            <element signature="e#33#66#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sistema/src/Controller/OrcamentosController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1309">
           <caret line="79" column="53" selection-start-line="79" selection-start-column="53" selection-end-line="79" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Orcamentos/add.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="133" column="30" selection-start-line="133" selection-start-column="30" selection-end-line="133" selection-end-column="30" />
-          <folding>
-            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#7;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#5;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#6;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#7;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#7;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#td#7;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -754,57 +659,200 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/src/Controller/OcorrenciasController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2312">
-          <caret line="305" column="133" selection-start-line="305" selection-start-column="133" selection-end-line="305" selection-end-column="133" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sistema/config/Migrations/20191008134601_AddExigeDocumentoToSelecoes.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Rendas/add.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="90" column="8" lean-forward="true" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Model/Entity/Ocorrencia.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Model/Entity/Projeto.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1946">
+          <caret line="177" lean-forward="true" selection-start-line="177" selection-end-line="177" />
+          <folding>
+            <element signature="e#35#55#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Projetos/index.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Application.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-655" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/View/AppView.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/config/Migrations/20191009115343_Initial.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Controller/AppController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="99" column="47" lean-forward="true" selection-start-line="99" selection-start-column="47" selection-end-line="99" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sistema/src/Model/Entity/Empresa.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
+        <state relative-caret-position="68">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+          <folding>
+            <element signature="e#35#55#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/renda.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="85" lean-forward="true" selection-start-line="55" selection-start-column="4" selection-end-line="85" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Controller/ContratosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="36" />
+          <folding>
+            <element signature="e#33#66#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/visita.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="331" column="38" lean-forward="true" selection-start-line="331" selection-start-column="38" selection-end-line="331" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/conjuge.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Controller/OcorrenciasController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="186" selection-start-line="186" selection-end-line="186" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Ocorrencias/view.ctp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Ocorrencias/index.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-261" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Orcamentos/view.ctp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Orcamentos/add.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="133" column="30" selection-start-line="133" selection-start-column="30" selection-end-line="133" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Clientes/index.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Ocorrencias/visita_novo_cliente.ctp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Ocorrencias/todas_visitas.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="73" column="135" selection-start-line="73" selection-start-column="86" selection-end-line="73" selection-end-column="135" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Ocorrencias/edit.ctp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="67" column="221" selection-start-line="67" selection-start-column="148" selection-end-line="67" selection-end-column="221" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/src/Controller/EmpresasController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="160" column="46" selection-start-line="160" selection-start-column="38" selection-end-line="160" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sistema/src/Model/Table/EmpresasTable.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="98" column="37" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
+        <state relative-caret-position="623">
+          <caret line="263" column="50" selection-start-line="263" selection-start-column="48" selection-end-line="263" selection-end-column="50" />
           <folding>
             <element signature="e#34#53#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/src/Controller/EmpresasController.php">
+    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Ocorrencias/visita.ctp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="98" column="37" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sistema/src/Template/Rendas/add.ctp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="143" column="6" selection-end-line="143" selection-end-column="6" />
+        <state relative-caret-position="320">
+          <caret line="179" column="102" lean-forward="true" selection-start-line="179" selection-start-column="102" selection-end-line="179" selection-end-column="102" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#9;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sistema/src/Template/Empresas/edit.ctp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="654">
-          <caret line="115" column="13" selection-start-line="115" selection-start-column="13" selection-end-line="115" selection-end-column="13" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#7;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#8;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#9;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#10;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="196">
+          <caret line="120" column="50" selection-start-line="120" selection-start-column="50" selection-end-line="120" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/validacoes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="209" column="13" lean-forward="true" selection-start-line="209" selection-start-column="13" selection-end-line="209" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sistema/webroot/js/empresa.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="38" column="38" lean-forward="true" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
         </state>
       </provider>
     </entry>

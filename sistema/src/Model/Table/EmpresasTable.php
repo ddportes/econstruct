@@ -263,7 +263,7 @@ class EmpresasTable extends Table
         $rules->add($rules->isUnique(['email']));
         $rules->add($rules->existsIn(['u_id'], 'Users'));
         $rules->add($rules->existsIn(['endereco_id'], 'Enderecos'));
-        $rules->add($rules->existsIn(['representante_id'], 'Representantes'));
+        $rules->add($rules->existsIn(['representante_id'], 'Pessoas'));
 
         return $rules;
     }
