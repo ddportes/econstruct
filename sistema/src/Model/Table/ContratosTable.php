@@ -106,7 +106,12 @@ class ContratosTable extends Table
         $retorno = Apoio::tags();
         if(!is_null($id_orcamento)) {
             $dados = $this->Orcamentos->get($id_orcamento, ['contain' => ['Empresas','Contratos','Empresas.Enderecos','Empresas.Pessoas', 'Projetos', 'Projetos.Clientes.Pessoas', 'Projetos', 'Projetos.Clientes', 'Projetos.Clientes.Pessoas.Enderecos', 'Projetos.Clientes.Pessoas.Contatos']]);
-            $conjuge = $this->Orcamentos->Projetos->Clientes->Pessoas->get($dados->projeto->cliente->pessoa->conjuge_id,['contains'=>['Enderecos']]);
+
+            if(isset($dados->projeto->cliente->pessoa->conjuge_id)){
+                $conjuge = $this->Orcamentos->Projetos->Clientes->Pessoas->get($dados->projeto->cliente->pessoa->conjuge_id,['contains'=>['Enderecos']]);
+            }else{
+                $conjuge = null;
+            }
 
             $minuta = $dados->contratos[0]->minuta;
 
@@ -342,7 +347,6 @@ class ContratosTable extends Table
                 }
             }
         }
-
         return $retorno;
     }
 }
