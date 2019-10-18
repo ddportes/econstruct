@@ -152,6 +152,8 @@ class OcorrenciasController extends AppController
                                 $dados_projeto['contrato_id'] = null;
                                 $dados_projeto['custo_estimado'] = (!empty($dados['custoEstimadoProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['custoEstimadoProjeto'])): null);
                                 $dados_projeto['terreno'] = (!empty($dados['terrenoProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['terrenoProjeto'])): null);
+                                $dados_projeto['frente'] = (!empty($dados['frenteProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['frenteProjeto'])): null);
+                                $dados_projeto['fundo'] = (!empty($dados['fundoProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['fundoProjeto'])): null);
                                 $dados_projeto['area_construida_coberta'] = (!empty($dados['areaCobertaProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['areaCobertaProjeto'])): null);
                                 $dados_projeto['area_construida_aberta'] = (!empty($dados['areaAbertaProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['areaAbertaProjeto'])): null);
                                 $dados_projeto['observacao'] = (!empty($dados['anotacoesOcorrencia'])?$dados['anotacoesOcorrencia']: null);
@@ -172,6 +174,9 @@ class OcorrenciasController extends AppController
                                     $endereco_proj = $this->Enderecos->newEntity($dados_endereco_proj);
 
                                     if ($this->Enderecos->save($endereco_proj)) {
+                                        $projeto->endereco_id = $endereco_proj->id;
+                                        $this->Projetos->save($projeto);
+
                                         //cria ocorrencia
                                         $dados_ocorrencia['projeto_id'] = $projeto->id;
                                         $dados_ocorrencia['ocorrencia_tipo_id'] = 1;
@@ -320,6 +325,8 @@ class OcorrenciasController extends AppController
                                 $dados_projeto['projeto_situacao_id'] = 1;
                                 $dados_projeto['custo_estimado'] = (!empty($dados['custoEstimadoProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['custoEstimadoProjeto'])): null);
                                 $dados_projeto['terreno'] = (!empty($dados['terrenoProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['terrenoProjeto'])): null);
+                                $dados_projeto['frente'] = (!empty($dados['frenteProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['frenteProjeto'])): null);
+                                $dados_projeto['fundo'] = (!empty($dados['fundoProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['fundoProjeto'])): null);
                                 $dados_projeto['area_construida_coberta'] = (!empty($dados['areaCobertaProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['areaCobertaProjeto'])): null);
                                 $dados_projeto['area_construida_aberta'] = (!empty($dados['areaAbertaProjeto'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['areaAbertaProjeto'])): null);
                                 $dados_projeto['observacao'] = (!empty($dados['observacaoProjeto'])?$dados['observacaoProjeto']: null);
@@ -341,11 +348,23 @@ class OcorrenciasController extends AppController
                                     $dados_endereco_proj['cep'] = (!empty($dados['cepProj'])?preg_replace('/[^0-9]/', '', $dados['cepProj']): null);
                                     $dados_endereco_proj['cidade'] = (!empty($dados['cidadeProj'])?$dados['cidadeProj']: null);
                                     $dados_endereco_proj['estado'] = (!empty($dados['estadoProj'])?$dados['estadoProj']: null);
-                                    $dados_endereco_proj['empresa_id'] = $user['empresa_id'];
-                                    $dados_endereco_proj['u_id'] = $user['id'];
-                                    $endereco_proj = $this->Enderecos->newEntity($dados_endereco_proj);
+
+
+                                    if(!empty($dados['enderecoProj_id'])){
+                                        $endereco_proj = $this->Enderecos->get($dados['enderecoProj_id']);
+                                        $endereco_proj = $this->Enderecos->patchEntity($endereco_proj,$dados_endereco_proj);
+                                    }else{
+                                        $dados_endereco_proj['empresa_id'] = $user['empresa_id'];
+                                        $dados_endereco_proj['u_id'] = $user['id'];
+                                        $dados_endereco_proj['principal'] = 'S';
+                                        $endereco_proj = $this->Enderecos->newEntity($dados_endereco_proj);
+                                    }
 
                                     if ($this->Enderecos->save($endereco_proj)) {
+
+                                        $projeto->endereco_id = $endereco_proj->id;
+                                        $this->Projetos->save($projeto);
+
                                         //cria ocorrencia
                                         $dados_ocorrencia['projeto_id'] = $projeto->id;
                                         $dados_ocorrencia['ocorrencia_tipo_id'] = 1;
@@ -397,11 +416,8 @@ class OcorrenciasController extends AppController
 
         $clientes = $this->Clientes->find()->contain(['Pessoas','Pessoas.Contatos','Pessoas.Enderecos','Projetos','Projetos.Enderecos']);
 
-        $listaClientes = [];
-        $listaClientes+= [''=>''];
-        foreach($clientes as $val){
-            $listaClientes += [$val->id=>$val->pessoa->nome];
-        }
+        $listaClientes = $this->Clientes->clientes();
+
         $this->set(compact('listaClientes','clientes'));
 
     }

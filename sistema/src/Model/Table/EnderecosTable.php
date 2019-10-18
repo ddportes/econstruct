@@ -36,7 +36,7 @@ class EnderecosTable extends Table
         parent::initialize($config);
 
         $this->setTable('enderecos');
-        $this->setDisplayField('id');
+        $this->setDisplayField('logradouro');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

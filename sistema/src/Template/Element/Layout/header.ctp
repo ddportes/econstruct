@@ -100,7 +100,7 @@
 
                                     <?= $this->Html->Link('Gerenciar Usuários',['controller'=>'Users','action'=>'index'],['role'=>'button','class'=>'dropdown-item','tabindex'=>'0']) ?>
 
-                                    <?= $this->Html->Link('Configuração Padrão',['controller'=>'Configuracoes','action'=>'index'],['role'=>'button','class'=>'dropdown-item modal_lg_link','data-toggle'=>"modal",'data-target'=>".modal_econstruct",'tabindex'=>'0']) ?>
+                                    <?= $this->Html->Link('Modelos de Documentos',['controller'=>'Modelos','action'=>'index'],['role'=>'button','class'=>'dropdown-item','tabindex'=>'0']) ?>
 
                                     <?= $this->Html->Link('Configuração Empresa',['controller'=>'Empresas','action'=>'edit',$userSession['empresa_id']],['role'=>'button','class'=>'dropdown-item modal_lg_link','data-toggle'=>"modal",'data-target'=>".modal_econstruct",'tabindex'=>'0']) ?>
                                 <?php endif; ?>

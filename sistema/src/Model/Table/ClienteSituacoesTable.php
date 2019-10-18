@@ -36,7 +36,7 @@ class ClienteSituacoesTable extends Table
         parent::initialize($config);
 
         $this->setTable('cliente_situacoes');
-        $this->setDisplayField('id');
+        $this->setDisplayField('descricao');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

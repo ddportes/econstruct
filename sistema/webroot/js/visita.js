@@ -31,19 +31,23 @@ $(document).ready(function(){
                 $('#detalhesProjeto').val(proj.detalhes);
                 $('#custoEstimadoProjeto').val(proj.custo_estimado);
                 $('#terrenoProjeto').val(proj.terreno);
+                $('#fundoProjeto').val(proj.fundo);
+                $('#frenteProjeto').val(proj.frente);
                 $('#areaCobertaProjeto').val(proj.area_construida_aberta);
                 $('#areaAbertaProjeto').val(proj.area_construida_coberta);
                 $('#observacaoProjeto').val(proj.observacao);
 
                 if (proj.endereco != '' && proj.endereco != null && proj.endereco != undefined) {
+                    $('#enderecoProj_id').val(proj.endereco.id);
                     $('#cepProj').val(proj.endereco.cep);
-                    $('#logradouroProj').val(proj.endereco.cep);
-                    $('#numeroProj').val(proj.endereco.cep);
-                    $('#bairroProj').val(proj.endereco.cep);
-                    $('#complementoProj').val(proj.endereco.cep);
-                    $('#cidadeProj').val(proj.endereco.cep);
-                    $('#estadoProj').val(proj.endereco.cep);
+                    $('#logradouroProj').val(proj.endereco.logradouro);
+                    $('#numeroProj').val(proj.endereco.numero);
+                    $('#bairroProj').val(proj.endereco.bairro);
+                    $('#complementoProj').val(proj.endereco.complemento);
+                    $('#cidadeProj').val(proj.endereco.cidade);
+                    $('#estadoProj').val(proj.endereco.estado);
                 }else{
+                    $('#enderecoProj_id').val('');
                     $('#cepProj').val('');
                     $('#logradouroProj').val('');
                     $('#numeroProj').val('');
@@ -61,9 +65,12 @@ $(document).ready(function(){
                 $('#detalhesProjeto').val('');
                 $('#custoEstimadoProjeto').val('');
                 $('#terrenoProjeto').val('');
+                $('#fundoProjeto').val('');
+                $('#frenteProjeto').val('');
                 $('#areaCobertaProjeto').val('');
                 $('#areaAbertaProjeto').val('');
                 $('#observacaoProjeto').val('');
+                $('#enderecoProj_id').val('');
                 $('#cepProj').val('');
                 $('#logradouroProj').val('');
                 $('#numeroProj').val('');
@@ -81,9 +88,12 @@ $(document).ready(function(){
             $('#detalhesProjeto').val('');
             $('#custoEstimadoProjeto').val('');
             $('#terrenoProjeto').val('');
+            $('#fundoProjeto').val('');
+            $('#frenteProjeto').val('');
             $('#areaCobertaProjeto').val('');
             $('#areaAbertaProjeto').val('');
             $('#observacaoProjeto').val('');
+            $('#enderecoProj_id').val('');
             $('#cepProj').val('');
             $('#logradouroProj').val('');
             $('#numeroProj').val('');
@@ -142,9 +152,12 @@ $(document).ready(function(){
                     $('#detalhesProjeto').val('');
                     $('#custoEstimadoProjeto').val('');
                     $('#terrenoProjeto').val('');
+                    $('#fundoProjeto').val('');
+                    $('#frenteProjeto').val('');
                     $('#areaCobertaProjeto').val('');
                     $('#areaAbertaProjeto').val('');
                     $('#observacaoProjeto').val('');
+                    $('#enderecoProj_id').val('');
                     $('#cepProj').val('');
                     $('#logradouroProj').val('');
                     $('#numeroProj').val('');

@@ -1193,10 +1193,67 @@ d.hide(),0;a-=Math.round(d.$.offsetHeight/2);if(m){if(a==q||a==downShiftBoundary
 if(b.type==CKEDITOR.NODE_ELEMENT){var h=c.getPageOffset().x,f=c.getPageOffset().y;if(e&&"col"==e.dim&&e.move(h))x(c);else if(e&&"row"==e.dim&&e.move(f))x(c);else if(b.is("table")||b.getAscendant({thead:1,tbody:1,tfoot:1},1))if(b=b.getAscendant("table",1),a.editable().contains(b)){c=G(b);a:{for(var g=0,d=c.length;g<d;g++){var m=c[g];if(h>=m.x&&h<=m.x+m.width){c=m;break a}}c=null}if(c)e=new H(a),e.attachTo(c);else{c=F(b);a:{h=0;for(b=c.length;h<b;h++)if(g=c[h],f>=g.y&&f<=g.y+g.height){c=g;break a}c=
 null}c&&(e=new I(a),e.attachTo(c))}}}})})}})})();
 
-CKEDITOR.plugins.add("strinsert",{requires:["richcombo"],init:function(a){var b=lista_campos_dinamicos;
+CKEDITOR.plugins.add("strinsert",{
+    requires:["richcombo"],
+    init:function(a){
+        var b=lista_campos_dinamicos;
+        a.ui.addRichCombo("strinsert",{
+            label:"Campos",
+            title:"Campos",
+            voiceLabel:"Campos",
+            className:"cke_format",
+            multiSelect:!1,
+            panel:{
+                css:[
+                    a.config.contentsCss,
+                    CKEDITOR.skin.getPath("editor")
+                ],
+                voiceLabel:a.lang.panelVoiceLabel},
+            init:function(){
+                this.startGroup("Campos Dinâmicos");
+                for(var a in b)
+                    this.add(b[a][0],b[a][1],b[a][2])
+            },
+            onClick:function(b){
+                a.focus();
+                a.fire("saveSnapshot");
+                a.insertHtml(b);
+                a.fire("saveSnapshot")
+            }
+        });
+    }
+});
 
-a.ui.addRichCombo("strinsert",{label:"Campos",title:"Campos",voiceLabel:"Campos",className:"cke_format",multiSelect:!1,panel:{css:[a.config.contentsCss,
-CKEDITOR.skin.getPath("editor")],voiceLabel:a.lang.panelVoiceLabel},init:function(){this.startGroup("Campos Dinâmicos");for(var a in b)this.add(b[a][0],b[a][1],b[a][2])},onClick:function(b){a.focus();a.fire("saveSnapshot");a.insertHtml(b);a.fire("saveSnapshot")}})}});
+CKEDITOR.plugins.add("strinsert2",{
+    requires:["richcombo"],
+    init:function(a){
+        var b=lista_modelos;
+        a.ui.addRichCombo("strinsert2",{
+            label:"Modelos",
+            title:"Modelos",
+            voiceLabel:"Modelos",
+            className:"cke_format",
+            multiSelect:!1,
+            panel:{
+                css:[
+                    a.config.contentsCss,
+                    CKEDITOR.skin.getPath("editor")
+                ],
+                voiceLabel:a.lang.panelVoiceLabel},
+            init:function(){
+                this.startGroup("Modelos de Documentos");
+                for(var a in b)
+                    this.add(b[a][0],b[a][1],b[a][2])
+            },
+            onClick:function(b){
+                a.focus();
+                a.fire("saveSnapshot");
+                a.insertHtml(b);
+                a.fire("saveSnapshot")
+            }
+        });
+    }
+});
 
 (function(){var h,k={modes:{wysiwyg:1,source:1},canUndo:!1,readOnly:1,exec:function(a){var g,b=a.config,f=b.baseHref?'\x3cbase href\x3d"'+b.baseHref+'"/\x3e':"";if(b.fullPage)g=a.getData().replace(/<head>/,"$\x26"+f).replace(/[^>]*(?=<\/title>)/,"$\x26 \x26mdash; "+a.lang.preview.preview);else{var b="\x3cbody ",d=a.document&&a.document.getBody();d&&(d.getAttribute("id")&&(b+='id\x3d"'+d.getAttribute("id")+'" '),d.getAttribute("class")&&(b+='class\x3d"'+d.getAttribute("class")+'" '));b+="\x3e";g=a.config.docType+
 '\x3chtml dir\x3d"'+a.config.contentsLangDirection+'"\x3e\x3chead\x3e'+f+"\x3ctitle\x3e"+a.lang.preview.preview+"\x3c/title\x3e"+CKEDITOR.tools.buildStyleHtml(a.config.contentsCss)+"\x3c/head\x3e"+b+a.getData()+"\x3c/body\x3e\x3c/html\x3e"}f=640;b=420;d=80;try{var c=window.screen,f=Math.round(.8*c.width),b=Math.round(.7*c.height),d=Math.round(.1*c.width)}catch(k){}if(!1===a.fire("contentPreview",a={dataValue:g}))return!1;var c="",e;CKEDITOR.env.ie&&(window._cke_htmlToLoad=a.dataValue,e="javascript:void( (function(){document.open();"+
@@ -1300,4 +1357,4 @@ d.selectPage(c[0])}CKEDITOR.plugins.add("filebrowser",{requires:"popup,filetools
                     g+'");');"wysiwyg"==a.mode?l?(CKEDITOR.env.gecko&&v(a),a.getSelection().selectRanges(l),(k=a.getSelection().getStartElement())&&k.scrollIntoView(!0)):c.$.scrollTo(m.x,m.y):(l&&(k.selectionStart=l[0],k.selectionEnd=l[1]),k.scrollLeft=m[0],k.scrollTop=m[1]);l=m=null;n=this.state;a.fire("maximize",this.state)},canUndo:!1});a.ui.addButton&&a.ui.addButton("Maximize",{label:f.maximize.maximize,command:"maximize",toolbar:"tools,10"});a.on("mode",function(){var b=a.getCommand("maximize");b.setState(b.state==
         CKEDITOR.TRISTATE_DISABLED?CKEDITOR.TRISTATE_DISABLED:n)},null,null,100)}}})})();
 
-CKEDITOR.config.plugins='dialogui,dialog,a11yhelp,basicstyles,blockquote,notification,button,toolbar,clipboard,panel,floatpanel,menu,contextmenu,resize,elementspath,enterkey,entities,floatingspace,listblock,richcombo,format,horizontalrule,htmlwriter,wysiwygarea,indent,indentlist,list,magicline,pastetext,pastetools,pastefromgdocs,pastefromword,removeformat,showborders,sourcearea,stylescombo,tab,table,tabletools,tableselection,undo,lineutils,widgetselection,widget,filetools,notificationaggregator,uploadwidget,uploadimage,fakeobjects,tableresize,tableresizerowandcolumn,strinsert,preview,pagebreak,justify,widgetcontextmenu,symbol,font,copyformatting,popup,maximize';CKEDITOR.config.skin='kama';(function() {var setIcons = function(icons, strip) {var path = CKEDITOR.getUrl( 'plugins/' + strip );icons = icons.split( ',' );for ( var i = 0; i < icons.length; i++ )CKEDITOR.skin.icons[ icons[ i ] ] = { path: path, offset: -icons[ ++i ], bgsize : icons[ ++i ] };};if (CKEDITOR.env.hidpi) setIcons('bold,0,,italic,24,,strike,48,,subscript,72,,superscript,96,,underline,120,,blockquote,144,,copy-rtl,168,,copy,192,,cut-rtl,216,,cut,240,,paste-rtl,264,,paste,288,,horizontalrule,312,,indent-rtl,336,,indent,360,,outdent-rtl,384,,outdent,408,,bulletedlist-rtl,432,,bulletedlist,456,,numberedlist-rtl,480,,numberedlist,504,,pastetext-rtl,528,,pastetext,552,,pastefromword-rtl,576,,pastefromword,600,,removeformat,624,,source-rtl,648,,source,672,,specialchar,696,,table,720,,redo-rtl,744,,redo,768,,undo-rtl,792,,undo,816,,preview-rtl,864,,preview,888,,pagebreak-rtl,912,,pagebreak,936,,justifyblock,960,,justifycenter,984,,justifyleft,1008,,justifyright,1032,,copywidget,1056,,editwidget,1080,,removewidget,1104,,widget,1128,,symbol,2304,auto,speech,2352,auto,copyformatting,1272,,maximize,936,','icons_hidpi.png');else setIcons('bold,0,auto,italic,24,auto,strike,48,auto,subscript,72,auto,superscript,96,auto,underline,120,auto,blockquote,144,auto,copy-rtl,168,auto,copy,192,auto,cut-rtl,216,auto,cut,240,auto,paste-rtl,264,auto,paste,288,auto,horizontalrule,312,auto,indent-rtl,336,auto,indent,360,auto,outdent-rtl,384,auto,outdent,408,auto,bulletedlist-rtl,432,auto,bulletedlist,456,auto,numberedlist-rtl,480,auto,numberedlist,504,auto,pastetext-rtl,528,auto,pastetext,552,auto,pastefromword-rtl,576,auto,pastefromword,600,auto,removeformat,624,auto,source-rtl,648,auto,source,672,auto,specialchar,696,auto,table,720,auto,redo-rtl,744,auto,redo,768,auto,undo-rtl,792,auto,undo,816,auto,preview-rtl,864,auto,preview,888,auto,pagebreak-rtl,912,auto,pagebreak,936,auto,justifyblock,960,auto,justifycenter,984,auto,justifyleft,1008,auto,justifyright,1032,auto,copywidget,1056,auto,editwidget,1080,auto,removewidget,1104,auto,widget,1128,auto,symbol,1152,auto,speech,1176,auto,copyformatting,1272,auto,maximize,936,auto','icons.png');})();CKEDITOR.lang.languages={"en":1,"pt-br":1};}());
+CKEDITOR.config.plugins='dialogui,dialog,a11yhelp,basicstyles,blockquote,notification,button,toolbar,clipboard,panel,floatpanel,menu,contextmenu,resize,elementspath,enterkey,entities,floatingspace,listblock,richcombo,format,horizontalrule,htmlwriter,wysiwygarea,indent,indentlist,list,magicline,pastetext,pastetools,pastefromgdocs,pastefromword,removeformat,showborders,sourcearea,stylescombo,tab,table,tabletools,tableselection,undo,lineutils,widgetselection,widget,filetools,notificationaggregator,uploadwidget,uploadimage,fakeobjects,tableresize,tableresizerowandcolumn,strinsert,preview,pagebreak,justify,widgetcontextmenu,symbol,font,copyformatting,popup,maximize,strinsert2';CKEDITOR.config.skin='kama';(function() {var setIcons = function(icons, strip) {var path = CKEDITOR.getUrl( 'plugins/' + strip );icons = icons.split( ',' );for ( var i = 0; i < icons.length; i++ )CKEDITOR.skin.icons[ icons[ i ] ] = { path: path, offset: -icons[ ++i ], bgsize : icons[ ++i ] };};if (CKEDITOR.env.hidpi) setIcons('bold,0,,italic,24,,strike,48,,subscript,72,,superscript,96,,underline,120,,blockquote,144,,copy-rtl,168,,copy,192,,cut-rtl,216,,cut,240,,paste-rtl,264,,paste,288,,horizontalrule,312,,indent-rtl,336,,indent,360,,outdent-rtl,384,,outdent,408,,bulletedlist-rtl,432,,bulletedlist,456,,numberedlist-rtl,480,,numberedlist,504,,pastetext-rtl,528,,pastetext,552,,pastefromword-rtl,576,,pastefromword,600,,removeformat,624,,source-rtl,648,,source,672,,specialchar,696,,table,720,,redo-rtl,744,,redo,768,,undo-rtl,792,,undo,816,,preview-rtl,864,,preview,888,,pagebreak-rtl,912,,pagebreak,936,,justifyblock,960,,justifycenter,984,,justifyleft,1008,,justifyright,1032,,copywidget,1056,,editwidget,1080,,removewidget,1104,,widget,1128,,symbol,2304,auto,speech,2352,auto,copyformatting,1272,,maximize,936,','icons_hidpi.png');else setIcons('bold,0,auto,italic,24,auto,strike,48,auto,subscript,72,auto,superscript,96,auto,underline,120,auto,blockquote,144,auto,copy-rtl,168,auto,copy,192,auto,cut-rtl,216,auto,cut,240,auto,paste-rtl,264,auto,paste,288,auto,horizontalrule,312,auto,indent-rtl,336,auto,indent,360,auto,outdent-rtl,384,auto,outdent,408,auto,bulletedlist-rtl,432,auto,bulletedlist,456,auto,numberedlist-rtl,480,auto,numberedlist,504,auto,pastetext-rtl,528,auto,pastetext,552,auto,pastefromword-rtl,576,auto,pastefromword,600,auto,removeformat,624,auto,source-rtl,648,auto,source,672,auto,specialchar,696,auto,table,720,auto,redo-rtl,744,auto,redo,768,auto,undo-rtl,792,auto,undo,816,auto,preview-rtl,864,auto,preview,888,auto,pagebreak-rtl,912,auto,pagebreak,936,auto,justifyblock,960,auto,justifycenter,984,auto,justifyleft,1008,auto,justifyright,1032,auto,copywidget,1056,auto,editwidget,1080,auto,removewidget,1104,auto,widget,1128,auto,symbol,1152,auto,speech,1176,auto,copyformatting,1272,auto,maximize,936,auto','icons.png');})();CKEDITOR.lang.languages={"en":1,"pt-br":1};}());

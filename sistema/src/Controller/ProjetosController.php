@@ -51,7 +51,21 @@ class ProjetosController extends AppController
     public function view($id = null)
     {
         $projeto = $this->Projetos->get($id, [
-            'contain' => ['Clientes', 'ProjetoSituacoes', 'Contratos', 'Equipes', 'Notas', 'Ocorrencias', 'Orcamentos', 'Recebimentos', 'Recibos']
+            'contain' => ['Clientes',
+                'Clientes.Pessoas',
+                'ProjetoSituacoes',
+                'Contratos',
+                'Recebimentos',
+                'Orcamentos',
+                'Ocorrencias',
+                'Ocorrencias.OcorrenciaTipos',
+                'Recibos',
+                'Notas',
+                'Equipes',
+                'Equipes.EquipePedreiros',
+                'Equipes.EquipePedreiros.Pedreiros',
+                'Equipes.EquipePedreiros.Pedreiros.Pessoas',
+                'Enderecos']
         ]);
 
         $this->set('projeto', $projeto);
@@ -66,15 +80,20 @@ class ProjetosController extends AppController
     {
         $projeto = $this->Projetos->newEntity();
         if ($this->request->is('post')) {
-            $projeto = $this->Projetos->patchEntity($projeto, $this->request->getData());
+            $user = $this->Auth->user();
+            $dados = $this->request->getData();
+            $dados['empresa_id'] = $user['empresa_id'];
+            $dados['u_id'] = $user['id'];
+
+            $projeto = $this->Projetos->patchEntity($projeto, $dados);
             if ($this->Projetos->save($projeto)) {
-                $this->Flash->success(__('The projeto has been saved.'));
+                $this->Flash->success(__('O projeto foi criado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The projeto could not be saved. Please, try again.'));
+            $this->Flash->error(__('O foi possível criar o projeto. Tente novamente mais tarde.'));
         }
-        $clientes = $this->Projetos->Clientes->find('list', ['limit' => 200]);
+        $clientes = $this->Projetos->Clientes->clientes();
         $projetoSituacoes = $this->Projetos->ProjetoSituacoes->find('list', ['limit' => 200]);
         $this->set(compact('projeto', 'clientes', 'projetoSituacoes'));
     }
@@ -94,11 +113,11 @@ class ProjetosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $projeto = $this->Projetos->patchEntity($projeto, $this->request->getData());
             if ($this->Projetos->save($projeto)) {
-                $this->Flash->success(__('The projeto has been saved.'));
+                $this->Flash->success(__('O projeto foi editado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The projeto could not be saved. Please, try again.'));
+            $this->Flash->error(__('Não foi possível editar o projeto. Tente novamente mais tarde.'));
         }
         $clientes = $this->Projetos->Clientes->find('list', ['limit' => 200]);
         $projetoSituacoes = $this->Projetos->ProjetoSituacoes->find('list', ['limit' => 200]);
@@ -117,9 +136,9 @@ class ProjetosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $projeto = $this->Projetos->get($id);
         if ($this->Projetos->delete($projeto)) {
-            $this->Flash->success(__('The projeto has been deleted.'));
+            $this->Flash->success(__('O projeto foi excluído com sucesso.'));
         } else {
-            $this->Flash->error(__('The projeto could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Não foi possível excluir o projeto. Tente novamente mais tarde.'));
         }
 
         return $this->redirect(['action' => 'index']);

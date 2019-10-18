@@ -107,4 +107,17 @@ class ClientesTable extends Table
         return $rules;
     }
 
+    public function clientes(){
+        $clientes = $this->find()->contain(['Pessoas','Pessoas.Contatos','Pessoas.Enderecos','Projetos','Projetos.Enderecos']);
+
+        $listaClientes = [];
+        $listaClientes+= [''=>''];
+
+        foreach($clientes as $val){
+            $listaClientes += [$val->id=>$val->pessoa->nome];
+        }
+
+        return $listaClientes;
+    }
+
 }

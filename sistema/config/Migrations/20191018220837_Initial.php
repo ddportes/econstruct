@@ -121,51 +121,6 @@ class Initial extends AbstractMigration
             )
             ->create();
 
-        $this->table('configuracoes')
-            ->addColumn('id', 'integer', [
-                'autoIncrement' => true,
-                'default' => null,
-                'limit' => 11,
-                'null' => false,
-            ])
-            ->addPrimaryKey(['id'])
-            ->addColumn('minuta_default', 'text', [
-                'default' => null,
-                'limit' => null,
-                'null' => true,
-            ])
-            ->addColumn('minuta_equipe_default', 'text', [
-                'default' => null,
-                'limit' => null,
-                'null' => true,
-            ])
-            ->addColumn('recibo_default', 'text', [
-                'default' => null,
-                'limit' => null,
-                'null' => true,
-            ])
-            ->addColumn('empresa_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => true,
-            ])
-            ->addColumn('u_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => true,
-            ])
-            ->addColumn('created', 'datetime', [
-                'default' => null,
-                'limit' => null,
-                'null' => true,
-            ])
-            ->addColumn('modified', 'datetime', [
-                'default' => null,
-                'limit' => null,
-                'null' => true,
-            ])
-            ->create();
-
         $this->table('contatos')
             ->addColumn('id', 'integer', [
                 'autoIncrement' => true,
@@ -864,6 +819,111 @@ class Initial extends AbstractMigration
             ->addIndex(
                 [
                     'u_id',
+                ]
+            )
+            ->create();
+
+        $this->table('modelo_tipos')
+            ->addColumn('id', 'integer', [
+                'autoIncrement' => true,
+                'default' => null,
+                'limit' => 11,
+                'null' => false,
+            ])
+            ->addPrimaryKey(['id'])
+            ->addColumn('descricao', 'string', [
+                'default' => null,
+                'limit' => 63,
+                'null' => true,
+            ])
+            ->addColumn('empresa_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addIndex(
+                [
+                    'empresa_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
+                ]
+            )
+            ->create();
+
+        $this->table('modelos')
+            ->addColumn('id', 'integer', [
+                'autoIncrement' => true,
+                'default' => null,
+                'limit' => 11,
+                'null' => false,
+            ])
+            ->addPrimaryKey(['id'])
+            ->addColumn('modelo_tipo_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('modelo', 'text', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('descricao', 'string', [
+                'default' => null,
+                'limit' => 63,
+                'null' => true,
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('empresa_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('u_id', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addIndex(
+                [
+                    'modelo_tipo_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'u_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'empresa_id',
                 ]
             )
             ->create();
@@ -1782,6 +1842,18 @@ class Initial extends AbstractMigration
                 'precision' => 17,
                 'scale' => 2,
             ])
+            ->addColumn('frente', 'decimal', [
+                'default' => null,
+                'null' => true,
+                'precision' => 17,
+                'scale' => 2,
+            ])
+            ->addColumn('fundo', 'decimal', [
+                'default' => null,
+                'null' => true,
+                'precision' => 17,
+                'scale' => 2,
+            ])
             ->addColumn('area_construida_coberta', 'decimal', [
                 'default' => null,
                 'null' => true,
@@ -2195,7 +2267,6 @@ class Initial extends AbstractMigration
     {
         $this->table('cliente_situacoes')->drop()->save();
         $this->table('clientes')->drop()->save();
-        $this->table('configuracoes')->drop()->save();
         $this->table('contatos')->drop()->save();
         $this->table('contratos')->drop()->save();
         $this->table('dependentes')->drop()->save();
@@ -2206,6 +2277,8 @@ class Initial extends AbstractMigration
         $this->table('fornecedor_situacoes')->drop()->save();
         $this->table('fornecedores')->drop()->save();
         $this->table('itens')->drop()->save();
+        $this->table('modelo_tipos')->drop()->save();
+        $this->table('modelos')->drop()->save();
         $this->table('modificacoes')->drop()->save();
         $this->table('notas')->drop()->save();
         $this->table('ocorrencia_tipos')->drop()->save();

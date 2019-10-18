@@ -137,6 +137,14 @@ class ProjetosTable extends Table
             ->allowEmptyString('terreno');
 
         $validator
+            ->decimal('frente')
+            ->allowEmptyString('frente');
+
+        $validator
+            ->decimal('fundo')
+            ->allowEmptyString('fundo');
+
+        $validator
             ->decimal('area_construida_coberta')
             ->allowEmptyString('area_construida_coberta');
 

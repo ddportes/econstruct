@@ -53,7 +53,8 @@ class Contrato extends Entity
             $meses = Apoio::meses();
             $dt = explode('/', $this->data_assinatura);
 
-            return $dt[2].' de '.$meses[$dt[1]].' de '.$dt[0];
+
+            return $dt[1].' de '.$meses[$dt[0]].' de 20'.$dt[2];
         }
         return null;
     }
@@ -62,10 +63,14 @@ class Contrato extends Entity
         if(!empty($this->data_assinatura)) {
             $dt = explode('/', $this->data_assinatura);
             if($string) {
-                return $dt[2] . '/' . $dt[1] . '/' . $dt[0];
+                return $dt[1] . '/' . $dt[0] . '/20' . $dt[2];
             }
             return date('Y-m-d',strtotime($dt[2].'-'.$dt[1].'-'.$dt[0]));
         }
         return null;
+    }
+
+    public function minuta(){
+        return str_replace(array("\r\n","\0","\n","\r","\t"),"",$this->minuta);
     }
 }

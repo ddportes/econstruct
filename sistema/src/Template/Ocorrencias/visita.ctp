@@ -245,6 +245,7 @@ $(document).ready(function(){
                             </div>
 
                             <div class="form-row">
+                                <?= $this->Form->control('enderecoProj_id', ['id'=>'enderecoProj_id','type'=>'hidden']); ?>
                                 <div class="col-md-2">
                                     <div class="position-relative form-group">
                                         <?= $this->Form->control('cepProj', ['id'=>'cepProj','label'=>'CEP','placeholder'=>'Somente Números','class' => 'form-control cep']); ?>
@@ -292,6 +293,16 @@ $(document).ready(function(){
                                 <div class="col-md-3">
                                     <div class="position-relative form-group">
                                         <?= $this->Form->control('terrenoProjeto', ['id'=>'terrenoProjeto','label'=>'Área do Terreno','placeholder'=>'m²','class' => 'form-control']); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('frenteProjeto', ['id'=>'frenteProjeto','label'=>'Frente do Terreno','placeholder'=>'m','class' => 'form-control']); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('fundoProjeto', ['id'=>'fundoProjeto','label'=>'Profundidade do Terreno','placeholder'=>'m','class' => 'form-control']); ?>
                                     </div>
                                 </div>
                                 <div class="col-md-3">

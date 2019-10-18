@@ -36,7 +36,7 @@ class ProjetoSituacoesTable extends Table
         parent::initialize($config);
 
         $this->setTable('projeto_situacoes');
-        $this->setDisplayField('id');
+        $this->setDisplayField('descricao');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

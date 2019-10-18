@@ -6,14 +6,16 @@
 ?>
 <?= $this->Html->script('contrato.js') ?>
 <script>
-    var lista_campos_dinamicos = [];
 
-    <?php foreach($tags as $key=>$tag): ?>
-    <?php if($key <> 'error'):  ?>
-    lista_campos_dinamicos.push(["<?= $tag ?>","<?= $key ?>","<?= $key ?>"]);
-    <?php endif; ?>
-    <?php endforeach; ?>
+    var lista_campos_dinamicos = [];
+    var lista_modelos = [];
+
+    var urlCampos = '<?= $this->Url->build(['controller'=>'Contratos','action'=>'tags']) ?>';
+    var urlModelos = '<?= $this->Url->build(['controller'=>'Modelos','action'=>'modelos']) ?>';
+    var hash = '<?= $this->request->getParam("_csrfToken") ?>';
+
 </script>
+<?= $this->Html->script('campos_modelos.js') ?>
 
 <script src="<?= $this->Url->build('/ckeditor/ckeditor.js') ?>"></script>
 

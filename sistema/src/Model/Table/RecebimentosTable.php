@@ -36,7 +36,7 @@ class RecebimentosTable extends Table
         parent::initialize($config);
 
         $this->setTable('recebimentos');
-        $this->setDisplayField('id');
+        $this->setDisplayField('data');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

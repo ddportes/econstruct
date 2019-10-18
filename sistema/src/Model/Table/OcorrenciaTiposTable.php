@@ -36,7 +36,7 @@ class OcorrenciaTiposTable extends Table
         parent::initialize($config);
 
         $this->setTable('ocorrencia_tipos');
-        $this->setDisplayField('id');
+        $this->setDisplayField('descricao');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Utility\Apoio;
+use Cake\Http\Exception\BadRequestException;
 
 /**
  * Contratos Controller
@@ -64,7 +65,7 @@ class ContratosController extends AppController
 
             return $this->redirect(['controller'=>'Projetos','action'=>'index']);
         }else{
-            $contrato->minuta = str_replace(array_keys($tags),array_values($tags),$contrato->minuta) ;
+            $contrato->minuta = str_replace(array_keys($tags),array_values($tags),$contrato->minuta()) ;
         }
 
         $this->viewBuilder()
@@ -74,7 +75,7 @@ class ContratosController extends AppController
                 'config' => [
                     'filename' => 'Contrato '.$contrato->projeto->cliente->pessoa->nome.' - '.$contrato->projeto->descricao,
                     'render' => 'download',
-                    'orientation' => 'landscape',
+                    'orientation' => 'portrait',
                     'paginate' => [
                         'x' => 1500,
                         'y' => 5,
@@ -83,6 +84,26 @@ class ContratosController extends AppController
             ]);
 
         $this->set('contrato', $contrato);
+    }
+
+    public function tags(){
+        $this->request->accepts('get');
+        $dados = $_GET;
+
+
+        $hash = $this->request->getParam('_csrfToken');
+
+        if(!isset($dados['hash']) || $dados['hash'] != $hash){
+            throw new BadRequestException();
+        }
+
+
+        $tags = $this->Contratos->tags();
+
+        $retorno = json_encode($tags);
+
+
+        $this->set(compact('retorno'));
     }
 
 
@@ -132,10 +153,9 @@ class ContratosController extends AppController
             $this->set('orcamento',$orcamento);
         }
         $tags = $this->Contratos->tags();
-        $this->loadModel('Configuracoes');
-        $config = $this->Configuracoes->find('all')->first();
 
-        $this->set(compact('contrato', 'orcamentos', 'projeto_id','orcamento_id','tags','config'));
+
+        $this->set(compact('contrato', 'orcamentos', 'projeto_id','orcamento_id','tags'));
     }
 
     /**
@@ -207,4 +227,6 @@ class ContratosController extends AppController
 
         return $this->redirect(['controller'=>'Orcamentos','action' => 'add',$projeto_id]);
     }
+
+
 }

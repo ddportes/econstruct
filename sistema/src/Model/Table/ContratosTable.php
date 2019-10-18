@@ -113,7 +113,7 @@ class ContratosTable extends Table
                 $conjuge = null;
             }
 
-            $minuta = $dados->contratos[0]->minuta;
+            $minuta =  $dados->contratos[0]->minuta();
 
             //nome do cliente
             if(strpos($minuta,'nome_cliente')) {
@@ -338,6 +338,7 @@ class ContratosTable extends Table
             }
 
             //data assinatura e extenso contrato
+
             if(strpos($minuta,'dataassinatura_contrato') || strpos($minuta,'dataassinaturaextenso_contrato')) {
                 if (!empty($dados->contratos[0]->data_assinatura)) {
                     $retorno['dataassinatura_contrato'] = $dados->contratos[0]->dataAssinatura(true);
@@ -347,6 +348,7 @@ class ContratosTable extends Table
                 }
             }
         }
+
         return $retorno;
     }
 }

@@ -4,21 +4,20 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Configuracao Entity
+ * ModeloTipo Entity
  *
  * @property int $id
- * @property string|null $minuta_default
- * @property string|null $minuta_equipe_default
- * @property string|null $recibo_default
+ * @property string|null $descricao
  * @property int|null $empresa_id
  * @property int|null $u_id
- * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property \Cake\I18n\FrozenTime|null $created
  *
  * @property \App\Model\Entity\Empresa $empresa
- * @property \App\Model\Entity\Users $user
+ * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Modelo[] $modelos
  */
-class Configuracao extends Entity
+class ModeloTipo extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -30,14 +29,13 @@ class Configuracao extends Entity
      * @var array
      */
     protected $_accessible = [
-        'minuta_default' => true,
-        'minuta_equipe_default' => true,
-        'recibo_default' => true,
+        'descricao' => true,
         'empresa_id' => true,
         'u_id' => true,
-        'created' => true,
         'modified' => true,
+        'created' => true,
         'empresa' => true,
-        'user' => true
+        'user' => true,
+        'modelos' => true
     ];
 }

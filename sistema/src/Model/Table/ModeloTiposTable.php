@@ -7,23 +7,24 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Configuracoes Model
+ * ModeloTipos Model
  *
  * @property \App\Model\Table\EmpresasTable&\Cake\ORM\Association\BelongsTo $Empresas
  * @property \App\Model\Table\UsTable&\Cake\ORM\Association\BelongsTo $Users
+ * @property \App\Model\Table\ModelosTable&\Cake\ORM\Association\HasMany $Modelos
  *
- * @method \App\Model\Entity\Configuracao get($primaryKey, $options = [])
- * @method \App\Model\Entity\Configuracao newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Configuracao[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Configuracao|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Configuracao saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Configuracao patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Configuracao[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Configuracao findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\ModeloTipo get($primaryKey, $options = [])
+ * @method \App\Model\Entity\ModeloTipo newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\ModeloTipo[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\ModeloTipo|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\ModeloTipo saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\ModeloTipo patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\ModeloTipo[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\ModeloTipo findOrCreate($search, callable $callback = null, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class ConfiguracoesTable extends Table
+class ModeloTiposTable extends Table
 {
     /**
      * Initialize method
@@ -35,18 +36,20 @@ class ConfiguracoesTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('configuracoes');
-        $this->setDisplayField('id');
+        $this->setTable('modelo_tipos');
+        $this->setDisplayField('descricao');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('FiltroAcesso');
 
         $this->belongsTo('Empresas', [
             'foreignKey' => 'empresa_id'
         ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'u_id'
+        ]);
+        $this->hasMany('Modelos', [
+            'foreignKey' => 'modelo_tipo_id'
         ]);
     }
 
@@ -63,15 +66,9 @@ class ConfiguracoesTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('minuta_default')
-            ->allowEmptyString('minuta_default');
-
-        $validator
-            ->scalar('minuta_equipe_default')
-            ->allowEmptyString('minuta_equipe_default');
-        $validator
-            ->scalar('recibo_default')
-            ->allowEmptyString('recibo_default');
+            ->scalar('descricao')
+            ->maxLength('descricao', 63)
+            ->allowEmptyString('descricao');
 
         return $validator;
     }

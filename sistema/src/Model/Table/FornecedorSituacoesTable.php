@@ -36,7 +36,7 @@ class FornecedorSituacoesTable extends Table
         parent::initialize($config);
 
         $this->setTable('fornecedor_situacoes');
-        $this->setDisplayField('id');
+        $this->setDisplayField('descricao');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

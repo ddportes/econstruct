@@ -37,7 +37,7 @@ class OcorrenciasTable extends Table
         parent::initialize($config);
 
         $this->setTable('ocorrencias');
-        $this->setDisplayField('id');
+        $this->setDisplayField('data');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -79,7 +79,7 @@ class OcorrenciasTable extends Table
             ->allowEmptyDate('data');
 
         $validator
-            ->date('data')
+            ->date('data_pendencia')
             ->allowEmptyDate('data_pendencia');
 
         return $validator;

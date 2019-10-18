@@ -36,7 +36,7 @@ class RendasTable extends Table
         parent::initialize($config);
 
         $this->setTable('rendas');
-        $this->setDisplayField('id');
+        $this->setDisplayField('fonte_pagadora');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

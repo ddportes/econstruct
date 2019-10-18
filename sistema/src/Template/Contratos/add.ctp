@@ -6,14 +6,16 @@
 ?>
 <?= $this->Html->script('contrato.js') ?>
 <script>
-    var lista_campos_dinamicos = [];
 
-        <?php foreach($tags as $key=>$tag): ?>
-            <?php if($key <> 'error'):  ?>
-            lista_campos_dinamicos.push(["<?= $tag ?>","<?= $key ?>","<?= $key ?>"]);
-            <?php endif; ?>
-        <?php endforeach; ?>
+    var lista_campos_dinamicos = [];
+    var lista_modelos = [];
+
+    var urlCampos = '<?= $this->Url->build(['controller'=>'Contratos','action'=>'tags']) ?>';
+    var urlModelos = '<?= $this->Url->build(['controller'=>'Modelos','action'=>'modelos']) ?>';
+    var hash = '<?= $this->request->getParam("_csrfToken") ?>';
+
 </script>
+<?= $this->Html->script('campos_modelos.js') ?>
 
 <script src="<?= $this->Url->build('/ckeditor/ckeditor.js') ?>"></script>
 
@@ -67,7 +69,7 @@
             <div class="position-relative row form-group">
                 <label for="minuta" class="col-sm-2 col-form-label">Minuta:</label>
                 <div class="col-sm-10">
-                    <?= $this->Form->control('minuta',['label'=>false,'type'=>'textarea','value'=>$config->minuta_default,'name'=>'minuta','id'=>'minuta','class'=>'form-control']); ?>
+                    <?= $this->Form->control('minuta',['label'=>false,'type'=>'textarea','name'=>'minuta','id'=>'minuta','class'=>'form-control']); ?>
                 </div>
             </div>
 
@@ -90,8 +92,5 @@
     <?php endif; ?>
 </div>
 <script>
-
     CKEDITOR.replace( 'minuta' );
-
-
 </script>
