@@ -117,6 +117,11 @@ class ContratosController extends AppController
         $user = $this->Auth->user();
         $contrato = $this->Contratos->newEntity();
         $projeto = null;
+        if($projeto_id){
+            $projeto = $this->Contratos->Orcamentos->Projetos->get($projeto_id,['contain'=>['Clientes','Clientes.Pessoas']]);
+            
+        }
+
         if ($this->request->is(['patch', 'post', 'put'])) {
 
             $dados =  $this->request->getData();
@@ -152,7 +157,6 @@ class ContratosController extends AppController
         if(!empty($orcamento_id)) {
             $orcamento = $this->Contratos->Orcamentos->get($orcamento_id);
             $this->set('orcamento',$orcamento);
-            $projeto = $this->Contratos->Orcamentos->Projetos->get($orcamento->projeto_id,['contain'=>['Clientes','Clientes.Pessoas']]);
         }
         $tags = $this->Contratos->tags();
 
