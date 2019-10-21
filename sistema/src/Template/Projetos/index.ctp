@@ -76,11 +76,11 @@
                                         <?= $this->Html->link('<i class="fas fa-file-invoice-dollar"></i>',
                                             ['controller' => 'Orcamentos', 'action' => 'add', $projeto->id], [
                                                 'id' => 'addOrcamento',
-                                                'class' => 'modal_xl_link',
+                                                //'class' => 'modal_xl_link',
                                                 'style'=>'top:2.5em',
                                                 'role' => 'button',
-                                                'data-toggle'=>"modal",
-                                                'data-target'=>".modal_econstruct",
+                                                //'data-toggle'=>"modal",
+                                                //'data-target'=>".modal_econstruct",
                                                 'title'=>'Novo Orçamento',
                                                 'escape' => false
                                             ]) ?>

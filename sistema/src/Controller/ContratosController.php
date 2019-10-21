@@ -116,6 +116,7 @@ class ContratosController extends AppController
     {
         $user = $this->Auth->user();
         $contrato = $this->Contratos->newEntity();
+        $projeto = null;
         if ($this->request->is(['patch', 'post', 'put'])) {
 
             $dados =  $this->request->getData();
@@ -151,11 +152,12 @@ class ContratosController extends AppController
         if(!empty($orcamento_id)) {
             $orcamento = $this->Contratos->Orcamentos->get($orcamento_id);
             $this->set('orcamento',$orcamento);
+            $projeto = $this->Contratos->Orcamentos->Projetos->get($orcamento->projeto_id,['contain'=>['Clientes','Clientes.Pessoas']]);
         }
         $tags = $this->Contratos->tags();
 
 
-        $this->set(compact('contrato', 'orcamentos', 'projeto_id','orcamento_id','tags'));
+        $this->set(compact('contrato', 'orcamentos', 'projeto_id','orcamento_id','tags','projeto'));
     }
 
     /**
@@ -170,6 +172,7 @@ class ContratosController extends AppController
         $contrato = $this->Contratos->get($id, [
             'contain' => ['Projetos','Orcamentos']
         ]);
+        $projeto = null;
         if ($this->request->is(['post', 'put'])) {
             $user = $this->Auth->user();
             $dados = $this->request->getData();
@@ -191,8 +194,11 @@ class ContratosController extends AppController
                 $this->Flash->error(__('Contrato não pode ser editado. Tente novamente mais tarde.'));
             }
         }
+        if(!empty($projeto_id)) {
+            $projeto = $this->Contratos->Orcamentos->Projetos->get($projeto_id,['contain'=>['Clientes','Clientes.Pessoas']]);
+        }
         $tags = $this->Contratos->tags();
-        $this->set(compact('contrato','projeto_id', 'tags'));
+        $this->set(compact('contrato','projeto_id', 'tags','projeto'));
     }
 
     /**

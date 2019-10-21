@@ -55,9 +55,10 @@ class OrcamentosController extends AppController
 
         $user = $sessao = $this->Auth->user();
         $orcamentos = null;
-
+        $projeto = null;
         $orcamento = $this->Orcamentos->newEntity();
         if($projeto_id) {
+            $projeto = $this->Orcamentos->Projetos->get($projeto_id,['contain'=>['Clientes','Clientes.Pessoas']]);
             if ($this->request->is('post')) {
                 $dados = $this->request->getData();
 
@@ -83,15 +84,17 @@ class OrcamentosController extends AppController
 
                     $this->Modificacoes->emiteLog('Orcamentos', 'add', $dados_originais, $dados_novos);
 
-                    //$this->Flash->success(__('The orcamento has been saved.'));
+                    $this->Flash->success(__('O orçamento foi alvo com sucesso.'));
+                }else{
+                    $this->Flash->error(__('O orçamento não pode ser salvo. Tente novamente.'));
                 }
-                //$this->Flash->error(__('The orcamento could not be saved. Please, try again.'));
+
             }
             $orcamentos = $this->Orcamentos->find()->where(["projeto_id"=>$projeto_id])->contain(['Projetos','Contratos','Projetos.Contratos']);
         }
 
 
-        $this->set(compact('orcamento','orcamentos','projeto_id'));
+        $this->set(compact('orcamento','orcamentos','projeto_id','projeto'));
     }
 
     /**
@@ -111,7 +114,7 @@ class OrcamentosController extends AppController
         $orcamento = $this->Orcamentos->get($id);
 
         if ($this->Orcamentos->delete($orcamento)) {
-            //$this->Flash->success(__('The renda has been deleted.'));
+            $this->Flash->success(__('O orçamento foi excluído com sucesso.'));
             $user = $sessao = $this->Auth->user();
             $this->loadModel('Modificacoes');
             $dados_originais = json_encode([$user['id'], $user['username'], 'Exclui Orçamento']);
@@ -119,7 +122,7 @@ class OrcamentosController extends AppController
 
             $this->Modificacoes->emiteLog('Orcamentos', 'delete', $dados_originais, $dados_novos);
         } else {
-            //$this->Flash->error(__('The renda could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O orçamento não pode ser excluído. Tente novamente.'));
         }
         $this->set('projeto_id',$projeto_id);
 

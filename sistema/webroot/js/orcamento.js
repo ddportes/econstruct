@@ -7,36 +7,6 @@ $( document ).ready(function(){
         $('#novoOrcamento').attr('style','display:none');
     }
 
-    $('.gera-contrato-orcamento').on('click',function(e){
-        e.preventDefault();
-        $('#modal_econstruct_content').append("<div id='loadingAjax' style='display: block;position:fixed; top:0;left:0; z-index: 99999; width: 100%; height: 100%; opacity: .5; transition: opacity 0.15s linear;   background-color: #000;  box-sizing: border-box;'><img style='position: absolute;top:50%;left:50%' src='img/ajax-loader.gif'></div>");
-
-        $.ajax({
-            url: $(this).attr("href"),
-            type: "get",
-            data: $(this).serialize() ,
-            success: function (result) {
-                $('#loadingAjax').remove();
-                $('#modal_econstruct_content').html(result);
-            },
-        });
-    });
-
-    $('.edita-contrato-orcamento').on('click',function(e){
-        e.preventDefault();
-        $('#modal_econstruct_content').append("<div id='loadingAjax' style='display: block;position:fixed; top:0;left:0; z-index: 99999; width: 100%; height: 100%; opacity: .5; transition: opacity 0.15s linear;   background-color: #000;  box-sizing: border-box;'><img style='position: absolute;top:50%;left:50%' src='img/ajax-loader.gif'></div>");
-
-        $.ajax({
-            url: $(this).attr("href"),
-            type: "get",
-            data: $(this).serialize() ,
-            success: function (result) {
-                $('#loadingAjax').remove();
-                $('#modal_econstruct_content').html(result);
-            },
-        });
-    });
-
     $('#novoOrcamento').on('click',function(){
         $('#id').val('');
         $('#idOrcamento').html('');
@@ -44,43 +14,9 @@ $( document ).ready(function(){
         $('#custo').focus();
     });
 
-    $('#formOrcamento').on('submit', function(e) {
-        e.preventDefault();
-        $('#modal_econstruct_content').append("<div id='loadingAjax' style='display: block;position:fixed; top:0;left:0; z-index: 99999; width: 100%; height: 100%; opacity: .5; transition: opacity 0.15s linear;   background-color: #000;  box-sizing: border-box;'><img style='position: absolute;top:50%;left:50%' src='img/ajax-loader.gif'></div>");
-        $.ajax({
-            url: $(this).attr("action"),
-            type: "post",
-            data: $(this).serialize() ,
-            success: function (result) {
-                $('#loadingAjax').remove();
-                if(result.indexOf("error-message")>-1){
-                    $('.modal_econstruct').show();
-                    $('#modal_econstruct_content').html(result);
-                }else{
-                    $('#modal_econstruct_content').html(result);
-                    $('#id').val('');
-                    $('#custo').val('');
-                    $('#total').val('');
-                    $('#data_inicial').val('');
-                    $('#data_entrega').val('');
-                    $('#observacao').val('');
-                    $('#idOrcamento').html('');
-                    //$('#fechaModal').click();
-                }
-            },
-            error: function(result){
-                $('#loadingAjax').remove();
-                $('.modal_econstruct').show();
-                $('#modal_econstruct_content').html(result);
-            }
-
-        });
-
-    });
-
     $('.form-edit-orcamento').on('click', function(e) {
         e.preventDefault();
-        $('#modal_econstruct_content').append("<div id='loadingAjax' style='display: block;position:fixed; top:0;left:0; z-index: 99999; width: 100%; height: 100%; opacity: .5; transition: opacity 0.15s linear;   background-color: #000;  box-sizing: border-box;'><img style='position: absolute;top:50%;left:50%' src='img/ajax-loader.gif'></div>");
+        $('body').append("<div id='loadingAjax' style='display: block;position:fixed; top:0;left:0; z-index: 99999; width: 100%; height: 100%; opacity: .5; transition: opacity 0.15s linear;   background-color: #000;  box-sizing: border-box;'><img style='position: absolute;top:50%;left:50%' src='"+imgLoad+"'></div>");
         $.ajax({
             url: $(this).attr("href"),
             type: "get",
@@ -124,34 +60,6 @@ $( document ).ready(function(){
                 $('#observacao').val(orc.observacao);
 
                 $('#novoOrcamento').attr('style','display:block');
-            },
-        });
-    });
-
-    $('.form-delete-orcamento').on('submit', function(e) {
-        e.preventDefault();
-        $('#modal_econstruct_content').append("<div id='loadingAjax' style='display: block;position:fixed; top:0;left:0; z-index: 99999; width: 100%; height: 100%; opacity: .5; transition: opacity 0.15s linear;   background-color: #000;  box-sizing: border-box;'><img style='position: absolute;top:50%;left:50%' src='img/ajax-loader.gif'></div>");
-        $.ajax({
-            url: $(this).attr("action"),
-            type: "post",
-            data: $(this).serialize() ,
-            success: function (result) {
-                $('#loadingAjax').remove();
-                $('#modal_econstruct_content').html(result);
-            },
-        });
-    });
-
-    $('.form-delete-contrato').on('submit', function(e) {
-        e.preventDefault();
-        $('#modal_econstruct_content').append("<div id='loadingAjax' style='display: block;position:fixed; top:0;left:0; z-index: 99999; width: 100%; height: 100%; opacity: .5; transition: opacity 0.15s linear;   background-color: #000;  box-sizing: border-box;'><img style='position: absolute;top:50%;left:50%' src='img/ajax-loader.gif'></div>");
-        $.ajax({
-            url: $(this).attr("action"),
-            type: "post",
-            data: $(this).serialize() ,
-            success: function (result) {
-                $('#loadingAjax').remove();
-                $('#modal_econstruct_content').html(result);
             },
         });
     });
