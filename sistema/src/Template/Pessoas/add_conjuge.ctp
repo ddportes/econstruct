@@ -13,6 +13,7 @@
         sP: true,
         sL: true
     }
+    var imgLoad = '<?= $this->Url->build('/img/ajax-loader.gif') ?>';
 </script>
 <?= $this->Html->script('conjuge.js') ?>
 
@@ -67,6 +68,25 @@
             <label for="dataNascimento" class="col-sm-2 col-form-label">Data de Nascimento:</label>
             <div class="col-sm-10">
                 <?= $this->Form->control('dataNascimento',['label'=>false,'type'=>'text','name'=>'dataNascimento','id'=>'dataNascimento','class'=>'form-control']); ?>
+            </div>
+        </div>
+        <div class="position-relative row form-group">
+            <label for="profissaoPessoa" class="col-sm-2 col-form-label">Profissão:</label>
+            <div class="col-sm-10">
+                <?= $this->Form->control('profissaoPessoa',['label'=>false,'type'=>'text','name'=>'profissaoPessoa','id'=>'profissaoPessoa','class'=>'form-control','placeholder'=>'Digite a profissão da(o) Cônjuge']); ?>
+            </div>
+        </div>
+
+        <div class="position-relative row form-group">
+            <label for="nacionalidadePessoa" class="col-sm-2 col-form-label">Nacionalidade:</label>
+            <div class="col-sm-10">
+                <?= $this->Form->control('nacionalidadePessoa',['label'=>false,'type'=>'text','name'=>'nacionalidadePessoa','id'=>'nacionalidadePessoa','class'=>'form-control','placeholder'=>'Digite a nacionalidade da(o) Cônjuge']); ?>
+            </div>
+        </div>
+        <div class="position-relative row form-group">
+            <label for="naturalidadePessoa" class="col-sm-2 col-form-label">Naturalidade:</label>
+            <div class="col-sm-10">
+                <?= $this->Form->control('naturalidadePessoa',['label'=>false,'type'=>'text','name'=>'naturalidadePessoa','id'=>'naturalidadePessoa','class'=>'form-control','placeholder'=>'Digite a naturalidade da(o) Cônjuge']); ?>
             </div>
         </div>
     </div>

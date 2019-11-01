@@ -103,7 +103,7 @@ class Projeto extends Entity
         if($moeda === true){
             return Number::format($valor,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
         }
-        return Number::format($valor,['pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        return $valor;
 
     }
 
@@ -119,7 +119,7 @@ class Projeto extends Entity
         if($moeda === true){
             return Number::format($valor,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
         }
-        return Number::format($valor,['pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        return $valor;
     }
 
     /**
@@ -134,7 +134,33 @@ class Projeto extends Entity
         if($moeda === true){
             return Number::format($valor,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
         }
-        return Number::format($valor,['pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        return $valor;
+    }
+
+    public function frente($unidade = null){
+        $frente = (!empty($this->frente)?$this->frente:0.0);
+
+        if($unidade){
+            return Number::format($frente,['after' => 'm', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return $frente;
+    }
+    public function fundo($unidade = null){
+        $fundo = (!empty($this->frente)?$this->frente:0.0);
+
+        if($unidade){
+            return Number::format($fundo,['after' => 'm', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return $fundo;
+    }
+
+    public function areaTerreno($unidade = null){
+        $terreno = (!empty($this->terreno)?$this->terreno:0.0);
+
+        if($unidade){
+            return Number::format($terreno,['after' => 'm²', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return $terreno;
     }
 
     public function areaConstruidaCoberta($unidade = null){
@@ -167,15 +193,72 @@ class Projeto extends Entity
     }
 
     public function taxaOcupacao($perc = null){
-        $areaCob = (!empty($this->area_construida_coberta)?$this->area_construida_coberta:0.0);
+
+        $areaCob = (!empty($this->totalNotas())?$this->area_construida_coberta:0.0);
         $areaAbe = (!empty($this->area_construida_aberta)?$this->area_construida_aberta:0.0);
         $terr = (!empty($this->terreno)?$this->terreno:0.0);
-        $ocupacao = ($areaCob+$areaAbe) / $terr;
+        if($terr > 0) {
+            $ocupacao = (($areaCob + $areaAbe) / $terr) * 100;
+        }
+        else{
+            $ocupacao = 0;
+        }
 
         if($perc){
             return Number::format($ocupacao,['after' => '%', 'locale' => 'pt_BR', 'places'=>2]);
         }
 
         return $ocupacao;
+    }
+
+    public function estimadoRealizadoCustos($perc = null){
+        if($this->custo_estimado > 0) {
+            $custo_realizado = $this->totalRecibos() + $this->totalNotas();
+
+            $resultado = $custo_realizado / $this->custo_estimado;
+        }else{
+            $resultado = 0;
+        }
+        if ($perc) {
+            return Number::format($resultado, ['after' => '%', 'locale' => 'pt_BR', 'places' => 2]);
+        }
+
+
+        return $resultado;
+    }
+
+    public function valorProjeto($moeda = null){
+        $contrato = null;
+        foreach($this->contratos as $c){
+            if($c->id = $this->contrato_id){
+                $contrato = $c;
+            }
+        }
+
+        if($moeda === true){
+            return Number::format($contrato->orcamento->total,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return $contrato->orcamento->total;
+    }
+
+
+    public function estimadoRealizadoRecebimentos($perc = null){
+        if($this->custo_estimado > 0) {
+            $resultado = $this->totalRecebimentos() / $this->valorProjeto();
+        }else{
+            $resultado = 0;
+        }
+        if ($perc) {
+            return Number::format($resultado, ['after' => '%', 'locale' => 'pt_BR', 'places' => 2]);
+        }
+
+
+        return $resultado;
+    }
+
+    public function hasContrato(){
+        if(!is_null($this->contrato_id))
+            return $this->contrato_id;
+        return false;
     }
 }

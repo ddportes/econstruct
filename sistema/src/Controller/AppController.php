@@ -72,6 +72,14 @@ class AppController extends Controller
         //$this->loadComponent('Security');
     }
 
+    public function isFullManager(){
+       return array_key_exists('full_manager',$this->user['papeis']);
+    }
+
+    public function isAdministrador(){
+        return array_key_exists('administrador',$this->user['papeis']);
+    }
+
 
     public function beforeFilter(Event $event)
     {
@@ -91,10 +99,10 @@ class AppController extends Controller
 
         $isAdmin = 0;
         $isManager = 0;
-        if(array_key_exists('administrador',$this->user['papeis'])){
+        if($this->isAdministrador()){
             $isAdmin = 1;
             $this->set('isAdmin',$isAdmin);
-            if($this->user['id'] == 1){
+            if($this->isFullManager()){
                 $isManager = 1;
             }
             $this->set('isManager',$isManager);

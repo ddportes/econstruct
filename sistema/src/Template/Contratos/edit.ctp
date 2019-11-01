@@ -7,9 +7,6 @@
 <?= $this->Html->script('contrato.js') ?>
 <script>
 
-    var lista_campos_dinamicos = [];
-    var lista_modelos = [];
-
     var urlCampos = '<?= $this->Url->build(['controller'=>'Contratos','action'=>'tags']) ?>';
     var urlModelos = '<?= $this->Url->build(['controller'=>'Modelos','action'=>'modelos']) ?>';
     var hash = '<?= $this->request->getParam("_csrfToken") ?>';

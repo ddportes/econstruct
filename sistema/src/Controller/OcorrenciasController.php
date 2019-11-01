@@ -27,7 +27,8 @@ class OcorrenciasController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['OcorrenciaTipos', 'Projetos']
+            'contain' => ['OcorrenciaTipos', 'Projetos'],
+            'limit'=>2
         ];
         $ocorrencias = $this->paginate($this->Ocorrencias);
 
@@ -88,6 +89,9 @@ class OcorrenciasController extends AppController
                 //cria pessoa
                 $dados_pessoa['nome'] = (!empty($dados['nomePessoa'])?$dados['nomePessoa']: null);
                 $dados_pessoa['nome_social'] = (!empty($dados['nomeSocialPessoa'])?$dados['nomeSocialPessoa']: null);
+                $dados_pessoa['profissao'] = (!empty($dados['profissaoPessoa'])?$dados['profissaoPessoa']: null);
+                $dados_pessoa['nacionalidade'] = (!empty($dados['nacionalidadePessoa'])?$dados['nacionalidadePessoa']: null);
+                $dados_pessoa['naturalidade'] = (!empty($dados['naturalidadePessoa'])?$dados['naturalidadePessoa']: null);
                 $dados_pessoa['estado_civil'] = (!empty($dados['estadoCivilPessoa'])?$dados['estadoCivilPessoa']: null);
                 $dados_pessoa['conjuge_id'] = (!empty($dados['conjugeHiddenPessoa'])?$dados['conjugeHiddenPessoa']: null);
                 $dados_pessoa['filhos'] = (!empty($dados['filhosPessoa'])?$dados['filhosPessoa']: 0);
@@ -273,6 +277,9 @@ class OcorrenciasController extends AppController
                 //cria pessoa
                 $dados_pessoa['nome'] = (!empty($dados['nomePessoa'])?$dados['nomePessoa']: null);
                 $dados_pessoa['nome_social'] = (!empty($dados['nomeSocialPessoa'])?$dados['nomeSocialPessoa']: null);
+                $dados_pessoa['profissao'] = (!empty($dados['profissaoPessoa'])?$dados['profissaoPessoa']: null);
+                $dados_pessoa['nacionalidade'] = (!empty($dados['nacionalidadePessoa'])?$dados['nacionalidadePessoa']: null);
+                $dados_pessoa['naturalidade'] = (!empty($dados['naturalidadePessoa'])?$dados['naturalidadePessoa']: null);
                 $dados_pessoa['estado_civil'] = (!empty($dados['estadoCivilPessoa'])?$dados['estadoCivilPessoa']: null);
                 $dados_pessoa['conjuge_id'] = (!empty($dados['conjugeHiddenPessoa'])?$dados['conjugeHiddenPessoa']: null);
                 $dados_pessoa['filhos'] = (!empty($dados['filhosPessoa'])?$dados['filhosPessoa']: 0);

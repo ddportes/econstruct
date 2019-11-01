@@ -58,6 +58,9 @@ class DependentesController extends AppController
             $dados_pessoa['id'] = '';
             $dados_pessoa['nome'] = (!empty($dados['nomeDependente'])?$dados['nomeDependente']: null);
             $dados_pessoa['nome_social'] = (!empty($dados['nomeSocialDependente'])?$dados['nomeSocialDependente']: null);
+            $dados_pessoa['profissao'] = (!empty($dados['profissaoDependente'])?$dados['profissaoDependente']: null);
+            $dados_pessoa['nacionalidade'] = (!empty($dados['nacionalidadeDependente'])?$dados['nacionalidadeDependente']: null);
+            $dados_pessoa['naturalidade'] = (!empty($dados['naturalidadeDependente'])?$dados['naturalidadeDependente']: null);
             $dados_pessoa['estado_civil'] = (!empty($dados['estadoCivilDependente'])?$dados['estadoCivilDependente']: null);
             $dados_pessoa['conjuge_id'] = null;
             $dados_pessoa['filhos'] = 0;

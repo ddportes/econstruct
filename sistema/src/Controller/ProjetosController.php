@@ -55,8 +55,10 @@ class ProjetosController extends AppController
                 'Clientes.Pessoas',
                 'ProjetoSituacoes',
                 'Contratos',
+                'Contratos.Orcamentos',
                 'Recebimentos',
                 'Orcamentos',
+                'Orcamentos.Contratos',
                 'Ocorrencias',
                 'Ocorrencias.OcorrenciaTipos',
                 'Recibos',
@@ -82,19 +84,54 @@ class ProjetosController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Auth->user();
             $dados = $this->request->getData();
+
             $dados['empresa_id'] = $user['empresa_id'];
             $dados['u_id'] = $user['id'];
 
-            $projeto = $this->Projetos->patchEntity($projeto, $dados);
-            if ($this->Projetos->save($projeto)) {
-                $this->Flash->success(__('O projeto foi criado com sucesso.'));
+            $dados['endereco']['pessoa_id'] = null;
+            $dados['endereco']['logradouro'] = (!empty($dados['endereco']['logradouro'])?$dados['endereco']['logradouro']: null);
+            $dados['endereco']['numero'] = (!empty($dados['endereco']['numero'])?preg_replace("/[^0-9,]/", "",$dados['endereco']['numero']): null);
+            $dados['endereco']['complemento'] = (!empty($dados['endereco']['complemento'])?$dados['endereco']['complemento']: null);
+            $dados['endereco']['bairro'] = (!empty($dados['endereco']['bairro'])?$dados['endereco']['bairro']: null);
+            $dados['endereco']['cep'] = (!empty($dados['endereco']['cep'])?preg_replace('/[^0-9]/', '', $dados['endereco']['cep']): null);
+            $dados['endereco']['cidade'] = (!empty($dados['endereco']['cidade'])?$dados['endereco']['cidade']: null);
+            $dados['endereco']['estado'] = (!empty($dados['endereco']['estado'])?$dados['endereco']['estado']: null);
+            $dados['endereco']['principal'] = 'S';
+            $dados['endereco']['empresa_id'] = $user['empresa_id'];
+            $dados['endereco']['u_id'] = $user['id'];
 
-                return $this->redirect(['action' => 'index']);
+            $endereco = $this->Projetos->Enderecos->newEntity($dados['endereco']);
+            if($this->Projetos->Enderecos->save($endereco)){
+
+                $projeto->endereco_id = $endereco->id;
+                $projeto = $this->Projetos->patchEntity($projeto, $dados);
+
+                if ($this->Projetos->save($projeto)) {
+
+                    $this->loadModel('Modificacoes');
+                    $dados_originais = json_encode([$user['id'], $user['username'], 'Novo Projeto']);
+                    $dados_novos = json_encode([$user['id'], $user['username'], $projeto, $endereco]);
+                    if ($this->Modificacoes->emiteLog('Projetos', 'add', $dados_originais, $dados_novos)) {
+                        $this->Flash->success(__('O projeto foi criado com sucesso.'));
+
+                        return $this->redirect(['action' => 'index']);
+                    }else{
+                        $this->Flash->error(__('Erro ao gravar o log.'));
+                    }
+                }
+
+                $this->Flash->error(__('Não foi possível criar o projeto. Tente novamente mais tarde.'));
+
+            }else{
+                $this->Flash->error(__('Erro ao criar o endereço.'));
             }
-            $this->Flash->error(__('O foi possível criar o projeto. Tente novamente mais tarde.'));
         }
-        $clientes = $this->Projetos->Clientes->clientes();
-        $projetoSituacoes = $this->Projetos->ProjetoSituacoes->find('list', ['limit' => 200]);
+        $clientes = $this->Projetos->Clientes->find('list', [
+            'contain'=>['Pessoas'],
+            'keyField'=>'id',
+            'valueField'=>'pessoa.nome'
+        ]);
+        $projetoSituacoes = $this->Projetos->ProjetoSituacoes->find('list');
         $this->set(compact('projeto', 'clientes', 'projetoSituacoes'));
     }
 
@@ -108,19 +145,35 @@ class ProjetosController extends AppController
     public function edit($id = null)
     {
         $projeto = $this->Projetos->get($id, [
-            'contain' => []
+            'contain' => ['Enderecos','ProjetoSituacoes','Clientes','Clientes.Pessoas']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $projeto = $this->Projetos->patchEntity($projeto, $this->request->getData());
-            if ($this->Projetos->save($projeto)) {
-                $this->Flash->success(__('O projeto foi editado com sucesso.'));
 
-                return $this->redirect(['action' => 'index']);
+            $user = $this->Auth->user();
+            $dados = $this->request->getData();
+            $dados['u_id'] = $user['id'];
+
+            $projeto = $this->Projetos->patchEntity($projeto, $dados);
+            if ($this->Projetos->save($projeto)) {
+                $this->loadModel('Modificacoes');
+                $dados_originais = json_encode([$user['id'], $user['username'], 'Editar Projeto']);
+                $dados_novos = json_encode([$user['id'], $user['username'], $projeto]);
+                if ($this->Modificacoes->emiteLog('Projetos', 'edit', $dados_originais, $dados_novos)) {
+                    $this->Flash->success(__('O projeto foi editado com sucesso.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }else{
+                    $this->Flash->error(__('Erro ao gravar o log.'));
+                }
             }
             $this->Flash->error(__('Não foi possível editar o projeto. Tente novamente mais tarde.'));
         }
-        $clientes = $this->Projetos->Clientes->find('list', ['limit' => 200]);
-        $projetoSituacoes = $this->Projetos->ProjetoSituacoes->find('list', ['limit' => 200]);
+        $clientes = $this->Projetos->Clientes->find('list', [
+                                                                'contain'=>['Pessoas'],
+                                                                'keyField'=>'id',
+                                                                'valueField'=>'pessoa.nome'
+                                                            ]);
+        $projetoSituacoes = $this->Projetos->ProjetoSituacoes->find('list');
         $this->set(compact('projeto', 'clientes', 'projetoSituacoes'));
     }
 

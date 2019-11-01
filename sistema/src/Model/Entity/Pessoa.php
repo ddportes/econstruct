@@ -23,6 +23,9 @@ use App\Utility\Apoio;
  * @property \Cake\I18n\FrozenTime|null $modified
  * @property int|null $empresa_id
  * @property int|null $u_id
+ * @property string $profissao
+ * @property string $nacionalidade
+ * @property string $naturalidade
  *
  * @property \App\Model\Entity\Pessoa $pessoa
  * @property \App\Model\Entity\Cliente[] $clientes
@@ -66,7 +69,10 @@ class Pessoa extends Entity
         'fornecedores' => true,
         'pedreiros' => true,
         'rendas' => true,
-        'dependentes' => true
+        'dependentes' => true,
+        'profissao'=> true,
+        'nacionalidade'=> true,
+        'naturalidade' => true
     ];
 
     public function firstTelefone(){
@@ -166,5 +172,48 @@ class Pessoa extends Entity
             }
         }
         return $this->cpf_cnpj;
+    }
+
+    public function sexo(){
+        return ($this->sexo == 'F')?'Feminino':'Masculino';
+    }
+
+    public function estadoCivil($sexo){
+        switch ($this->estado_civil) {
+            case 1:
+                if($sexo == 'F'){
+                    return 'Solteira';
+                    break;
+                }
+                return 'Solteiro';
+                break;
+            case 2:
+                if($sexo == 'F'){
+                    return 'Casada';
+                    break;
+                }
+                return 'Casado';
+                break;
+            case 3:
+                if($sexo == 'F'){
+                    return 'Separada';
+                    break;
+                }
+                return 'Separado';
+                break;
+            case 4:
+                if($sexo == 'F'){
+                    return 'Viúva';
+                    break;
+                }
+                return 'Viúvo';
+                break;
+            case 5:
+                return 'União Estável';
+                break;
+
+            default:
+                return null;
+        }
     }
 }

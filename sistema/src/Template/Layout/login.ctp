@@ -19,17 +19,18 @@ $cakeDescription = 'e-Construct';
     <meta name="msapplication-tap-highlight" content="no">
 
     <?= $this->Html->css('main.css') ?>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto%7CJosefin+Sans:100,300,400,500" rel="stylesheet" type="text/css">
+    <?= $this->Html->css('fonts.google.css') ?>
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('font-awesome.min.css') ?>
     <?= $this->Html->css('magnific-popup.css') ?>
     <?= $this->Html->css('slick.css') ?>
     <?= $this->Html->css('cubeportfolio.min.css') ?>
     <?= $this->Html->css('component.css') ?>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js" integrity="sha256-tSRROoGfGWTveRpDHFiWVz+UXt+xKNe90wwGn25lpw8=" crossorigin="anonymous"></script>
+
+    <?= $this->Html->script('jquery-3.3.1.slim.min.js') ?>
+    <?= $this->Html->script('popper.min.js') ?>
+    <?= $this->Html->script('bootstrap4.2.1.min.js') ?>
+    <?= $this->Html->script('notify.min.js') ?>
 
 </head>
 <body>
@@ -66,6 +67,6 @@ $cakeDescription = 'e-Construct';
     <?= $this->Html->script('helper.js') ?>
     <?= $this->Html->script('script.js') ?>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js" integrity="sha256-tSRROoGfGWTveRpDHFiWVz+UXt+xKNe90wwGn25lpw8=" crossorigin="anonymous"></script>
+    <?= $this->Html->script('notify.min.js') ?>
 </body>
 </html>

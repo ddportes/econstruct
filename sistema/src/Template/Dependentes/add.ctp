@@ -13,6 +13,7 @@
         sP: true,
         sL: true
     }
+    var imgLoad = '<?= $this->Url->build('/img/ajax-loader.gif') ?>';
 </script>
 <?= $this->Html->script('dependente.js') ?>
 <div id="addDependente" >
@@ -120,6 +121,24 @@
                 <label for="dataNascimento" class="col-sm-2 col-form-label">Data de Nascimento:</label>
                 <div class="col-sm-10">
                     <?= $this->Form->control('dataNascimento',['label'=>false,'type'=>'text','name'=>'dataNascimento','id'=>'dataNascimento','class'=>'form-control']); ?>
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                <label for="profissaoDependente" class="col-sm-2 col-form-label">Profissão:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('profissaoDependente',['label'=>false,'type'=>'text','name'=>'profissaoDependente','id'=>'profissaoDependente','class'=>'form-control','placeholder'=>'Digite a profissão da(o) Dependente']); ?>
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                <label for="nacionalidadeDependente" class="col-sm-2 col-form-label">Nacionalidade:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('nacionalidadeDependente',['label'=>false,'type'=>'text','name'=>'nacionalidadeDependente','id'=>'nacionalidadeDependente','class'=>'form-control','placeholder'=>'Digite a nacionalidade da(o) Dependente']); ?>
+                </div>
+            </div>
+            <div class="position-relative row form-group">
+                <label for="naturalidadeDependente" class="col-sm-2 col-form-label">Naturalidade:</label>
+                <div class="col-sm-10">
+                    <?= $this->Form->control('naturalidadeDependente',['label'=>false,'type'=>'text','name'=>'naturalidadeDependente','id'=>'naturalidadeDependente','class'=>'form-control','placeholder'=>'Digite a naturalidade da(o) Dependente']); ?>
                 </div>
             </div>
         </div>

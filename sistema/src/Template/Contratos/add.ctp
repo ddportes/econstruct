@@ -6,10 +6,6 @@
 ?>
 <?= $this->Html->script('contrato.js') ?>
 <script>
-
-    var lista_campos_dinamicos = [];
-    var lista_modelos = [];
-
     var urlCampos = '<?= $this->Url->build(['controller'=>'Contratos','action'=>'tags']) ?>';
     var urlModelos = '<?= $this->Url->build(['controller'=>'Modelos','action'=>'modelos']) ?>';
     var hash = '<?= $this->request->getParam("_csrfToken") ?>';
@@ -75,7 +71,7 @@
                         </div>
                     </div>
                 <div class="card-body" style="text-align: right;">
-                        <?= $this->Form->button(__('Salvar'),['id'=>'salvarContrato','class'=>'btn btn-success']) ?>
+                        <?= $this->Form->button(__('Salvar'),['id'=>'salvarContrato','confirm' => __('Deseja realmente gerar um novo contrato para o projeto {0}? Esse projeto já possui o contrato {1}. Ao salvar o novo contrato, o anterior será removido.', $projeto_id,$projeto->hasContrato()),'class'=>'btn btn-success']) ?>
                     </div>
                 <?= $this->Form->end() ?>
             <?php else: ?>

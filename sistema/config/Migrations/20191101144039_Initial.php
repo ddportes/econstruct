@@ -1586,6 +1586,21 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
+            ->addColumn('profissao', 'string', [
+                'default' => null,
+                'limit' => 63,
+                'null' => true,
+            ])
+            ->addColumn('nacionalidade', 'string', [
+                'default' => null,
+                'limit' => 63,
+                'null' => true,
+            ])
+            ->addColumn('naturalidade', 'string', [
+                'default' => null,
+                'limit' => 63,
+                'null' => true,
+            ])
             ->addColumn('created', 'datetime', [
                 'default' => null,
                 'limit' => null,

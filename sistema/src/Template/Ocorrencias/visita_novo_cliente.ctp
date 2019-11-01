@@ -5,7 +5,8 @@
 ?>
 
 <?php //echo $this->Html->script('https://code.jquery.com/jquery-3.4.1.min.js',['block'=>true]) ?>
-<script>stSit['sC'] = true,stSit['sP'] = true;</script>
+<script>stSit['sC'] = true,stSit['sP'] = true;
+    var imgLoad = '<?= $this->Url->build('/img/ajax-loader.gif') ?>';</script>
 <?= $this->Html->script('visita.js',['block'=>true]) ?>
 
 <div class="app-page-title">
@@ -112,6 +113,22 @@
                                             <?= $this->Form->control('estadoCivilPessoa', ['options'=>[''=>'','1'=>'Solteiro(a)','2'=>'Casado(a)','3'=>'Separado(a)','4'=>'Viúvo(a)','5'=>'União Estável(a)'],'id'=>'estadoCivilPessoa','label'=>'Estado Civil','class' => 'form-control']); ?>
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="position-relative form-group">
+                                            <?= $this->Form->control('profissaoPessoa', ['id'=>'profissaoPessoa','label'=>'Profissão','placeholder'=>'Digite a profissão do Cliente','class' => 'form-control']); ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="position-relative form-group">
+                                            <?= $this->Form->control('nacionalidadePessoa', ['id'=>'nacionalidadePessoa','label'=>'Nacionalidade','placeholder'=>'Digite a nacionalidade do Cliente','class' => 'form-control']); ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="position-relative form-group">
+                                            <?= $this->Form->control('naturalidadePessoa', ['id'=>'naturalidadePessoa','label'=>'Naturalidade','placeholder'=>'Digite a naturalidade do Cliente','class' => 'form-control']); ?>
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-2">
                                         <div class="position-relative form-group">
                                             <?= $this->Form->control('dataNascimentoPessoa',['label'=>'Data de Nascimento','type'=>'text','name'=>'dataNascimentoPessoa','id'=>'dataNascimentoPessoa','class'=>'form-control']); ?>

@@ -109,7 +109,7 @@ $(document).ready(function(){
 
 
     $('#clienteId').on('change',function(){
-        $('body').append("<div id='loadingAjax' style='display: block;position:fixed; top:0;left:0; z-index: 99999; width: 100%; height: 100%; opacity: .5; transition: opacity 0.15s linear;   background-color: #000;  box-sizing: border-box;'><img style='position: absolute;top:50%;left:50%' src='img/ajax-loader.gif'></div>");
+        $('body').append("<div id='loadingAjax' style='display: block;position:fixed; top:0;left:0; z-index: 99999; width: 100%; height: 100%; opacity: .5; transition: opacity 0.15s linear;   background-color: #000;  box-sizing: border-box;'><img style='position: absolute;top:50%;left:50%' src='"+imgLoad+"'></div>");
         $('#checkNovoProjeto').prop('checked',false);
         statusSalvar($('#salvar'),4,2,stSit);
         if($('#clienteId').val() == ''){
@@ -137,6 +137,9 @@ $(document).ready(function(){
                     $('#rgPessoa').val('');
                     $('#estadoCivilPessoa').val('');
                     $('#filhosPessoa').val('');
+                    $('#profissaoPessoa').val('');
+                    $('#nacionalidadePessoa').val('');
+                    $('#naturalidadePessoa').val('');
                     $('#dataNascimentoPessoa').val('');
                     $('#conjugeHiddenPessoa').val('');
                     $('#cepCliente').val('');
@@ -247,6 +250,9 @@ $(document).ready(function(){
                     $('#estadoCliente').val(endereco.estado);
                     $('#nomeSocialPessoa').val(cli.pessoa.nome_social);
                     $('#observacaoCliente').val(cli.pessoa.observacao);
+                    $('#profissaoPessoa').val(cli.pessoa.profissao);
+                    $('#nacionalidadePessoa').val(cli.pessoa.nacionalidade);
+                    $('#naturalidadePessoa').val(cli.pessoa.naturalidade);
 
                     projetos = cli.projetos;
                     $('#projetoId').empty();

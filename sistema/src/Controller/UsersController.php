@@ -146,10 +146,8 @@ class UsersController extends AppController
     }
 
     public function trocarEmpresa(){
-        $user = $this->Auth->user();
-        $userBd = $this->Users->get($user['id']);
-
-        if($userBd->empresa_id === 0) {
+        if($this->isFullManager()) {
+            $user = $this->Auth->user();
             $user['empresa_id'] = 0;
             $this->Auth->setUser($user);
             $this->redirect(['controller' => 'Users', 'action' => 'loginAdmin']);
@@ -157,32 +155,6 @@ class UsersController extends AppController
             $this->redirect(['controller' => 'Pages', 'action' => 'display','home']);
         }
     }
-/*
-    public function emiteLog($controller,$action,$originais,$novos){
-        if(!empty($this->Auth->user())) {
-            $user = $this->Auth->user();
-        }else{
-            $o = json_decode($originais,true);
-            $user['id'] = $o[0];
-            $user['username'] = $o[1];
-            $user['empresa_id'] = $o[2];
-        }
-
-        $this->loadModel('Modificacoes');
-        $log = $this->Modificacoes->newEntity();
-        $log->datahora = date('Y-m-d H:i');
-        $log->user_id = $user['id'];
-        $log->empresa_id = $user['empresa_id'];
-        $log->controller = $controller;
-        $log->action = $action;
-        $log->dados_originais = $originais;
-        $log->dados_novos = $novos;
-
-        if (!$this->Modificacoes->save($log)) {
-            $this->Flash->error(__('Erro de Log. Por favor, tente novamente.'));
-        }
-    }
-*/
 
     public function logout()
     {

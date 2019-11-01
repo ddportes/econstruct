@@ -57,7 +57,15 @@
                                     <td class="actions" style="vertical-align: top">
                                         <?= $this->Html->link('<i class="fas fa-pen-square"></i>', ['action'=>'retornaOrcamento',$o->id],['Title'=>'Editar Orcamento','class'=>'btn btn-xs form-edit-orcamento','style'=>'padding: 0','escape'=>false]) ?>
 
-                                        <?php if(!is_null($o->projeto->contrato_id) && $o->projeto->contratos[0]->orcamento_id == $o->id): ?>
+                                        <?php if(!is_null($o->projeto->contrato_id) && !empty($o->projeto->contratos) && $o->projeto->contratos[0]->orcamento_id == $o->id): ?>
+                                            <?= $this->Html->link('<i class="fas fa-search"></i>',
+                                                ['controller'=>'Contratos','action'=>'view',$o->projeto->contrato_id,$projeto_id],
+                                                ['title'=>'Visualizar Contrato',
+                                                    'class'=>'btn btn-xs',
+                                                    'style'=>'padding: 0',
+                                                    'target'=>'_blank',
+                                                    'escape'=>false]) ?>
+
                                             <?= $this->Html->link('<i class="fas fa-file-alt"></i>',
                                                 ['controller'=>'Contratos','action'=>'edit',$o->projeto->contrato_id,$projeto_id],
                                                 ['title'=>'Editar Contrato',
@@ -86,13 +94,24 @@
                                                     ]) ?>
                                             </div>
                                         <?php else: ?>
+                                            <?php if(($projeto->hasContrato() && empty($o->contratos)) || ($projeto->hasContrato() && $o->contratos[0]->id <> $projeto->hasContrato())): ?>
                                             <?= $this->Html->link('<i class="fas fa-file-alt"></i>',
                                                 ['controller'=>'Contratos','action'=>'add',$projeto_id,$o->id],
                                                 ['title'=>'Gerar Contrato',
                                                     'id'=>'botaoContratoModal'.$o->id,
                                                     'class'=>'btn btn-xs',
+                                                    'confirm' => __('Deseja realmente gerar um novo contrato para o projeto {0}? Esse projeto já possui o contrato {1}. Ao salvar o novo contrato, o anterior será removido.', $projeto_id,$projeto->hasContrato()),
                                                     'style'=>'padding: 0',
                                                     'escape'=>false]) ?>
+                                            <?php else: ?>
+                                                <?= $this->Html->link('<i class="fas fa-file-alt"></i>',
+                                                    ['controller'=>'Contratos','action'=>'add',$projeto_id,$o->id],
+                                                    ['title'=>'Gerar Contrato',
+                                                        'id'=>'botaoContratoModal'.$o->id,
+                                                        'class'=>'btn btn-xs',
+                                                        'style'=>'padding: 0',
+                                                        'escape'=>false]) ?>
+                                            <?php endif; ?>
                                         <?php endif; ?>
                                         <div style="display:inline-block;padding:0">
                                             <?= $this->Form->postButton('<i class="fas fa-trash-alt"></i>', [
@@ -178,6 +197,7 @@
             </div>
                 <div class="card-body" style="text-align: right;">
                     <?= $this->Form->button(__('Salvar'),['id'=>'salvarOrcamento','class'=>'btn btn-success']) ?>
+                    <?= $this->Html->link(__('Voltar para Projetos'),['controller'=>'Projetos','action'=>'index'],['class'=>'btn btn-secondary','title'=>'Voltar para listagem de Projetos','role'=>'button']) ?>
                 </div>
             <?= $this->Form->end() ?>
 

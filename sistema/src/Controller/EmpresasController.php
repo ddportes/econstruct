@@ -19,6 +19,10 @@ class EmpresasController extends AppController
      */
     public function index()
     {
+
+        if( !$this->isFullManager() ){
+            throw new \Exception('Acesso não autorizado.');
+        }
         $this->paginate = [
             'contain' => ['Users', 'Pessoas']
         ];
@@ -36,8 +40,12 @@ class EmpresasController extends AppController
      */
     public function view($id = null)
     {
+        if( !$this->isFullManager() ){
+            throw new \Exception('Acesso não autorizado.');
+        }
+
         $empresa = $this->Empresas->get($id, [
-            'contain' => ['Us', 'Representantes', 'Enderecos', 'ClienteSituacoes', 'Clientes', 'Configuracoes', 'Contatos', 'Contratos', 'Dependentes', 'EquipePedreiros', 'Equipes', 'FornecedorSituacoes', 'Fornecedores', 'Itens', 'Modificacoes', 'Notas', 'OcorrenciaTipos', 'Ocorrencias', 'Orcamentos', 'Papeis', 'PedreiroSituacoes', 'Pedreiros', 'PermissaoPapeis', 'Permissoes', 'Pessoas', 'ProdutoTipos', 'Produtos', 'ProjetoSituacoes', 'Projetos', 'Recebimentos', 'Recibos', 'Rendas', 'UserPapeis', 'Users']
+            'contain' => ['Users', 'Representantes', 'Enderecos', 'ClienteSituacoes', 'Clientes', 'Configuracoes', 'Contatos', 'Contratos', 'Dependentes', 'EquipePedreiros', 'Equipes', 'FornecedorSituacoes', 'Fornecedores', 'Itens', 'Modificacoes', 'Notas', 'OcorrenciaTipos', 'Ocorrencias', 'Orcamentos', 'Papeis', 'PedreiroSituacoes', 'Pedreiros', 'PermissaoPapeis', 'Permissoes', 'Pessoas', 'ProdutoTipos', 'Produtos', 'ProjetoSituacoes', 'Projetos', 'Recebimentos', 'Recibos', 'Rendas', 'UserPapeis', 'Users']
         ]);
 
         $this->set('empresa', $empresa);
@@ -50,6 +58,9 @@ class EmpresasController extends AppController
      */
     public function add()
     {
+        if( !$this->isFullManager() ){
+            throw new \Exception('Acesso não autorizado.');
+        }
         $empresa = $this->Empresas->newEntity();
         if ($this->request->is('post')) {
             $empresa = $this->Empresas->patchEntity($empresa, $this->request->getData());
@@ -74,6 +85,9 @@ class EmpresasController extends AppController
      */
     public function edit($id = null)
     {
+        if( !$this->isAdministrador() ){
+            throw new \Exception('Acesso não autorizado.');
+        }
         $empresa = $this->Empresas->get($id);
 
         $endereco = null;
@@ -83,7 +97,7 @@ class EmpresasController extends AppController
 
         $representante = null;
         if (!empty($empresa->representante_id)){
-            $representante = $this->Empresas->Pessoas->get($empresa->representante_id);
+            $representante = $this->Empresas->Pessoas->get($empresa->representante_id,['contain'=>['Enderecos']]);
         }
 
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -98,8 +112,12 @@ class EmpresasController extends AppController
 
             $dados_pessoa['nome'] = (!empty($dados['nomeRep'])?$dados['nomeRep']: null);
             $dados_pessoa['nome_social'] = (!empty($dados['nomeSocialRep'])?$dados['nomeSocialRep']: null);
+            $dados_pessoa['profissao'] = (!empty($dados['profissaoRep'])?$dados['profissaoRep']: null);
+            $dados_pessoa['nacionalidade'] = (!empty($dados['nacionalidadeRep'])?$dados['nacionalidadeRep']: null);
+            $dados_pessoa['naturalidade'] = (!empty($dados['naturalidadeRep'])?$dados['naturalidadeRep']: null);
+
             $dados_pessoa['estado_civil'] = (!empty($dados['estadoCivilRep'])?$dados['estadoCivilRep']: null);
-            $dados_pessoa['conjuge_id'] = null;
+            $dados_pessoa['conjuge_id'] = (!empty($dados['conjugeHiddenPessoa'])?$dados['conjugeHiddenPessoa']: null);
             $dados_pessoa['filhos'] = (!empty($dados['filhosRep'])?$dados['filhosRep']: 0);
             $dados_pessoa['sexo'] = (!empty($dados['sexoRep'])?$dados['sexoRep']: null);
             $dados_pessoa['tipo'] = 'F';
@@ -137,17 +155,43 @@ class EmpresasController extends AppController
 
                     $endereco = $this->Empresas->Enderecos->patchEntity($endereco, $dados_endereco);
                     if ($this->Empresas->Enderecos->save($endereco)) {
-                        $this->loadModel('Modificacoes');
-                        $dados_originais = json_encode([$user['id'], $user['username'], 'Edita Empresa']);
-                        $dados_novos = json_encode([$user['id'], $user['username'], $empresa, $endereco, $pessoa]);
-                        if ($this->Modificacoes->emiteLog('Empresas', 'edit', $dados_originais, $dados_novos)) {
-                            $this->Flash->success(__('Empresa editada com sucesso.'));
 
+                        if (!empty($dados['enderecoRep_id'])) {
+                            $enderecoRep = $this->Empresas->Enderecos->get($dados['enderecoRep_id']);
                         } else {
-                            $this->Flash->error(__('Erro ao gravar log.'));
+                            $enderecoRep = $this->Empresas->Enderecos->newEntity();
                         }
+
+                        $dados_enderecoRep['pessoa_id'] = $pessoa->id;
+                        $dados_enderecoRep['logradouro'] = (!empty($dados['logradouroRep']) ? $dados['logradouroRep'] : null);
+                        $dados_enderecoRep['numero'] = (!empty($dados['numeroRep']) ? preg_replace("/[^0-9,]/", "", $dados['numeroRep']) : null);
+                        $dados_enderecoRep['complemento'] = (!empty($dados['complementoRep']) ? $dados['complementoRep'] : null);
+                        $dados_enderecoRep['bairro'] = (!empty($dados['bairroRep']) ? $dados['bairroRep'] : null);
+                        $dados_enderecoRep['cep'] = (!empty($dados['cepRep']) ? preg_replace('/[^0-9]/', '', $dados['cepRep']) : null);
+                        $dados_enderecoRep['cidade'] = (!empty($dados['cidadeRep']) ? $dados['cidadeRep'] : null);
+                        $dados_enderecoRep['estado'] = (!empty($dados['estadoRep']) ? $dados['estadoRep'] : null);
+                        $dados_enderecoRep['principal'] = 'S';
+                        $dados_enderecoRep['empresa_id'] = $user['empresa_id'];
+                        $dados_enderecoRep['u_id'] = $user['id'];
+
+                        $enderecoRep = $this->Empresas->Enderecos->patchEntity($enderecoRep, $dados_enderecoRep);
+                        if ($this->Empresas->Enderecos->save($enderecoRep)) {
+                            $this->loadModel('Modificacoes');
+                            $dados_originais = json_encode([$user['id'], $user['username'], 'Edita Empresa']);
+                            $dados_novos = json_encode([$user['id'], $user['username'], $empresa, $endereco, $pessoa, $enderecoRep]);
+                            if ($this->Modificacoes->emiteLog('Empresas', 'edit', $dados_originais, $dados_novos)) {
+                                $this->Flash->success(__('Empresa editada com sucesso.'));
+
+                            } else {
+                                $this->Flash->error(__('Erro ao gravar log.'));
+                            }
+
+                        }else{
+                            $this->Flash->error(__('Erro ao gravar o endereço do representante.'));
+                        }
+
                     } else {
-                        $this->Flash->error(__('Erro ao gravar o endereço.'));
+                        $this->Flash->error(__('Erro ao gravar o endereço da empresa.'));
                     }
                 } else {
                     $this->Flash->error(__('Erro ao gravar a empresa.'));
@@ -170,6 +214,9 @@ class EmpresasController extends AppController
      */
     public function delete($id = null)
     {
+        if( !$this->isFullManager() ){
+            throw new \Exception('Acesso não autorizado.');
+        }
         $this->request->allowMethod(['post', 'delete']);
         $empresa = $this->Empresas->get($id);
         if ($this->Empresas->delete($empresa)) {

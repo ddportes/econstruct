@@ -42,4 +42,16 @@ class Recibo extends Entity
         'projeto' => true,
         'u_id'=>true
     ];
+
+    /**
+     * @param bool|null $moeda
+     * @return string
+     */
+    public function valor($moeda = null){
+        if($moeda === true){
+            return Number::format($this->valor,['before' => 'R$ ', 'pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+        }
+        return Number::format($this->valor,['pattern' => '#.###.###,##', 'locale' => 'pt_BR', 'places'=>2]);
+
+    }
 }

@@ -53,7 +53,7 @@ class Endereco extends Entity
     ];
 
     public function enderecoCompleto(){
-        return 'Rua/Avenida '.$this->logradouro.', '
+        return $this->logradouro.', '
               .(empty($this->numero)?'s/n':$this->numero)
               .(!empty($this->complemento)?', '.$this->complemento:'')
               .(!empty($this->bairro)?', bairro '.$this->bairro:'')

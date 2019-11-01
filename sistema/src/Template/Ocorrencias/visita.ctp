@@ -7,6 +7,7 @@
 <?= $this->Html->scriptStart(['block' => true]); ?>
     var hashVisit = '<?= $this->request->getParam("_csrfToken") ?>';
     var urlVisit = "<?= $this->Url->build(['controller'=>'Clientes','action'=>'retornaCliente']) ?>/";
+    var imgLoad = '<?= $this->Url->build('/img/ajax-loader.gif') ?>';
 
 $(document).ready(function(){
     $('#tab-c1-1').attr('style','display:none');
@@ -122,6 +123,21 @@ $(document).ready(function(){
                                 <div class="col-md-4">
                                     <div class="position-relative form-group">
                                         <?= $this->Form->control('estadoCivilPessoa', ['options'=>[''=>'','1'=>'Solteiro(a)','2'=>'Casado(a)','3'=>'Separado(a)','4'=>'Viúvo(a)','5'=>'União Estável(a)'],'id'=>'estadoCivilPessoa','label'=>'Estado Civil','class' => 'form-control']); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('profissaoPessoa', ['id'=>'profissaoPessoa','label'=>'Profissão','placeholder'=>'Digite a profissão do Cliente','class' => 'form-control']); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('nacionalidadePessoa', ['id'=>'nacionalidadePessoa','label'=>'Nacionalidade','placeholder'=>'Digite a nacionalidade do Cliente','class' => 'form-control']); ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="position-relative form-group">
+                                        <?= $this->Form->control('naturalidadePessoa', ['id'=>'naturalidadePessoa','label'=>'Naturalidade','placeholder'=>'Digite a naturalidade do Cliente','class' => 'form-control']); ?>
                                     </div>
                                 </div>
                                 <div class="col-md-2">

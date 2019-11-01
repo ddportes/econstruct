@@ -105,6 +105,19 @@ class PessoasTable extends Table
             ->allowEmptyString('nome_social');
 
         $validator
+            ->scalar('profissao')
+            ->maxLength('profissao', 63)
+            ->allowEmptyString('profissao');
+        $validator
+            ->scalar('nacionalidade')
+            ->maxLength('nacionalidade', 63)
+            ->allowEmptyString('nacionalidade');
+        $validator
+            ->scalar('naturalidade')
+            ->maxLength('naturalidade', 63)
+            ->allowEmptyString('naturalidade');
+
+        $validator
             ->integer('estado_civil')
             ->allowEmptyString('estado_civil');
 

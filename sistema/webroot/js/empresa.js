@@ -39,6 +39,28 @@ $(document).ready(function(){
         validaCep($(this),lc,bc,cc,ec,nc,$("#erro_cep"),$('#salvarEmpresa'),stSitEmp)
     });
 
+
+
+    /*
+    * Validação do CEP e autopreenchimento
+    * */
+    lr = $("#logradouroRep");
+    br = $("#bairroRep");
+    cr = $("#cidadeRep");
+    er = $("#estadoRep");
+    nr = $("#numeroRep");
+    //limpa_formulário_cep(lc,bc,cc,ec,nc);
+
+    //Quando o campo cep perde o foco.
+    $("#erro_cep_rep").hide();
+    $('#cepRep').mask('00.000-000');
+
+    $("#cepRep").blur(function() {
+        validaCep($(this),lr,br,cr,er,nr,$("#erro_cep_rep"),$('#salvarEmpresa'),stSitEmp)
+    });
+
+
+
     /*
         * Valida CPF
         * */
@@ -47,9 +69,11 @@ $(document).ready(function(){
     if($("#tipo").val() == 'F'){
         $('#cpf_cnpj').mask('000.000.000-00');
         jQuery("label[for=cpf_cnpj]").text('CPF');
+        jQuery("label[for=inscricao]").text('RG');
     }else {
         $('#cpf_cnpj').mask('00.000.000/0000-00');
         jQuery("label[for=cpf_cnpj]").text('CNPJ');
+        jQuery("label[for=inscricao]").text('Inscrição');
     }
 
     $('#cpf_cnpj').on('blur',function() {
@@ -65,6 +89,7 @@ $(document).ready(function(){
 
         if($('#tipo option:selected').val() == 'F'){
             jQuery("label[for=cpf_cnpj]").text('CPF');
+            jQuery("label[for=inscricao]").text('RG');
             $('#cpf_cnpj').mask('000.000.000-00');
             $('#cpf_cnpj').on('blur',function()
             {
@@ -74,6 +99,7 @@ $(document).ready(function(){
             });
         }else{
             jQuery("label[for=cpf_cnpj]").text('CNPJ');
+            jQuery("label[for=inscricao]").text('Inscrição');
             $('#cpf_cnpj').mask('00.000.000/0000-00');
             $('#cpf_cnpj').on('blur',function()
             {

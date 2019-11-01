@@ -121,6 +121,9 @@ class PessoasController extends AppController
             $dados_pessoa['id'] = '';
             $dados_pessoa['nome'] = (!empty($dados['nomePessoa'])?$dados['nomePessoa']: null);
             $dados_pessoa['nome_social'] = (!empty($dados['nomeSocialPessoa'])?$dados['nomeSocialPessoa']: null);
+            $dados_pessoa['profissao'] = (!empty($dados['profissaoPessoa'])?$dados['profissaoPessoa']: null);
+            $dados_pessoa['nacionalidade'] = (!empty($dados['nacionalidadePessoa'])?$dados['nacionalidadePessoa']: null);
+            $dados_pessoa['naturalidade'] = (!empty($dados['naturalidadePessoa'])?$dados['naturalidadePessoa']: null);
             $dados_pessoa['estado_civil'] = (!empty($dados['estadoCivilPessoa'])?$dados['estadoCivilPessoa']: null);
             $dados_pessoa['conjuge_id'] = null;
             $dados_pessoa['filhos'] = (!empty($dados['filhosPessoa'])?$dados['filhosPessoa']: 0);
@@ -148,16 +151,16 @@ class PessoasController extends AppController
                     $dados_originais = json_encode([$user['id'],$user['username'],'Cadastro Conjuge']);
                     $dados_novos = json_encode([$user['id'],$user['username'],$contatos,$pessoa]);
                     if($this->Modificacoes->emiteLog('Clientes','addConjuge',$dados_originais,$dados_novos)) {
-                        //$this->Flash->success(__('Cônjuge cadastrada(o) com sucesso.'));
+                        $this->Flash->success(__('Cônjuge cadastrada(o) com sucesso.'));
                     }else{
-                        //$this->Flash->error(__('Erro ao gravar log.'));
+                        $this->Flash->error(__('Erro ao gravar log.'));
                     }
                 }else{
-                    //$this->Flash->error(__('Erro ao gravar Contatos. Tente Novamente.'));
+                    $this->Flash->error(__('Erro ao gravar Contatos. Tente Novamente.'));
                     $this->Pessoas->delete($pessoa);
                 }
             }else {
-                //$this->Flash->error(__('Erro ao gravar Pessoa. Tente Novamente.'));
+                $this->Flash->error(__('Erro ao gravar Pessoa. Tente Novamente.'));
             }
         }
         if($conjuge_id || (isset($pessoa->id) && !empty($pessoa->id))){
@@ -184,6 +187,9 @@ class PessoasController extends AppController
 
             $dados_pessoa['nome'] = (!empty($dados['nomePessoa'])?$dados['nomePessoa']: null);
             $dados_pessoa['nome_social'] = (!empty($dados['nomeSocialPessoa'])?$dados['nomeSocialPessoa']: null);
+            $dados_pessoa['profissao'] = (!empty($dados['profissaoPessoa'])?$dados['profissaoPessoa']: null);
+            $dados_pessoa['nacionalidade'] = (!empty($dados['nacionalidadePessoa'])?$dados['nacionalidadePessoa']: null);
+            $dados_pessoa['naturalidade'] = (!empty($dados['naturalidadePessoa'])?$dados['naturalidadePessoa']: null);
             $dados_pessoa['estado_civil'] = (!empty($dados['estadoCivilPessoa'])?$dados['estadoCivilPessoa']: null);
             $dados_pessoa['conjuge_id'] = null;
             $dados_pessoa['filhos'] = (!empty($dados['filhosPessoa'])?$dados['filhosPessoa']: 0);
@@ -210,19 +216,56 @@ class PessoasController extends AppController
                     $dados_originais = json_encode([$user['id'],$user['username'],'Cadastro Conjuge']);
                     $dados_novos = json_encode([$user['id'],$user['username'],$contatos,$pessoa]);
                     if($this->Modificacoes->emiteLog('Clientes','addConjuge',$dados_originais,$dados_novos)) {
-                        //$this->Flash->success(__('Cônjuge editada(o) com sucesso.'));
+                        $this->Flash->success(__('Cônjuge editada(o) com sucesso.'));
                     }else{
-                        //$this->Flash->error(__('Erro ao gravar log.'));
+                        $this->Flash->error(__('Erro ao gravar log.'));
                     }
                 }else{
-                    //$this->Flash->error(__('Erro ao gravar Contatos. Tente Novamente.'));
+                    $this->Flash->error(__('Erro ao gravar Contatos. Tente Novamente.'));
                 }
 
             }else {
-                //$this->Flash->error(__('Erro ao gravar Pessoa. Tente Novamente.'));
+                $this->Flash->error(__('Erro ao gravar Pessoa. Tente Novamente.'));
             }
         }
 
         $this->set(compact('conjuge_id','conjuge'));
+    }
+
+    /**
+     * DeleteConjuge method
+     *
+     * @param string|null $id Pessoa id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function deleteConjuge($titular_id = null,$flag)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $titular = $this->Pessoas->get($titular_id);
+        $conjuge = $this->Pessoas->get($titular->conjuge_id);
+        $user = $this->Auth->user();
+        if ($this->Pessoas->delete($conjuge)) {
+            $titular->conjuge_id = null;
+            $this->Pessoas->save($titular);
+            $this->loadModel('Modificacoes');
+            $dados_originais = json_encode([$user['id'],$user['username'],'Excluir Conjuge']);
+            $dados_novos = json_encode([$user['id'],$user['username'],$conjuge,$titular]);
+            if($this->Modificacoes->emiteLog('Pessoas','deleteConjuge',$dados_originais,$dados_novos)) {
+                $this->Flash->success(__('Cônjuge excluído com sucesso.'));
+            }else{
+                $this->Flash->error(__('Erro ao gravar log.'));
+            }
+        } else {
+            $this->Flash->error(__('O cônjuge não pode ser excluído. Tente novamente.'));
+        }
+
+        if($flag == 1){
+            return $this->redirect(['controller'=>'Ocorrencias','action' => 'todasVisitas']);
+        }
+        if($flag == 2){
+            return $this->redirect(['controller'=>'Empresas','action' => 'edit',$user['empresa_id']]);
+        }
+        return $this->redirect(['action' => 'index']);
     }
 }

@@ -6,6 +6,9 @@
 ?>
 
 <?= $this->Html->script('renda.js') ?>
+<script>
+    var imgLoad = '<?= $this->Url->build('/img/ajax-loader.gif') ?>';
+</script>
 <div id="addRenda" >
     <?php echo $this->Flash->render() ?>
     <div class="modal-header">

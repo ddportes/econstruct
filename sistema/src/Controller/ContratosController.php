@@ -36,13 +36,24 @@ class ContratosController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view($id = null,$projeto_id)
     {
         $contrato = $this->Contratos->get($id, [
-            'contain' => ['Projetos', 'Orcamentos', 'Empresas', 'Users']
+            'contain' => ['Projetos','Projetos.Clientes','Projetos.Clientes.Pessoas', 'Orcamentos', 'Empresas', 'Users']
         ]);
 
+        $tags = $this->Contratos->tags($contrato->orcamento_id);
+
+        if($tags['error'] <> ''){
+            $this->Flash->error(__(substr($tags['error'],5,strlen($tags['error']))));
+
+            return $this->redirect(['controller'=>'Orcamentos','action'=>'add',$projeto_id]);
+        }else{
+            $contrato->minuta = str_replace(array_keys($tags),array_values($tags),$contrato->minuta()) ;
+        }
+
         $this->set('contrato', $contrato);
+        $this->render('exportarPdf','Contrato/contratoview');
     }
 
     /**
@@ -119,7 +130,7 @@ class ContratosController extends AppController
         $projeto = null;
         if($projeto_id){
             $projeto = $this->Contratos->Orcamentos->Projetos->get($projeto_id,['contain'=>['Clientes','Clientes.Pessoas']]);
-            
+
         }
 
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -134,6 +145,11 @@ class ContratosController extends AppController
             if ($this->Contratos->save($contrato)) {
 
                 $projeto = $this->Contratos->Projetos->get($projeto_id);
+
+                if(!is_null($projeto->contrato_id)) {
+                    $contrato_old = $this->Contratos->get($projeto->contrato_id);
+                    $this->Contratos->delete($contrato_old);
+                }
                 $projeto->contrato_id = $contrato->id;
                 if ($this->Contratos->Projetos->save($projeto)) {
                     $this->Flash->success(__('Contrato criado com sucesso.'));
@@ -143,7 +159,7 @@ class ContratosController extends AppController
 
                     $this->Modificacoes->emiteLog('Contratos', 'add', $dados_originais, $dados_novos);
 
-                    return $this->redirect(['action' => 'edit',$contrato->id,$projeto_id]);
+                    return $this->redirect(['controller'=>'Orcamentos','action' => 'add',$projeto_id]);
                 }else{
                     $this->Flash->error(__('O contrato não pode ser criado. Tente novamente.'));
                 }
@@ -151,7 +167,7 @@ class ContratosController extends AppController
             }else {
                 $this->Flash->error(__('O contrato não pode ser criado. Tente novamente.'));
             }
-            return $this->redirect(['controller'=>'Orcamentos','action' => 'add',$projeto_id]);
+            //return $this->redirect(['controller'=>'Orcamentos','action' => 'add',$projeto_id]);
         }
         $orcamentos = $this->Contratos->Orcamentos->todosOrcamentosCombo($projeto_id);
         if(!empty($orcamento_id)) {
@@ -193,6 +209,7 @@ class ContratosController extends AppController
                 $this->Modificacoes->emiteLog('Contratos', 'edit', $dados_originais, $dados_novos);
 
                 $this->Flash->success(__('Contrato editado com sucesso.'));
+                return $this->redirect(['controller'=>'Orcamentos','action' => 'add',$projeto_id]);
 
             }else {
                 $this->Flash->error(__('Contrato não pode ser editado. Tente novamente mais tarde.'));

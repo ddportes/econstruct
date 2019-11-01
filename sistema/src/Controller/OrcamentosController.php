@@ -90,9 +90,11 @@ class OrcamentosController extends AppController
                 }
 
             }
-            $orcamentos = $this->Orcamentos->find()->where(["projeto_id"=>$projeto_id])->contain(['Projetos','Contratos','Projetos.Contratos']);
+            $orcamentos = $this->Orcamentos->find()->where(["projeto_id"=>$projeto_id])->contain(['Projetos','Contratos','Projetos.Contratos']);;
         }
 
+
+        //dd($orcamentos->toArray());
 
         $this->set(compact('orcamento','orcamentos','projeto_id','projeto'));
     }

@@ -1182,8 +1182,193 @@ a.match(/"data:image\/png;base64,(.*?)"/)[1],f=CKEDITOR.tools.getNextId(),b=d.co
 c=window.atob(c);b=b+('; filename="'+f+'.png"\r\nContent-type: image/png')+("\r\n\r\n"+c+"\r\n-----------------------------1966284435497298061834782736")+"--";e.setRequestHeader("Content-Type","multipart/form-data; boundary=---------------------------1966284435497298061834782736");e.sendAsBinary(b);return a.replace(/>/,' id="'+f+'">')}),c.data.html?c.data.html=a:c.data.dataValue=a})}});
 
 
+    CKEDITOR.plugins.add("strinsertModelo",{
+        requires:["richcombo"],
+        init:function(a){
+            var b=lista_modelos;
+            a.ui.addRichCombo("strinsertModelo",{
+                label:"Modelos",
+                title:"Modelos",
+                voiceLabel:"Modelos",
+                className:"cke_format",
+                multiSelect:!1,
+                panel:{
+                    css:[
+                        a.config.contentsCss,
+                        CKEDITOR.skin.getPath("editor")
+                    ],
+                    voiceLabel:a.lang.panelVoiceLabel},
+                init:function(){
+                    this.startGroup("Modelos de Documentos");
+                    for(var a in b)
+                        this.add(b[a][0],b[a][1],b[a][2])
+                },
+                onClick:function(b){
+                    a.focus();
+                    a.fire("saveSnapshot");
+                    a.insertHtml(b);
+                    a.fire("saveSnapshot")
+                }
+            });
+        }
+    });
 
+    CKEDITOR.plugins.add("strinsertCliente",{
+        requires:["richcombo"],
+        init:function(a){
+            var b=lista_cliente;
+            a.ui.addRichCombo("strinsertCliente",{
+                label:"Cliente",
+                title:"Cliente",
+                voiceLabel:"Cliente",
+                className:"cke_format",
+                multiSelect:!1,
+                panel:{
+                    css:[
+                        a.config.contentsCss,
+                        CKEDITOR.skin.getPath("editor")
+                    ],
+                    voiceLabel:a.lang.panelVoiceLabel},
+                init:function(){
+                    this.startGroup("Tags de Cliente");
+                    for(var a in b)
+                        this.add(b[a][0],b[a][1],b[a][2])
+                },
+                onClick:function(b){
+                    a.focus();
+                    a.fire("saveSnapshot");
+                    a.insertHtml(b);
+                    a.fire("saveSnapshot")
+                }
+            });
+        }
+    });
 
+    CKEDITOR.plugins.add("strinsertEmpresa",{
+        requires:["richcombo"],
+        init:function(a){
+            var b=lista_empresa;
+            a.ui.addRichCombo("strinsertEmpresa",{
+                label:"Empresa",
+                title:"Empresa",
+                voiceLabel:"Empresa",
+                className:"cke_format",
+                multiSelect:!1,
+                panel:{
+                    css:[
+                        a.config.contentsCss,
+                        CKEDITOR.skin.getPath("editor")
+                    ],
+                    voiceLabel:a.lang.panelVoiceLabel},
+                init:function(){
+                    this.startGroup("Tags de Empresa");
+                    for(var a in b)
+                        this.add(b[a][0],b[a][1],b[a][2])
+                },
+                onClick:function(b){
+                    a.focus();
+                    a.fire("saveSnapshot");
+                    a.insertHtml(b);
+                    a.fire("saveSnapshot")
+                }
+            });
+        }
+    });
+
+    CKEDITOR.plugins.add("strinsertRepresentante",{
+        requires:["richcombo"],
+        init:function(a){
+            var b=lista_representante;
+            a.ui.addRichCombo("strinsertRepresentante",{
+                label:"Representante",
+                title:"Representante",
+                voiceLabel:"Representante",
+                className:"cke_format",
+                multiSelect:!1,
+                panel:{
+                    css:[
+                        a.config.contentsCss,
+                        CKEDITOR.skin.getPath("editor")
+                    ],
+                    voiceLabel:a.lang.panelVoiceLabel},
+                init:function(){
+                    this.startGroup("Tags de Representante");
+                    for(var a in b)
+                        this.add(b[a][0],b[a][1],b[a][2])
+                },
+                onClick:function(b){
+                    a.focus();
+                    a.fire("saveSnapshot");
+                    a.insertHtml(b);
+                    a.fire("saveSnapshot")
+                }
+            });
+        }
+    });
+
+    CKEDITOR.plugins.add("strinsertProjeto",{
+        requires:["richcombo"],
+        init:function(a){
+            var b=lista_projeto;
+            a.ui.addRichCombo("strinsertProjeto",{
+                label:"Projeto",
+                title:"Projeto",
+                voiceLabel:"Projeto",
+                className:"cke_format",
+                multiSelect:!1,
+                panel:{
+                    css:[
+                        a.config.contentsCss,
+                        CKEDITOR.skin.getPath("editor")
+                    ],
+                    voiceLabel:a.lang.panelVoiceLabel},
+                init:function(){
+                    this.startGroup("Tags de Projeto");
+                    for(var a in b)
+                        this.add(b[a][0],b[a][1],b[a][2])
+                },
+                onClick:function(b){
+                    a.focus();
+                    a.fire("saveSnapshot");
+                    a.insertHtml(b);
+                    a.fire("saveSnapshot")
+                }
+            });
+        }
+    });
+
+    CKEDITOR.plugins.add("strinsertOrcContr",{
+        requires:["richcombo"],
+        init:function(a){
+            var b=lista_orcamento_contratos;
+            a.ui.addRichCombo("strinsertOrcContr",{
+                label:"Orc/Contr",
+                title:"Orc/Contr",
+                voiceLabel:"Orc/Contr",
+                className:"cke_format",
+                multiSelect:!1,
+                panel:{
+                    css:[
+                        a.config.contentsCss,
+                        CKEDITOR.skin.getPath("editor")
+                    ],
+                    voiceLabel:a.lang.panelVoiceLabel},
+                init:function(){
+                    this.startGroup("Tags de Orc/Contr");
+                    for(var a in b)
+                        this.add(b[a][0],b[a][1],b[a][2])
+                },
+                onClick:function(b){
+                    a.focus();
+                    a.fire("saveSnapshot");
+                    a.insertHtml(b);
+                    a.fire("saveSnapshot")
+                }
+            });
+        }
+    });
+
+/*
     CKEDITOR.plugins.add("strinsert",{
         requires:["richcombo"],
         init:function(a){
@@ -1214,37 +1399,7 @@ c=window.atob(c);b=b+('; filename="'+f+'.png"\r\nContent-type: image/png')+("\r\
             });
         }
     });
-
-    CKEDITOR.plugins.add("strinsert2",{
-        requires:["richcombo"],
-        init:function(a){
-            var b=lista_modelos;
-            a.ui.addRichCombo("strinsert2",{
-                label:"Modelos",
-                title:"Modelos",
-                voiceLabel:"Modelos",
-                className:"cke_format",
-                multiSelect:!1,
-                panel:{
-                    css:[
-                        a.config.contentsCss,
-                        CKEDITOR.skin.getPath("editor")
-                    ],
-                    voiceLabel:a.lang.panelVoiceLabel},
-                init:function(){
-                    this.startGroup("Modelos de Documentos");
-                    for(var a in b)
-                        this.add(b[a][0],b[a][1],b[a][2])
-                },
-                onClick:function(b){
-                    a.focus();
-                    a.fire("saveSnapshot");
-                    a.insertHtml(b);
-                    a.fire("saveSnapshot")
-                }
-            });
-        }
-    });
+ */
 
 
 
@@ -1350,4 +1505,4 @@ q=b;a.setOpacity(.5);parseInt(a.getStyle("top"),10);l=1;a.on("mousemove",g);d.on
 d);f.on("destroy",function(){a.remove()});p||d.getDocumentElement().append(a);this.attachTo=function(b){l||(p&&d.getBody().append(a),c=b,a.setStyles({width:h(b.width),height:h(b.height),left:h(b.x),top:h(b.y)}),p&&a.setOpacity(.25),a.on("mousedown",r,this),d.getBody().setStyle("cursor","row-resize"),a.show())};m=this.move=function(b){if(!c)return 0;if(!l&&(b<c.y||b>c.y+c.height))return c=null,l=0,d.removeListener("mouseup",e),a.removeListener("mousedown",r),a.removeListener("mousemove",g),d.getBody().setStyle("cursor",
 "auto"),p?a.remove():a.hide(),0;var f=b-Math.round(a.$.offsetHeight/2);if(l){if(void 0==f||void 0==f)return 1;f=Math.max(f,void 0);Math.min(f,void 0)}a.setStyle("top",h(b));return 1}}var h=CKEDITOR.tools.cssLength,p=CKEDITOR.env.ie&&(CKEDITOR.env.ie7Compat||CKEDITOR.env.quirks);CKEDITOR.plugins.add("imageresizerowandcolumn",{init:function(f){f.on("contentDom",function(){var k,h=f.editable();h.attachListener(h.isInline()?h:f.document,"mousemove",function(e){e=e.data;var g=e.getTarget();if(g.type==
 CKEDITOR.NODE_ELEMENT){var c=e.getPageOffset().x,d=e.getPageOffset().y;if(k&&"col"==k.dim&&k.move(c))n(e);else if(k&&"row"==k.dim&&k.move(d))n(e);else if(g.is("img")&&(e=g.getAscendant("img",1),f.editable().contains(e))){g=[];g.push({img:e,index:0,x:e.$.x+e.$.offsetWidth-5,y:e.$.y,width:5,height:e.$.height});a:{for(var a=0,h=g.length;a<h;a++){var m=g[a];if(c>=m.x&&c<=m.x+m.width){c=m;break a}}c=null}if(c)k=new v(f),k.attachTo(c);else{c=[];c.push({img:e,index:0,x:e.$.x,y:e.$.y+e.$.offsetHeight-5,width:e.$.width,
-height:5});g=c;a:{c=0;for(e=g.length;c<e;c++)if(a=g[c],d>=a.y&&d<=a.y+a.height){c=a;break a}c=null}c&&(k=new w(f),k.attachTo(c))}}}})})}})})();CKEDITOR.config.plugins='basicstyles,blockquote,dialogui,dialog,notification,button,toolbar,clipboard,panel,floatpanel,menu,contextmenu,resize,elementspath,enterkey,entities,popup,filetools,filebrowser,floatingspace,listblock,richcombo,format,horizontalrule,htmlwriter,wysiwygarea,indent,indentlist,list,magicline,maximize,pastetext,pastetools,pastefromgdocs,pastefromword,removeformat,showborders,sourcearea,specialchar,stylescombo,tab,table,tabletools,tableselection,undo,lineutils,widgetselection,widget,notificationaggregator,uploadwidget,uploadimage,imagepaste,strinsert,strinsert2,font,justify,panelbutton,colorbutton,base64image,imagebase,copyformatting,imageresizerowandcolumn';CKEDITOR.config.skin='kama';(function() {var setIcons = function(icons, strip) {var path = CKEDITOR.getUrl( 'plugins/' + strip );icons = icons.split( ',' );for ( var i = 0; i < icons.length; i++ )CKEDITOR.skin.icons[ icons[ i ] ] = { path: path, offset: -icons[ ++i ], bgsize : icons[ ++i ] };};if (CKEDITOR.env.hidpi) setIcons('bold,0,,italic,24,,strike,48,,subscript,72,,superscript,96,,underline,120,,blockquote,144,,copy-rtl,168,,copy,192,,cut-rtl,216,,cut,240,,paste-rtl,264,,paste,288,,horizontalrule,312,,indent-rtl,336,,indent,360,,outdent-rtl,384,,outdent,408,,bulletedlist-rtl,432,,bulletedlist,456,,numberedlist-rtl,480,,numberedlist,504,,maximize,528,,pastetext-rtl,552,,pastetext,576,,pastefromword-rtl,600,,pastefromword,624,,removeformat,648,,source-rtl,672,,source,696,,specialchar,720,,table,744,,redo-rtl,768,,redo,792,,undo-rtl,816,,undo,840,,justifyblock,864,,justifycenter,888,,justifyleft,912,,justifyright,936,,bgcolor,960,,textcolor,984,,image,1008,,base64image,1032,,copyformatting,1056,','icons_hidpi.png');else setIcons('bold,0,auto,italic,24,auto,strike,48,auto,subscript,72,auto,superscript,96,auto,underline,120,auto,blockquote,144,auto,copy-rtl,168,auto,copy,192,auto,cut-rtl,216,auto,cut,240,auto,paste-rtl,264,auto,paste,288,auto,horizontalrule,312,auto,indent-rtl,336,auto,indent,360,auto,outdent-rtl,384,auto,outdent,408,auto,bulletedlist-rtl,432,auto,bulletedlist,456,auto,numberedlist-rtl,480,auto,numberedlist,504,auto,maximize,528,auto,pastetext-rtl,552,auto,pastetext,576,auto,pastefromword-rtl,600,auto,pastefromword,624,auto,removeformat,648,auto,source-rtl,672,auto,source,696,auto,specialchar,720,auto,table,744,auto,redo-rtl,768,auto,redo,792,auto,undo-rtl,816,auto,undo,840,auto,justifyblock,864,auto,justifycenter,888,auto,justifyleft,912,auto,justifyright,936,auto,bgcolor,960,auto,textcolor,984,auto,image,1008,auto,base64image,1032,auto,copyformatting,1056,auto','icons.png');})();CKEDITOR.lang.languages={"en":1,"pt-br":1};}());
+height:5});g=c;a:{c=0;for(e=g.length;c<e;c++)if(a=g[c],d>=a.y&&d<=a.y+a.height){c=a;break a}c=null}c&&(k=new w(f),k.attachTo(c))}}}})})}})})();CKEDITOR.config.plugins='basicstyles,blockquote,dialogui,dialog,notification,button,toolbar,clipboard,panel,floatpanel,menu,contextmenu,resize,elementspath,enterkey,entities,popup,filetools,filebrowser,floatingspace,listblock,richcombo,format,horizontalrule,htmlwriter,wysiwygarea,indent,indentlist,list,magicline,maximize,pastetext,pastetools,pastefromgdocs,pastefromword,removeformat,showborders,sourcearea,specialchar,stylescombo,tab,table,tabletools,tableselection,undo,lineutils,widgetselection,widget,notificationaggregator,uploadwidget,uploadimage,imagepaste,strinsertModelo,strinsertCliente,strinsertEmpresa,strinsertRepresentante,strinsertProjeto,strinsertOrcContr,font,justify,panelbutton,colorbutton,base64image,imagebase,copyformatting,imageresizerowandcolumn';CKEDITOR.config.skin='kama';(function() {var setIcons = function(icons, strip) {var path = CKEDITOR.getUrl( 'plugins/' + strip );icons = icons.split( ',' );for ( var i = 0; i < icons.length; i++ )CKEDITOR.skin.icons[ icons[ i ] ] = { path: path, offset: -icons[ ++i ], bgsize : icons[ ++i ] };};if (CKEDITOR.env.hidpi) setIcons('bold,0,,italic,24,,strike,48,,subscript,72,,superscript,96,,underline,120,,blockquote,144,,copy-rtl,168,,copy,192,,cut-rtl,216,,cut,240,,paste-rtl,264,,paste,288,,horizontalrule,312,,indent-rtl,336,,indent,360,,outdent-rtl,384,,outdent,408,,bulletedlist-rtl,432,,bulletedlist,456,,numberedlist-rtl,480,,numberedlist,504,,maximize,528,,pastetext-rtl,552,,pastetext,576,,pastefromword-rtl,600,,pastefromword,624,,removeformat,648,,source-rtl,672,,source,696,,specialchar,720,,table,744,,redo-rtl,768,,redo,792,,undo-rtl,816,,undo,840,,justifyblock,864,,justifycenter,888,,justifyleft,912,,justifyright,936,,bgcolor,960,,textcolor,984,,image,1008,,base64image,1032,,copyformatting,1056,','icons_hidpi.png');else setIcons('bold,0,auto,italic,24,auto,strike,48,auto,subscript,72,auto,superscript,96,auto,underline,120,auto,blockquote,144,auto,copy-rtl,168,auto,copy,192,auto,cut-rtl,216,auto,cut,240,auto,paste-rtl,264,auto,paste,288,auto,horizontalrule,312,auto,indent-rtl,336,auto,indent,360,auto,outdent-rtl,384,auto,outdent,408,auto,bulletedlist-rtl,432,auto,bulletedlist,456,auto,numberedlist-rtl,480,auto,numberedlist,504,auto,maximize,528,auto,pastetext-rtl,552,auto,pastetext,576,auto,pastefromword-rtl,600,auto,pastefromword,624,auto,removeformat,648,auto,source-rtl,672,auto,source,696,auto,specialchar,720,auto,table,744,auto,redo-rtl,768,auto,redo,792,auto,undo-rtl,816,auto,undo,840,auto,justifyblock,864,auto,justifycenter,888,auto,justifyleft,912,auto,justifyright,936,auto,bgcolor,960,auto,textcolor,984,auto,image,1008,auto,base64image,1032,auto,copyformatting,1056,auto','icons.png');})();CKEDITOR.lang.languages={"en":1,"pt-br":1};}());
