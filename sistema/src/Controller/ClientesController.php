@@ -132,9 +132,41 @@ class ClientesController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $cliente = $this->Clientes->get($id);
+        $cliente = $this->Clientes->get($id,['contain'=>['Pessoas','Pessoas.Contatos','Pessoas.Enderecos','Projetos','Projetos.Contratos','Projetos.Orcamentos']]);
+
+        if(count($cliente->projetos) > 0){
+            foreach($cliente->projetos as $p){
+                if($p->hasContrato()){
+                    $this->Flash->error(__('Exclua o contrato do projeto '.$p->descricao.' desse cliente para poder excluí-lo.'));
+                    return $this->redirect(['action' => 'index']);
+                }
+            }
+        }
+
         if ($this->Clientes->delete($cliente)) {
-            $this->Flash->success(__('The cliente has been deleted.'));
+            $pessoa = $cliente->pessoa;
+            if ($this->Clientes->Pessoas->delete($pessoa)) {
+                $contatos = $cliente->pessoa->contatos;
+                foreach($contatos as $c){
+                    $this->Clientes->Pessoas->Contatos->delete($c);
+                }
+                $enderecos = $cliente->pessoa->enderecos;
+                foreach($enderecos as $e){
+                    $this->Clientes->Pessoas->Enderecos->delete($e);
+                }
+
+                $projetos = $cliente->projetos;
+                foreach($projetos as $p){
+                    $orcamentos = $p->orcamentos;
+                    foreach($orcamentos as $o){
+                        $this->Clientes->Projetos->Orcamentos->delete($o);
+                    }
+                    $this->Clientes->Projetos->delete($p);
+                }
+
+
+                $this->Flash->success(__('The cliente has been deleted.'));
+            }
         } else {
             $this->Flash->error(__('The cliente could not be deleted. Please, try again.'));
         }

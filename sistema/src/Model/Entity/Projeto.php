@@ -261,4 +261,14 @@ class Projeto extends Entity
             return $this->contrato_id;
         return false;
     }
+
+    public function hasOrcamento(){
+        if(!empty($this->orcamentos)){
+            if($this->id == $this->orcamentos[0]->projeto_id){
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

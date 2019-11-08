@@ -49,38 +49,38 @@
                 <div class="form-row">
                     <div class="col-md-2">
                         <div class="position-relative form-group">
-                            <?= $this->Form->control('endereco.cep', ['id'=>'endereco.cep','label'=>'CEP','placeholder'=>'Somente Números','class' => 'form-control cep']); ?>
+                            <?= $this->Form->control('endereco.cep', ['id'=>'cepProj','type'=>'text','label'=>'CEP','placeholder'=>'Somente Números','class' => 'form-control cep']); ?>
                             <div id="erro_cep_proj" role="alert" style="margin-top:4px;"></div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="position-relative form-group">
-                            <?= $this->Form->control('endereco.logradouro', ['id'=>'endereco.logradouro','label'=>'Logradouro','class' => 'form-control']); ?>
+                            <?= $this->Form->control('endereco.logradouro', ['id'=>'logradouroProj','label'=>'Logradouro','class' => 'form-control']); ?>
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="position-relative form-group">
-                            <?= $this->Form->control('endereco.numero', ['id'=>'endereco.numero','label'=>'Número','class' => 'form-control']); ?>
+                            <?= $this->Form->control('endereco.numero', ['id'=>'numeroProj','label'=>'Número','class' => 'form-control']); ?>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="position-relative form-group">
-                            <?= $this->Form->control('endereco.bairro', ['id'=>'endereco.bairro','label'=>'Bairro','class' => 'form-control']); ?>
+                            <?= $this->Form->control('endereco.bairro', ['id'=>'bairroProj','label'=>'Bairro','class' => 'form-control']); ?>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="position-relative form-group">
-                            <?= $this->Form->control('endereco.complemento', ['id'=>'endereco.complemento','label'=>'Complemento','class' => 'form-control']); ?>
+                            <?= $this->Form->control('endereco.complemento', ['id'=>'complementoProj','label'=>'Complemento','class' => 'form-control']); ?>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="position-relative form-group">
-                            <?= $this->Form->control('endereco.cidade', ['id'=>'endereco.cidade','label'=>'Cidade','class' => 'form-control']); ?>
+                            <?= $this->Form->control('endereco.cidade', ['id'=>'cidadeProj','label'=>'Cidade','class' => 'form-control']); ?>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="position-relative form-group">
-                            <?= $this->Form->control('endereco.estado', ['id'=>'endereco.estado','label'=>'Estado','class' => 'form-control']); ?>
+                            <?= $this->Form->control('endereco.estado', ['id'=>'estadoProj','label'=>'Estado','class' => 'form-control']); ?>
                         </div>
                     </div>
                 </div>
@@ -112,12 +112,12 @@
                     </div>
                     <div class="col-md-3">
                         <div class="position-relative form-group">
-                            <?= $this->Form->control('area_coberta', ['type'=>'text','id'=>'area_coberta','label'=>'Área Coberta Construída','placeholder'=>'m²','class' => 'form-control']); ?>
+                            <?= $this->Form->control('area_construida_coberta', ['type'=>'text','id'=>'area_construida_coberta','label'=>'Área Coberta Construída','placeholder'=>'m²','class' => 'form-control']); ?>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="position-relative form-group">
-                            <?= $this->Form->control('area_aberta', ['type'=>'text','id'=>'area_aberta','label'=>'Área Aberta Construída','placeholder'=>'m²','class' => 'form-control']); ?>
+                            <?= $this->Form->control('area_construida_aberta', ['type'=>'text','id'=>'area_construida_aberta','label'=>'Área Aberta Construída','placeholder'=>'m²','class' => 'form-control']); ?>
                         </div>
                     </div>
                 </div>

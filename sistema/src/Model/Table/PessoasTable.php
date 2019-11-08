@@ -63,6 +63,7 @@ class PessoasTable extends Table
         ]);
         $this->hasMany('Contatos', [
             'foreignKey' => 'pessoa_id'
+
         ]);
         $this->hasMany('Enderecos', [
             'foreignKey' => 'pessoa_id'

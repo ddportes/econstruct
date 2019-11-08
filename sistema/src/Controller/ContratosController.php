@@ -144,22 +144,31 @@ class ContratosController extends AppController
             $contrato = $this->Contratos->patchEntity($contrato, $dados);
             if ($this->Contratos->save($contrato)) {
 
-                $projeto = $this->Contratos->Projetos->get($projeto_id);
+                $projeto = $this->Contratos->Projetos->get($projeto_id,['contain'=>['Clientes']]);
 
                 if(!is_null($projeto->contrato_id)) {
                     $contrato_old = $this->Contratos->get($projeto->contrato_id);
                     $this->Contratos->delete($contrato_old);
                 }
                 $projeto->contrato_id = $contrato->id;
+                $projeto->projeto_situacao_id = 2;
                 if ($this->Contratos->Projetos->save($projeto)) {
-                    $this->Flash->success(__('Contrato criado com sucesso.'));
-                    $this->loadModel('Modificacoes');
-                    $dados_originais = json_encode([$user['id'], $user['username'], 'Novo Contrato']);
-                    $dados_novos = json_encode([$user['id'], $user['username'], $contrato,$projeto]);
 
-                    $this->Modificacoes->emiteLog('Contratos', 'add', $dados_originais, $dados_novos);
+                    $cliente = $projeto->cliente;
+                    $cliente->cliente_situacao_id = 4;
+                    if ($this->Contratos->Projetos->Clientes->save($cliente)) {
 
-                    return $this->redirect(['controller'=>'Orcamentos','action' => 'add',$projeto_id]);
+                        $this->Flash->success(__('Contrato criado com sucesso.'));
+                        $this->loadModel('Modificacoes');
+                        $dados_originais = json_encode([$user['id'], $user['username'], 'Novo Contrato']);
+                        $dados_novos = json_encode([$user['id'], $user['username'], $contrato, $projeto]);
+
+                        $this->Modificacoes->emiteLog('Contratos', 'add', $dados_originais, $dados_novos);
+
+                        return $this->redirect(['controller' => 'Orcamentos', 'action' => 'add', $projeto_id]);
+                    }else{
+                        $this->Flash->error(__('O contrato não pode ser criado. Tente novamente.'));
+                    }
                 }else{
                     $this->Flash->error(__('O contrato não pode ser criado. Tente novamente.'));
                 }
@@ -236,15 +245,22 @@ class ContratosController extends AppController
         $contrato = $this->Contratos->get($id);
 
         if ($this->Contratos->delete($contrato)) {
-            $projeto = $this->Contratos->Projetos->get($projeto_id);
+            $projeto = $this->Contratos->Projetos->get($projeto_id,['contain'=>['Clientes']]);
             $projeto->contrato_id = null;
+            $projeto->projeto_situacao_id = 1;
             if ($this->Contratos->Projetos->save($projeto)) {
-                $this->Flash->success(__('Contrato foi removido com sucesso.'));
-                $this->loadModel('Modificacoes');
-                $dados_originais = json_encode([$user['id'], $user['username'], 'Exclui Contrato']);
-                $dados_novos = json_encode([$user['id'], $user['username'], $contrato,$projeto]);
+                $cliente = $projeto->cliente;
+                $cliente->cliente_situacao_id = 2;
+                if ($this->Contratos->Projetos->Clientes->save($cliente)) {
+                    $this->Flash->success(__('Contrato foi removido com sucesso.'));
+                    $this->loadModel('Modificacoes');
+                    $dados_originais = json_encode([$user['id'], $user['username'], 'Exclui Contrato']);
+                    $dados_novos = json_encode([$user['id'], $user['username'], $contrato, $projeto]);
 
-                $this->Modificacoes->emiteLog('Contratos', 'delete', $dados_originais, $dados_novos);
+                    $this->Modificacoes->emiteLog('Contratos', 'delete', $dados_originais, $dados_novos);
+                }else{
+                    $this->Flash->error(__('Contrato não pode ser removido. Tente novamente.'));
+                }
             }else{
                 $this->Flash->error(__('Contrato não pode ser removido. Tente novamente.'));
             }

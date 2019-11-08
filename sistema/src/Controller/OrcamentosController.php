@@ -78,13 +78,22 @@ class OrcamentosController extends AppController
                 $orcamento = $this->Orcamentos->patchEntity($orcamento, $dados);
 
                 if ($this->Orcamentos->save($orcamento)) {
-                    $this->loadModel('Modificacoes');
-                    $dados_originais = json_encode([$user['id'], $user['username'], 'Novo Orçamento']);
-                    $dados_novos = json_encode([$user['id'], $user['username'], $orcamento]);
+                    $cliente = $projeto->cliente;
 
-                    $this->Modificacoes->emiteLog('Orcamentos', 'add', $dados_originais, $dados_novos);
+                    if($cliente->cliente_situacao_id == 1){
+                        $cliente->cliente_situacao_id = 2;
+                    }
+                    if ($this->Orcamentos->Projetos->Clientes->save($cliente)) {
+                        $this->loadModel('Modificacoes');
+                        $dados_originais = json_encode([$user['id'], $user['username'], 'Novo Orçamento']);
+                        $dados_novos = json_encode([$user['id'], $user['username'], $orcamento]);
 
-                    $this->Flash->success(__('O orçamento foi alvo com sucesso.'));
+                        $this->Modificacoes->emiteLog('Orcamentos', 'add', $dados_originais, $dados_novos);
+
+                        $this->Flash->success(__('O orçamento foi alvo com sucesso.'));
+                    }else{
+                        $this->Flash->error(__('O orçamento não pode ser salvo. Tente novamente.'));
+                    }
                 }else{
                     $this->Flash->error(__('O orçamento não pode ser salvo. Tente novamente.'));
                 }
@@ -113,16 +122,29 @@ class OrcamentosController extends AppController
         }
 
         $this->request->allowMethod(['post', 'delete']);
-        $orcamento = $this->Orcamentos->get($id);
+        $orcamento = $this->Orcamentos->get($id,['contain'=>['Contratos']]);
+
+        if($orcamento->hasContrato()){
+            $this->Flash->error(__('Exclua o contrato desse orçamento antes de excluí-lo.'));
+            return $this->redirect(['action' => 'add',$projeto_id]);
+        }
+
 
         if ($this->Orcamentos->delete($orcamento)) {
-            $this->Flash->success(__('O orçamento foi excluído com sucesso.'));
-            $user = $sessao = $this->Auth->user();
-            $this->loadModel('Modificacoes');
-            $dados_originais = json_encode([$user['id'], $user['username'], 'Exclui Orçamento']);
-            $dados_novos = json_encode([$user['id'], $user['username'], $orcamento]);
+            $projeto = $this->Orcamentos->Projetos->get($projeto_id,['contain'=>['Clientes','Orcamentos']]);
+            $cliente = $projeto->cliente;
+            if(!$projeto->hasOrcamento()){
+                $cliente->cliente_situacao_id = 2;
+            }
+            if ($this->Orcamentos->Projetos->Clientes->save($cliente)) {
+                $this->Flash->success(__('O orçamento foi excluído com sucesso.'));
+                $user = $sessao = $this->Auth->user();
+                $this->loadModel('Modificacoes');
+                $dados_originais = json_encode([$user['id'], $user['username'], 'Exclui Orçamento']);
+                $dados_novos = json_encode([$user['id'], $user['username'], $orcamento]);
 
-            $this->Modificacoes->emiteLog('Orcamentos', 'delete', $dados_originais, $dados_novos);
+                $this->Modificacoes->emiteLog('Orcamentos', 'delete', $dados_originais, $dados_novos);
+            }
         } else {
             $this->Flash->error(__('O orçamento não pode ser excluído. Tente novamente.'));
         }

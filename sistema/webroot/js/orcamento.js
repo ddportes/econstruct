@@ -1,6 +1,5 @@
 
 $( document ).ready(function(){
-
     if($('#id').val() != '' && $('#id').val()!= null && $('#id').val() != undefined){
         $('#novoOrcamento').attr('style','display:block');
     }else{
@@ -88,4 +87,11 @@ $( document ).ready(function(){
             language: "pt-BR"
         });
     } );
+
+    $('#id').val('');
+    $('#custo').val('');
+    $('#total').val('');
+    $('#data_inicial').val('');
+    $('#data_entrega').val('');
+    $('#observacao').val('');
 });

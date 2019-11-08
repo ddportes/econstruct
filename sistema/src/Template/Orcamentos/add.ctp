@@ -6,6 +6,7 @@
 ?>
 <script>
     var imgLoad = '<?= $this->Url->build('/img/ajax-loader.gif') ?>';
+    var hashOrcamento = '<?= $this->request->getParam('_csrfToken'); ?>';
 </script>
 <?= $this->Html->script('orcamento.js') ?>
 <div class="app-page-title">

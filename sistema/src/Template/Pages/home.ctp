@@ -197,13 +197,13 @@ function drawMultSeries() {
                                     <?php elseif($val->projeto->cliente->cliente_situacao_id == 2): ?>
                                         <div class="badge badge-secondary">
                                     <?php elseif($val->projeto->cliente->cliente_situacao_id == 3): ?>
-                                        <div class="badge badge-warning>
+                                        <div class="badge badge-warning">
                                     <?php elseif($val->projeto->cliente->cliente_situacao_id == 4): ?>
-                                        <div class="badge badge-success>
+                                        <div class="badge badge-success">
                                     <?php elseif($val->projeto->cliente->cliente_situacao_id == 5): ?>
-                                        <div class="badge badge-alt>
+                                        <div class="badge badge-alt">
                                     <?php else: ?>
-                                        <div class="badge badge-danger>
+                                        <div class="badge badge-danger">
                                 <?php endif; ?>
                                      <?= $val->projeto->cliente->cliente_situacao->descricao ?></div>
                             </td>

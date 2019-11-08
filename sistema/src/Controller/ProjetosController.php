@@ -85,6 +85,18 @@ class ProjetosController extends AppController
             $user = $this->Auth->user();
             $dados = $this->request->getData();
 
+
+            $dados['descricao'] = (!empty($dados['descricao'])?$dados['descricao']: null);
+            $dados['detalhes'] = (!empty($dados['detalhes'])?$dados['detalhes']: null);
+            $dados['custo_estimado'] = (!empty($dados['custo_estimado'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['custo_estimado'])): null);
+            $dados['terreno'] = (!empty($dados['terreno'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['terreno'])): null);
+            $dados['frente'] = (!empty($dados['frente'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['frente'])): null);
+            $dados['fundo'] = (!empty($dados['fundo'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['fundo'])): null);
+            $dados['area_construida_coberta'] = (!empty($dados['area_construida_coberta'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['area_construida_coberta'])): null);
+            $dados['area_construida_aberta'] = (!empty($dados['area_construida_aberta'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['area_construida_aberta'])): null);
+            $dados['observacao'] = (!empty($dados['observacao'])?$dados['observacao']: null);
+            $dados['endereco']['cep'] = (!empty($dados['endereco']['cep'])?preg_replace('/[^0-9]/', '', $dados['endereco']['cep']): null);
+
             $dados['empresa_id'] = $user['empresa_id'];
             $dados['u_id'] = $user['id'];
 
@@ -153,8 +165,27 @@ class ProjetosController extends AppController
             $dados = $this->request->getData();
             $dados['u_id'] = $user['id'];
 
+
+            $dados['descricao'] = (!empty($dados['descricao'])?$dados['descricao']: null);
+            $dados['detalhes'] = (!empty($dados['detalhes'])?$dados['detalhes']: null);
+            $dados['custo_estimado'] = (!empty($dados['custo_estimado'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['custo_estimado'])): null);
+            $dados['terreno'] = (!empty($dados['terreno'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['terreno'])): null);
+            $dados['frente'] = (!empty($dados['frente'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['frente'])): null);
+            $dados['fundo'] = (!empty($dados['fundo'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['fundo'])): null);
+            $dados['area_construida_coberta'] = (!empty($dados['area_construida_coberta'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['area_construida_coberta'])): null);
+            $dados['area_construida_aberta'] = (!empty($dados['area_construida_aberta'])?str_replace(',','.',preg_replace("/[^0-9,]/", "", $dados['area_construida_aberta'])): null);
+            $dados['observacao'] = (!empty($dados['observacao'])?$dados['observacao']: null);
+            $dados['endereco']['cep'] = (!empty($dados['endereco']['cep'])?preg_replace('/[^0-9]/', '', $dados['endereco']['cep']): null);
+
+
+            $endereco = $projeto->endereco;
+
+            $endereco = $this->Projetos->Enderecos->patchEntity($endereco , $dados['endereco']);
+
             $projeto = $this->Projetos->patchEntity($projeto, $dados);
+
             if ($this->Projetos->save($projeto)) {
+                $this->Projetos->Enderecos->save($endereco);
                 $this->loadModel('Modificacoes');
                 $dados_originais = json_encode([$user['id'], $user['username'], 'Editar Projeto']);
                 $dados_novos = json_encode([$user['id'], $user['username'], $projeto]);
@@ -187,9 +218,19 @@ class ProjetosController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $projeto = $this->Projetos->get($id);
+        $projeto = $this->Projetos->get($id,['contain'=>['Orcamentos','Clientes']]);
+
+        if($projeto->hasOrcamento()){
+            $this->Flash->error(__('Exclua os orçamentos vinculados a esse projeto antes de excluí-lo.'));
+            return $this->redirect(['action' => 'index']);
+        }
+
         if ($this->Projetos->delete($projeto)) {
-            $this->Flash->success(__('O projeto foi excluído com sucesso.'));
+            $cliente = $projeto->cliente;
+            $cliente->cliente_situacao_id = 1;
+            if ($this->Projetos->Clientes->save($cliente)) {
+                $this->Flash->success(__('O projeto foi excluído com sucesso.'));
+            }
         } else {
             $this->Flash->error(__('Não foi possível excluir o projeto. Tente novamente mais tarde.'));
         }

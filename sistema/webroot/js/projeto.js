@@ -22,13 +22,13 @@ $(document).ready(function(){
         thousands: "."
     });
 
-    $('#area_coberta').maskMoney({
+    $('#area_construida_coberta').maskMoney({
         suffix: " m²",
         decimal: ",",
         thousands: "."
     });
 
-    $('#area_aberta').maskMoney({
+    $('#area_construida_aberta').maskMoney({
         suffix: " m²",
         decimal: ",",
         thousands: "."
@@ -50,7 +50,7 @@ $(document).ready(function(){
     cc = $("#cidadeProj");
     ec = $("#estadoProj");
     nc = $("#numeroProj");
-    limpa_formulário_cep(lc,bc,cc,ec,nc);
+    //limpa_formulário_cep(lc,bc,cc,ec,nc);
 
     //Quando o campo cep perde o foco.
     $("#erro_cep_proj").hide();
