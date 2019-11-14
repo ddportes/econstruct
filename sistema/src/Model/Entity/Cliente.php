@@ -49,4 +49,58 @@ class Cliente extends Entity
         }
         return false;
     }
+
+    public function allRecebimentos(){
+
+        $retorno = [];
+
+        if(!empty($this->projetos)){
+            foreach($this->projetos as $projeto){
+                if(!empty($projeto->recebimentos)){
+                    foreach($projeto->recebimentos as $recebimento){
+                        $recebimento['projeto_desc'] = $projeto->descricao;
+                        $retorno[] = $recebimento;
+                    }
+                }
+            }
+        }
+
+        return $retorno;
+
+    }
+    public function allOrcamentos(){
+
+        $retorno = [];
+
+        if(!empty($this->projetos)){
+            foreach($this->projetos as $projeto){
+                if(!empty($projeto->orcamentos)){
+                    foreach($projeto->orcamentos as $orcamento){
+                        $orcamento['projeto_desc'] = $projeto->descricao;
+                        $retorno[] = $orcamento;
+                    }
+                }
+            }
+        }
+
+        return $retorno;
+
+    }
+    public function allOcorrencias(){
+        $retorno = [];
+
+        if(!empty($this->projetos)){
+            foreach($this->projetos as $projeto){
+                if(!empty($projeto->ocorrencias)){
+                    foreach($projeto->ocorrencias as $ocorrencia){
+                        $ocorrencia['projeto_desc'] = $projeto->descricao;
+                        $retorno[] = $ocorrencia;
+                    }
+                }
+            }
+        }
+
+        return $retorno;
+    }
+
 }

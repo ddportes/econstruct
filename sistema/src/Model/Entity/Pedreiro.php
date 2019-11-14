@@ -42,4 +42,35 @@ class Pedreiro extends Entity
         'pedreiro_situacao' => true,
         'equipe_pedreiros' => true
     ];
+
+    public function hasEquipe(){
+        if(count($this->equipe_pedreiros)>0){
+            return true;
+        }
+        return false;
+    }
+
+    public function projetos(){
+        $retorno = [];
+
+        foreach($this->equipe_pedreiros as $equipe){
+            if(!empty($equipe->projeto)){
+                $retorno[]=$equipe->projeto;
+            }
+        }
+
+        return $retorno;
+    }
+
+    public function recibos(){
+        $retorno = [];
+
+        foreach($this->projetos() as $projeto){
+            if(!empty($projeto->recibos)){
+                $retorno[]=$projeto->recibos;
+            }
+        }
+
+        return $retorno;
+    }
 }

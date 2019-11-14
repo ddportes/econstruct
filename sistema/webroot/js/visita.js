@@ -58,6 +58,7 @@ $(document).ready(function(){
                 }
                 //$('#salvar').prop('disabled',false);
                 statusSalvar($('#salvar'),5,1,stSit);
+                $('#checkNovoProjeto').prop('checked', false);
                 $('#checkNovoProjeto').prop('disabled',true);
             }else{
                 $('#projeto_id').val('');

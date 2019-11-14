@@ -1,32 +1,153 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Pedreiro $pedreiro
+ * @var \App\Model\Entity\Projeto $projeto
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Pedreiros'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Pessoas'), ['controller' => 'Pessoas', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Pessoa'), ['controller' => 'Pessoas', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Pedreiro Situacoes'), ['controller' => 'PedreiroSituacoes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Pedreiro Situacao'), ['controller' => 'PedreiroSituacoes', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Equipe Pedreiros'), ['controller' => 'EquipePedreiros', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Equipe Pedreiro'), ['controller' => 'EquipePedreiros', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="pedreiros form large-9 medium-8 columns content">
-    <?= $this->Form->create($pedreiro) ?>
-    <fieldset>
-        <legend><?= __('Add Pedreiro') ?></legend>
-        <?php
-            echo $this->Form->control('pessoa_id', ['options' => $pessoas]);
-            echo $this->Form->control('pedreiro_situacao_id', ['options' => $pedreiroSituacoes, 'empty' => true]);
-            echo $this->Form->control('observacao');
-            echo $this->Form->control('empresa_id');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
-</div>
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="pe-7s-tools icon-gradient bg-mean-fruit">
+                    </i>
+                </div>
+                <div>Novo Pedreiro.
+                    <div class="page-title-subheading">
+                        <p>Preencha os campos abaixo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <?= $this->Form->create($pedreiro) ?>
+            <div class="mb-3 card">
+                <div class="card-body">
+                    <div class="position-relative form-group">
+                        <?= $this->Form->control('pessoa.nome', ['id'=>'nome','label'=>'Nome do Pedreiro','class' => 'form-control']); ?>
+                    </div>
+                    <div class="position-relative form-group">
+                        <?= $this->Form->control('pessoa.nome_social', ['id'=>'nomeSocial','label'=>'Nome Social','class' => 'form-control']); ?>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-md-2">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('pessoa.cpf_cnpj', ['id'=>'cpf','label'=>'CPF','placeholder'=>'Somente números','class' => 'form-control']); ?>
+                                <div id="erro_cpf" role="alert" style="margin-top:4px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('pessoa.rg', ['id'=>'rg','label'=>'RG','class' => 'form-control']); ?>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('pessoa.estado_civil', ['options'=>[''=>'','1'=>'Solteiro(a)','2'=>'Casado(a)','3'=>'Separado(a)','4'=>'Viúvo(a)','5'=>'União Estável(a)'],'id'=>'estadoCivil','label'=>'Estado Civil','class' => 'form-control']); ?>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('pessoa.sexo', ['options'=>['M'=>'Masculino','F'=>'Feminino'],'id'=>'sexo','label'=>'Sexo','class' => 'form-control']); ?>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('pedreiro_situacao_id', ['id'=>'pedreiro_situacao_id','options' => $pedreiroSituacoes, 'empty' => true,'label'=>'Situação do Pedreiro','class' => 'form-control']); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('pessoa.profissao', ['id'=>'profissao','label'=>'Profissão','class' => 'form-control']); ?>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('pessoa.nacionalidade', ['id'=>'nacionalidade','label'=>'Nacionalidade','class' => 'form-control']); ?>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('pessoa.naturalidade', ['id'=>'naturalidade','label'=>'Naturalidade','class' => 'form-control']); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('pessoa.telefone', ['id'=>'telefone','label'=>'Telefone','class' => 'form-control telefone']); ?>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('pessoa.email', ['id'=>'email','label'=>'E-mail','class' => 'form-control email']); ?>
+                                <div id="erro_email" role="alert" style="margin-top:4px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('pessoa.data_nascimento', ['type'=>'text','id'=>'data_nascimento','label'=>'Data de Nascimento','class' => 'form-control']); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('observacao', ['type'=>'textarea','id'=>'observacao','label'=>'Observações sobre o Pedreiro','class' => 'form-control']); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-2">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('endereco.cep', ['id'=>'cepProj','type'=>'text','label'=>'CEP','placeholder'=>'Somente Números','class' => 'form-control cep']); ?>
+                                <div id="erro_cep_proj" role="alert" style="margin-top:4px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('endereco.logradouro', ['id'=>'logradouroProj','label'=>'Logradouro','class' => 'form-control']); ?>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('endereco.numero', ['id'=>'numeroProj','label'=>'Número','class' => 'form-control']); ?>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('endereco.bairro', ['id'=>'bairroProj','label'=>'Bairro','class' => 'form-control']); ?>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('endereco.complemento', ['id'=>'complementoProj','label'=>'Complemento','class' => 'form-control']); ?>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('endereco.cidade', ['id'=>'cidadeProj','label'=>'Cidade','class' => 'form-control']); ?>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="position-relative form-group">
+                                <?= $this->Form->control('endereco.estado', ['id'=>'estadoProj','label'=>'Estado','class' => 'form-control']); ?>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body" style="text-align: right;">
+                    <?= $this->Form->button(__('Salvar'),['id'=>'salvar','type'=>'submit','class'=>'btn btn-success']) ?>
+                </div>
+
+            </div>
+            <?= $this->Form->end() ?>
+        </div>
+
+    </div>
+<?= $this->Html->script('cliente.js',['block'=>true]) ?>

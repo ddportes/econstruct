@@ -59,16 +59,10 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Todos
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Todos'),['controller'=>'Projetos','action'=>'index'],['escape'=>false]) ?>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Novo
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Novo'),['controller'=>'Projetos','action'=>'add'],['escape'=>false]) ?>
                     </li>
                 </ul>
             </li>
@@ -85,18 +79,6 @@
                     <li>
                         <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Novo'),['controller'=>'Clientes','action'=>'add'],['escape'=>false]) ?>
                     </li>
-                    <li>
-                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Contatos'),['controller'=>'Contatos','action'=>'index'],['escape'=>false]) ?>
-                    </li>
-                    <li>
-                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Enderecos'),['controller'=>'Enderecos','action'=>'index'],['escape'=>false]) ?>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Mapa Financeiro
-                        </a>
-                    </li>
                 </ul>
             </li>
 
@@ -110,16 +92,10 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Todos
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Todos'),['controller'=>'Fornecedores','action'=>'index'],['escape'=>false]) ?>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Novo
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Novo'),['controller'=>'Fornecedores','action'=>'add'],['escape'=>false]) ?>
                     </li>
                     <li>
                         <a href="">
@@ -137,16 +113,10 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Todos
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Todos'),['controller'=>'Pedreiros','action'=>'index'],['escape'=>false]) ?>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Novo
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Novo'),['controller'=>'Pedreiros','action'=>'add'],['escape'=>false]) ?>
                     </li>
                     <li>
                         <a href="">
@@ -164,22 +134,13 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Todos
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Todos'),['controller'=>'Produtos','action'=>'index'],['escape'=>false]) ?>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Novo
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Novo'),['controller'=>'Produtos','action'=>'add'],['escape'=>false]) ?>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Tipos
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Tipos'),['controller'=>'ProdutoTipos','action'=>'index'],['escape'=>false]) ?>
                     </li>
                     <li>
                         <a href="">
@@ -197,16 +158,10 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Todas
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Todas'),['controller'=>'Equipes','action'=>'index'],['escape'=>false]) ?>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Nova
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Nova'),['controller'=>'Equipes','action'=>'add'],['escape'=>false]) ?>
                     </li>
                     <li>
                         <a href="">
@@ -228,16 +183,10 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Todas
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Todas'),['controller'=>'Ocorrencias','action'=>'index'],['escape'=>false]) ?>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Nova
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Nova'),['controller'=>'Ocorrencias','action'=>'add'],['escape'=>false]) ?>
                     </li>
                     <li>
                         <a href="">
@@ -255,16 +204,10 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Todas
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Todas'),['controller'=>'Notas','action'=>'index'],['escape'=>false]) ?>
                     </li>
                     <li>
-                        <a href="components-tabs.html">
-                            <i class="metismenu-icon"></i>
-                            Nova
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Nova'),['controller'=>'Notas','action'=>'add'],['escape'=>false]) ?>
                     </li>
                     <li>
                         <a href="">
@@ -282,16 +225,7 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Todos
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Novo
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Todos'),['controller'=>'Contratos','action'=>'index'],['escape'=>false]) ?>
                     </li>
                 </ul>
             </li>
@@ -303,16 +237,25 @@
                 </a>
                 <ul>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Todos
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Todos'),['controller'=>'Recibos','action'=>'index'],['escape'=>false]) ?>
                     </li>
                     <li>
-                        <a href="">
-                            <i class="metismenu-icon"></i>
-                            Novo
-                        </a>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Novo'),['controller'=>'Recibos','action'=>'add'],['escape'=>false]) ?>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="metismenu-icon pe-7s-cash"></i>
+                    Recebimentos
+                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                </a>
+                <ul>
+                    <li>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Todos'),['controller'=>'Recebimentos','action'=>'index'],['escape'=>false]) ?>
+                    </li>
+                    <li>
+                        <?= $this->Html->Link(__('<i class="metismenu-icon"></i>Novo'),['controller'=>'Recebimentos','action'=>'add'],['escape'=>false]) ?>
                     </li>
                 </ul>
             </li>

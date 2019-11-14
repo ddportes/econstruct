@@ -12,7 +12,7 @@
             </div>
             <div>Clientes.
                 <div class="page-title-subheading">
-                    <p>Listagem de todas os clientes cadastrados.</p>
+                    <p>Listagem de todos os clientes cadastrados.</p>
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@
                                     <td><?= ($cliente->hasProjeto()?'Sim':'Não') ?>
                                     <td><?= h(substr($cliente->observacao,0,70)) ?>...</td>
                                     <td class="actions">
-                                        <?php //echo $this->Html->link('<i class="fas fa-search"></i>', ['action' => 'view', $ocorrencia->id],['Title'=>'Visualizar detalhes da Visita','escape'=>false]) ?>
+                                        <?php echo $this->Html->link('<i class="fas fa-search"></i>', ['action' => 'view', $cliente->id],['Title'=>'Visualizar detalhes do Cliente','escape'=>false]) ?>
                                         <?= $this->Html->link('<i class="fas fa-user-edit"></i>', ['action' => 'edit', $cliente->id],['Title'=>'Alterar Cliente','escape'=>false]) ?>
                                         <?php echo $this->Form->postLink('<i class="fas fa-trash-alt"></i>', ['action' => 'delete', $cliente->id],['data'=>['id'=>$cliente->id],'confirm' => __('Deseja realmente excluir o cliente {0}?', $cliente->id),'Title'=>'Excluir Cliente','escape'=>false]) ?>
                                     </td>

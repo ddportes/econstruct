@@ -83,6 +83,14 @@ class Pessoa extends Entity
         }
         return null;
     }
+    public function firstIdTelefone(){
+        foreach($this->contatos as $val){
+            if($val->tipo=='telefone'){
+                return $val->id;
+            }
+        }
+        return null;
+    }
 
     public function allTelefones(){
         $telefones = '';
@@ -103,7 +111,15 @@ class Pessoa extends Entity
     public function firstEmail(){
         foreach($this->contatos as $val){
             if($val->tipo=='email'){
-                return $val->valors;
+                return $val->valor;
+            }
+        }
+        return null;
+    }
+    public function firstIdEmail(){
+        foreach($this->contatos as $val){
+            if($val->tipo=='email'){
+                return $val->id;
             }
         }
         return null;

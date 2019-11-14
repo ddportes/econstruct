@@ -172,12 +172,12 @@ class Initial extends AbstractMigration
             ])
             ->addIndex(
                 [
-                    'pessoa_id',
+                    'u_id',
                 ]
             )
             ->addIndex(
                 [
-                    'u_id',
+                    'pessoa_id',
                 ]
             )
             ->create();
@@ -496,17 +496,17 @@ class Initial extends AbstractMigration
             ])
             ->addIndex(
                 [
-                    'pessoa_id',
-                ]
-            )
-            ->addIndex(
-                [
                     'empresa_id',
                 ]
             )
             ->addIndex(
                 [
                     'u_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'pessoa_id',
                 ]
             )
             ->create();

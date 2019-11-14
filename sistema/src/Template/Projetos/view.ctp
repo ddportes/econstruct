@@ -30,7 +30,7 @@
                             <?= $this->Html->link('<i class="nav-link-icon lnr lnr-plus-circle"></i><span>'.__('Novo Projeto').'</span>', ['action' => 'add'],['role'=>'button','title'=>'Novo Projeto','class'=>'nav-link','escape'=>false]) ?>
                         </li>
                         <li class="nav-item">
-                            <?= $this->Html->link('<i class="nav-link-icon lnr lnr-plus-circle"></i><span>'.__('Editar Projeto').'</span>', ['controller'=>'Ocorrencias','action' => 'edit',$projeto->id],['role'=>'button','title'=>'Editar Projeto','class'=>'nav-link','escape'=>false]) ?>
+                            <?= $this->Html->link('<i class="nav-link-icon lnr lnr-plus-circle"></i><span>'.__('Editar Projeto').'</span>', ['action' => 'edit',$projeto->id],['role'=>'button','title'=>'Editar Projeto','class'=>'nav-link','escape'=>false]) ?>
                         </li>
                         <li class="nav-item">
                             <?= $this->Html->link('<i class="nav-link-icon lnr lnr-plus-circle"></i><span>'.__('Nova Ocorrência').'</span>', ['controller'=>'Ocorrencias','action' => 'add'],['role'=>'button','title'=>'Nova Ocorrência','class'=>'nav-link','escape'=>false]) ?>
@@ -344,7 +344,7 @@
                             </table>
                         </div>
                     <?php else: ?>
-                        <p>Nenhum Orçamento Cadastrado</p>
+                        <p>Nenhuma Ocorrência Cadastrada</p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -379,7 +379,7 @@
                         </table>
                     </div>
                     <?php else: ?>
-                        <p>Nenhum Recibo Cadastrado</p>
+                        <p>Nenhum Orçamento Cadastrado</p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -408,7 +408,7 @@
                         </table>
                     </div>
                     <?php else: ?>
-                        <p>Nenhum Recibo Cadastrado</p>
+                        <p>Nenhum Recebimento Cadastrado</p>
                     <?php endif; ?>
                 </div>
             </div>
