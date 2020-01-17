@@ -110,9 +110,9 @@ class ProdutosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $produto = $this->Produtos->get($id);
         if ($this->Produtos->delete($produto)) {
-            $this->Flash->success(__('The produto has been deleted.'));
+            $this->Flash->success(__('O produto foi excluído com sucesso.'));
         } else {
-            $this->Flash->error(__('The produto could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O produto não pode ser excluído. Tente novamente mais tarde.'));
         }
 
         return $this->redirect(['action' => 'index']);
