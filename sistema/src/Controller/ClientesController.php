@@ -21,7 +21,7 @@ class ClientesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Pessoas','Pessoas.Contatos','Pessoas.Enderecos','ClienteSituacoes','Projetos','Projetos.ProjetoSituacoes','EquipePedreiros']
+            'contain' => ['Pessoas','Pessoas.Contatos','Pessoas.Enderecos','ClienteSituacoes','Projetos','Projetos.ProjetoSituacoes']
         ];
         $clientes = $this->paginate($this->Clientes);
 

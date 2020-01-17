@@ -37,15 +37,23 @@ class ProdutosTable extends Table
         parent::initialize($config);
 
         $this->setTable('produtos');
-        $this->setDisplayField('id');
+        $this->setDisplayField('descricao');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
         $this->addBehavior('FiltroAcesso');
 
-        $this->belongsTo('Produtos', [
-            'foreignKey' => 'produto_pai_id'
-        ]);
+         $this->belongsTo('ProdutoPai',[
+                'className' => 'Produtos',
+                'foreignKey' => 'produto_pai_id'
+            ]
+        );
+
+        $this->hasMany('ProdutoFilho', [
+                'className' => 'Produtos',
+                'foreignKey' => 'produto_pai_id'
+            ]
+        );
 
         $this->belongsTo('ProdutoTipos', [
             'foreignKey' => 'produto_tipo_id'
@@ -92,7 +100,7 @@ class ProdutosTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['produto_tipo_id'], 'ProdutoTipos'));
-        $rules->add($rules->existsIn(['produto_pai_id'], 'Produtos'));
+        //$rules->add($rules->existsIn(['produto_pai_id'], 'Produtos'));
         $rules->add($rules->existsIn(['empresa_id'], 'Empresas'));
         $rules->add($rules->existsIn(['u_id'], 'Users'));
 

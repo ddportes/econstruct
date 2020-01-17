@@ -21,7 +21,7 @@ class ProdutosController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['ProdutoTipos']
+            'contain' => ['ProdutoTipos','ProdutoPai']
         ];
         $produtos = $this->paginate($this->Produtos);
 
@@ -38,7 +38,7 @@ class ProdutosController extends AppController
     public function view($id = null)
     {
         $produto = $this->Produtos->get($id, [
-            'contain' => ['ProdutoTipos', 'Itens', 'Produtos']
+            'contain' => ['ProdutoTipos', 'Itens','ProdutoPai']
         ]);
 
         $this->set('produto', $produto);
@@ -80,7 +80,7 @@ class ProdutosController extends AppController
     public function edit($id = null)
     {
         $produto = $this->Produtos->get($id, [
-            'contain' => []
+            'contain' => ['ProdutoTipos', 'Itens','ProdutoPai']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $dados = $this->request->getData();
