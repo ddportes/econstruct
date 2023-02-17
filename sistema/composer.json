@@ -11,7 +11,7 @@
         "cakephp/plugin-installer": "^1.0",
         "daoandco/cakephp-dompdf": "^1.2",
         "dompdf/dompdf": "^0.8.3",
-        "firebase/php-jwt": "^5.0",
+        "firebase/php-jwt": "^6.0",
         "friendsofcake/cakepdf": "^3.5",
         "holt59/cakephp3-bootstrap-helpers": "dev-master",
         "mobiledetect/mobiledetectlib": "2.*"
